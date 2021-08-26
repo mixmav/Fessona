@@ -11,7 +11,27 @@ const mix = require('laravel-mix');
  |
  */
 
-mix.js('resources/js/app.js', 'public/js')
-    .postCss('resources/css/app.css', 'public/css', [
-        //
-    ]);
+mix.js('resources/js/app.js', 'public/js').vue()
+//  .extract([
+// 	 'animejs',
+// 	 'howler',
+// 	 'jquery',
+// 	 'lodash',
+// 	 'vue',
+// 	 'vue-quill-editor',
+// 	 'vue-ripple-directive',
+// 	 'vue-router',
+// 	 'vuex'
+//  ])
+.sass('resources/scss/app.scss', 'public/css')
+
+.disableNotifications()
+
+.browserSync({
+	notify: false,
+	proxy: 'localhost',
+});
+
+if (mix.inProduction()) {
+	mix.version();
+}

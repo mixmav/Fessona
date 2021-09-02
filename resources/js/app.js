@@ -3,7 +3,13 @@ require('./bootstrap');
 import Vue from 'vue';
 import Ripple from 'vue-ripple-directive';
 import VueRouter from 'vue-router';
-// import { store } from './store/store';
+
+import VTooltip from 'v-tooltip';
+Vue.use(VTooltip, {
+	defaultTemplate: '<div class="tooltip" role="tooltip"><div class="tooltip-inner"></div></div>'
+})
+
+import { store } from './store/store';
 
 
 Ripple.color = 'rgba(255, 255, 255, 0.35)';
@@ -20,6 +26,6 @@ const router = new VueRouter({
 new Vue({
 	el: '#app',
 	router,
-	// store,
+	store,
 	render: h => h(App)
 });

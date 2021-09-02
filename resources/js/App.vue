@@ -1,5 +1,6 @@
 <template>
     <div class="main-app-container">
+		<alert></alert>
         <div class="main-content">
 			<transition name="router-view" mode="out-in">
 				<router-view></router-view>
@@ -9,7 +10,13 @@
 </template>
 
 <script>
+import Alert from './components/Alert.vue';
+
 export default {
+	components: {
+		Alert,
+	},
+
     mounted() {
     },
     data() {
@@ -24,7 +31,7 @@ export default {
 
 .main-app-container {
     & > .main-content {
-        // padding: 1em;
+        padding: 1em;
     }
 	.main-page-content{
 		position: relative;

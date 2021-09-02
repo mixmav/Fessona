@@ -1,71 +1,56 @@
 <template>
 	<div class="vRouterPage-home-page-container">
-		<canvas id="bg"></canvas>
-		<div class="content">
+		<div id="particles-js"></div>
+
+		<div class="main-page-content">
 			<h1>Fessona</h1>
-			<h2>Fessona, is a Roman Goddess Who aids the weary.</h2>
+			<p style="font-size: 1em">/fə'səunə/</p>
+			<p class="mt-10">In Roman mythology, Fessona is the goddess that rids people of fatigue.</p>
+			
+			<button class="btn indigo mt-20" ref="testBtn" v-ripple v-tooltip.left="'Quickstart'" @click="showQuickstart"><i class="fa fa-info-circle"></i>How it works</button>
+			&nbsp;
+			<button class="btn green mt-20" v-ripple v-tooltip.right="'Scan a QR code'"><i class="fa fa-qrcode"></i>Scan a QR code</button>
+			<h1 class="mt-50">Active sites</h1>
+			<p>Each box below represents a real location at an RMIT Campus where our community leaves goodies for you to find 🥰</p>
+			<div class="active-sites">
+				<div class="site"></div>
+				<div class="site"></div>
+			</div>
 		</div>
 	</div>
 </template>
 
 <script>
-import * as THREE from 'three';
-import $ from 'jquery';
+import 'particles.js/particles';
+import { mapActions } from 'vuex';
 
 export default {
 	mounted(){
-		this.scene = new THREE.Scene();
-		this.camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+		this.particlesJS.load('particles-js', '/assets/particles.json');
 
-		this.renderer = new THREE.WebGLRenderer({
-			canvas: document.querySelector('#bg')
+		document.querySelector('.main-page-content').addEventListener('mousemove', function(e) { 
+			var e = document.createEvent('MouseEvents');
+			e.initMouseEvent('mousemove',true,true,document.defaultView, 0, event.screenX, event.screenY, event.clientX, event.clientY,false,false,false,false,null,null);
+			document.getElementById("particles-js").childNodes[0].dispatchEvent(e) 
 		});
-
-		this.resize();
-		this.camera.position.setZ(30);
-
-
-		const geometry = new THREE.TorusKnotGeometry(10,3,16,100);
-		const material = new THREE.MeshPhongMaterial({color: 0xFF6347, wireframe: true});
-		this.shape = new THREE.Mesh(geometry, material);
-
-		this.scene.background = new THREE.TextureLoader().load('/images/bg.jpg');
-		this.scene.add(this.shape);
-
-		// this.light = new THREE.AmbientLight(0xffffff);
-		// this.light.position.set(5,5,5);
-		// this.scene.add(this.light);
-
-		this.animate();
-
-		$(window).resize(() => {
-			this.resize();
-		})
-	},
-
-	methods: {
-		animate(){
-			requestAnimationFrame(this.animate);
-			this.shape.rotation.x += 0.01;
-			this.shape.rotation.y += 0.005;
-			this.shape.rotation.z += 0.01;
-			this.renderer.render(this.scene, this.camera);
-		},
-		resize(){
-			this.renderer.setPixelRatio(window.devicePixelRatio);
-			this.renderer.setSize(window.innerWidth, window.innerHeight);
-
-		}
 	},
 	data(){
 		return {
-			scene: {},
-			camera: {},
-			renderer: {},
-			shape: {},
-			light: {},
-
+			particlesJS: window.particlesJS,
 		}
+	},
+	
+	methods: {
+		showQuickstart(){
+			this.showAlert({
+				message: 'OH HI!!',
+				ref: this.$refs.testBtn
+			})
+		},
+		
+		...mapActions('Alert', [
+			'showAlert',
+		]),
 	}
 }
 
@@ -76,18 +61,34 @@ export default {
 @import "../../scss/variables";
 
 .vRouterPage-home-page-container{
-	canvas{
-		position: absolute;
+	text-align: center;
+	#particles-js{
+		position: fixed;
 		top: 0;
 		left: 0;
 		width: 100%;
 		height: 100%;
+		z-index: 0;
 	}
+	.main-page-content{
+		margin-top: 30px;
+		width: 100%;
+		max-width: 500px;
+		text-align: left;
+		display: inline-block;
 
-	.content{
-		padding: 1em;
-		position: relative;
+		.active-sites{
+			margin-top: 30px;
+			display: flex;
+			justify-content: space-between;
+			background: blue;
+			.site{
+				width: 50%;
+				height: 100px;
+				display: inline-block;
+				background: red;
+			}
+		}
 	}
 }
-
 </style>

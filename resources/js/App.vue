@@ -32,10 +32,12 @@ export default {
 .main-app-container {
     & > .main-content {
         padding: 1em;
+
+		.main-page-content{
+			position: relative;
+			z-index: $zIndex-router-content;
+			background: red;
+		}
     }
-	.main-page-content{
-		position: relative;
-		z-index: $zIndex-router-content;
-	}
 }
 </style>

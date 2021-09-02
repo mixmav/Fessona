@@ -1,6 +1,5 @@
 <template>
 	<div class="vRouterPage-home-page-container">
-		<div id="particles-js"></div>
 		
 		<transition name="opacity">
 			<quickstart ref="homePageQuickstart" v-show="quickstartDialogVisible"></quickstart>
@@ -16,43 +15,30 @@
 			&nbsp;
 			<button class="btn darkBlack mt-20" v-ripple v-tooltip.right="'Scan a QR code'"><i class="fa fa-qrcode"></i>Scan a QR code</button>
 			
-			<h1 class="mt-40">Browse active sites</h1>
-			<p>Each box below represents a real location at an RMIT Campus where our community leaves goodies for you to find 🥰</p>
-			<router-link tag="button" class="btn mt-20" to="/browse-sites">Hi</router-link>
+			<h1 class="mt-40">Active sites</h1>
+			<p>A fessona "site" is a real location at an RMIT Campus where our community leaves goodies for you to find! 🥰</p>
+			<router-link tag="button" class="btn full-width red mt-20" to="/browse-sites"><i class="fa fa-scroll"></i>Browse active sites</router-link>
 		</div>
 	</div>
 </template>
 
 <script>
-import 'particles.js/particles';
 import { mapActions, mapState } from 'vuex';
 import Quickstart from '../components/Quickstart.vue';
-import { Pagination } from "@egjs/flicking-plugins";
 
 
 export default {
 	components: {
 		Quickstart,
-		// Flicking,
 	},
 
 	mounted(){
-		this.particlesJS.load('particles-js', '/assets/particles.json');
-
-		document.querySelector('.main-page-content').addEventListener('mousemove', function(e) { 
-			var e = document.createEvent('MouseEvents');
-			e.initMouseEvent('mousemove',true,true,document.defaultView, 0, event.screenX, event.screenY, event.clientX, event.clientY,false,false,false,false,null,null);
-			document.getElementById("particles-js").childNodes[0].dispatchEvent(e) 
-		});
-
 		setTimeout(() => {
 			// this.showQuickstart();
 		}, 2000)
 	},
 	data(){
 		return {
-			particlesJS: window.particlesJS,
-			plugins: [new Pagination({ type: 'scroll' })],
 		}
 	},
 	
@@ -84,16 +70,8 @@ export default {
 
 .vRouterPage-home-page-container{
 	text-align: center;
-	#particles-js{
-		position: fixed;
-		top: 0;
-		left: 0;
-		width: 100%;
-		height: 100%;
-		z-index: 0;
-	}
 	.main-page-content{
-		margin-top: 30px;
+		margin-top: 60px;
 		width: 100%;
 		max-width: 500px;
 		text-align: left;

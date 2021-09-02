@@ -258,10 +258,11 @@ i, span{
 
 
 .router-view-enter-active, .router-view-leave-active {
-    transition: all .5s;
+    transition: all .3s;
 }
 .router-view-enter, .router-view-leave-to {
 	opacity: 0;
+	transform: translateX(-50px)
 }
 
 .opacity-enter-active, .opacity-leave-active {

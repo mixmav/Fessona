@@ -13,14 +13,22 @@
 				</Flicking>
 			</div>
 			<button class="btn full-width mt-20 blue" v-ripple><i class="fa fa-random"></i>Get a random message</button>
+			<router-link to="/">Home</router-link>
 		</div>
 	</div>
 </template>
 
 <script>
+import { Pagination } from "@egjs/flicking-plugins";
 
 export default {
+	data(){
+		return {
+			plugins: [new Pagination({ type: 'scroll' })],
+		}
+	}
 }
+
 </script>
 
 <style lang="scss">

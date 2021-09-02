@@ -24181,6 +24181,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var _components_Alert_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./components/Alert.vue */ "./resources/js/components/Alert.vue");
+/* harmony import */ var particles_js_particles__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! particles.js/particles */ "./node_modules/particles.js/particles.js");
+/* harmony import */ var particles_js_particles__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(particles_js_particles__WEBPACK_IMPORTED_MODULE_1__);
+//
+//
 //
 //
 //
@@ -24193,13 +24197,35 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 
+
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {
     Alert: _components_Alert_vue__WEBPACK_IMPORTED_MODULE_0__.default
   },
-  mounted: function mounted() {},
+  mounted: function mounted() {
+    this.particlesJS.load('particles-js', '/assets/particles.json');
+    this.addParticlesJSEventListener();
+  },
+  updated: function updated() {
+    this.addParticlesJSEventListener();
+  },
   data: function data() {
-    return {};
+    return {
+      particlesJS: window.particlesJS
+    };
+  },
+  methods: {
+    addParticlesJSEventListener: function addParticlesJSEventListener() {
+      // Wait for the child node to be rendered by giving it a timeout of 600ms
+      // Then pass all mousemove events to the particles div
+      setTimeout(function () {
+        document.querySelector('.main-page-content').addEventListener('mousemove', function (e) {
+          var e = document.createEvent('MouseEvents');
+          e.initMouseEvent('mousemove', true, true, document.defaultView, 0, event.screenX, event.screenY, event.clientX, event.clientY, false, false, false, false, null, null);
+          document.getElementById("particles-js").childNodes[0].dispatchEvent(e);
+        });
+      }, 600);
+    }
   }
 });
 
@@ -24361,6 +24387,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
+/* harmony import */ var _egjs_flicking_plugins__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @egjs/flicking-plugins */ "./node_modules/@egjs/flicking-plugins/dist/plugins.esm.js");
 //
 //
 //
@@ -24380,7 +24407,17 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({});
+//
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  data: function data() {
+    return {
+      plugins: [new _egjs_flicking_plugins__WEBPACK_IMPORTED_MODULE_0__.Pagination({
+        type: 'scroll'
+      })]
+    };
+  }
+});
 
 /***/ }),
 
@@ -24395,11 +24432,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var particles_js_particles__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! particles.js/particles */ "./node_modules/particles.js/particles.js");
-/* harmony import */ var particles_js_particles__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(particles_js_particles__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
-/* harmony import */ var _components_Quickstart_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../components/Quickstart.vue */ "./resources/js/components/Quickstart.vue");
-/* harmony import */ var _egjs_flicking_plugins__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @egjs/flicking-plugins */ "./node_modules/@egjs/flicking-plugins/dist/plugins.esm.js");
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var _components_Quickstart_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../components/Quickstart.vue */ "./resources/js/components/Quickstart.vue");
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
@@ -24430,42 +24464,27 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
-
-
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {
-    Quickstart: _components_Quickstart_vue__WEBPACK_IMPORTED_MODULE_1__.default // Flicking,
-
+    Quickstart: _components_Quickstart_vue__WEBPACK_IMPORTED_MODULE_0__.default
   },
   mounted: function mounted() {
-    this.particlesJS.load('particles-js', '/assets/particles.json');
-    document.querySelector('.main-page-content').addEventListener('mousemove', function (e) {
-      var e = document.createEvent('MouseEvents');
-      e.initMouseEvent('mousemove', true, true, document.defaultView, 0, event.screenX, event.screenY, event.clientX, event.clientY, false, false, false, false, null, null);
-      document.getElementById("particles-js").childNodes[0].dispatchEvent(e);
-    });
     setTimeout(function () {// this.showQuickstart();
     }, 2000);
   },
   data: function data() {
-    return {
-      particlesJS: window.particlesJS,
-      plugins: [new _egjs_flicking_plugins__WEBPACK_IMPORTED_MODULE_2__.Pagination({
-        type: 'scroll'
-      })]
-    };
+    return {};
   },
   methods: _objectSpread(_objectSpread({
     showQuickstart: function showQuickstart() {
       this.toggleQuickstartDialogVisible(true);
     }
-  }, (0,vuex__WEBPACK_IMPORTED_MODULE_3__.mapActions)('Alert', ['showAlert'])), (0,vuex__WEBPACK_IMPORTED_MODULE_3__.mapActions)('QuickstartDialog', {
+  }, (0,vuex__WEBPACK_IMPORTED_MODULE_1__.mapActions)('Alert', ['showAlert'])), (0,vuex__WEBPACK_IMPORTED_MODULE_1__.mapActions)('QuickstartDialog', {
     toggleQuickstartDialogVisible: 'toggleVisible'
   })),
-  computed: _objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_3__.mapState)('QuickstartDialog', {
+  computed: _objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_1__.mapState)('QuickstartDialog', {
     quickstartDialogVisible: 'visible'
   }))
 });
@@ -24714,7 +24733,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".main-app-container > .main-content {\n  padding: 1em;\n}\n.main-app-container > .main-content .main-page-content {\n  position: relative;\n  z-index: 98;\n  background: red;\n}", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, ".main-app-container > .main-content {\n  padding: 1em;\n}\n.main-app-container > .main-content #particles-js {\n  position: fixed;\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 100%;\n  z-index: 0;\n}\n.main-app-container > .main-content .main-page-content {\n  position: relative;\n  z-index: 98;\n}", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -24738,7 +24757,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".window-alert {\n  position: fixed;\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 100%;\n  background: rgba(0, 0, 0, 0.3);\n  z-index: -1000;\n  opacity: 0;\n  transition: all 0s 0.1s;\n}\n.window-alert .window-alert-box {\n  width: 80%;\n  max-width: 300px;\n  min-height: 220px;\n  max-height: 350px;\n  overflow: auto;\n  background: white;\n  position: relative;\n  text-align: center;\n  top: 50%;\n  left: 50%;\n  padding: 1em;\n  padding-top: 1.5em;\n  border-radius: 5px;\n  transform: translate(-50%, 0);\n  opacity: 0;\n  transition: all 0.15s ease-in;\n}\n.window-alert .window-alert-box .content p {\n  color: rgba(0, 0, 0, 0.7);\n  font-size: 1.1em;\n  font-weight: 700;\n}\n.window-alert .window-alert-box .content p i {\n  color: inherit;\n  position: relative;\n  margin-right: 5px;\n}\n.window-alert .window-alert-box .content p i.error {\n  color: #FF477E;\n  bottom: 2px;\n}\n.window-alert .window-alert-box .content p i.blue {\n  color: #0BC9CD;\n}\n.window-alert .window-alert-box button.fixed-bottom {\n  position: absolute;\n  bottom: 1em;\n  left: 1em;\n  padding-top: 1em;\n  padding-bottom: 1em;\n  width: calc(100% - 2em);\n}\n.window-alert.visible {\n  z-index: 999;\n  opacity: 1;\n  transition: none;\n}\n.window-alert.visible .window-alert-box {\n  opacity: 1;\n  transform: translate(-50%, -50%);\n  transition: all 0.15s ease-out 0.1s;\n}", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, ".window-alert {\n  position: fixed;\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 100%;\n  background: rgba(0, 0, 0, 0.3);\n  z-index: -1000;\n  opacity: 0;\n  transition: all 0s 0.1s;\n}\n.window-alert .window-alert-box {\n  width: 80%;\n  max-width: 300px;\n  min-height: 220px;\n  max-height: 350px;\n  overflow: auto;\n  background: white;\n  position: relative;\n  text-align: center;\n  top: 50%;\n  left: 50%;\n  padding: 1em;\n  padding-top: 1.5em;\n  border-radius: 5px;\n  transform: translate(-50%, 0);\n  opacity: 0;\n  transition: all 0.15s ease-in;\n}\n.window-alert .window-alert-box .content p {\n  color: rgba(0, 0, 0, 0.7);\n  font-size: 1.1em;\n  font-weight: 700;\n}\n.window-alert .window-alert-box .content p i {\n  color: inherit;\n  position: relative;\n  margin-right: 5px;\n}\n.window-alert .window-alert-box .content p i.error {\n  color: #DB324D;\n  bottom: 2px;\n}\n.window-alert .window-alert-box .content p i.blue {\n  color: #0BC9CD;\n}\n.window-alert .window-alert-box button.fixed-bottom {\n  position: absolute;\n  bottom: 1em;\n  left: 1em;\n  padding-top: 1em;\n  padding-bottom: 1em;\n  width: calc(100% - 2em);\n}\n.window-alert.visible {\n  z-index: 999;\n  opacity: 1;\n  transition: none;\n}\n.window-alert.visible .window-alert-box {\n  opacity: 1;\n  transform: translate(-50%, -50%);\n  transition: all 0.15s ease-out 0.1s;\n}", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -24786,7 +24805,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".vRouterPage-home-page-container {\n  text-align: center;\n}\n.vRouterPage-home-page-container #particles-js {\n  position: fixed;\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 100%;\n  z-index: 0;\n}\n.vRouterPage-home-page-container .main-page-content {\n  margin-top: 30px;\n  width: 100%;\n  max-width: 500px;\n  text-align: left;\n  display: inline-block;\n}\n.vRouterPage-home-page-container .main-page-content .active-sites {\n  margin-top: 30px;\n}\n.vRouterPage-home-page-container .main-page-content .active-sites .site {\n  width: 100%;\n  border-radius: 10px;\n  height: 100px;\n  margin-left: 10px;\n  cursor: pointer;\n  background: #AF1B3F;\n}\n.vRouterPage-home-page-container .main-page-content .active-sites .site:nth-child(even) {\n  background: #0BC9CD;\n}", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, ".vRouterPage-home-page-container {\n  text-align: center;\n}\n.vRouterPage-home-page-container .main-page-content {\n  margin-top: 60px;\n  width: 100%;\n  max-width: 500px;\n  text-align: left;\n  display: inline-block;\n}\n.vRouterPage-home-page-container .main-page-content .active-sites {\n  margin-top: 30px;\n}\n.vRouterPage-home-page-container .main-page-content .active-sites .site {\n  width: 100%;\n  border-radius: 10px;\n  height: 100px;\n  margin-left: 10px;\n  cursor: pointer;\n  background: #AF1B3F;\n}\n.vRouterPage-home-page-container .main-page-content .active-sites .site:nth-child(even) {\n  background: #0BC9CD;\n}", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -64930,6 +64949,8 @@ var render = function() {
         "div",
         { staticClass: "main-content" },
         [
+          _c("div", { attrs: { id: "particles-js" } }),
+          _vm._v(" "),
           _c(
             "transition",
             { attrs: { name: "router-view", mode: "out-in" } },
@@ -65077,50 +65098,57 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "vRouterPage-home-page-container" }, [
-    _c("div", { staticClass: "main-page-content" }, [
-      _c("h1", [_vm._v("Browse")]),
-      _vm._v(" "),
-      _c(
-        "div",
-        { staticClass: "active-sites" },
-        [
-          _c(
-            "Flicking",
-            { attrs: { options: { circular: true }, plugins: _vm.plugins } },
-            [
-              _c("div", { staticClass: "site" }, [_vm._v("1")]),
-              _vm._v(" "),
-              _c("div", { staticClass: "site" }, [_vm._v("2")]),
-              _vm._v(" "),
-              _c("div", { staticClass: "site" }, [_vm._v("3")]),
-              _vm._v(" "),
-              _c("div", { staticClass: "site" }, [_vm._v("4")]),
-              _vm._v(" "),
-              _c("div", { staticClass: "site" }, [_vm._v("5")]),
-              _vm._v(" "),
-              _c("div", {
-                staticClass: "flicking-pagination",
-                attrs: { slot: "viewport" },
-                slot: "viewport"
-              })
-            ]
-          )
-        ],
-        1
-      ),
-      _vm._v(" "),
-      _c(
-        "button",
-        {
-          directives: [{ name: "ripple", rawName: "v-ripple" }],
-          staticClass: "btn full-width mt-20 blue"
-        },
-        [
-          _c("i", { staticClass: "fa fa-random" }),
-          _vm._v("Get a random message")
-        ]
-      )
-    ])
+    _c(
+      "div",
+      { staticClass: "main-page-content" },
+      [
+        _c("h1", [_vm._v("Browse")]),
+        _vm._v(" "),
+        _c(
+          "div",
+          { staticClass: "active-sites" },
+          [
+            _c(
+              "Flicking",
+              { attrs: { options: { circular: true }, plugins: _vm.plugins } },
+              [
+                _c("div", { staticClass: "site" }, [_vm._v("1")]),
+                _vm._v(" "),
+                _c("div", { staticClass: "site" }, [_vm._v("2")]),
+                _vm._v(" "),
+                _c("div", { staticClass: "site" }, [_vm._v("3")]),
+                _vm._v(" "),
+                _c("div", { staticClass: "site" }, [_vm._v("4")]),
+                _vm._v(" "),
+                _c("div", { staticClass: "site" }, [_vm._v("5")]),
+                _vm._v(" "),
+                _c("div", {
+                  staticClass: "flicking-pagination",
+                  attrs: { slot: "viewport" },
+                  slot: "viewport"
+                })
+              ]
+            )
+          ],
+          1
+        ),
+        _vm._v(" "),
+        _c(
+          "button",
+          {
+            directives: [{ name: "ripple", rawName: "v-ripple" }],
+            staticClass: "btn full-width mt-20 blue"
+          },
+          [
+            _c("i", { staticClass: "fa fa-random" }),
+            _vm._v("Get a random message")
+          ]
+        ),
+        _vm._v(" "),
+        _c("router-link", { attrs: { to: "/" } }, [_vm._v("Home")])
+      ],
+      1
+    )
   ])
 }
 var staticRenderFns = []
@@ -65150,8 +65178,6 @@ var render = function() {
     "div",
     { staticClass: "vRouterPage-home-page-container" },
     [
-      _c("div", { attrs: { id: "particles-js" } }),
-      _vm._v(" "),
       _c(
         "transition",
         { attrs: { name: "opacity" } },
@@ -65227,21 +65253,24 @@ var render = function() {
             [_c("i", { staticClass: "fa fa-qrcode" }), _vm._v("Scan a QR code")]
           ),
           _vm._v(" "),
-          _c("h1", { staticClass: "mt-40" }, [_vm._v("Browse active sites")]),
+          _c("h1", { staticClass: "mt-40" }, [_vm._v("Active sites")]),
           _vm._v(" "),
           _c("p", [
             _vm._v(
-              "Each box below represents a real location at an RMIT Campus where our community leaves goodies for you to find 🥰"
+              'A fessona "site" is a real location at an RMIT Campus where our community leaves goodies for you to find! 🥰'
             )
           ]),
           _vm._v(" "),
           _c(
             "router-link",
             {
-              staticClass: "btn mt-20",
+              staticClass: "btn full-width red mt-20",
               attrs: { tag: "button", to: "/browse-sites" }
             },
-            [_vm._v("Hi")]
+            [
+              _c("i", { staticClass: "fa fa-scroll" }),
+              _vm._v("Browse active sites")
+            ]
           )
         ],
         1

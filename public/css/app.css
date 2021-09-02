@@ -97,6 +97,12 @@ i, span {
 .text-input.pink {
   border-color: #EC407A;
 }
+.text-input.burgandy {
+  border-color: #AF1B3F;
+}
+.text-input.darkBlack {
+  border-color: #2f2f2f;
+}
 
 .btn {
   padding: 1em;
@@ -192,6 +198,18 @@ i, span {
 .btn.pink:focus {
   box-shadow: 0 0 0 3px rgba(236, 64, 122, 0.4);
 }
+.btn.burgandy {
+  background: #AF1B3F;
+}
+.btn.burgandy:focus {
+  box-shadow: 0 0 0 3px rgba(175, 27, 63, 0.4);
+}
+.btn.darkBlack {
+  background: #2f2f2f;
+}
+.btn.darkBlack:focus {
+  box-shadow: 0 0 0 3px rgba(47, 47, 47, 0.4);
+}
 
 .icon-btn {
   padding: 1em;
@@ -258,6 +276,12 @@ i, span {
 }
 .a.pink {
   color: #EC407A;
+}
+.a.burgandy {
+  color: #AF1B3F;
+}
+.a.darkBlack {
+  color: #2f2f2f;
 }
 .a i {
   margin-right: 5px;
@@ -366,6 +390,16 @@ i, span {
 
 .translate-y-minus-100px-enter, .translate-y-minus-100px-leave-to {
   transform: translateY(-100px);
+  transition-timing-function: cubic-bezier(0.4, 0, 1, 1);
+}
+
+.translate-y-100px-enter-active, .translate-y-100px-leave-active {
+  transition: transform 0.3s;
+  transition-timing-function: cubic-bezier(0, 0, 0.2, 1);
+}
+
+.translate-y-100px-enter, .translate-y-100px-leave-to {
+  transform: translateY(100px);
   transition-timing-function: cubic-bezier(0.4, 0, 1, 1);
 }
 

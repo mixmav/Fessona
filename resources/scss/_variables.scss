@@ -13,6 +13,8 @@ $blue: #0BC9CD;
 $indigo: #8A4FFF;
 $teal: teal;
 $pink: #EC407A;
+$burgandy: #AF1B3F;
+$darkBlack: #2f2f2f;
 
 $primary-color: $pink;
 
@@ -25,6 +27,8 @@ $colors: (
 	'indigo': $indigo,
 	'teal': $teal,
 	'pink': $pink,
+	'burgandy': $burgandy,
+	'darkBlack': $darkBlack,
 );
 
 @mixin media($width){
@@ -35,4 +39,5 @@ $colors: (
 
 $zIndex-tooltip: 1000;
 $zIndex-window-alert: 999;
+$zIndex-quickstart-dialog: 998;
 $zIndex-router-content: 98;

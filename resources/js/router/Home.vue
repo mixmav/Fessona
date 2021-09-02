@@ -1,15 +1,20 @@
 <template>
 	<div class="vRouterPage-home-page-container">
 		<div id="particles-js"></div>
+		
+		<transition name="opacity">
+			<quickstart ref="homePageQuickstart" v-show="quickstartDialogVisible"></quickstart>
+		</transition>
 
 		<div class="main-page-content">
 			<h1>Fessona</h1>
 			<p style="font-size: 1em">/fə'səunə/</p>
 			<p class="mt-10">In Roman mythology, Fessona is the goddess that rids people of fatigue.</p>
 			
-			<button class="btn indigo mt-20" ref="testBtn" v-ripple v-tooltip.left="'Quickstart'" @click="showQuickstart"><i class="fa fa-info-circle"></i>How it works</button>
+			<button class="btn indigo mt-20" v-ripple v-tooltip.left="'Quickstart'" @click="showQuickstart"><i class="fa fa-info-circle"></i>How it works</button>
+			
 			&nbsp;
-			<button class="btn green mt-20" v-ripple v-tooltip.right="'Scan a QR code'"><i class="fa fa-qrcode"></i>Scan a QR code</button>
+			<button class="btn darkBlack mt-20" v-ripple v-tooltip.right="'Scan a QR code'"><i class="fa fa-qrcode"></i>Scan a QR code</button>
 			<h1 class="mt-50">Active sites</h1>
 			<p>Each box below represents a real location at an RMIT Campus where our community leaves goodies for you to find 🥰</p>
 			<div class="active-sites">
@@ -22,9 +27,14 @@
 
 <script>
 import 'particles.js/particles';
-import { mapActions } from 'vuex';
+import { mapActions, mapState } from 'vuex';
+import Quickstart from '../components/Quickstart.vue';
 
 export default {
+	components: {
+		Quickstart,
+	},
+
 	mounted(){
 		this.particlesJS.load('particles-js', '/assets/particles.json');
 
@@ -33,6 +43,10 @@ export default {
 			e.initMouseEvent('mousemove',true,true,document.defaultView, 0, event.screenX, event.screenY, event.clientX, event.clientY,false,false,false,false,null,null);
 			document.getElementById("particles-js").childNodes[0].dispatchEvent(e) 
 		});
+
+		setTimeout(() => {
+			this.showQuickstart();
+		}, 2000)
 	},
 	data(){
 		return {
@@ -42,15 +56,21 @@ export default {
 	
 	methods: {
 		showQuickstart(){
-			this.showAlert({
-				message: 'OH HI!!',
-				ref: this.$refs.testBtn
-			})
+			this.toggleQuickstartDialogVisible(true);
 		},
 		
 		...mapActions('Alert', [
 			'showAlert',
 		]),
+		
+		...mapActions('QuickstartDialog', {
+			toggleQuickstartDialogVisible: 'toggleVisible',
+		}),
+	},
+	computed: {
+		...mapState('QuickstartDialog', {
+			quickstartDialogVisible: 'visible'
+		})
 	}
 }
 
@@ -81,12 +101,12 @@ export default {
 			margin-top: 30px;
 			display: flex;
 			justify-content: space-between;
-			background: blue;
+			// background: blue;
 			.site{
 				width: 50%;
 				height: 100px;
 				display: inline-block;
-				background: red;
+				// background: red;
 			}
 		}
 	}

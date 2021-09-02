@@ -20,9 +20,7 @@ export default {
 
 <style lang="scss">
 @import "../scss/variables";
-body {
-    background: $black;
-}
+
 
 .main-app-container {
     & > .main-content {

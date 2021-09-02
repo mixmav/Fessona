@@ -15,12 +15,20 @@
 			
 			&nbsp;
 			<button class="btn darkBlack mt-20" v-ripple v-tooltip.right="'Scan a QR code'"><i class="fa fa-qrcode"></i>Scan a QR code</button>
-			<h1 class="mt-50">Active sites</h1>
+			
+			<h1 class="mt-40">Browse active sites</h1>
 			<p>Each box below represents a real location at an RMIT Campus where our community leaves goodies for you to find 🥰</p>
 			<div class="active-sites">
-				<div class="site"></div>
-				<div class="site"></div>
+				<Flicking :options="{ circular: true }" :plugins="plugins">
+					<div class="site">1</div>
+					<div class="site">2</div>
+					<div class="site">3</div>
+					<div class="site">4</div>
+					<div class="site">5</div>
+					<div slot="viewport" class="flicking-pagination"></div>
+				</Flicking>
 			</div>
+			<button class="btn full-width mt-20 blue" v-ripple><i class="fa fa-random"></i>Get a random message</button>
 		</div>
 	</div>
 </template>
@@ -29,10 +37,13 @@
 import 'particles.js/particles';
 import { mapActions, mapState } from 'vuex';
 import Quickstart from '../components/Quickstart.vue';
+import { Pagination } from "@egjs/flicking-plugins";
+
 
 export default {
 	components: {
 		Quickstart,
+		// Flicking,
 	},
 
 	mounted(){
@@ -45,12 +56,13 @@ export default {
 		});
 
 		setTimeout(() => {
-			this.showQuickstart();
+			// this.showQuickstart();
 		}, 2000)
 	},
 	data(){
 		return {
 			particlesJS: window.particlesJS,
+			plugins: [new Pagination({ type: 'scroll' })],
 		}
 	},
 	
@@ -99,14 +111,17 @@ export default {
 
 		.active-sites{
 			margin-top: 30px;
-			display: flex;
-			justify-content: space-between;
-			// background: blue;
+			// text-align: center;
 			.site{
-				width: 50%;
+				width: 100%;
+				border-radius: 10px;
 				height: 100px;
-				display: inline-block;
-				// background: red;
+				margin-left: 10px;
+				cursor: pointer;
+				background: $burgandy;
+				&:nth-child(even){
+					background: $blue;
+				}
 			}
 		}
 	}

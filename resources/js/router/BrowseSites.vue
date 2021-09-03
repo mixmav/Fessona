@@ -2,6 +2,8 @@
 	<div class="vRouterPage-browse-sites-page-container">
 		<div class="main-page-content mt-60">
 			<h1>Actve sites</h1>
+			<p>Each box below represents a real location at an RMIT Campus filled with community-generated content.</p>
+			<p class="mt-10">Choose one to view and leave your own! <i class="fa fa-hand-point-down"></i></p>
 			<div class="active-sites">
 				<Flicking :plugins="plugins" :options="{inputType: ['touch', 'pointer', 'mouse']}">
 					<div class="site" @click="sayHi">1</div>
@@ -22,7 +24,7 @@ import { Pagination } from "@egjs/flicking-plugins";
 export default {
 	data(){
 		return {
-			plugins: [new Pagination({ type: 'fraction' })],
+			plugins: [new Pagination({ type: 'bullet' })],
 		}
 	},
 

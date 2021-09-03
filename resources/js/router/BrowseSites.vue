@@ -3,34 +3,55 @@
 		<div class="main-page-content mt-60">
 			<h1>Actve sites</h1>
 			<p>Each box below represents a real location at an RMIT Campus filled with community-generated content.</p>
-			<p class="mt-10">Choose one to view and leave your own! <i class="fa fa-hand-point-down"></i></p>
+			<p class="mt-10">Pick one to leave your own! <i class="fa fa-hand-point-down"></i></p>
 			<div class="active-sites">
-				<Flicking :plugins="plugins" :options="{inputType: ['touch', 'pointer', 'mouse']}">
-					<div class="site" @click="sayHi">1</div>
-					<div class="site" @click="sayHi">2</div>
-					<div class="site" @click="sayHi">3</div>
+				<Flicking ref="flicking" :plugins="plugins" :options="options" @visible-change="triggerVisibleChange">
+					<div class="site">1</div>
+					<div class="site">2</div>
+					<div class="site">3</div>
 					<div slot="viewport" class="flicking-pagination"></div>
 				</Flicking>
 			</div>
 			<button class="btn full-width mt-30" v-ripple><i class="fa fa-random"></i>Get a random message</button>
-			<router-link to="/" tag="button" class="btn darkBlack mt-20" v-ripple><i class="fa fa-igloo"></i>Back home</router-link>
+			
+			<router-link to="/" class="btn darkBlack mt-20" v-ripple><i class="fa fa-igloo"></i>Back home</router-link>
 		</div>
 	</div>
 </template>
 
 <script>
 import { Pagination } from "@egjs/flicking-plugins";
+import { Flicking, FlickingError, ERROR_CODE } from "@egjs/vue-flicking";
+import * as Tone from 'tone'
 
 export default {
 	data(){
 		return {
 			plugins: [new Pagination({ type: 'bullet' })],
+			options: {
+				inputType: ['touch', 'pointer', 'mouse'],
+				interruptable: true,
+			}
+		}
+	},
+	
+	components: {
+		Flicking: Flicking
+	},
+
+	async mounted(){
+		try {
+			await this.$refs.flicking.next();
+		} catch (err) {
+			alert(err);
 		}
 	},
 
 	methods: {
-		sayHi(){
-			alert('hi')
+		triggerVisibleChange(event){
+			console.log(event);
+			const synth = new Tone.Synth().toDestination();
+			synth.triggerAttackRelease("C4", "8n");
 		}
 	}
 }

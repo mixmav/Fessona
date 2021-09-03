@@ -8,7 +8,7 @@
 		<div class="main-page-content">
 			<h1>Fessona</h1>
 			<p style="font-size: 1em">/fə'səunə/</p>
-			<p class="mt-10">In Roman mythology, Fessona is the goddess that rids people of fatigue.</p>
+			<p class="mt-10">In Roman mythology, Fessona is thought to be the goddess that cures fatigue 🎈</p>
 			
 			<button class="btn indigo mt-20" v-ripple v-tooltip.left="'Quickstart'" @click="showQuickstart"><i class="fa fa-info-circle"></i>How it works</button>
 			

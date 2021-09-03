@@ -17,7 +17,7 @@
 			
 			<h1 class="mt-40">Active sites</h1>
 			<p>A fessona "site" is a real location at an RMIT Campus where our community leaves goodies for you to find! 🥰</p>
-			<router-link tag="button" class="btn full-width red mt-20" to="/browse-sites"><i class="fa fa-scroll"></i>Browse active sites</router-link>
+			<router-link tag="button" class="btn full-width red mt-20" to="/browse-sites" v-ripple><i class="fa fa-scroll"></i>Browse active sites</router-link>
 		</div>
 	</div>
 </template>
@@ -69,29 +69,8 @@ export default {
 @import "../../scss/variables";
 
 .vRouterPage-home-page-container{
-	text-align: center;
 	.main-page-content{
 		margin-top: 60px;
-		width: 100%;
-		max-width: 500px;
-		text-align: left;
-		display: inline-block;
-
-		.active-sites{
-			margin-top: 30px;
-			// text-align: center;
-			.site{
-				width: 100%;
-				border-radius: 10px;
-				height: 100px;
-				margin-left: 10px;
-				cursor: pointer;
-				background: $burgandy;
-				&:nth-child(even){
-					background: $blue;
-				}
-			}
-		}
 	}
 }
 </style>

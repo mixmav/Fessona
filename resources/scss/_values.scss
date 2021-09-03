@@ -48,6 +48,14 @@ i, span{
 	color: inherit;
 }
 
+.text-color{
+	@each $color, $hex in $colors {
+		&.#{$color} {
+			color: $hex;
+		}
+	}
+}
+
 .text-input{
 	border: none {
 		bottom: solid 2px rgba(black, 0.6);

@@ -56,7 +56,8 @@ export default {
 .main-app-container {
     & > .main-content {
         padding: 1em;
-
+		text-align: center;
+		
 		#particles-js{
 			position: fixed;
 			top: 0;
@@ -68,6 +69,10 @@ export default {
 		.main-page-content{
 			position: relative;
 			z-index: $zIndex-router-content;
+			width: 100%;
+			max-width: 500px;
+			text-align: left;
+			display: inline-block;
 		}
     }
 }

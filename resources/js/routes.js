@@ -2,8 +2,8 @@ import Vue from 'vue';
 import VueRouter from 'vue-router';
 Vue.use(VueRouter);
 
-import Home from './router/Home.vue';
-import BrowseSites from './router/BrowseSites.vue';
+import Home from './router/Home/Page.vue';
+import BrowseSites from './router/BrowseSites/Page.vue';
 
 const routes = [
 	{

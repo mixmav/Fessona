@@ -32,7 +32,7 @@ _|"""""|_|"""""|_|"""""|_|"""""|_|"""""| {======|_|"""""|_|"""""|_|"""""| {=====
 	<meta name="theme-color" content="#424242">
 
 	<script src="https://kit.fontawesome.com/0db8c7f53e.js" crossorigin="anonymous"></script>
-	
+
 	<link rel="shortcut icon" href="/images/logos/xhdpi.png?v=ljaahIyaGhYt">
 	
 	@yield('custom-head')

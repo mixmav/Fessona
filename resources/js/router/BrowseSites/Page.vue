@@ -6,13 +6,16 @@
 			<p class="mt-10">Pick one to leave your own! <i class="fa fa-hand-point-down"></i></p>
 			<div class="active-sites">
 				<Flicking ref="flicking" :plugins="plugins" :options="options" @visible-change="triggerVisibleChange">
-					<div class="site">1</div>
+					<active-site-panel></active-site-panel>
+					<active-site-panel></active-site-panel>
+					<active-site-panel></active-site-panel>
+					<!-- <div class="site">1</div>
 					<div class="site">2</div>
-					<div class="site">3</div>
+					<div class="site">3</div> -->
 					<div slot="viewport" class="flicking-pagination"></div>
 				</Flicking>
 			</div>
-			<button class="btn full-width mt-30" v-ripple><i class="fa fa-random"></i>Get a random message</button>
+			<button class="btn full-width mt-30" v-ripple><i class="fa fa-random"></i>Read	 a random scribble</button>
 			
 			<router-link to="/" class="btn darkBlack mt-20" v-ripple><i class="fa fa-igloo"></i>Back home</router-link>
 		</div>
@@ -21,8 +24,9 @@
 
 <script>
 import { Pagination } from "@egjs/flicking-plugins";
-import { Flicking, FlickingError, ERROR_CODE } from "@egjs/vue-flicking";
+import { Flicking } from "@egjs/vue-flicking";
 import * as Tone from 'tone'
+import ActiveSitePanel from './ActiveSitePanel.vue';
 
 export default {
 	data(){
@@ -36,15 +40,11 @@ export default {
 	},
 	
 	components: {
-		Flicking: Flicking
+		Flicking: Flicking,
+		ActiveSitePanel,
 	},
 
-	async mounted(){
-		try {
-			await this.$refs.flicking.next();
-		} catch (err) {
-			alert(err);
-		}
+	mounted(){
 	},
 
 	methods: {
@@ -59,7 +59,7 @@ export default {
 </script>
 
 <style lang="scss">
-@import "../../scss/variables";
+@import "../../../scss/variables";
 
 .vRouterPage-browse-sites-page-container{
 	.flicking-pagination{
@@ -85,15 +85,9 @@ export default {
 	.active-sites{
 		margin-top: 10px;
 		.site{
-			width: 80%;
-			border-radius: 10px;
-			height: 200px;
-			margin-left: 10px;
-			cursor: pointer;
-			background: $red;
-			&:nth-child(even){
-				background: $yellow;
-			}
+			// &:nth-child(even){
+			// 	background: $yellow;
+			// }
 		}
 	}
 }

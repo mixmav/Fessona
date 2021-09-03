@@ -24,7 +24,7 @@
 
 <script>
 import { mapActions, mapState } from 'vuex';
-import Quickstart from '../components/Quickstart.vue';
+import Quickstart from './Quickstart.vue';
 
 
 export default {
@@ -66,7 +66,7 @@ export default {
 
 <style lang="scss">
 
-@import "../../scss/variables";
+@import "../../../scss/variables";
 
 .vRouterPage-home-page-container{
 	.main-page-content{

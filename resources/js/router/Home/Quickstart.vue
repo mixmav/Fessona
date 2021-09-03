@@ -69,7 +69,7 @@ export default {
 </script>
 
 <style lang="scss">
-	@import "../../scss/variables";
+	@import "../../../scss/variables";
 
 	.vPage-component-quickstart-dialog-container{
 		position: fixed;

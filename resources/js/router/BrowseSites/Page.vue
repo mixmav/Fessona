@@ -5,13 +5,12 @@
 			<p>Each box below represents a real location at an RMIT Campus filled with community-generated content.</p>
 			<p class="mt-10">Pick one to leave your own! <i class="fa fa-hand-point-down"></i></p>
 			<div class="active-sites">
+				<loading v-show="sitesLoading"></loading>
 				<Flicking ref="flicking" :plugins="plugins" :options="options" @visible-change="triggerVisibleChange">
-					<active-site-panel></active-site-panel>
-					<active-site-panel></active-site-panel>
-					<active-site-panel></active-site-panel>
-					<!-- <div class="site">1</div>
-					<div class="site">2</div>
-					<div class="site">3</div> -->
+					<!-- <active-site-panel></active-site-panel> -->
+					
+					<active-site-panel v-for="site in sites" :key="site.id"></active-site-panel>
+					
 					<div slot="viewport" class="flicking-pagination"></div>
 				</Flicking>
 			</div>
@@ -26,7 +25,13 @@
 import { Pagination } from "@egjs/flicking-plugins";
 import { Flicking } from "@egjs/vue-flicking";
 import * as Tone from 'tone'
+import { mapActions } from 'vuex';
+import $ from 'jquery';
+
 import ActiveSitePanel from './ActiveSitePanel.vue';
+import Loading from '../../components/Loading.vue';
+
+
 
 export default {
 	data(){
@@ -35,16 +40,44 @@ export default {
 			options: {
 				inputType: ['touch', 'pointer', 'mouse'],
 				interruptable: true,
-			}
+				align: 'prev',
+				autoInit: false,
+			},
+
+			sitesLoading: false,
+			sites: [],
 		}
 	},
 	
 	components: {
+		//TODO EDIT THIS 👇
 		Flicking: Flicking,
 		ActiveSitePanel,
+		Loading,
 	},
 
 	mounted(){
+		let vThis = this;
+		$.ajax({
+			url: '/api/sites/get-active-sites',
+			beforeSend(){
+				vThis.sitesLoading = true;
+			},
+			error(){
+				vThis.showAlert({
+					message: 'Unable to fetch sites; please try again 😣'
+				});
+			},
+			complete(){
+				vThis.sitesLoading = false;
+			},
+			success(data){
+				if (data) {
+					vThis.sites = data;
+					vThis.$refs.flicking.init();
+				}
+			}
+		})
 	},
 
 	methods: {
@@ -52,7 +85,11 @@ export default {
 			console.log(event);
 			const synth = new Tone.Synth().toDestination();
 			synth.triggerAttackRelease("C4", "8n");
-		}
+		},
+
+		...mapActions('Alert', [
+			'showAlert'
+		])
 	}
 }
 

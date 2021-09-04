@@ -1,5 +1,5 @@
 <template>
-	<div class="window-alert" ref="container" :class="{visible: visible}" @click="checkClickClose">
+	<div class="vWindow-alert-component-container" ref="container" :class="{visible: visible}" @click="checkClickClose">
 		<div class="window-alert-box z-depth-3">
 			<div class="content">
 				<p v-html="message"></p>
@@ -58,7 +58,7 @@ export default{
 <style lang="scss">
 	@import "../../scss/variables";
 
-.window-alert{
+.vWindow-alert-component-container{
 	position: fixed;
 	top: 0;
 	left: 0;

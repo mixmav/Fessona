@@ -17,7 +17,7 @@
 			
 			<h1 class="mt-40">Active sites</h1>
 			<p>A fessona "site" is a real location at an RMIT Campus where our community leaves goodies for you to find! 🥰</p>
-			<router-link class="btn full-width red mt-20" to="/browse-sites" v-ripple><i class="fa fa-scroll"></i>Browse active sites</router-link>
+			<router-link class="btn full-width red mt-20" to="/sites" v-ripple><i class="fa fa-scroll"></i>Browse active sites</router-link>
 		</div>
 	</div>
 </template>

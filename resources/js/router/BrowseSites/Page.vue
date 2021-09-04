@@ -7,8 +7,6 @@
 			<div class="active-sites">
 				<loading v-show="sitesLoading"></loading>
 				<Flicking ref="flicking" :plugins="plugins" :options="options" @visible-change="triggerVisibleChange">
-					<!-- <active-site-panel></active-site-panel> -->
-					
 					<active-site-panel v-for="site in sites" :key="site.id"></active-site-panel>
 					
 					<div slot="viewport" class="flicking-pagination"></div>
@@ -50,8 +48,7 @@ export default {
 	},
 	
 	components: {
-		//TODO EDIT THIS 👇
-		Flicking: Flicking,
+		Flicking,
 		ActiveSitePanel,
 		Loading,
 	},

@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\models\Site;
+use app\models\Site;
 
 class SiteController extends Controller
 {

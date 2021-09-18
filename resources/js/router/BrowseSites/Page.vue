@@ -1,6 +1,7 @@
 <template>
 	<div class="vRouterPage-browse-sites-page-container">
-		<div class="main-page-content mt-60">
+		
+		<div class="main-page-content">
 			<h1>Actve sites</h1>
 			<p>Each box below represents a real location at an RMIT Campus filled with community-generated content.</p>
 			<p class="mt-10">Pick one to leave your own! <i class="fa fa-hand-point-down"></i></p>
@@ -96,34 +97,45 @@ export default {
 @import "../../../scss/variables";
 
 .vRouterPage-browse-sites-page-container{
-	.flicking-pagination{
-		position: relative;
-		top: 0;
-		bottom: 0;
-		left: 0;
-		right: 0;
-		transform: none;
-		margin: 10px auto;
-		.flicking-pagination-bullet{
-			width: 15px;
-			height: 15px;
-			&:hover{
-				background: rgba($red, 0.6);
+	.main-page-content{
+		animation: backgroundToWhite linear .5s;
+		animation-delay: .5s;
+		animation-fill-mode: forwards;
+		.flicking-pagination{
+			position: relative;
+			top: 0;
+			bottom: 0;
+			left: 0;
+			right: 0;
+			transform: none;
+			margin: 10px auto;
+			.flicking-pagination-bullet{
+				width: 15px;
+				height: 15px;
+				&:hover{
+					background: rgba($red, 0.6);
+				}
+			}
+			.flicking-pagination-bullet-active{
+				background: $red;
 			}
 		}
-		.flicking-pagination-bullet-active{
-			background: $red;
-		}
-	}
 
-	.active-sites{
-		margin-top: 10px;
-		.site{
-			// &:nth-child(even){
-			// 	background: $yellow;
-			// }
+		.active-sites{
+			margin-top: 10px;
+			.site{
+				// &:nth-child(even){
+				// 	background: $yellow;
+				// }
+			}
 		}
 	}
 }
-
+@keyframes backgroundToWhite {
+	from {
+		background: transparent;
+	} to {
+		background: white;
+	}
+}
 </style>

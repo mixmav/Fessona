@@ -39,9 +39,7 @@ _|"""""|_|"""""|_|"""""|_|"""""|_|"""""| {======|_|"""""|_|"""""|_|"""""| {=====
 </head>
 <body>
 	
-	<div id="content-container">
-		@yield('content')
-	</div>
+	@yield('content')
 		
 	@yield('custom-post-script')
 </body>

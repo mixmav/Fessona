@@ -4,6 +4,9 @@ import Vue from 'vue';
 import Ripple from 'vue-ripple-directive';
 import VueRouter from 'vue-router';
 import VTooltip from 'v-tooltip';
+import VueScrollTo from 'vue-scrollto';
+
+Vue.use(VueScrollTo);
 
 //Remove the arrow from the template
 Vue.use(VTooltip, {

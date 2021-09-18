@@ -5,19 +5,16 @@
 			<quickstart ref="homePageQuickstart" v-show="quickstartDialogVisible"></quickstart>
 		</transition>
 
+
 		<div class="main-page-content">
 			<h1>Fessona</h1>
 			<p style="font-size: 1em">/fə'səunə/</p>
 			<p class="mt-10">In Roman mythology, Fessona is thought to be the goddess that cures fatigue 🎈</p>
 			
-			<button class="btn indigo mt-20" v-ripple v-tooltip.left="'Quickstart'" @click="showQuickstart"><i class="fa fa-info-circle"></i>How it works</button>
+			<button class="btn mt-20" v-ripple v-tooltip.left="'Quickstart'" @click="showQuickstart"><i class="fa fa-info-circle"></i>How it works</button>
 			
 			&nbsp;
-			<button class="btn darkBlack mt-20" v-ripple v-tooltip.right="'Scan a QR code'"><i class="fa fa-qrcode"></i>Scan a QR code</button>
-			
-			<h1 class="mt-40">Active sites</h1>
-			<p>A fessona "site" is a real location at an RMIT Campus where our community leaves goodies for you to find! 🥰</p>
-			<router-link class="btn full-width red mt-20" to="/sites" v-ripple><i class="fa fa-scroll"></i>Browse active sites</router-link>
+			<router-link class="btn darkBlack mt-20" to="/sites" v-ripple><i class="fa fa-play-circle"></i>Launch</router-link>
 		</div>
 	</div>
 </template>
@@ -34,12 +31,8 @@ export default {
 
 	mounted(){
 		setTimeout(() => {
-			// this.showQuickstart();
-		}, 2000)
-	},
-	data(){
-		return {
-		}
+			this.showQuickstart();
+		}, 1000);
 	},
 	
 	methods: {
@@ -55,6 +48,7 @@ export default {
 			toggleQuickstartDialogVisible: 'toggleVisible',
 		}),
 	},
+
 	computed: {
 		...mapState('QuickstartDialog', {
 			quickstartDialogVisible: 'visible'
@@ -69,8 +63,12 @@ export default {
 @import "../../../scss/variables";
 
 .vRouterPage-home-page-container{
+	display: flex;
+	justify-content: center;
 	.main-page-content{
-		margin-top: 60px;
+		max-width: 500px;
+		margin-top: 100px;
+		position: relative !important;
 	}
 }
 </style>

@@ -1,9 +1,9 @@
 <template>
-    <div class="main-app-container">
+    <div id="app-container">
 		<alert></alert>
-        <div class="main-content">
+        
+		<div class="main-content">	
 			<div id="particles-js"></div>
-			
 			<transition name="router-view" mode="out-in">
 				<router-view></router-view>
 			</transition>
@@ -20,10 +20,10 @@ export default {
 		Alert,
 	},
 
-    mounted() {
+	mounted(){
 		this.particlesJS.load('particles-js', '/assets/particles.json');
 		this.addParticlesJSEventListener();
-    },
+	},
 
 	updated(){
 		this.addParticlesJSEventListener();
@@ -33,6 +33,9 @@ export default {
 			particlesJS: window.particlesJS,
 		};
     },
+	beforeDestroy() {
+		document.querySelector('.main-page-content').removeEventListener('mousemove')
+	},
 	methods: {
 		addParticlesJSEventListener(){
 			// Wait for the child node to be rendered by giving it a timeout of 600ms
@@ -53,11 +56,8 @@ export default {
 @import "../scss/variables";
 
 
-.main-app-container {
+#app-container {
     & > .main-content {
-        padding: 1em;
-		text-align: center;
-		
 		#particles-js{
 			position: fixed;
 			top: 0;
@@ -67,12 +67,15 @@ export default {
 			z-index: 0;
 		}
 		.main-page-content{
-			position: relative;
-			z-index: $zIndex-router-content;
+			position: fixed;
+			top: 0;
+			left: 0;
 			width: 100%;
-			max-width: 500px;
+			height: 100%;
+			width: 100%;
 			text-align: left;
-			display: inline-block;
+        	padding: 1em;
+			z-index: $zIndex-router-content;
 		}
     }
 }

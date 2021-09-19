@@ -22,6 +22,7 @@ import App from './App.vue';
 
 
 const router = new VueRouter({
+	mode: 'history',
 	routes
 });
 

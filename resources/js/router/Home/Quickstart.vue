@@ -202,6 +202,7 @@ export default {
 
 			label{
 				color: white;
+				font-size: .8em;
 				font-weight: bold;
 			}
 		}
@@ -213,11 +214,13 @@ export default {
 				margin-top: 0;
 				padding-bottom: 80px; // To be able to read content, offset the bottom bar's height
 				max-height: 100%;
+				border-radius: 0;
 			}
 
 			& > .bottom-bar{
 				top: initial;
 				bottom: 0;
+				border-radius: 0;
 			}
 		}
 	}

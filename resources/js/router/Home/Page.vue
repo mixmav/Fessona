@@ -1,20 +1,14 @@
 <template>
 	<div class="vRouterPage-home-page-container">
-		
-		<transition name="opacity">
-			<quickstart ref="homePageQuickstart" v-show="quickstartDialogVisible"></quickstart>
-		</transition>
-
-
 		<div class="main-page-content">
 			<h1>Fessona</h1>
 			<p style="font-size: 1em">/fə'səunə/</p>
 			<p class="mt-10">In Roman mythology, Fessona is thought to be the goddess that cures fatigue 🎈</p>
 			
-			<img src="/images/plant_in_hands.svg" alt="Girl reading book">
-			<button class="btn mt-20" v-ripple v-tooltip.left="'Quickstart'" @click="showQuickstart"><i class="fa fa-info-circle"></i>How it works</button>
+			<img src="/images/plant_in_hands.svg" alt="Hands holding a plant">
+			<button class="btn mt-20" v-ripple v-tooltip.left="'Quickstart'" @click="toggleQuickstartDialogVisible(true)"><i class="fa fa-info-circle"></i>How it works</button>
 			&nbsp;
-			<router-link class="btn darkBlack mt-20" to="/app" v-ripple><i class="fa fa-play-circle"></i>Launch</router-link>
+			<router-link class="btn red mt-20" to="/app" v-ripple><i class="fa fa-play-circle"></i>Launch</router-link>
 
 		</div>
 	</div>
@@ -22,28 +16,19 @@
 
 <script>
 import { mapActions, mapState } from 'vuex';
-import Quickstart from './Quickstart.vue';
 
 
 export default {
-	components: {
-		Quickstart,
-	},
-
 	mounted(){
 		this.quickStartTimeout = setTimeout(() => {
 			if (!this.quickstartShownOnceOnHomePage && !this.quickstartDontShowOnStartup) {
-				this.showQuickstart();
+				this.toggleQuickstartDialogVisible(true);
 				this.updateQuickstartShownOnceOnHomePage(true);
 			}
 		}, 1000);
 	},
 	
 	methods: {
-		showQuickstart(){
-			this.toggleQuickstartDialogVisible(true);
-		},
-		
 		...mapActions('Alert', [
 			'showAlert',
 		]),
@@ -59,7 +44,6 @@ export default {
 
 	computed: {
 		...mapState('QuickstartDialog', {
-			quickstartDialogVisible: 'visible',
 			quickstartDontShowOnStartup: 'dontShowOnStartup'
 		}),
 

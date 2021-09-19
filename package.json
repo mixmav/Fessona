@@ -10,8 +10,6 @@
         "production": "mix --production"
     },
     "devDependencies": {
-        "@egjs/flicking-plugins": "^4.2.1",
-        "@egjs/vue-flicking": "^4.2.5",
         "browser-sync": "^2.27.5",
         "browser-sync-webpack-plugin": "^2.3.0",
         "jquery": "^3.6.0",
@@ -33,6 +31,8 @@
     "dependencies": {
         "vue-cookie": "^1.1.4",
         "vue-scrollto": "^2.20.0",
+        "vue-tour": "^2.0.0",
+        "vue-youtube-embed": "^2.2.2",
         "vuex-map-fields": "^1.4.1"
     }
 }

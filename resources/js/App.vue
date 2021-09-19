@@ -4,6 +4,10 @@
         
 		<div class="main-content">	
 			<div id="particles-js"></div>
+			<transition name="opacity">
+				<quickstart ref="homePageQuickstart" v-show="quickstartDialogVisible"></quickstart>
+			</transition>
+
 			<transition name="router-view" mode="out-in">
 				<router-view></router-view>
 			</transition>
@@ -14,10 +18,13 @@
 <script>
 import Alert from './components/Alert.vue';
 import 'particles.js/particles';
+import Quickstart from './components/Quickstart.vue';
+import { mapState } from 'vuex';
 
 export default {
 	components: {
 		Alert,
+		Quickstart,
 	},
 
 	mounted(){
@@ -48,6 +55,13 @@ export default {
 				});
 			}, 600);
 		}
+	},
+
+	computed: {
+		...mapState('QuickstartDialog', {
+			quickstartDialogVisible: 'visible',
+		}),
+
 	}
 };
 </script>

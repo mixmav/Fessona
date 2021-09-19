@@ -6,9 +6,16 @@ import VueRouter from 'vue-router';
 import VTooltip from 'v-tooltip';
 import VueScrollTo from 'vue-scrollto';
 import VueCookie from 'vue-cookie';
+import VueYouTubeEmbed from 'vue-youtube-embed'
+import VueTour from 'vue-tour'
+
+require('vue-tour/dist/vue-tour.css');
 
 Vue.use(VueScrollTo);
 Vue.use(VueCookie);
+Vue.use(VueYouTubeEmbed)
+Vue.use(VueTour)
+
 //Remove the arrow from the template
 Vue.use(VTooltip, {
 	defaultTemplate: '<div class="tooltip" role="tooltip"><div class="tooltip-inner"></div></div>'

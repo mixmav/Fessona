@@ -5,7 +5,7 @@
 			<div class="container" v-show="visible" ref="scrollContainer">
 				<h1 class="quickstart-heading-1" v-scroll-to="generateVueScrollToConfig('quickstart-heading-1')"><span>#</span> What is Fessona?</h1>
 				<p>As part of RMIT creative, Fessona was created to be a safe space.</p>
-				<img src="/images/spread_love.svg" class="img" alt="">
+				<img src="/images/spread_love.svg" class="img" alt="Strangers connecting">
 
 				<h1 class="quickstart-heading-2" v-scroll-to="generateVueScrollToConfig('quickstart-heading-2')"><span>#</span> How does it work?</h1>
 				<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae soluta, aspernatur placeat dolores, dolorum illum sequi, dolore officia sunt itaque fugit amet repellat obcaecati. Sed nihil odit veritatis eum in.</p>
@@ -13,12 +13,14 @@
 				<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae soluta, aspernatur placeat dolores, dolorum illum sequi, dolore officia sunt itaque fugit amet repellat obcaecati. Sed nihil odit veritatis eum in.</p>
 				<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae soluta, aspernatur placeat dolores, dolorum illum sequi, dolore officia sunt itaque fugit amet repellat obcaecati. Sed nihil odit veritatis eum in.</p>
 				<h2>Read</h2>
+
+				<button class="btn red mt-10" v-ripple @click="launchApp"><i class="fa fa-play-circle"></i>Launch</button>
 			</div>
 		</transition>
 		
 		<transition name="opacity-50percent" delay="100">
 			<div class="bottom-bar" v-show="visible">
-				<label class="mt-10">Don't show again <input style="position: relative; top: 1px" type="checkbox" ref="dontShowOnStartupCheckbox" v-model="dontShowOnStartup"></label>
+				<label class="mt-10" aria-label="Don't show again">Don't show again <input style="position: relative; top: 1px" type="checkbox" ref="dontShowOnStartupCheckbox" v-model="dontShowOnStartup"></label>
 				<button class="btn light" @click="toggleVisible(false)" v-ripple><i class="fa fa-keyboard"></i>Press ESC to close</button>
 			</div>
 		</transition>
@@ -44,36 +46,20 @@ export default {
 
 	beforeDestroy(){
 		$(window).off('keydown', this.$refs.container);
-		$(window).off('scroll', this.$refs.scrollContainer);
 	},
 
 	mounted(){
-		var $containerRef = $(this.$refs.scrollContainer);
-		$containerRef.on('scroll', (event) => {
-			if ($containerRef.scrollTop() > 0){
-				this.scrolled = true;
-			} else {
-				this.scrolled = false;
-			}
-		});
-
-		if (this.$cookie.get('quickstartDontShowOnStartupChange') !== null) {
-			let cookieVal = JSON.parse(this.$cookie.get('quickstartDontShowOnStartupChange'));
+		if (this.$cookie.get('quickstartDontShowOnStartup') !== null) {
+			let cookieVal = JSON.parse(this.$cookie.get('quickstartDontShowOnStartup'));
 			this.$refs.dontShowOnStartupCheckbox.checked = cookieVal;
 			this.$refs.dontShowOnStartupCheckbox.dispatchEvent(new Event('change'));
 		}
 	},
 
-	data(){
-		return {
-			scrolled: false,
-		}
-	},
-
 	watch: {
 		dontShowOnStartup(val){
-			this.$cookie.delete('quickstartDontShowOnStartupChange');
-			this.$cookie.set('quickstartDontShowOnStartupChange', val, 7);
+			this.$cookie.delete('quickstartDontShowOnStartup');
+			this.$cookie.set('quickstartDontShowOnStartup', val, 7);
 		}
 	},
 
@@ -98,6 +84,13 @@ export default {
 				container: '.container',
 			}
 		},
+
+		launchApp(){
+			this.toggleVisible(false);
+			setTimeout(() => {
+				this.$router.push('/app');
+			}, 300);
+		}
 	},
 
 	computed: {
@@ -113,7 +106,7 @@ export default {
 </script>
 
 <style lang="scss">
-	@import "../../../scss/variables";
+	@import "../../scss/variables";
 
 	.vPage-component-quickstart-dialog-container{
 		position: fixed;

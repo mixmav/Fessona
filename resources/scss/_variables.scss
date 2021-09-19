@@ -37,6 +37,12 @@ $colors: (
 	}
 }
 
+@mixin media-y($height){
+	@media only screen and (max-height: $height){
+		@content;
+	}
+}
+
 $zIndex-tooltip: 1000;
 $zIndex-window-alert: 999;
 $zIndex-quickstart-dialog: 998;

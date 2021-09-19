@@ -11,10 +11,11 @@
 			<p style="font-size: 1em">/fə'səunə/</p>
 			<p class="mt-10">In Roman mythology, Fessona is thought to be the goddess that cures fatigue 🎈</p>
 			
+			<img src="/images/plant_in_hands.svg" alt="Girl reading book">
 			<button class="btn mt-20" v-ripple v-tooltip.left="'Quickstart'" @click="showQuickstart"><i class="fa fa-info-circle"></i>How it works</button>
-			
 			&nbsp;
-			<router-link class="btn darkBlack mt-20" to="/sites" v-ripple><i class="fa fa-play-circle"></i>Launch</router-link>
+			<router-link class="btn darkBlack mt-20" to="/app" v-ripple><i class="fa fa-play-circle"></i>Launch</router-link>
+
 		</div>
 	</div>
 </template>
@@ -30,8 +31,11 @@ export default {
 	},
 
 	mounted(){
-		setTimeout(() => {
-			this.showQuickstart();
+		this.quickStartTimeout = setTimeout(() => {
+			if (!this.quickstartShownOnceOnHomePage && !this.quickstartDontShowOnStartup) {
+				this.showQuickstart();
+				this.updateQuickstartShownOnceOnHomePage(true);
+			}
 		}, 1000);
 	},
 	
@@ -47,12 +51,32 @@ export default {
 		...mapActions('QuickstartDialog', {
 			toggleQuickstartDialogVisible: 'toggleVisible',
 		}),
+
+		...mapActions([
+			'updateQuickstartShownOnceOnHomePage',
+		])
 	},
 
 	computed: {
 		...mapState('QuickstartDialog', {
-			quickstartDialogVisible: 'visible'
-		})
+			quickstartDialogVisible: 'visible',
+			quickstartDontShowOnStartup: 'dontShowOnStartup'
+		}),
+
+		...mapState([
+			'quickstartShownOnceOnHomePage',
+		]),
+	},
+
+	data(){
+		return {
+			quickStartTimeout: {},
+		}
+	},
+
+	beforeDestroy(){
+		//If the user navigates away before the dialog is visible, clear the timeout.
+		clearTimeout(this.quickStartTimeout);
 	}
 }
 
@@ -69,6 +93,13 @@ export default {
 		max-width: 500px;
 		margin-top: 100px;
 		position: relative !important;
+
+		img{
+			display: block;
+			width: 50%;
+			margin-top: 30px;
+			height: auto;
+		}
 	}
 }
 </style>

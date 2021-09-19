@@ -133,6 +133,14 @@ i, span{
 		}
 	}
 
+	&.light{
+		background: white;
+		color: $primary-color;
+		&:focus{
+			box-shadow: 0 0 0 3px rgba(white, 0.5);
+		}
+	}
+
 	&.disabled, &:disabled{
 		box-shadow: none;
 		cursor: default;
@@ -256,13 +264,12 @@ i, span{
 
 .translate-y-100px-enter-active, .translate-y-100px-leave-active {
 	transition: transform .3s;
-	transition-timing-function: cubic-bezier(0.0, 0.0, 0.2, 1);
+	// transition-timing-function: cubic-bezier(0.0, 0.0, 0.2, 1);
 }
 .translate-y-100px-enter, .translate-y-100px-leave-to {
 	transform: translateY(100px);
-	transition-timing-function: cubic-bezier(0.4, 0.0, 1, 1);
+	// transition-timing-function: cubic-bezier(0.4, 0.0, 1, 1);
 }
-
 
 
 .router-view-enter-active, .router-view-leave-active {
@@ -273,8 +280,15 @@ i, span{
 	transform: translateX(-50px)
 }
 
+.opacity-50percent-enter-active, .opacity-50percent-leave-active {
+    transition: opacity .2s;
+}
+.opacity-50percent-enter, .opacity-50percent-leave-to {
+	opacity: 0.5;
+}
+
 .opacity-enter-active, .opacity-leave-active {
-    transition: opacity .3s;
+    transition: opacity .2s;
 }
 .opacity-enter, .opacity-leave-to {
 	opacity: 0;

@@ -13,4 +13,20 @@ export const store = new Vuex.Store({
 		Alert: Alert,
 		QuickstartDialog: QuickstartDialog,
 	},
+
+	state: {
+		quickstartShownOnceOnHomePage: false,
+	},
+
+	mutations: {
+		updateQuickstartShownOnceOnHomePage(state, value){
+			state.quickstartShownOnceOnHomePage = value;
+		}
+	},
+
+	actions: {
+		updateQuickstartShownOnceOnHomePage(context, value){
+			context.commit('updateQuickstartShownOnceOnHomePage', value);
+		}
+	}
 });

@@ -3,7 +3,7 @@
 		
 		<transition name="translate-y-100px" delay="300">
 			<div class="container" v-show="visible" ref="scrollContainer">
-				<h1 class="quickstart-heading-1"><span>#</span> What is Fessona?</h1>
+				<h1 class="quickstart-heading-1" v-scroll-to="generateVueScrollToConfig('quickstart-heading-1')"><span>#</span> What is Fessona?</h1>
 				<p>As part of RMIT creative, Fessona was created to be a safe space.</p>
 				<img src="/images/spread_love.svg" class="img" alt="">
 
@@ -12,12 +12,14 @@
 				<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae soluta, aspernatur placeat dolores, dolorum illum sequi, dolore officia sunt itaque fugit amet repellat obcaecati. Sed nihil odit veritatis eum in.</p>
 				<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae soluta, aspernatur placeat dolores, dolorum illum sequi, dolore officia sunt itaque fugit amet repellat obcaecati. Sed nihil odit veritatis eum in.</p>
 				<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae soluta, aspernatur placeat dolores, dolorum illum sequi, dolore officia sunt itaque fugit amet repellat obcaecati. Sed nihil odit veritatis eum in.</p>
-
-				<div class="bottom-bar">
-					<div>
-						<h1>Bottom</h1>
-					</div>
-				</div>
+				<h2>Read</h2>
+			</div>
+		</transition>
+		
+		<transition name="opacity-50percent" delay="100">
+			<div class="bottom-bar" v-show="visible">
+				<label class="mt-10">Don't show again <input style="position: relative; top: 1px" type="checkbox" ref="dontShowOnStartupCheckbox" v-model="dontShowOnStartup"></label>
+				<button class="btn light" @click="toggleVisible(false)" v-ripple><i class="fa fa-keyboard"></i>Press ESC to close</button>
 			</div>
 		</transition>
 
@@ -25,7 +27,8 @@
 </template>
 
 <script>
-import { mapState, mapActions } from 'vuex';
+import { mapState, mapActions, mapMutations } from 'vuex';
+import { mapFields } from 'vuex-map-fields';
 import $ from 'jquery';
 
 export default {
@@ -54,11 +57,23 @@ export default {
 			}
 		});
 
+		if (this.$cookie.get('quickstartDontShowOnStartupChange') !== null) {
+			let cookieVal = JSON.parse(this.$cookie.get('quickstartDontShowOnStartupChange'));
+			this.$refs.dontShowOnStartupCheckbox.checked = cookieVal;
+			this.$refs.dontShowOnStartupCheckbox.dispatchEvent(new Event('change'));
+		}
 	},
 
 	data(){
 		return {
 			scrolled: false,
+		}
+	},
+
+	watch: {
+		dontShowOnStartup(val){
+			this.$cookie.delete('quickstartDontShowOnStartupChange');
+			this.$cookie.set('quickstartDontShowOnStartupChange', val, 7);
 		}
 	},
 
@@ -73,17 +88,25 @@ export default {
 			'toggleVisible',
 		]),
 
+		...mapMutations('QuickstartDialog', [
+			'updateDontShowOnStartup',
+		]),
+
 		generateVueScrollToConfig(id){
 			return {
 				el: '.' + id,
 				container: '.container',
 			}
-		}
+		},
 	},
 
 	computed: {
 		...mapState('QuickstartDialog', [
-			'visible'
+			'visible',
+		]),
+
+		...mapFields('QuickstartDialog', [
+			'dontShowOnStartup'
 		]),
 	}
 }
@@ -104,7 +127,7 @@ export default {
 		background: rgba(black, 0.3);
 		
 		& > .container{
-			width: calc(100% - 40px);
+			width: 100%;
 			padding: 1em;
 			height: 100%;
 			max-height: 550px;
@@ -122,6 +145,7 @@ export default {
 				padding-bottom: 5px;
 				border-bottom: solid 1px transparent;
 				transition: all .1s;
+				font-size: 1.6em;
 				cursor: pointer;
 				margin-bottom: 10px;
 				margin-top: 30px;
@@ -143,27 +167,6 @@ export default {
 				margin: 10px auto;
 			}
 
-
-			.bottom-bar{
-				position: absolute;
-				bottom: 0;
-				left: 0;
-				opacity: 0;
-				animation: opacityFull .2s;
-				animation-delay: .5s;
-				animation-fill-mode: forwards;
-				div{
-					position: fixed;
-					padding: 10px;
-					border-top: solid 1px rgba(black, 0.1);
-					width: calc(100% - 40px);
-					max-width: 500px;
-					border-bottom-left-radius: 10px;
-					background: white;
-					border-bottom-right-radius: 10px;
-				}
-			}
-
 			&::-webkit-scrollbar{
 				width: 10px;
 				height: 14px;
@@ -180,13 +183,42 @@ export default {
 				box-shadow: inset 3px 3px 21px 0px #2f2f2f;
 			}
 		}
+
+		& > .bottom-bar{
+			top: 580px;
+			left: 50%;
+			position: fixed;
+			transform: translate(-50%, 0px);
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			padding: 1em;
+			background: $primary-color;
+			border-top: solid 2px rgba(black, 0.1);
+			width: 100%;
+			max-width: 500px;
+			border-bottom-left-radius: 10px;
+			border-bottom-right-radius: 10px;
+
+			label{
+				color: white;
+				font-weight: bold;
+			}
+		}
 	}
 
-	@keyframes opacityFull {
-		from {
-			opacity: 0;
-		} to {
-			opacity: 1;
+	@include media-y(670px){
+		.vPage-component-quickstart-dialog-container{
+			& > .container{
+				margin-top: 0;
+				padding-bottom: 80px; // To be able to read content, offset the bottom bar's height
+				max-height: 100%;
+			}
+
+			& > .bottom-bar{
+				top: initial;
+				bottom: 0;
+			}
 		}
 	}
 </style>

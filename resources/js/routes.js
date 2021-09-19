@@ -3,7 +3,7 @@ import VueRouter from 'vue-router';
 Vue.use(VueRouter);
 
 import Home from './router/Home/Page.vue';
-import BrowseSites from './router/BrowseSites/Page.vue';
+import App from './router/App/Page.vue';
 
 const routes = [
 	{
@@ -12,9 +12,9 @@ const routes = [
 		name: 'Home'
 	},
 	{
-		path: '/sites',
-		component: BrowseSites,
-		name: 'BrowseSites'
+		path: '/app',
+		component: App,
+		name: 'App'
 	},
 ]
 

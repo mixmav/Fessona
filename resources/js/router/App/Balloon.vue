@@ -5,7 +5,9 @@
 
 		<h3 class="mt-10">Here's what we heard</h3>
 		<!-- <youtube :video-id="videoID"></youtube> -->
-		
+		<button class="btn red mt-10" v-ripple><i class="fa fa-dice"></i>Pick at random</button>
+		&nbsp;
+		<button class="btn green mt-10" v-ripple><i class="fa fa-plus"></i>Write your own</button>
 		<div class="balloons custom-scrollbar">
 			<div class="balloon" v-for="i in 100" :key="i" :style="generateBalloonStyle(i)" @mouseover="synthSound(i)"></div>
 		</div>
@@ -58,7 +60,7 @@ export default {
 @import "../../../scss/variables";
 
 .vRouterPageComponent-App-balloon-container{
-	margin-top: 30px;
+	margin-top: 50px;
 	.balloons{
 		margin-top: 20px;
 		overflow-x: scroll;

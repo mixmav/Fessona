@@ -7,8 +7,8 @@
 				<button class="btn" v-ripple v-tooltip.left="'Quickstart'" @click="toggleQuickstartDialogVisible(true)"><i class="fa fa-info-circle"></i>How it works</button>
 			</div>
 
-			<div class="page-content custom-scrollbar" id="tourSteps-target-1">
-				<balloon v-for="i in 20" :key="i"></balloon>
+			<div class="page-content custom-scrollbar">
+				<balloon v-for="i in 20" :key="i" id="tourSteps-target-1"></balloon>
 
 				<v-tour name="introductionTour" :steps="tourSteps" :options="{highlight: true}"></v-tour>
 			</div>

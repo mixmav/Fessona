@@ -8,7 +8,7 @@
 			</div>
 
 			<div class="page-content custom-scrollbar">
-				<balloon v-for="i in 20" :key="i" id="tourSteps-target-1"></balloon>
+				<balloon-section v-for="i in ballonSections" :key="i.id" id="tourSteps-target-1" :question="i.question"></balloon-section>
 
 				<v-tour name="introductionTour" :steps="tourSteps" :options="{highlight: true}"></v-tour>
 			</div>
@@ -19,11 +19,11 @@
 <script>
 import { mapActions } from 'vuex';
 import $ from 'jquery';
-import Balloon from './Balloon.vue';
+import BalloonSection from './BalloonSection.vue';
 
 export default {
 	components: {
-		Balloon,
+		BalloonSection,
 	},
 	data(){
 		return {
@@ -39,6 +39,25 @@ export default {
 					// }
 				}
 			],
+
+			ballonSections: [
+				{
+					id: 0,
+					question: "What's one YouTube video that never fails to cheer you up?",
+				},
+				{
+					id: 1,
+					question: "What's your go-to \"Ground myself\" ritual",
+				},
+				{
+					id: 2,
+					question: "What's one YouTube video that never fails to cheer you up?",
+				},
+				{
+					id: 3,
+					question: "What's one YouTube video that never fails to cheer you up?",
+				}
+			]
 		}
 	},
 

@@ -19,7 +19,7 @@
 import Alert from './components/Alert.vue';
 import 'particles.js/particles';
 import Quickstart from './components/Quickstart.vue';
-import { mapState } from 'vuex';
+import { mapState, mapActions } from 'vuex';
 
 export default {
 	components: {
@@ -30,6 +30,14 @@ export default {
 	mounted(){
 		this.particlesJS.load('particles-js', '/assets/particles.json');
 		this.addParticlesJSEventListener();
+
+		// For mobile browsers, if the user navigates while the dialog is open, close it.
+		this.$router.beforeEach((from, to, next) => {
+			if (this.quickstartDialogVisible) {
+				this.updateQuickstartDialogVisible(false);
+			}
+			next();
+		});
 	},
 
 	updated(){
@@ -54,7 +62,11 @@ export default {
 					document.getElementById("particles-js").childNodes[0].dispatchEvent(e) 
 				});
 			}, 600);
-		}
+		},
+
+		...mapActions('QuickstartDialog', {
+			updateQuickstartDialogVisible: 'toggleVisible',
+		})
 	},
 
 	computed: {

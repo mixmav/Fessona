@@ -224,6 +224,24 @@ i, span{
 	}
 }
 
+.custom-scrollbar{
+	&::-webkit-scrollbar{
+		width: 10px;
+		height: 14px;
+	}
+	&::-webkit-scrollbar-thumb{
+		background: #6610f2;
+		border-radius: 13px;
+	}
+
+	&::-webkit-scrollbar-track{
+		background: #FFFFFF;
+		border: 4px solid #FFFFFF;
+		border-radius: 13px;
+		box-shadow: inset 3px 3px 21px 0px #2f2f2f;
+	}
+}
+
 @for $i from 1 to 10 /*margin-top 10px to 20px, used as .mt-10, .mt-20 etc */ {
 	.mt-#{$i}0{
 		margin-top: ($i * 10) + px;
@@ -277,7 +295,6 @@ i, span{
 }
 .router-view-enter, .router-view-leave-to {
 	opacity: 0;
-	transform: translateX(-50px)
 }
 
 .opacity-50percent-enter-active, .opacity-50percent-leave-active {

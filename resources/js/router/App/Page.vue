@@ -71,7 +71,7 @@ export default {
 		]),
 	},
 	mounted(){
-		this.$tours['introductionTour'].start();
+		// this.$tours['introductionTour'].start();
 		var $window = $('.page-content');
 		$window.on('scroll', (event) => {
 			if ($window.scrollTop() > 80){

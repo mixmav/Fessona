@@ -47,16 +47,12 @@ export default {
 				},
 				{
 					id: 1,
-					question: "What's your go-to \"Ground myself\" ritual",
+					question: "What makes you feel grounded?",
 				},
 				{
 					id: 2,
 					question: "What's one YouTube video that never fails to cheer you up?",
 				},
-				{
-					id: 3,
-					question: "What's one YouTube video that never fails to cheer you up?",
-				}
 			]
 		}
 	},
@@ -69,9 +65,21 @@ export default {
 		...mapActions('QuickstartDialog', {
 			toggleQuickstartDialogVisible: 'toggleVisible',
 		}),
+
+		...mapActions([
+			'updatePageScrolled',
+		]),
 	},
 	mounted(){
-		// this.$tours['introductionTour'].start();
+		this.$tours['introductionTour'].start();
+		var $window = $('.page-content');
+		$window.on('scroll', (event) => {
+			if ($window.scrollTop() > 80){
+				this.updatePageScrolled(true);
+			} else {
+				this.updatePageScrolled(false);
+			}
+		});
 	},
 }
 
@@ -96,7 +104,7 @@ export default {
 			left: 0;
 			padding: 1em;
 			background: white;
-			border-bottom: solid 1px black;
+			border-bottom: solid 1px rgba(black, 0.4);
 
 			a{
 				text-decoration: none;
@@ -118,6 +126,13 @@ export default {
 	}
 	.v-tour__target--highlighted {
 		box-shadow: 0 0 0 99999px rgba(0,0,0,.4);
+		padding: 10px;
+		.v-step__header{
+			color: white !important;
+		}
+		.v-step__content{
+			color: white !important;
+		}
 	}
 }
 @keyframes backgroundToWhite {

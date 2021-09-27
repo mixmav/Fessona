@@ -11,12 +11,15 @@
 			<transition name="router-view" mode="out-in">
 				<router-view></router-view>
 			</transition>
+			<go-to-top></go-to-top>
 		</div>
     </div>
 </template>
 
 <script>
 import Alert from './components/Alert.vue';
+import GoToTop from './components/GoToTop.vue';
+
 import 'particles.js/particles';
 import Quickstart from './components/Quickstart.vue';
 import { mapState, mapActions } from 'vuex';
@@ -24,6 +27,7 @@ import { mapState, mapActions } from 'vuex';
 export default {
 	components: {
 		Alert,
+		GoToTop,
 		Quickstart,
 	},
 

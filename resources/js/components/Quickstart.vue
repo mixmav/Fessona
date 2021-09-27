@@ -9,12 +9,8 @@
 
 				<h1 class="quickstart-heading-2" v-scroll-to="generateVueScrollToConfig('quickstart-heading-2')"><span>#</span> How does it work?</h1>
 				<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae soluta, aspernatur placeat dolores, dolorum illum sequi, dolore officia sunt itaque fugit amet repellat obcaecati. Sed nihil odit veritatis eum in.</p>
-				<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae soluta, aspernatur placeat dolores, dolorum illum sequi, dolore officia sunt itaque fugit amet repellat obcaecati. Sed nihil odit veritatis eum in.</p>
-				<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae soluta, aspernatur placeat dolores, dolorum illum sequi, dolore officia sunt itaque fugit amet repellat obcaecati. Sed nihil odit veritatis eum in.</p>
-				<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae soluta, aspernatur placeat dolores, dolorum illum sequi, dolore officia sunt itaque fugit amet repellat obcaecati. Sed nihil odit veritatis eum in.</p>
-				<h2>Read</h2>
 
-				<button class="btn red mt-10" v-ripple @click="launchApp"><i class="fa fa-play-circle"></i>Launch</button>
+				<button class="btn red mt-20" v-ripple @click="launchApp"><i class="fa fa-play-circle"></i>Launch</button>
 			</div>
 		</transition>
 		

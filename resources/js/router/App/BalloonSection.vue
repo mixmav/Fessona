@@ -1,15 +1,17 @@
 <template>
 	<div class="vRouterPageComponent-App-balloon-section-container">
-		<h1># We asked</h1>
-		<p>{{question}}</p>
+		<h1><span class="text-color primary">#</span> We asked</h1>
+		<p class="text-color primary">{{question}}</p>
 
 		<h3 class="mt-10">Here's what we heard</h3>
 		<!-- <youtube :video-id="videoID"></youtube> -->
-		<button class="btn red mt-10" v-ripple><i class="fa fa-dice"></i>Pick at random</button>
+		<button class="btn red mt-10" v-ripple><i class="fa fa-dice"></i>Read at random</button>
 		&nbsp;
-		<button class="btn green mt-10" v-ripple><i class="fa fa-plus"></i>Write your own</button>
+		<button class="btn darkBlack mt-10" v-ripple><i class="fa fa-plus"></i>Share your answer</button>
 		<div class="balloons custom-scrollbar">
-			<div class="balloon no-select" v-ripple v-for="i in 100" :key="i" :style="generateBalloonStyle(i)" @mouseover="synthSound(i)"></div>
+			<div class="balloon no-select" v-ripple v-for="i in 8" :key="i" :style="generateBalloonStyle(i)" @mouseover="synthSound(i)">
+				{{ i }}
+			</div>
 		</div>
 	</div>
 </template>
@@ -36,13 +38,13 @@ export default {
 	},
 	methods: {
 		generateBalloonStyle(i){
-			let red = Math.floor(Math.random() * 255);
-			let green = Math.floor(Math.random() * 255);
-			let blue = Math.floor(Math.random() * 255);
+			let red = _.random(0, 255);
+			let green = _.random(0, 255);
+			let blue = _.random(0, 255);
 			let color = `rgba(${red}, ${green}, ${blue}, 0.8)`;
 			
-			let delay = Math.floor(Math.random() * 2);
-			let duration = Math.floor(Math.random() * 5);
+			let delay = _.random(0, 2, true);
+			let duration = _.random(0.5, 1, true);
 			return `
 				background: ${color};
 				border: solid 2px ${color};
@@ -69,6 +71,12 @@ export default {
 
 .vRouterPageComponent-App-balloon-section-container{
 	margin-top: 50px;
+	h1{
+		font-size: 1.5em;
+	}
+	p{
+		font-size: 1em;
+	}
 	.balloons{
 		margin-top: 20px;
 		overflow-x: scroll;
@@ -78,7 +86,10 @@ export default {
 			width: 100px;
 			height: 100px;
 			background: $green;
-			display: inline-block;
+			display: inline-flex;
+			justify-content: center;
+			align-items: center;
+			color: white;
 			border-radius: 100%;
 			margin-left: 10px;
 			cursor: pointer;

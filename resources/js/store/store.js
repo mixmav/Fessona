@@ -16,17 +16,24 @@ export const store = new Vuex.Store({
 
 	state: {
 		quickstartShownOnceOnHomePage: false,
+		pageScrolled: false,
 	},
 
 	mutations: {
 		updateQuickstartShownOnceOnHomePage(state, value){
 			state.quickstartShownOnceOnHomePage = value;
+		},
+		updatePageScrolled(state, value){
+			state.pageScrolled = value;
 		}
 	},
 
 	actions: {
 		updateQuickstartShownOnceOnHomePage(context, value){
 			context.commit('updateQuickstartShownOnceOnHomePage', value);
+		},
+		updatePageScrolled(context, value){
+			context.commit('updatePageScrolled', value);
 		}
 	}
 });

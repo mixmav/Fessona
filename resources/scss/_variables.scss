@@ -5,7 +5,7 @@ $primary-alt-color: white;
 $secondary-color: darken(#8375DD, 5%);
 
 $black: rgba(black, 0.8);
-$red: #EF798A;
+$red: #E13D45;
 $orange: #FC8C24;
 $yellow: #FDE747;
 $green: #61E294;
@@ -27,6 +27,7 @@ $colors: (
 	'indigo': $indigo,
 	'teal': $teal,
 	'pink': $pink,
+	'primary': $primary-color,
 	'burgandy': $burgandy,
 	'darkBlack': $darkBlack,
 );
@@ -43,7 +44,8 @@ $colors: (
 	}
 }
 
-$zIndex-tooltip: 1000;
-$zIndex-window-alert: 999;
-$zIndex-quickstart-dialog: 998;
+$zIndex-tooltip: 1001;
+$zIndex-window-alert: 1000;
+$zIndex-quickstart-dialog: 999;
+$zIndex-go-to-top: 998;
 $zIndex-router-content: 98;

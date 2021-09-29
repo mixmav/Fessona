@@ -4,7 +4,7 @@
 		<div class="main-page-content">
 			<div class="top-bar">
 				<router-link to="/">Fessona</router-link>
-				<button class="btn" v-ripple v-tooltip.left="'Quickstart'" @click="toggleQuickstartDialogVisible(true)"><i class="fa fa-info-circle"></i>How it works</button>
+				<button class="btn" v-ripple @click="toggleQuickstartDialogVisible(true)"><i class="fa fa-info-circle"></i>How it works</button>
 			</div>
 
 			<div class="page-content custom-scrollbar">
@@ -51,7 +51,7 @@ export default {
 				},
 				{
 					id: 2,
-					question: "What's one YouTube video that never fails to cheer you up?",
+					question: "Fav hype anthem",
 				},
 			]
 		}
@@ -72,6 +72,7 @@ export default {
 	},
 	mounted(){
 		// this.$tours['introductionTour'].start();
+
 		var $window = $('.page-content');
 		$window.on('scroll', (event) => {
 			if ($window.scrollTop() > 80){

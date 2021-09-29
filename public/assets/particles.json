@@ -8,7 +8,7 @@
       }
     },
     "color": {
-      "value": "#2a2424"
+      "value": ["#BD10E0","#B8E986","#50E3C2","#FFD300","#E86363"]
     },
     "shape": {
       "type": "circle",
@@ -26,7 +26,7 @@
       }
     },
     "opacity": {
-      "value": 0.5,
+      "value": 1,
       "random": false,
       "anim": {
         "enable": false,
@@ -36,7 +36,7 @@
       }
     },
     "size": {
-      "value": 1,
+      "value": 6,
       "random": true,
       "anim": {
         "enable": false,
@@ -48,8 +48,8 @@
     "line_linked": {
       "enable": true,
       "distance": 150,
-      "color": "#000000",
-      "opacity": 0.4,
+      "color": "#da4336",
+      "opacity": 0.2,
       "width": 1
     },
     "move": {

@@ -4,10 +4,12 @@
 		<p class="text-color primary">{{question}}</p>
 
 		<h3 class="mt-10">Here's what we heard</h3>
+		
 		<!-- <youtube :video-id="videoID"></youtube> -->
+
 		<button class="btn red mt-10" v-ripple><i class="fa fa-dice"></i>Read at random</button>
 		&nbsp;
-		<button class="btn darkBlack mt-10" v-ripple><i class="fa fa-plus"></i>Share your answer</button>
+		<button class="btn darkBlack mt-10" id="tourSteps-target-2" v-ripple><i class="fa fa-plus"></i>Share your answer</button>
 		<div class="balloons custom-scrollbar">
 			<div class="balloon no-select" v-ripple v-for="i in 8" :key="i" :style="generateBalloonStyle(i)" @mouseover="synthSound(i)">
 				{{ i }}
@@ -95,9 +97,9 @@ export default {
 			cursor: pointer;
 			// transition: all .2s;
 			animation: ballonUpDown 1s infinite;
-			// &:hover{
-			// 	transform: scale(1.1, 1.1);
-			// }
+			&:hover{
+				transform: scale(1.1, 1.1);
+			}
 		}
 	}
 }

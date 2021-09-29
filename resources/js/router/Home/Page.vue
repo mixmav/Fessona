@@ -6,9 +6,9 @@
 			<p class="mt-10">In Roman mythology, Fessona is thought to be the goddess that cures fatigue 🎈</p>
 			
 			<img src="/images/plant_in_hands.svg" alt="Hands holding a plant">
-			<button class="btn mt-20" v-ripple v-tooltip.left="'Quickstart'" @click="toggleQuickstartDialogVisible(true)"><i class="fa fa-info-circle"></i>How it works</button>
+			<button class="btn red mt-30" v-ripple @click="toggleQuickstartDialogVisible(true)"><i class="fa fa-charging-station"></i>How it works</button>
 			&nbsp;
-			<router-link class="btn red mt-20" to="/app" v-ripple><i class="fa fa-play-circle"></i>Launch</router-link>
+			<router-link class="btn yellow mt-30" to="/app" v-ripple><i class="fa fa-fire-extinguisher"></i>Start</router-link>
 
 		</div>
 	</div>
@@ -25,7 +25,7 @@ export default {
 				this.toggleQuickstartDialogVisible(true);
 				this.updateQuickstartShownOnceOnHomePage(true);
 			}
-		}, 1000);
+		}, 5000);
 	},
 	
 	methods: {
@@ -83,6 +83,24 @@ export default {
 			width: 50%;
 			margin-top: 30px;
 			height: auto;
+		}
+	}
+}
+
+@include media(400px){
+	.vRouterPage-home-page-container{
+		.main-page-content{
+			img{
+				width: 65%;
+			}
+		}
+	}
+}
+
+@include media-y(570px){
+	.vRouterPage-home-page-container{
+		.main-page-content{
+			margin-top: 20px;
 		}
 	}
 }

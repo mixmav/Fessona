@@ -14,5 +14,5 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/api/sites/get-active-sites', 'SiteController@GetActiveSites');
-// Route::get('/admin', 'AdminController@Home');
+Route::get('/admin', 'AdminController@Home');
 Route::get('/{all}', 'HomeController@Home')->where(['all' => '.*?']);

@@ -104,7 +104,7 @@ export default {
 			top: 0;
 			left: 0;
 			padding: 1em;
-			background: white;
+			// background: white;
 			border-bottom: solid 1px rgba(black, 0.4);
 
 			a{

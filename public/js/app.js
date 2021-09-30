@@ -84,9 +84,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       // Then pass all mousemove events to the particles div
       setTimeout(function () {
         document.querySelector('.main-page-content').addEventListener('mousemove', function (e) {
-          var e = document.createEvent('MouseEvents');
-          e.initMouseEvent('mousemove', true, true, document.defaultView, 0, event.screenX, event.screenY, event.clientX, event.clientY, false, false, false, false, null, null);
-          document.getElementById("particles-js").childNodes[0].dispatchEvent(e);
+          var e1 = document.createEvent('MouseEvents');
+          e1.initMouseEvent('mousemove', true, true, document.defaultView, 0, event.screenX, event.screenY, event.clientX, event.clientY, false, false, false, false, null, null);
+          document.getElementById("particles-js").childNodes[0].dispatchEvent(e1);
         });
       }, 600);
     }
@@ -946,7 +946,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".vRouterPage-browse-sites-page-container .main-page-content {\n  background: transparent;\n  -webkit-animation: backgroundToWhite linear 0.3s;\n          animation: backgroundToWhite linear 0.3s;\n  -webkit-animation-delay: 0.3s;\n          animation-delay: 0.3s;\n  -webkit-animation-fill-mode: forwards;\n          animation-fill-mode: forwards;\n  padding: 0 !important;\n}\n.vRouterPage-browse-sites-page-container .main-page-content .top-bar {\n  width: 100%;\n  display: flex;\n  justify-content: space-between;\n  position: fixed;\n  top: 0;\n  left: 0;\n  padding: 1em;\n  background: white;\n  border-bottom: solid 1px rgba(0, 0, 0, 0.4);\n}\n.vRouterPage-browse-sites-page-container .main-page-content .top-bar a {\n  text-decoration: none;\n  font-size: 2em;\n}\n.vRouterPage-browse-sites-page-container .main-page-content .page-content {\n  padding: 1em;\n  padding-top: 0;\n  position: fixed;\n  top: 78px;\n  left: 0;\n  width: 100%;\n  height: calc(100% - 70px);\n  overflow: scroll;\n}\n.vRouterPage-browse-sites-page-container .v-tour__target--highlighted {\n  box-shadow: 0 0 0 99999px rgba(0, 0, 0, 0.4);\n  padding: 10px;\n}\n.vRouterPage-browse-sites-page-container .v-tour__target--highlighted .v-step__header {\n  color: white !important;\n}\n.vRouterPage-browse-sites-page-container .v-tour__target--highlighted .v-step__content {\n  color: white !important;\n}\n@-webkit-keyframes backgroundToWhite {\nto {\n    background: white;\n}\n}\n@keyframes backgroundToWhite {\nto {\n    background: white;\n}\n}", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, ".vRouterPage-browse-sites-page-container .main-page-content {\n  background: transparent;\n  -webkit-animation: backgroundToWhite linear 0.3s;\n          animation: backgroundToWhite linear 0.3s;\n  -webkit-animation-delay: 0.3s;\n          animation-delay: 0.3s;\n  -webkit-animation-fill-mode: forwards;\n          animation-fill-mode: forwards;\n  padding: 0 !important;\n}\n.vRouterPage-browse-sites-page-container .main-page-content .top-bar {\n  width: 100%;\n  display: flex;\n  justify-content: space-between;\n  position: fixed;\n  top: 0;\n  left: 0;\n  padding: 1em;\n  border-bottom: solid 1px rgba(0, 0, 0, 0.4);\n}\n.vRouterPage-browse-sites-page-container .main-page-content .top-bar a {\n  text-decoration: none;\n  font-size: 2em;\n}\n.vRouterPage-browse-sites-page-container .main-page-content .page-content {\n  padding: 1em;\n  padding-top: 0;\n  position: fixed;\n  top: 78px;\n  left: 0;\n  width: 100%;\n  height: calc(100% - 70px);\n  overflow: scroll;\n}\n.vRouterPage-browse-sites-page-container .v-tour__target--highlighted {\n  box-shadow: 0 0 0 99999px rgba(0, 0, 0, 0.4);\n  padding: 10px;\n}\n.vRouterPage-browse-sites-page-container .v-tour__target--highlighted .v-step__header {\n  color: white !important;\n}\n.vRouterPage-browse-sites-page-container .v-tour__target--highlighted .v-step__content {\n  color: white !important;\n}\n@-webkit-keyframes backgroundToWhite {\nto {\n    background: white;\n}\n}\n@keyframes backgroundToWhite {\nto {\n    background: white;\n}\n}", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -32672,7 +32672,7 @@ var render = function() {
           "button",
           {
             directives: [{ name: "ripple", rawName: "v-ripple" }],
-            staticClass: "btn red mt-30",
+            staticClass: "btn mt-30",
             on: {
               click: function($event) {
                 return _vm.toggleQuickstartDialogVisible(true)

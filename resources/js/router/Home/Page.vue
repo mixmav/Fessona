@@ -6,7 +6,7 @@
 			<p class="mt-10">In Roman mythology, Fessona is thought to be the goddess that cures fatigue 🎈</p>
 			
 			<img src="/images/plant_in_hands.svg" alt="Hands holding a plant">
-			<button class="btn red mt-30" v-ripple @click="toggleQuickstartDialogVisible(true)"><i class="fa fa-charging-station"></i>How it works</button>
+			<button class="btn mt-30" v-ripple @click="toggleQuickstartDialogVisible(true)"><i class="fa fa-charging-station"></i>How it works</button>
 			&nbsp;
 			<router-link class="btn yellow mt-30" to="/app" v-ripple><i class="fa fa-fire-extinguisher"></i>Start</router-link>
 

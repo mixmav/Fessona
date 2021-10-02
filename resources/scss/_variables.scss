@@ -7,7 +7,7 @@ $secondary-color: darken(#8375DD, 5%);
 $black: rgba(black, 0.8);
 $red: #CA2E55;
 $orange: #FC8C24;
-$yellow: #FFC759;
+$yellow: #EEC643;
 $green: #61E294;
 $blue: #0BC9CD;
 $indigo: #8A4FFF;
@@ -47,5 +47,6 @@ $colors: (
 $zIndex-tooltip: 1001;
 $zIndex-window-alert: 1000;
 $zIndex-quickstart-dialog: 999;
-$zIndex-go-to-top: 998;
-$zIndex-router-content: 98;
+$zIndex-mood-selector-dialog: 998;
+$zIndex-go-to-top: 997;
+$zIndex-router-content: 996;

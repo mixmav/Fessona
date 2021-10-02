@@ -2,10 +2,14 @@
     <div id="app-container">
 		<alert></alert>
         
-		<div class="main-content">	
+		<div class="main-content">
 			<div id="particles-js"></div>
 			<transition name="opacity">
-				<quickstart ref="homePageQuickstart" v-show="quickstartDialogVisible"></quickstart>
+				<quickstart-dialog v-show="quickstartDialogVisible"></quickstart-dialog>
+			</transition>
+		
+			<transition name="opacity">
+				<mood-selector-dialog v-show="moodSelectorDialogVisible"></mood-selector-dialog>
 			</transition>
 
 			<transition name="router-view" mode="out-in">
@@ -17,18 +21,22 @@
 </template>
 
 <script>
+import 'particles.js/particles';
+
 import Alert from './components/Alert.vue';
 import GoToTop from './components/GoToTop.vue';
 
-import 'particles.js/particles';
-import Quickstart from './components/Quickstart.vue';
+import QuickstartDialog from './components/QuickstartDialog.vue';
+import MoodSelectorDialog from './components/MoodSelectorDialog.vue';
+
 import { mapState, mapActions } from 'vuex';
 
 export default {
 	components: {
 		Alert,
 		GoToTop,
-		Quickstart,
+		QuickstartDialog,
+		MoodSelectorDialog
 	},
 
 	mounted(){
@@ -76,6 +84,10 @@ export default {
 	computed: {
 		...mapState('QuickstartDialog', {
 			quickstartDialogVisible: 'visible',
+		}),
+		
+		...mapState('MoodSelectorDialog', {
+			moodSelectorDialogVisible: 'visible',
 		}),
 
 	}

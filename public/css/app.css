@@ -61,7 +61,7 @@ i, span {
   color: #FC8C24;
 }
 .text-color.yellow {
-  color: #FFC759;
+  color: #EEC643;
 }
 .text-color.green {
   color: #61E294;
@@ -114,7 +114,7 @@ i, span {
   border-color: #FC8C24;
 }
 .text-input.yellow {
-  border-color: #FFC759;
+  border-color: #EEC643;
 }
 .text-input.green {
   border-color: #61E294;
@@ -207,10 +207,10 @@ i, span {
   box-shadow: 0 0 0 3px rgba(252, 140, 36, 0.4);
 }
 .btn.yellow {
-  background: #FFC759;
+  background: #EEC643;
 }
 .btn.yellow:focus {
-  box-shadow: 0 0 0 3px rgba(255, 199, 89, 0.4);
+  box-shadow: 0 0 0 3px rgba(238, 198, 67, 0.4);
 }
 .btn.green {
   background: #61E294;
@@ -310,7 +310,7 @@ i, span {
   color: #FC8C24;
 }
 .a.yellow {
-  color: #FFC759;
+  color: #EEC643;
 }
 .a.green {
   color: #61E294;

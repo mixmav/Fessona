@@ -43,15 +43,14 @@ export default {
 			let red = _.random(0, 255);
 			let green = _.random(0, 255);
 			let blue = _.random(0, 255);
-			let color = `rgba(${red}, ${green}, ${blue}, 0.8)`;
-			
-			let delay = _.random(0, 2, true);
-			let duration = _.random(0.5, 1, true);
+
+			let width = _.random(50, 100);
+
 			return `
-				background: ${color};
-				border: solid 2px ${color};
-				animation-delay: ${delay}s;
-				animation-duration: ${duration}s;
+				background: rgba(${red}, ${green}, ${blue}, 0.7);
+				border: solid 2px rgb(${red}, ${green}, ${blue});
+				width: ${width}px;
+				height: ${width}px;
 			`;
 		},
 
@@ -81,12 +80,9 @@ export default {
 	}
 	.balloons{
 		margin-top: 20px;
-		overflow-x: scroll;
 		padding: 1em;
-		white-space: nowrap;
+		// white-space: nowrap;
 		.balloon{
-			width: 100px;
-			height: 100px;
 			background: $green;
 			display: inline-flex;
 			justify-content: center;
@@ -95,26 +91,11 @@ export default {
 			border-radius: 100%;
 			margin-left: 10px;
 			cursor: pointer;
-			// transition: all .2s;
-			animation: ballonUpDown 1s infinite;
+			transition: all .2s;
 			&:hover{
 				transform: scale(1.1, 1.1);
 			}
 		}
-	}
-}
-
-@keyframes ballonUpDown{
-	from {
-		transform: translateY(0);
-	} 25%{
-		transform: translateY(-5px);
-	} 50%{
-		transform: translateY(0);
-	} 75%{
-		transform: translateY(5px);
-	} to {
-		transform: translateY(0);
 	}
 }
 </style>

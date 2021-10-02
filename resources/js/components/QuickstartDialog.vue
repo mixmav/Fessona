@@ -10,7 +10,6 @@
 				<h1 class="quickstart-heading-2" v-scroll-to="generateVueScrollToConfig('quickstart-heading-2')"><span>#</span> How does it work?</h1>
 				<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae soluta, aspernatur placeat dolores, dolorum illum sequi, dolore officia sunt itaque fugit amet repellat obcaecati. Sed nihil odit veritatis eum in.</p>
 
-				<button class="btn red mt-20" v-ripple @click="launchApp"><i class="fa fa-play-circle"></i>Launch</button>
 			</div>
 		</transition>
 		
@@ -56,6 +55,9 @@ export default {
 		dontShowOnStartup(val){
 			this.$cookie.delete('quickstartDontShowOnStartup');
 			this.$cookie.set('quickstartDontShowOnStartup', val, 7);
+		},
+		visible(){
+			this.updateShownOnceOnHomePage(true);
 		}
 	},
 
@@ -68,6 +70,8 @@ export default {
 
 		...mapActions('QuickstartDialog', [
 			'toggleVisible',
+			'updateShownOnceOnHomePage',
+			
 		]),
 
 		...mapMutations('QuickstartDialog', [

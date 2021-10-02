@@ -6,10 +6,10 @@
 			<p class="mt-10">In Roman mythology, Fessona is thought to be the goddess that cures fatigue 🎈</p>
 			
 			<img src="/images/plant_in_hands.svg" alt="Hands holding a plant">
-			<button class="btn mt-30" v-ripple @click="toggleQuickstartDialogVisible(true)"><i class="fa fa-charging-station"></i>How it works</button>
+			<button class="btn red mt-30" v-ripple @click="toggleQuickstartDialogVisible(true)"><i class="fa fa-charging-station"></i>How it works</button>
 			&nbsp;
-			<router-link class="btn yellow mt-30" to="/app" v-ripple><i class="fa fa-fire-extinguisher"></i>Start</router-link>
 
+			<button class="btn yellow mt-30" v-ripple @click="toggleMoodSelectorDialogVisible(true)"><i class="fa fa-play-circle"></i>Start</button>
 		</div>
 	</div>
 </template>
@@ -21,9 +21,8 @@ import { mapActions, mapState } from 'vuex';
 export default {
 	mounted(){
 		this.quickStartTimeout = setTimeout(() => {
-			if (!this.quickstartShownOnceOnHomePage && !this.quickstartDontShowOnStartup) {
+			if (!this.quickstartDontShowOnStartup && !this.quickstartShownOnceOnHomePage) {
 				this.toggleQuickstartDialogVisible(true);
-				this.updateQuickstartShownOnceOnHomePage(true);
 			}
 		}, 5000);
 	},
@@ -37,19 +36,16 @@ export default {
 			toggleQuickstartDialogVisible: 'toggleVisible',
 		}),
 
-		...mapActions([
-			'updateQuickstartShownOnceOnHomePage',
-		])
+		...mapActions('MoodSelectorDialog', {
+			toggleMoodSelectorDialogVisible: 'toggleVisible'
+		})
 	},
 
 	computed: {
 		...mapState('QuickstartDialog', {
-			quickstartDontShowOnStartup: 'dontShowOnStartup'
+			quickstartDontShowOnStartup: 'dontShowOnStartup',
+			quickstartShownOnceOnHomePage: 'shownOnceOnHomePage',
 		}),
-
-		...mapState([
-			'quickstartShownOnceOnHomePage',
-		]),
 	},
 
 	data(){

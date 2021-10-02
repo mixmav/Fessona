@@ -5,6 +5,7 @@ Vue.use(Vuex);
 
 import { Alert } from './modules/Alert';
 import { QuickstartDialog } from './modules/QuickstartDialog';
+import { MoodSelectorDialog } from './modules/MoodSelectorDialog';
 
 export const store = new Vuex.Store({
 	strict: process.env.NODE_ENV !== 'production',
@@ -12,26 +13,20 @@ export const store = new Vuex.Store({
 	modules: {
 		Alert: Alert,
 		QuickstartDialog: QuickstartDialog,
+		MoodSelectorDialog: MoodSelectorDialog,
 	},
 
 	state: {
-		quickstartShownOnceOnHomePage: false,
 		pageScrolled: false,
 	},
 
 	mutations: {
-		updateQuickstartShownOnceOnHomePage(state, value){
-			state.quickstartShownOnceOnHomePage = value;
-		},
 		updatePageScrolled(state, value){
 			state.pageScrolled = value;
 		}
 	},
 
 	actions: {
-		updateQuickstartShownOnceOnHomePage(context, value){
-			context.commit('updateQuickstartShownOnceOnHomePage', value);
-		},
 		updatePageScrolled(context, value){
 			context.commit('updatePageScrolled', value);
 		}

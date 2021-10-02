@@ -12,12 +12,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var _components_Alert_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./components/Alert.vue */ "./resources/js/components/Alert.vue");
-/* harmony import */ var _components_GoToTop_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./components/GoToTop.vue */ "./resources/js/components/GoToTop.vue");
-/* harmony import */ var particles_js_particles__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! particles.js/particles */ "./node_modules/particles.js/particles.js");
-/* harmony import */ var particles_js_particles__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(particles_js_particles__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _components_Quickstart_vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./components/Quickstart.vue */ "./resources/js/components/Quickstart.vue");
-/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var particles_js_particles__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! particles.js/particles */ "./node_modules/particles.js/particles.js");
+/* harmony import */ var particles_js_particles__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(particles_js_particles__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _components_Alert_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./components/Alert.vue */ "./resources/js/components/Alert.vue");
+/* harmony import */ var _components_GoToTop_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components/GoToTop.vue */ "./resources/js/components/GoToTop.vue");
+/* harmony import */ var _components_QuickstartDialog_vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./components/QuickstartDialog.vue */ "./resources/js/components/QuickstartDialog.vue");
+/* harmony import */ var _components_MoodSelectorDialog_vue__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./components/MoodSelectorDialog.vue */ "./resources/js/components/MoodSelectorDialog.vue");
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
@@ -42,6 +43,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+
 
 
 
@@ -49,9 +55,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {
-    Alert: _components_Alert_vue__WEBPACK_IMPORTED_MODULE_0__.default,
-    GoToTop: _components_GoToTop_vue__WEBPACK_IMPORTED_MODULE_1__.default,
-    Quickstart: _components_Quickstart_vue__WEBPACK_IMPORTED_MODULE_3__.default
+    Alert: _components_Alert_vue__WEBPACK_IMPORTED_MODULE_1__.default,
+    GoToTop: _components_GoToTop_vue__WEBPACK_IMPORTED_MODULE_2__.default,
+    QuickstartDialog: _components_QuickstartDialog_vue__WEBPACK_IMPORTED_MODULE_3__.default,
+    MoodSelectorDialog: _components_MoodSelectorDialog_vue__WEBPACK_IMPORTED_MODULE_4__.default
   },
   mounted: function mounted() {
     var _this = this;
@@ -90,11 +97,13 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         });
       }, 600);
     }
-  }, (0,vuex__WEBPACK_IMPORTED_MODULE_4__.mapActions)('QuickstartDialog', {
+  }, (0,vuex__WEBPACK_IMPORTED_MODULE_5__.mapActions)('QuickstartDialog', {
     updateQuickstartDialogVisible: 'toggleVisible'
   })),
-  computed: _objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_4__.mapState)('QuickstartDialog', {
+  computed: _objectSpread(_objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_5__.mapState)('QuickstartDialog', {
     quickstartDialogVisible: 'visible'
+  })), (0,vuex__WEBPACK_IMPORTED_MODULE_5__.mapState)('MoodSelectorDialog', {
+    moodSelectorDialogVisible: 'visible'
   }))
 });
 
@@ -212,10 +221,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 /***/ }),
 
-/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Quickstart.vue?vue&type=script&lang=js&":
-/*!*****************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Quickstart.vue?vue&type=script&lang=js& ***!
-  \*****************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/MoodSelectorDialog.vue?vue&type=script&lang=js&":
+/*!*************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/MoodSelectorDialog.vue?vue&type=script&lang=js& ***!
+  \*************************************************************************************************************************************************************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -234,6 +243,92 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_defineProperty({
+  created: function created() {
+    var _this = this;
+
+    jquery__WEBPACK_IMPORTED_MODULE_1___default()(window).on({
+      keydown: function keydown(event) {
+        if (_this.visible && event.keyCode == 27) {
+          _this.toggleVisible(false);
+        }
+      }
+    }, this.$refs.container);
+  },
+  beforeDestroy: function beforeDestroy() {
+    jquery__WEBPACK_IMPORTED_MODULE_1___default()(window).off('keydown', this.$refs.container);
+  },
+  watch: {
+    dontShowOnStartup: function dontShowOnStartup(val) {
+      this.$cookie["delete"]('quickstartDontShowOnStartup');
+      this.$cookie.set('quickstartDontShowOnStartup', val, 7);
+    }
+  },
+  methods: _objectSpread(_objectSpread({
+    checkClickClose: function checkClickClose(event) {
+      if (event.target == this.$refs.container && this.$refs.container.contains(event.target)) {
+        this.toggleVisible(false);
+      }
+    }
+  }, (0,vuex__WEBPACK_IMPORTED_MODULE_2__.mapActions)('MoodSelectorDialog', ['toggleVisible'])), (0,vuex__WEBPACK_IMPORTED_MODULE_2__.mapActions)('QuickstartDialog', {
+    'updateQuickstartShownOnceOnHomePage': 'updateShownOnceOnHomePage'
+  })),
+  computed: _objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_2__.mapState)('MoodSelectorDialog', ['visible']))
+}, "watch", {
+  visible: function visible() {
+    this.updateQuickstartShownOnceOnHomePage(true);
+  }
+}));
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/QuickstartDialog.vue?vue&type=script&lang=js&":
+/*!***********************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/QuickstartDialog.vue?vue&type=script&lang=js& ***!
+  \***********************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var vuex_map_fields__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex-map-fields */ "./node_modules/vuex-map-fields/dist/index.esm.js");
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_1__);
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 //
 //
 //
@@ -288,6 +383,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     dontShowOnStartup: function dontShowOnStartup(val) {
       this.$cookie["delete"]('quickstartDontShowOnStartup');
       this.$cookie.set('quickstartDontShowOnStartup', val, 7);
+    },
+    visible: function visible() {
+      this.updateShownOnceOnHomePage(true);
     }
   },
   methods: _objectSpread(_objectSpread(_objectSpread({
@@ -296,7 +394,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         this.toggleVisible(false);
       }
     }
-  }, (0,vuex__WEBPACK_IMPORTED_MODULE_2__.mapActions)('QuickstartDialog', ['toggleVisible'])), (0,vuex__WEBPACK_IMPORTED_MODULE_2__.mapMutations)('QuickstartDialog', ['updateDontShowOnStartup'])), {}, {
+  }, (0,vuex__WEBPACK_IMPORTED_MODULE_2__.mapActions)('QuickstartDialog', ['toggleVisible', 'updateShownOnceOnHomePage'])), (0,vuex__WEBPACK_IMPORTED_MODULE_2__.mapMutations)('QuickstartDialog', ['updateDontShowOnStartup'])), {}, {
     generateVueScrollToConfig: function generateVueScrollToConfig(id) {
       return {
         el: '.' + id,
@@ -368,13 +466,9 @@ __webpack_require__.r(__webpack_exports__);
 
       var blue = _.random(0, 255);
 
-      var color = "rgba(".concat(red, ", ").concat(green, ", ").concat(blue, ", 0.8)");
+      var width = _.random(50, 100);
 
-      var delay = _.random(0, 2, true);
-
-      var duration = _.random(0.5, 1, true);
-
-      return "\n\t\t\t\tbackground: ".concat(color, ";\n\t\t\t\tborder: solid 2px ").concat(color, ";\n\t\t\t\tanimation-delay: ").concat(delay, "s;\n\t\t\t\tanimation-duration: ").concat(duration, "s;\n\t\t\t");
+      return "\n\t\t\t\tbackground: rgba(".concat(red, ", ").concat(green, ", ").concat(blue, ", 0.7);\n\t\t\t\tborder: solid 2px rgb(").concat(red, ", ").concat(green, ", ").concat(blue, ");\n\t\t\t\twidth: ").concat(width, "px;\n\t\t\t\theight: ").concat(width, "px;\n\t\t\t");
     },
     synthSound: function synthSound(i) {// this.synth.triggerAttack(i*100, Tone.now());
     } // computed: {
@@ -449,13 +543,15 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       ballonSections: [{
         id: 0,
         question: "What's one YouTube video that never fails to cheer you up?"
-      }, {
-        id: 1,
-        question: "What makes you feel grounded?"
-      }, {
-        id: 2,
-        question: "Fav hype anthem"
-      }]
+      } // {
+      // 	id: 1,
+      // 	question: "What makes you feel grounded?",
+      // },
+      // {
+      // 	id: 2,
+      // 	question: "Fav hype anthem",
+      // },
+      ]
     };
   },
   methods: _objectSpread(_objectSpread(_objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_2__.mapActions)('Alert', ['showAlert'])), (0,vuex__WEBPACK_IMPORTED_MODULE_2__.mapActions)('QuickstartDialog', {
@@ -518,19 +614,20 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     var _this = this;
 
     this.quickStartTimeout = setTimeout(function () {
-      if (!_this.quickstartShownOnceOnHomePage && !_this.quickstartDontShowOnStartup) {
+      if (!_this.quickstartDontShowOnStartup && !_this.quickstartShownOnceOnHomePage) {
         _this.toggleQuickstartDialogVisible(true);
-
-        _this.updateQuickstartShownOnceOnHomePage(true);
       }
     }, 5000);
   },
   methods: _objectSpread(_objectSpread(_objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_0__.mapActions)('Alert', ['showAlert'])), (0,vuex__WEBPACK_IMPORTED_MODULE_0__.mapActions)('QuickstartDialog', {
     toggleQuickstartDialogVisible: 'toggleVisible'
-  })), (0,vuex__WEBPACK_IMPORTED_MODULE_0__.mapActions)(['updateQuickstartShownOnceOnHomePage'])),
-  computed: _objectSpread(_objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_0__.mapState)('QuickstartDialog', {
-    quickstartDontShowOnStartup: 'dontShowOnStartup'
-  })), (0,vuex__WEBPACK_IMPORTED_MODULE_0__.mapState)(['quickstartShownOnceOnHomePage'])),
+  })), (0,vuex__WEBPACK_IMPORTED_MODULE_0__.mapActions)('MoodSelectorDialog', {
+    toggleMoodSelectorDialogVisible: 'toggleVisible'
+  })),
+  computed: _objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_0__.mapState)('QuickstartDialog', {
+    quickstartDontShowOnStartup: 'dontShowOnStartup',
+    quickstartShownOnceOnHomePage: 'shownOnceOnHomePage'
+  })),
   data: function data() {
     return {
       quickStartTimeout: {}
@@ -719,6 +816,36 @@ var Alert = {
 
 /***/ }),
 
+/***/ "./resources/js/store/modules/MoodSelectorDialog.js":
+/*!**********************************************************!*\
+  !*** ./resources/js/store/modules/MoodSelectorDialog.js ***!
+  \**********************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "MoodSelectorDialog": () => (/* binding */ MoodSelectorDialog)
+/* harmony export */ });
+var MoodSelectorDialog = {
+  namespaced: true,
+  state: {
+    visible: false
+  },
+  mutations: {
+    toggleVisible: function toggleVisible(state, visibility) {
+      state.visible = visibility;
+    }
+  },
+  actions: {
+    toggleVisible: function toggleVisible(context, visibility) {
+      context.commit('toggleVisible', visibility);
+    }
+  }
+};
+
+/***/ }),
+
 /***/ "./resources/js/store/modules/QuickstartDialog.js":
 /*!********************************************************!*\
   !*** ./resources/js/store/modules/QuickstartDialog.js ***!
@@ -736,7 +863,8 @@ var QuickstartDialog = {
   namespaced: true,
   state: {
     visible: false,
-    dontShowOnStartup: false
+    dontShowOnStartup: false,
+    shownOnceOnHomePage: false
   },
   getters: {
     getField: vuex_map_fields__WEBPACK_IMPORTED_MODULE_0__.getField
@@ -748,11 +876,17 @@ var QuickstartDialog = {
     updateDontShowOnStartup: function updateDontShowOnStartup(state, value) {
       state.dontShowOnStartup = value;
     },
+    updateShownOnceOnHomePage: function updateShownOnceOnHomePage(state, value) {
+      state.shownOnceOnHomePage = value;
+    },
     updateField: vuex_map_fields__WEBPACK_IMPORTED_MODULE_0__.updateField
   },
   actions: {
     toggleVisible: function toggleVisible(context, visibility) {
       context.commit('toggleVisible', visibility);
+    },
+    updateShownOnceOnHomePage: function updateShownOnceOnHomePage(context, value) {
+      context.commit('updateShownOnceOnHomePage', value);
     }
   }
 };
@@ -774,33 +908,29 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
 /* harmony import */ var _modules_Alert__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modules/Alert */ "./resources/js/store/modules/Alert.js");
 /* harmony import */ var _modules_QuickstartDialog__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./modules/QuickstartDialog */ "./resources/js/store/modules/QuickstartDialog.js");
+/* harmony import */ var _modules_MoodSelectorDialog__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./modules/MoodSelectorDialog */ "./resources/js/store/modules/MoodSelectorDialog.js");
 
 
 vue__WEBPACK_IMPORTED_MODULE_0__.default.use(vuex__WEBPACK_IMPORTED_MODULE_1__.default);
+
 
 
 var store = new vuex__WEBPACK_IMPORTED_MODULE_1__.default.Store({
   strict: "development" !== 'production',
   modules: {
     Alert: _modules_Alert__WEBPACK_IMPORTED_MODULE_2__.Alert,
-    QuickstartDialog: _modules_QuickstartDialog__WEBPACK_IMPORTED_MODULE_3__.QuickstartDialog
+    QuickstartDialog: _modules_QuickstartDialog__WEBPACK_IMPORTED_MODULE_3__.QuickstartDialog,
+    MoodSelectorDialog: _modules_MoodSelectorDialog__WEBPACK_IMPORTED_MODULE_4__.MoodSelectorDialog
   },
   state: {
-    quickstartShownOnceOnHomePage: false,
     pageScrolled: false
   },
   mutations: {
-    updateQuickstartShownOnceOnHomePage: function updateQuickstartShownOnceOnHomePage(state, value) {
-      state.quickstartShownOnceOnHomePage = value;
-    },
     updatePageScrolled: function updatePageScrolled(state, value) {
       state.pageScrolled = value;
     }
   },
   actions: {
-    updateQuickstartShownOnceOnHomePage: function updateQuickstartShownOnceOnHomePage(context, value) {
-      context.commit('updateQuickstartShownOnceOnHomePage', value);
-    },
     updatePageScrolled: function updatePageScrolled(context, value) {
       context.commit('updatePageScrolled', value);
     }
@@ -826,7 +956,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "#app-container > .main-content #particles-js {\n  position: fixed;\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 100%;\n  z-index: 0;\n}\n#app-container > .main-content .main-page-content {\n  position: fixed;\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 100%;\n  width: 100%;\n  text-align: left;\n  padding: 1em;\n  z-index: 98;\n}", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "#app-container > .main-content #particles-js {\n  position: fixed;\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 100%;\n  z-index: 0;\n}\n#app-container > .main-content .main-page-content {\n  position: fixed;\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 100%;\n  width: 100%;\n  text-align: left;\n  padding: 1em;\n  z-index: 996;\n}", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -874,17 +1004,41 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".vGo-to-top-container {\n  position: fixed;\n  bottom: 20px;\n  right: 20px;\n  z-index: 998;\n  cursor: pointer;\n}\n.vGo-to-top-container .icon {\n  padding: 0.8em;\n  padding-left: 1.1em;\n  padding-right: 1.1em;\n  border-radius: 100%;\n  background: #3A2E39;\n}\n.vGo-to-top-container .icon i {\n  color: white;\n}", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, ".vGo-to-top-container {\n  position: fixed;\n  bottom: 20px;\n  right: 20px;\n  z-index: 997;\n  cursor: pointer;\n}\n.vGo-to-top-container .icon {\n  padding: 0.8em;\n  padding-left: 1.1em;\n  padding-right: 1.1em;\n  border-radius: 100%;\n  background: #3A2E39;\n}\n.vGo-to-top-container .icon i {\n  color: white;\n}", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
 
 /***/ }),
 
-/***/ "./node_modules/css-loader/dist/cjs.js??clonedRuleSet-12[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-12[0].rules[0].use[2]!./node_modules/sass-loader/dist/cjs.js??clonedRuleSet-12[0].rules[0].use[3]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Quickstart.vue?vue&type=style&index=0&lang=scss&":
-/*!********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/css-loader/dist/cjs.js??clonedRuleSet-12[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-12[0].rules[0].use[2]!./node_modules/sass-loader/dist/cjs.js??clonedRuleSet-12[0].rules[0].use[3]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Quickstart.vue?vue&type=style&index=0&lang=scss& ***!
-  \********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/css-loader/dist/cjs.js??clonedRuleSet-12[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-12[0].rules[0].use[2]!./node_modules/sass-loader/dist/cjs.js??clonedRuleSet-12[0].rules[0].use[3]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/MoodSelectorDialog.vue?vue&type=style&index=0&lang=scss&":
+/*!****************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader/dist/cjs.js??clonedRuleSet-12[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-12[0].rules[0].use[2]!./node_modules/sass-loader/dist/cjs.js??clonedRuleSet-12[0].rules[0].use[3]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/MoodSelectorDialog.vue?vue&type=style&index=0&lang=scss& ***!
+  \****************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ ((module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__);
+// Imports
+
+var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
+// Module
+___CSS_LOADER_EXPORT___.push([module.id, ".vPage-component-mood-selector-dialog-container {\n  z-index: 998;\n  position: fixed;\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 100%;\n  display: flex;\n  text-align: initial;\n  background: rgba(0, 0, 0, 0.3);\n}\n.vPage-component-mood-selector-dialog-container > .container {\n  width: 100%;\n  padding: 1em;\n  height: 100%;\n  max-height: 550px;\n  max-width: 500px;\n  margin: 30px auto;\n  background: white;\n  position: relative;\n  overflow: auto;\n  border-radius: 10px;\n  border-bottom-left-radius: 0;\n  border-bottom-right-radius: 0;\n}\n.vPage-component-mood-selector-dialog-container > .container h1 {\n  padding-bottom: 5px;\n  border-bottom: solid 1px transparent;\n  transition: all 0.1s;\n  font-size: 1.6em;\n  cursor: pointer;\n  margin-bottom: 10px;\n  margin-top: 30px;\n}\n.vPage-component-mood-selector-dialog-container > .container h1:hover {\n  border-color: #6610f2;\n}\n.vPage-component-mood-selector-dialog-container > .container h1 span {\n  color: #6610f2;\n}\n.vPage-component-mood-selector-dialog-container > .container h1:first-child {\n  margin-top: 0;\n}\n.vPage-component-mood-selector-dialog-container > .container .img {\n  width: 100%;\n  max-width: 150px;\n  display: block;\n  margin: 10px auto;\n}\n.vPage-component-mood-selector-dialog-container > .bottom-bar {\n  top: 580px;\n  left: 50%;\n  position: fixed;\n  transform: translate(-50%, 0px);\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n  padding: 1em;\n  background: #6610f2;\n  border-top: solid 2px rgba(0, 0, 0, 0.1);\n  width: 100%;\n  max-width: 500px;\n  border-bottom-left-radius: 10px;\n  border-bottom-right-radius: 10px;\n}\n.vPage-component-mood-selector-dialog-container > .bottom-bar label {\n  color: white;\n  font-size: 0.8em;\n  font-weight: bold;\n}\n@media only screen and (max-height: 670px) {\n.vPage-component-mood-selector-dialog-container > .container {\n    margin-top: 0;\n    padding-bottom: 80px;\n    max-height: 100%;\n    border-radius: 0;\n}\n.vPage-component-mood-selector-dialog-container > .bottom-bar {\n    top: initial;\n    bottom: 0;\n    border-radius: 0;\n}\n}", ""]);
+// Exports
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
+
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/dist/cjs.js??clonedRuleSet-12[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-12[0].rules[0].use[2]!./node_modules/sass-loader/dist/cjs.js??clonedRuleSet-12[0].rules[0].use[3]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/QuickstartDialog.vue?vue&type=style&index=0&lang=scss&":
+/*!**************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader/dist/cjs.js??clonedRuleSet-12[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-12[0].rules[0].use[2]!./node_modules/sass-loader/dist/cjs.js??clonedRuleSet-12[0].rules[0].use[3]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/QuickstartDialog.vue?vue&type=style&index=0&lang=scss& ***!
+  \**************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
 /***/ ((module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -922,7 +1076,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".vRouterPageComponent-App-balloon-section-container {\n  margin-top: 50px;\n}\n.vRouterPageComponent-App-balloon-section-container h1 {\n  font-size: 1.5em;\n}\n.vRouterPageComponent-App-balloon-section-container p {\n  font-size: 1em;\n}\n.vRouterPageComponent-App-balloon-section-container .balloons {\n  margin-top: 20px;\n  overflow-x: scroll;\n  padding: 1em;\n  white-space: nowrap;\n}\n.vRouterPageComponent-App-balloon-section-container .balloons .balloon {\n  width: 100px;\n  height: 100px;\n  background: #61E294;\n  display: inline-flex;\n  justify-content: center;\n  align-items: center;\n  color: white;\n  border-radius: 100%;\n  margin-left: 10px;\n  cursor: pointer;\n  -webkit-animation: ballonUpDown 1s infinite;\n          animation: ballonUpDown 1s infinite;\n}\n.vRouterPageComponent-App-balloon-section-container .balloons .balloon:hover {\n  transform: scale(1.1, 1.1);\n}\n@-webkit-keyframes ballonUpDown {\nfrom {\n    transform: translateY(0);\n}\n25% {\n    transform: translateY(-5px);\n}\n50% {\n    transform: translateY(0);\n}\n75% {\n    transform: translateY(5px);\n}\nto {\n    transform: translateY(0);\n}\n}\n@keyframes ballonUpDown {\nfrom {\n    transform: translateY(0);\n}\n25% {\n    transform: translateY(-5px);\n}\n50% {\n    transform: translateY(0);\n}\n75% {\n    transform: translateY(5px);\n}\nto {\n    transform: translateY(0);\n}\n}", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, ".vRouterPageComponent-App-balloon-section-container {\n  margin-top: 50px;\n}\n.vRouterPageComponent-App-balloon-section-container h1 {\n  font-size: 1.5em;\n}\n.vRouterPageComponent-App-balloon-section-container p {\n  font-size: 1em;\n}\n.vRouterPageComponent-App-balloon-section-container .balloons {\n  margin-top: 20px;\n  padding: 1em;\n}\n.vRouterPageComponent-App-balloon-section-container .balloons .balloon {\n  background: #61E294;\n  display: inline-flex;\n  justify-content: center;\n  align-items: center;\n  color: white;\n  border-radius: 100%;\n  margin-left: 10px;\n  cursor: pointer;\n  transition: all 0.2s;\n}\n.vRouterPageComponent-App-balloon-section-container .balloons .balloon:hover {\n  transform: scale(1.1, 1.1);\n}", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -30834,10 +30988,10 @@ var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js
 
 /***/ }),
 
-/***/ "./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-12[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-12[0].rules[0].use[2]!./node_modules/sass-loader/dist/cjs.js??clonedRuleSet-12[0].rules[0].use[3]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Quickstart.vue?vue&type=style&index=0&lang=scss&":
-/*!************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-12[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-12[0].rules[0].use[2]!./node_modules/sass-loader/dist/cjs.js??clonedRuleSet-12[0].rules[0].use[3]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Quickstart.vue?vue&type=style&index=0&lang=scss& ***!
-  \************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-12[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-12[0].rules[0].use[2]!./node_modules/sass-loader/dist/cjs.js??clonedRuleSet-12[0].rules[0].use[3]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/MoodSelectorDialog.vue?vue&type=style&index=0&lang=scss&":
+/*!********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-12[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-12[0].rules[0].use[2]!./node_modules/sass-loader/dist/cjs.js??clonedRuleSet-12[0].rules[0].use[3]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/MoodSelectorDialog.vue?vue&type=style&index=0&lang=scss& ***!
+  \********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -30847,7 +31001,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !../../../node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js */ "./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js");
 /* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _node_modules_css_loader_dist_cjs_js_clonedRuleSet_12_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_12_0_rules_0_use_2_node_modules_sass_loader_dist_cjs_js_clonedRuleSet_12_0_rules_0_use_3_node_modules_vue_loader_lib_index_js_vue_loader_options_Quickstart_vue_vue_type_style_index_0_lang_scss___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! !!../../../node_modules/css-loader/dist/cjs.js??clonedRuleSet-12[0].rules[0].use[1]!../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-12[0].rules[0].use[2]!../../../node_modules/sass-loader/dist/cjs.js??clonedRuleSet-12[0].rules[0].use[3]!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./Quickstart.vue?vue&type=style&index=0&lang=scss& */ "./node_modules/css-loader/dist/cjs.js??clonedRuleSet-12[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-12[0].rules[0].use[2]!./node_modules/sass-loader/dist/cjs.js??clonedRuleSet-12[0].rules[0].use[3]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Quickstart.vue?vue&type=style&index=0&lang=scss&");
+/* harmony import */ var _node_modules_css_loader_dist_cjs_js_clonedRuleSet_12_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_12_0_rules_0_use_2_node_modules_sass_loader_dist_cjs_js_clonedRuleSet_12_0_rules_0_use_3_node_modules_vue_loader_lib_index_js_vue_loader_options_MoodSelectorDialog_vue_vue_type_style_index_0_lang_scss___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! !!../../../node_modules/css-loader/dist/cjs.js??clonedRuleSet-12[0].rules[0].use[1]!../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-12[0].rules[0].use[2]!../../../node_modules/sass-loader/dist/cjs.js??clonedRuleSet-12[0].rules[0].use[3]!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./MoodSelectorDialog.vue?vue&type=style&index=0&lang=scss& */ "./node_modules/css-loader/dist/cjs.js??clonedRuleSet-12[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-12[0].rules[0].use[2]!./node_modules/sass-loader/dist/cjs.js??clonedRuleSet-12[0].rules[0].use[3]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/MoodSelectorDialog.vue?vue&type=style&index=0&lang=scss&");
 
             
 
@@ -30856,11 +31010,41 @@ var options = {};
 options.insert = "head";
 options.singleton = false;
 
-var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default()(_node_modules_css_loader_dist_cjs_js_clonedRuleSet_12_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_12_0_rules_0_use_2_node_modules_sass_loader_dist_cjs_js_clonedRuleSet_12_0_rules_0_use_3_node_modules_vue_loader_lib_index_js_vue_loader_options_Quickstart_vue_vue_type_style_index_0_lang_scss___WEBPACK_IMPORTED_MODULE_1__.default, options);
+var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default()(_node_modules_css_loader_dist_cjs_js_clonedRuleSet_12_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_12_0_rules_0_use_2_node_modules_sass_loader_dist_cjs_js_clonedRuleSet_12_0_rules_0_use_3_node_modules_vue_loader_lib_index_js_vue_loader_options_MoodSelectorDialog_vue_vue_type_style_index_0_lang_scss___WEBPACK_IMPORTED_MODULE_1__.default, options);
 
 
 
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_css_loader_dist_cjs_js_clonedRuleSet_12_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_12_0_rules_0_use_2_node_modules_sass_loader_dist_cjs_js_clonedRuleSet_12_0_rules_0_use_3_node_modules_vue_loader_lib_index_js_vue_loader_options_Quickstart_vue_vue_type_style_index_0_lang_scss___WEBPACK_IMPORTED_MODULE_1__.default.locals || {});
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_css_loader_dist_cjs_js_clonedRuleSet_12_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_12_0_rules_0_use_2_node_modules_sass_loader_dist_cjs_js_clonedRuleSet_12_0_rules_0_use_3_node_modules_vue_loader_lib_index_js_vue_loader_options_MoodSelectorDialog_vue_vue_type_style_index_0_lang_scss___WEBPACK_IMPORTED_MODULE_1__.default.locals || {});
+
+/***/ }),
+
+/***/ "./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-12[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-12[0].rules[0].use[2]!./node_modules/sass-loader/dist/cjs.js??clonedRuleSet-12[0].rules[0].use[3]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/QuickstartDialog.vue?vue&type=style&index=0&lang=scss&":
+/*!******************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-12[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-12[0].rules[0].use[2]!./node_modules/sass-loader/dist/cjs.js??clonedRuleSet-12[0].rules[0].use[3]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/QuickstartDialog.vue?vue&type=style&index=0&lang=scss& ***!
+  \******************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !../../../node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js */ "./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _node_modules_css_loader_dist_cjs_js_clonedRuleSet_12_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_12_0_rules_0_use_2_node_modules_sass_loader_dist_cjs_js_clonedRuleSet_12_0_rules_0_use_3_node_modules_vue_loader_lib_index_js_vue_loader_options_QuickstartDialog_vue_vue_type_style_index_0_lang_scss___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! !!../../../node_modules/css-loader/dist/cjs.js??clonedRuleSet-12[0].rules[0].use[1]!../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-12[0].rules[0].use[2]!../../../node_modules/sass-loader/dist/cjs.js??clonedRuleSet-12[0].rules[0].use[3]!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./QuickstartDialog.vue?vue&type=style&index=0&lang=scss& */ "./node_modules/css-loader/dist/cjs.js??clonedRuleSet-12[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-12[0].rules[0].use[2]!./node_modules/sass-loader/dist/cjs.js??clonedRuleSet-12[0].rules[0].use[3]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/QuickstartDialog.vue?vue&type=style&index=0&lang=scss&");
+
+            
+
+var options = {};
+
+options.insert = "head";
+options.singleton = false;
+
+var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default()(_node_modules_css_loader_dist_cjs_js_clonedRuleSet_12_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_12_0_rules_0_use_2_node_modules_sass_loader_dist_cjs_js_clonedRuleSet_12_0_rules_0_use_3_node_modules_vue_loader_lib_index_js_vue_loader_options_QuickstartDialog_vue_vue_type_style_index_0_lang_scss___WEBPACK_IMPORTED_MODULE_1__.default, options);
+
+
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_css_loader_dist_cjs_js_clonedRuleSet_12_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_12_0_rules_0_use_2_node_modules_sass_loader_dist_cjs_js_clonedRuleSet_12_0_rules_0_use_3_node_modules_vue_loader_lib_index_js_vue_loader_options_QuickstartDialog_vue_vue_type_style_index_0_lang_scss___WEBPACK_IMPORTED_MODULE_1__.default.locals || {});
 
 /***/ }),
 
@@ -31596,10 +31780,10 @@ component.options.__file = "resources/js/components/GoToTop.vue"
 
 /***/ }),
 
-/***/ "./resources/js/components/Quickstart.vue":
-/*!************************************************!*\
-  !*** ./resources/js/components/Quickstart.vue ***!
-  \************************************************/
+/***/ "./resources/js/components/MoodSelectorDialog.vue":
+/*!********************************************************!*\
+  !*** ./resources/js/components/MoodSelectorDialog.vue ***!
+  \********************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -31607,9 +31791,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var _Quickstart_vue_vue_type_template_id_cf00b680___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Quickstart.vue?vue&type=template&id=cf00b680& */ "./resources/js/components/Quickstart.vue?vue&type=template&id=cf00b680&");
-/* harmony import */ var _Quickstart_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Quickstart.vue?vue&type=script&lang=js& */ "./resources/js/components/Quickstart.vue?vue&type=script&lang=js&");
-/* harmony import */ var _Quickstart_vue_vue_type_style_index_0_lang_scss___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Quickstart.vue?vue&type=style&index=0&lang=scss& */ "./resources/js/components/Quickstart.vue?vue&type=style&index=0&lang=scss&");
+/* harmony import */ var _MoodSelectorDialog_vue_vue_type_template_id_71ca8f89___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./MoodSelectorDialog.vue?vue&type=template&id=71ca8f89& */ "./resources/js/components/MoodSelectorDialog.vue?vue&type=template&id=71ca8f89&");
+/* harmony import */ var _MoodSelectorDialog_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./MoodSelectorDialog.vue?vue&type=script&lang=js& */ "./resources/js/components/MoodSelectorDialog.vue?vue&type=script&lang=js&");
+/* harmony import */ var _MoodSelectorDialog_vue_vue_type_style_index_0_lang_scss___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./MoodSelectorDialog.vue?vue&type=style&index=0&lang=scss& */ "./resources/js/components/MoodSelectorDialog.vue?vue&type=style&index=0&lang=scss&");
 /* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! !../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
@@ -31620,9 +31804,9 @@ __webpack_require__.r(__webpack_exports__);
 /* normalize component */
 
 var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__.default)(
-  _Quickstart_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__.default,
-  _Quickstart_vue_vue_type_template_id_cf00b680___WEBPACK_IMPORTED_MODULE_0__.render,
-  _Quickstart_vue_vue_type_template_id_cf00b680___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
+  _MoodSelectorDialog_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__.default,
+  _MoodSelectorDialog_vue_vue_type_template_id_71ca8f89___WEBPACK_IMPORTED_MODULE_0__.render,
+  _MoodSelectorDialog_vue_vue_type_template_id_71ca8f89___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
   false,
   null,
   null,
@@ -31632,7 +31816,48 @@ var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__
 
 /* hot reload */
 if (false) { var api; }
-component.options.__file = "resources/js/components/Quickstart.vue"
+component.options.__file = "resources/js/components/MoodSelectorDialog.vue"
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/QuickstartDialog.vue":
+/*!******************************************************!*\
+  !*** ./resources/js/components/QuickstartDialog.vue ***!
+  \******************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _QuickstartDialog_vue_vue_type_template_id_92d147b0___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./QuickstartDialog.vue?vue&type=template&id=92d147b0& */ "./resources/js/components/QuickstartDialog.vue?vue&type=template&id=92d147b0&");
+/* harmony import */ var _QuickstartDialog_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./QuickstartDialog.vue?vue&type=script&lang=js& */ "./resources/js/components/QuickstartDialog.vue?vue&type=script&lang=js&");
+/* harmony import */ var _QuickstartDialog_vue_vue_type_style_index_0_lang_scss___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./QuickstartDialog.vue?vue&type=style&index=0&lang=scss& */ "./resources/js/components/QuickstartDialog.vue?vue&type=style&index=0&lang=scss&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! !../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+;
+
+
+/* normalize component */
+
+var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__.default)(
+  _QuickstartDialog_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__.default,
+  _QuickstartDialog_vue_vue_type_template_id_92d147b0___WEBPACK_IMPORTED_MODULE_0__.render,
+  _QuickstartDialog_vue_vue_type_template_id_92d147b0___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/QuickstartDialog.vue"
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
 
 /***/ }),
@@ -31808,10 +32033,10 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./resources/js/components/Quickstart.vue?vue&type=script&lang=js&":
-/*!*************************************************************************!*\
-  !*** ./resources/js/components/Quickstart.vue?vue&type=script&lang=js& ***!
-  \*************************************************************************/
+/***/ "./resources/js/components/MoodSelectorDialog.vue?vue&type=script&lang=js&":
+/*!*********************************************************************************!*\
+  !*** ./resources/js/components/MoodSelectorDialog.vue?vue&type=script&lang=js& ***!
+  \*********************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -31819,8 +32044,24 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Quickstart_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./Quickstart.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Quickstart.vue?vue&type=script&lang=js&");
- /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Quickstart_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__.default); 
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_MoodSelectorDialog_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./MoodSelectorDialog.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/MoodSelectorDialog.vue?vue&type=script&lang=js&");
+ /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_MoodSelectorDialog_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__.default); 
+
+/***/ }),
+
+/***/ "./resources/js/components/QuickstartDialog.vue?vue&type=script&lang=js&":
+/*!*******************************************************************************!*\
+  !*** ./resources/js/components/QuickstartDialog.vue?vue&type=script&lang=js& ***!
+  \*******************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_QuickstartDialog_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./QuickstartDialog.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/QuickstartDialog.vue?vue&type=script&lang=js&");
+ /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_QuickstartDialog_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__.default); 
 
 /***/ }),
 
@@ -31911,15 +32152,28 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./resources/js/components/Quickstart.vue?vue&type=style&index=0&lang=scss&":
-/*!**********************************************************************************!*\
-  !*** ./resources/js/components/Quickstart.vue?vue&type=style&index=0&lang=scss& ***!
-  \**********************************************************************************/
+/***/ "./resources/js/components/MoodSelectorDialog.vue?vue&type=style&index=0&lang=scss&":
+/*!******************************************************************************************!*\
+  !*** ./resources/js/components/MoodSelectorDialog.vue?vue&type=style&index=0&lang=scss& ***!
+  \******************************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_style_loader_dist_cjs_js_node_modules_css_loader_dist_cjs_js_clonedRuleSet_12_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_12_0_rules_0_use_2_node_modules_sass_loader_dist_cjs_js_clonedRuleSet_12_0_rules_0_use_3_node_modules_vue_loader_lib_index_js_vue_loader_options_Quickstart_vue_vue_type_style_index_0_lang_scss___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/style-loader/dist/cjs.js!../../../node_modules/css-loader/dist/cjs.js??clonedRuleSet-12[0].rules[0].use[1]!../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-12[0].rules[0].use[2]!../../../node_modules/sass-loader/dist/cjs.js??clonedRuleSet-12[0].rules[0].use[3]!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./Quickstart.vue?vue&type=style&index=0&lang=scss& */ "./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-12[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-12[0].rules[0].use[2]!./node_modules/sass-loader/dist/cjs.js??clonedRuleSet-12[0].rules[0].use[3]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Quickstart.vue?vue&type=style&index=0&lang=scss&");
+/* harmony import */ var _node_modules_style_loader_dist_cjs_js_node_modules_css_loader_dist_cjs_js_clonedRuleSet_12_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_12_0_rules_0_use_2_node_modules_sass_loader_dist_cjs_js_clonedRuleSet_12_0_rules_0_use_3_node_modules_vue_loader_lib_index_js_vue_loader_options_MoodSelectorDialog_vue_vue_type_style_index_0_lang_scss___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/style-loader/dist/cjs.js!../../../node_modules/css-loader/dist/cjs.js??clonedRuleSet-12[0].rules[0].use[1]!../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-12[0].rules[0].use[2]!../../../node_modules/sass-loader/dist/cjs.js??clonedRuleSet-12[0].rules[0].use[3]!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./MoodSelectorDialog.vue?vue&type=style&index=0&lang=scss& */ "./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-12[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-12[0].rules[0].use[2]!./node_modules/sass-loader/dist/cjs.js??clonedRuleSet-12[0].rules[0].use[3]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/MoodSelectorDialog.vue?vue&type=style&index=0&lang=scss&");
+
+
+/***/ }),
+
+/***/ "./resources/js/components/QuickstartDialog.vue?vue&type=style&index=0&lang=scss&":
+/*!****************************************************************************************!*\
+  !*** ./resources/js/components/QuickstartDialog.vue?vue&type=style&index=0&lang=scss& ***!
+  \****************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_style_loader_dist_cjs_js_node_modules_css_loader_dist_cjs_js_clonedRuleSet_12_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_12_0_rules_0_use_2_node_modules_sass_loader_dist_cjs_js_clonedRuleSet_12_0_rules_0_use_3_node_modules_vue_loader_lib_index_js_vue_loader_options_QuickstartDialog_vue_vue_type_style_index_0_lang_scss___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/style-loader/dist/cjs.js!../../../node_modules/css-loader/dist/cjs.js??clonedRuleSet-12[0].rules[0].use[1]!../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-12[0].rules[0].use[2]!../../../node_modules/sass-loader/dist/cjs.js??clonedRuleSet-12[0].rules[0].use[3]!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./QuickstartDialog.vue?vue&type=style&index=0&lang=scss& */ "./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-12[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-12[0].rules[0].use[2]!./node_modules/sass-loader/dist/cjs.js??clonedRuleSet-12[0].rules[0].use[3]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/QuickstartDialog.vue?vue&type=style&index=0&lang=scss&");
 
 
 /***/ }),
@@ -32014,19 +32268,36 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./resources/js/components/Quickstart.vue?vue&type=template&id=cf00b680&":
-/*!*******************************************************************************!*\
-  !*** ./resources/js/components/Quickstart.vue?vue&type=template&id=cf00b680& ***!
-  \*******************************************************************************/
+/***/ "./resources/js/components/MoodSelectorDialog.vue?vue&type=template&id=71ca8f89&":
+/*!***************************************************************************************!*\
+  !*** ./resources/js/components/MoodSelectorDialog.vue?vue&type=template&id=71ca8f89& ***!
+  \***************************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "render": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Quickstart_vue_vue_type_template_id_cf00b680___WEBPACK_IMPORTED_MODULE_0__.render),
-/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Quickstart_vue_vue_type_template_id_cf00b680___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
+/* harmony export */   "render": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_MoodSelectorDialog_vue_vue_type_template_id_71ca8f89___WEBPACK_IMPORTED_MODULE_0__.render),
+/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_MoodSelectorDialog_vue_vue_type_template_id_71ca8f89___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
 /* harmony export */ });
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Quickstart_vue_vue_type_template_id_cf00b680___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./Quickstart.vue?vue&type=template&id=cf00b680& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Quickstart.vue?vue&type=template&id=cf00b680&");
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_MoodSelectorDialog_vue_vue_type_template_id_71ca8f89___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./MoodSelectorDialog.vue?vue&type=template&id=71ca8f89& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/MoodSelectorDialog.vue?vue&type=template&id=71ca8f89&");
+
+
+/***/ }),
+
+/***/ "./resources/js/components/QuickstartDialog.vue?vue&type=template&id=92d147b0&":
+/*!*************************************************************************************!*\
+  !*** ./resources/js/components/QuickstartDialog.vue?vue&type=template&id=92d147b0& ***!
+  \*************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_QuickstartDialog_vue_vue_type_template_id_92d147b0___WEBPACK_IMPORTED_MODULE_0__.render),
+/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_QuickstartDialog_vue_vue_type_template_id_92d147b0___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
+/* harmony export */ });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_QuickstartDialog_vue_vue_type_template_id_92d147b0___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./QuickstartDialog.vue?vue&type=template&id=92d147b0& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/QuickstartDialog.vue?vue&type=template&id=92d147b0&");
 
 
 /***/ }),
@@ -32114,7 +32385,7 @@ var render = function() {
             "transition",
             { attrs: { name: "opacity" } },
             [
-              _c("quickstart", {
+              _c("quickstart-dialog", {
                 directives: [
                   {
                     name: "show",
@@ -32122,8 +32393,25 @@ var render = function() {
                     value: _vm.quickstartDialogVisible,
                     expression: "quickstartDialogVisible"
                   }
-                ],
-                ref: "homePageQuickstart"
+                ]
+              })
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "transition",
+            { attrs: { name: "opacity" } },
+            [
+              _c("mood-selector-dialog", {
+                directives: [
+                  {
+                    name: "show",
+                    rawName: "v-show",
+                    value: _vm.moodSelectorDialogVisible,
+                    expression: "moodSelectorDialogVisible"
+                  }
+                ]
               })
             ],
             1
@@ -32257,10 +32545,123 @@ render._withStripped = true
 
 /***/ }),
 
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Quickstart.vue?vue&type=template&id=cf00b680&":
-/*!**********************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Quickstart.vue?vue&type=template&id=cf00b680& ***!
-  \**********************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/MoodSelectorDialog.vue?vue&type=template&id=71ca8f89&":
+/*!******************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/MoodSelectorDialog.vue?vue&type=template&id=71ca8f89& ***!
+  \******************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* binding */ render),
+/* harmony export */   "staticRenderFns": () => (/* binding */ staticRenderFns)
+/* harmony export */ });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    {
+      ref: "container",
+      staticClass: "vPage-component-mood-selector-dialog-container",
+      class: [{ visible: _vm.visible }],
+      on: { click: _vm.checkClickClose }
+    },
+    [
+      _c("transition", { attrs: { name: "translate-y-100px", delay: "300" } }, [
+        _c(
+          "div",
+          {
+            directives: [
+              {
+                name: "show",
+                rawName: "v-show",
+                value: _vm.visible,
+                expression: "visible"
+              }
+            ],
+            staticClass: "container custom-scrollbar"
+          },
+          [
+            _c("h1", [_c("span", [_vm._v("#")]), _vm._v(" Mood selector")]),
+            _vm._v(" "),
+            _c("p", [
+              _vm._v(
+                "As part of RMIT creative, Fessona was created to be a safe space."
+              )
+            ]),
+            _vm._v(" "),
+            _c("h1", [_c("span", [_vm._v("#")]), _vm._v(" How does it work?")]),
+            _vm._v(" "),
+            _c("p", [
+              _vm._v(
+                "Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae soluta, aspernatur placeat dolores, dolorum illum sequi, dolore officia sunt itaque fugit amet repellat obcaecati. Sed nihil odit veritatis eum in."
+              )
+            ]),
+            _vm._v(" "),
+            _c(
+              "button",
+              {
+                directives: [{ name: "ripple", rawName: "v-ripple" }],
+                staticClass: "btn red mt-20"
+              },
+              [_c("i", { staticClass: "fa fa-play-circle" }), _vm._v("Launch")]
+            )
+          ]
+        )
+      ]),
+      _vm._v(" "),
+      _c("transition", { attrs: { name: "opacity-50percent", delay: "100" } }, [
+        _c(
+          "div",
+          {
+            directives: [
+              {
+                name: "show",
+                rawName: "v-show",
+                value: _vm.visible,
+                expression: "visible"
+              }
+            ],
+            staticClass: "bottom-bar"
+          },
+          [
+            _c(
+              "button",
+              {
+                directives: [{ name: "ripple", rawName: "v-ripple" }],
+                staticClass: "btn light",
+                on: {
+                  click: function($event) {
+                    return _vm.toggleVisible(false)
+                  }
+                }
+              },
+              [
+                _c("i", { staticClass: "fa fa-keyboard" }),
+                _vm._v("Press ESC to close")
+              ]
+            )
+          ]
+        )
+      ])
+    ],
+    1
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/QuickstartDialog.vue?vue&type=template&id=92d147b0&":
+/*!****************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/QuickstartDialog.vue?vue&type=template&id=92d147b0& ***!
+  \****************************************************************************************************************************************************************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -32354,17 +32755,7 @@ var render = function() {
               _vm._v(
                 "Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae soluta, aspernatur placeat dolores, dolorum illum sequi, dolore officia sunt itaque fugit amet repellat obcaecati. Sed nihil odit veritatis eum in."
               )
-            ]),
-            _vm._v(" "),
-            _c(
-              "button",
-              {
-                directives: [{ name: "ripple", rawName: "v-ripple" }],
-                staticClass: "btn red mt-20",
-                on: { click: _vm.launchApp }
-              },
-              [_c("i", { staticClass: "fa fa-play-circle" }), _vm._v("Launch")]
-            )
+            ])
           ]
         )
       ]),
@@ -32645,58 +33036,55 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "vRouterPage-home-page-container" }, [
-    _c(
-      "div",
-      { staticClass: "main-page-content" },
-      [
-        _c("h1", [_vm._v("Fessona")]),
-        _vm._v(" "),
-        _c("p", { staticStyle: { "font-size": "1em" } }, [
-          _vm._v("/fə'səunə/")
-        ]),
-        _vm._v(" "),
-        _c("p", { staticClass: "mt-10" }, [
-          _vm._v(
-            "In Roman mythology, Fessona is thought to be the goddess that cures fatigue 🎈"
-          )
-        ]),
-        _vm._v(" "),
-        _c("img", {
-          attrs: {
-            src: "/images/plant_in_hands.svg",
-            alt: "Hands holding a plant"
-          }
-        }),
-        _vm._v(" "),
-        _c(
-          "button",
-          {
-            directives: [{ name: "ripple", rawName: "v-ripple" }],
-            staticClass: "btn mt-30",
-            on: {
-              click: function($event) {
-                return _vm.toggleQuickstartDialogVisible(true)
-              }
-            }
-          },
-          [
-            _c("i", { staticClass: "fa fa-charging-station" }),
-            _vm._v("How it works")
-          ]
-        ),
-        _vm._v("\n\t\t \n\t\t"),
-        _c(
-          "router-link",
-          {
-            directives: [{ name: "ripple", rawName: "v-ripple" }],
-            staticClass: "btn yellow mt-30",
-            attrs: { to: "/app" }
-          },
-          [_c("i", { staticClass: "fa fa-fire-extinguisher" }), _vm._v("Start")]
+    _c("div", { staticClass: "main-page-content" }, [
+      _c("h1", [_vm._v("Fessona")]),
+      _vm._v(" "),
+      _c("p", { staticStyle: { "font-size": "1em" } }, [_vm._v("/fə'səunə/")]),
+      _vm._v(" "),
+      _c("p", { staticClass: "mt-10" }, [
+        _vm._v(
+          "In Roman mythology, Fessona is thought to be the goddess that cures fatigue 🎈"
         )
-      ],
-      1
-    )
+      ]),
+      _vm._v(" "),
+      _c("img", {
+        attrs: {
+          src: "/images/plant_in_hands.svg",
+          alt: "Hands holding a plant"
+        }
+      }),
+      _vm._v(" "),
+      _c(
+        "button",
+        {
+          directives: [{ name: "ripple", rawName: "v-ripple" }],
+          staticClass: "btn red mt-30",
+          on: {
+            click: function($event) {
+              return _vm.toggleQuickstartDialogVisible(true)
+            }
+          }
+        },
+        [
+          _c("i", { staticClass: "fa fa-charging-station" }),
+          _vm._v("How it works")
+        ]
+      ),
+      _vm._v("\n\t\t \n\n\t\t"),
+      _c(
+        "button",
+        {
+          directives: [{ name: "ripple", rawName: "v-ripple" }],
+          staticClass: "btn yellow mt-30",
+          on: {
+            click: function($event) {
+              return _vm.toggleMoodSelectorDialogVisible(true)
+            }
+          }
+        },
+        [_c("i", { staticClass: "fa fa-play-circle" }), _vm._v("Start")]
+      )
+    ])
   ])
 }
 var staticRenderFns = []

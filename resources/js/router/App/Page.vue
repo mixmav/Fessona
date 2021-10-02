@@ -45,14 +45,14 @@ export default {
 					id: 0,
 					question: "What's one YouTube video that never fails to cheer you up?",
 				},
-				{
-					id: 1,
-					question: "What makes you feel grounded?",
-				},
-				{
-					id: 2,
-					question: "Fav hype anthem",
-				},
+				// {
+				// 	id: 1,
+				// 	question: "What makes you feel grounded?",
+				// },
+				// {
+				// 	id: 2,
+				// 	question: "Fav hype anthem",
+				// },
 			]
 		}
 	},

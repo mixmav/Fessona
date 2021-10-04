@@ -4,12 +4,12 @@
 		<transition name="translate-y-minus-100px" delay="300">
 			<div class="container custom-scrollbar" v-show="visible" ref="scrollContainer">
 				<h1 class="quickstart-heading-1" v-scroll-to="generateVueScrollToConfig('quickstart-heading-1')"><span>#</span> What is Fessona?</h1>
-				<p>As part of RMIT creative, Fessona was created to be a safe space.</p>
+				<p>Fessona was created as part of a commissioned artwork for RMIT creative.</p>
 				<img src="/images/spread_love.svg" class="img" alt="Strangers connecting">
 
 				<h1 class="quickstart-heading-2" v-scroll-to="generateVueScrollToConfig('quickstart-heading-2')"><span>#</span> How does it work?</h1>
-				<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae soluta, aspernatur placeat dolores, dolorum illum sequi, dolore officia sunt itaque fugit amet repellat obcaecati. Sed nihil odit veritatis eum in.</p>
-
+				<p>We crowdsource small nuggets of affirmations and media.</p>
+				<button class="btn mt-10" v-ripple @click="getStarted"><i class="fa fa-play-circle"></i>Get started</button>
 			</div>
 		</transition>
 		
@@ -74,6 +74,11 @@ export default {
 			
 		]),
 
+		...mapActions('MoodSelectorDialog', {
+			toggleMoodSelectorDialogVisible: 'toggleVisible',
+			
+		}),
+
 		...mapMutations('QuickstartDialog', [
 			'updateDontShowOnStartup',
 		]),
@@ -85,10 +90,10 @@ export default {
 			}
 		},
 
-		launchApp(){
+		getStarted(){
 			this.toggleVisible(false);
 			setTimeout(() => {
-				this.$router.push('/app');
+				this.toggleMoodSelectorDialogVisible(true);
 			}, 300);
 		}
 	},

@@ -1,18 +1,13 @@
 <template>
 	<div class="vRouterPageComponent-App-balloon-section-container">
-		<h1><span class="text-color primary">#</span> We asked</h1>
 		<p class="text-color primary">{{question}}</p>
-
-		<h3 class="mt-10">Here's what we heard</h3>
 		
 		<!-- <youtube :video-id="videoID"></youtube> -->
 
-		<button class="btn red mt-10" v-ripple><i class="fa fa-dice"></i>Read at random</button>
-		&nbsp;
-		<button class="btn darkBlack mt-10" id="tourSteps-target-2" v-ripple><i class="fa fa-plus"></i>Share your answer</button>
+		<button class="btn mt-10" id="tourSteps-target-2" v-ripple @click="toggleShareAnswerDialogVisible(true)"><i class="fa fa-plus"></i>Share your answer</button>
 		<div class="balloons custom-scrollbar">
-			<div class="balloon no-select" v-ripple v-for="i in 8" :key="i" :style="generateBalloonStyle(i)" @mouseover="synthSound(i)">
-				{{ i }}
+			<div class="balloon no-select" v-for="i in 8" :key="i" :style="generateBalloonStyle(i)" @mouseover="synthSound(i)">
+				<i class="fab fa-youtube"></i>
 			</div>
 		</div>
 	</div>
@@ -20,6 +15,7 @@
 
 <script>
 // import * as Tone from 'tone'
+import { mapActions, mapState } from 'vuex';
 
 export default {
 	mounted(){
@@ -54,14 +50,13 @@ export default {
 			`;
 		},
 
+		...mapActions('ShareAnswerDialog', {
+			toggleShareAnswerDialogVisible: 'toggleVisible',
+		}),
+
 		synthSound(i){
 			// this.synth.triggerAttack(i*100, Tone.now());
 		},
-		// computed: {
-		// 	// videoID(){
-		// 		// return this.$youtube.getIdFromURL("https://www.youtube.com/watch?v=pA96m95T3NA&t=4211s&ab_channel=Cercle");
-		// 	// }
-		// },
 	},
 }
 </script>
@@ -71,17 +66,15 @@ export default {
 @import "../../../scss/variables";
 
 .vRouterPageComponent-App-balloon-section-container{
-	// margin-top: 50px;
-	h1{
-		font-size: 1.5em;
-	}
+	width: 100%;
+	max-width: 600px;
+	margin: 0 auto;
 	p{
-		font-size: 1em;
+		font-size: 1.4em;
 	}
 	.balloons{
 		margin-top: 20px;
 		padding: 1em;
-		// white-space: nowrap;
 		.balloon{
 			background: $green;
 			display: inline-flex;
@@ -90,6 +83,7 @@ export default {
 			color: white;
 			border-radius: 100%;
 			margin-left: 10px;
+			margin-top: 10px;
 			cursor: pointer;
 			transition: all .2s;
 			&:hover{

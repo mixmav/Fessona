@@ -15,7 +15,7 @@
 				</span>
 
 				<div v-show="isLoading" class="mt-20">
-					<p>Got it. Finding you the best gems!</p>
+					<p>Got it. Finding balloons for you!</p>
 					<br>
 					<loading></loading>
 				</div>
@@ -46,7 +46,9 @@ export default {
 		$(window).on({
 			keydown: (event) => {
 				if (this.visible && event.keyCode == 27) {
-					this.toggleVisible(false);
+					if (!this.isLoading) {
+						this.toggleVisible(false);
+					}
 				}
 			},
 		}, this.$refs.container);

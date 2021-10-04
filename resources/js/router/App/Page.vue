@@ -7,7 +7,16 @@
 				<button class="btn" v-ripple @click="toggleQuickstartDialogVisible(true)"><i class="fa fa-info-circle"></i>How it works</button>
 			</div>
 
+			<transition name="opacity">
+				<share-answer-dialog v-show="shareAnswerDialogVisible"></share-answer-dialog>
+			</transition>
+
+			<transition name="opacity">
+				<balloon-content-dialog v-show="balloonContentDialogVisible"></balloon-content-dialog>
+			</transition>
+
 			<div class="page-content custom-scrollbar">
+				<h1>Crowdsourced balloons 🎈</h1>
 				<swiper ref="mySwiper" :options="swiperOptions">
 					<swiper-slide v-for="i in ballonSections" :key="i.id">
 						<balloon-section id="tourSteps-target-1" :question="i.question"></balloon-section>
@@ -23,8 +32,10 @@
 </template>
 
 <script>
-import { mapActions } from 'vuex';
+import { mapState, mapActions } from 'vuex';
 import $ from 'jquery';
+import BalloonContentDialog from './BalloonContentDialog.vue';
+import ShareAnswerDialog from './ShareAnswerDialog.vue';
 import BalloonSection from './BalloonSection.vue';
 import { Swiper, SwiperSlide } from 'vue-awesome-swiper'
 
@@ -33,7 +44,9 @@ export default {
 	components: {
 		BalloonSection,
 		Swiper,
-		SwiperSlide
+		SwiperSlide,
+		BalloonContentDialog,
+		ShareAnswerDialog,
 	},
 
 	data(){
@@ -87,7 +100,15 @@ export default {
 	computed: {
 		swiper() {
 			return this.$refs.mySwiper.$swiper
-		}
+		},
+		
+		...mapState('ShareAnswerDialog', {
+			shareAnswerDialogVisible: 'visible',
+		}),
+
+		...mapState('BalloonContentDialog', {
+			balloonContentDialogVisible: 'visible'
+		}),
 	},
 
 	methods: {
@@ -97,6 +118,10 @@ export default {
 
 		...mapActions('QuickstartDialog', {
 			toggleQuickstartDialogVisible: 'toggleVisible',
+		}),
+
+		...mapActions('BalloonContentDialog', {
+			toggleBalloonContentVisible: 'toggleVisible'
 		}),
 
 		...mapActions([
@@ -131,7 +156,7 @@ export default {
 		animation-delay: .3s;
 		animation-fill-mode: forwards;
 		padding: 0 !important;
-		.top-bar{
+		& > .top-bar{
 			width: 100%;
 			display: flex;
 			justify-content: space-between;
@@ -139,7 +164,6 @@ export default {
 			top: 0;
 			left: 0;
 			padding: 1em;
-			// background: white;
 			border-bottom: solid 1px rgba(black, 0.4);
 
 			a{
@@ -158,9 +182,10 @@ export default {
 			width: 100%;
 			height: calc(100% - 70px);
 			overflow: auto;
-			display: flex;
-			justify-content: center;
-			align-items: flex-start;
+			text-align: center;
+			.swiper-wrapper{
+				margin-top: 20px;
+			}
 		}
 	}
 	.v-tour__target--highlighted {

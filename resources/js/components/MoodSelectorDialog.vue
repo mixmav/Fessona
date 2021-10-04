@@ -34,7 +34,8 @@
 <script>
 import { mapState, mapActions } from 'vuex';
 import Loading from '../components/Loading.vue';
-
+import * as Tone from 'tone'
+import _ from 'lodash';
 import $ from 'jquery';
 
 export default {
@@ -58,8 +59,14 @@ export default {
 		$(window).off('keydown', this.$refs.container);
 	},
 
+	mounted(){
+		// this.synth.triggerAttackRelease("C4", Tone.now());
+	},
+
 	data(){
 		return {
+			synth: new Tone.MonoSynth().toDestination(),
+			AMinorScale: ['A3', 'B3', 'C4', 'D4', 'E4', 'F4', 'G4'],
 			isLoading: false,
 
 			moods: [
@@ -115,6 +122,8 @@ export default {
 			if(this.isLoading || event.target.classList.contains('selected')){
 				return;
 			} else {
+				// console.log();
+				this.synth.triggerAttackRelease(this.AMinorScale[newMoodID], 0.1);
 				this.updateSelectedMoodInStore(newMoodID);
 				this.moods.find((mood) => {
 					if (mood.selected) {
@@ -132,11 +141,13 @@ export default {
 		},
 		launchApp(){
 			this.isLoading = true;
+
 			setTimeout(() => {
 				this.toggleVisible(false);
 				setTimeout(() => {
 					this.$router.push('/app');
 				}, 300);
+
 			}, 5000)
 		}
 	},
@@ -148,9 +159,11 @@ export default {
 	},
 
 	watch: {
-		visible(){
+		visible(newVal){
 			this.updateQuickstartShownOnceOnHomePage(true);
-			this.isLoading = false;
+			if (newVal) {
+				this.isLoading = false;
+			}
 		}
 	}
 }

@@ -19,7 +19,6 @@
 
 <script>
 import { mapState, mapActions } from 'vuex';
-
 import $ from 'jquery';
 
 export default {

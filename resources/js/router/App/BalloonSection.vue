@@ -40,10 +40,10 @@ export default {
 			let green = _.random(0, 255);
 			let blue = _.random(0, 255);
 
-			let width = _.random(50, 100);
+			let width = _.random(70, 140);
 
 			return `
-				background: rgba(${red}, ${green}, ${blue}, 0.7);
+				background: rgba(${red}, ${green}, ${blue}, 1);
 				border: solid 2px rgb(${red}, ${green}, ${blue});
 				width: ${width}px;
 				height: ${width}px;
@@ -89,9 +89,9 @@ export default {
 			margin-left: 10px;
 			margin-top: 10px;
 			cursor: pointer;
-			transition: all .2s;
+			transition: all .15s;
 			&:hover{
-				transform: scale(1.1, 1.1);
+				transform: scale(1.2, 1.2);
 			}
 		}
 	}

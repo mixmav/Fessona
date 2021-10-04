@@ -22,7 +22,7 @@ export default {
 	mounted(){
 		this.quickStartTimeout = setTimeout(() => {
 			if (!this.quickstartDontShowOnStartup && !this.quickstartShownOnceOnHomePage) {
-				// this.toggleQuickstartDialogVisible(true);
+				this.toggleQuickstartDialogVisible(true);
 			}
 		}, 5000);
 	},

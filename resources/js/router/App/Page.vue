@@ -138,7 +138,7 @@ export default {
 }
 @keyframes backgroundToWhite {
 	to{
-		background: white;
+		background: rgba(white, 0.9);
 	}
 }
 </style>

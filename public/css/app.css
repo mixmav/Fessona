@@ -296,6 +296,7 @@ i, span {
 .a {
   text-decoration: none;
   background: transparent;
+  display: inline-block;
   border: none;
   cursor: pointer;
   color: #6610f2;
@@ -461,12 +462,12 @@ i, span {
   transition-timing-function: cubic-bezier(0.4, 0, 1, 1);
 }
 
-.translate-y-100px-enter-active, .translate-y-100px-leave-active {
+.translate-y-minus-100px-enter-active, .translate-y-minus-100px-leave-active {
   transition: transform 0.3s;
 }
 
-.translate-y-100px-enter, .translate-y-100px-leave-to {
-  transform: translateY(100px);
+.translate-y-minus-100px-enter, .translate-y-minus-100px-leave-to {
+  transform: translateY(-100px);
 }
 
 .router-view-enter-active, .router-view-leave-active {

@@ -1,16 +1,25 @@
 <template>
 	<div class="vPage-component-mood-selector-dialog-container" ref="container" :class="[{visible: visible}]" @click="checkClickClose">
 		
-		<transition name="translate-y-100px" delay="300">
-			<div class="container custom-scrollbar" v-show="visible">
-				<h1><span>#</span> Mood selector</h1>
-				<p>As part of RMIT creative, Fessona was created to be a safe space.</p>
+		<transition name="translate-y-minus-100px" delay="300">
+			<section class="container custom-scrollbar" v-show="visible">
+				<h1>How are you feeling right now?</h1>
+				<div class="mood-selector">
+					<div class="mood no-select" v-for="mood in moods" :key="mood.id" :class="{selected: mood.selected}" @click="updateSelectedMood(mood.id, $event)">{{ mood.icon }}</div>
+				</div>
 
-				<h1><span>#</span> How does it work?</h1>
-				<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae soluta, aspernatur placeat dolores, dolorum illum sequi, dolore officia sunt itaque fugit amet repellat obcaecati. Sed nihil odit veritatis eum in.</p>
+				<span v-show="!isLoading">
+					<button class="btn red mt-30" v-ripple @click="launchApp"><i class="fa fa-play-circle"></i>Enter</button>
+					<br>
+					<a class="a mt-10" @click="toggleQuickstartDialogVisible(true)">How does it work?</a>
+				</span>
 
-				<button class="btn red mt-20" v-ripple><i class="fa fa-play-circle"></i>Launch</button>
-			</div>
+				<div v-show="isLoading" class="mt-20">
+					<p>Got it. Finding you the best gems!</p>
+					<br>
+					<loading></loading>
+				</div>
+			</section>
 		</transition>
 		
 		<transition name="opacity-50percent" delay="100">
@@ -24,10 +33,15 @@
 
 <script>
 import { mapState, mapActions } from 'vuex';
-import { mapFields } from 'vuex-map-fields';
+import Loading from '../components/Loading.vue';
+
 import $ from 'jquery';
 
 export default {
+	components: {
+		Loading,
+	},
+
 	created(){
 		$(window).on({
 			keydown: (event) => {
@@ -42,10 +56,37 @@ export default {
 		$(window).off('keydown', this.$refs.container);
 	},
 
-	watch: {
-		dontShowOnStartup(val){
-			this.$cookie.delete('quickstartDontShowOnStartup');
-			this.$cookie.set('quickstartDontShowOnStartup', val, 7);
+	data(){
+		return {
+			isLoading: false,
+
+			moods: [
+				{
+					id: 0,
+					icon: '😁',
+					selected: false,
+				},
+				{
+					id: 1,
+					icon: '😊',
+					selected: true,
+				},
+				{
+					id: 2,
+					icon: '😐',
+					selected: false,
+				},
+				{
+					id: 3,
+					icon: '😔',
+					selected: false,
+				},
+				{
+					id: 4,
+					icon: '😭',
+					selected: false,
+				}
+			]
 		}
 	},
 
@@ -56,20 +97,44 @@ export default {
 			}
 		},
 
-		...mapActions('MoodSelectorDialog', [
-			'toggleVisible',
-		]),
-
-		...mapActions('QuickstartDialog', {
-			'updateQuickstartShownOnceOnHomePage': 'updateShownOnceOnHomePage',
+		...mapActions('MoodSelectorDialog', {
+			toggleVisible: 'toggleVisible',
+			updateSelectedMoodInStore: 'updateSelectedMood'
 		}),
 
-		// launchApp(){
-		// 	this.toggleVisible(false);
-		// 	setTimeout(() => {
-		// 		this.$router.push('/app');
-		// 	}, 300);
-		// }
+		...mapActions('QuickstartDialog', {
+			toggleQuickstartDialogVisible: 'toggleVisible',
+			updateQuickstartShownOnceOnHomePage: 'updateShownOnceOnHomePage',
+		}),
+
+		updateSelectedMood(newMoodID, event){
+			if(this.isLoading || event.target.classList.contains('selected')){
+				return;
+			} else {
+				this.updateSelectedMoodInStore(newMoodID);
+				this.moods.find((mood) => {
+					if (mood.selected) {
+						mood.selected = false;
+					}
+				});
+
+				this.moods.find((mood) => {
+					if (mood.id == newMoodID) {
+						mood.selected = true;
+						return true;
+					}
+				})
+			}
+		},
+		launchApp(){
+			this.isLoading = true;
+			setTimeout(() => {
+				this.toggleVisible(false);
+				setTimeout(() => {
+					this.$router.push('/app');
+				}, 300);
+			}, 5000)
+		}
 	},
 
 	computed: {
@@ -77,9 +142,11 @@ export default {
 			'visible',
 		]),
 	},
+
 	watch: {
 		visible(){
 			this.updateQuickstartShownOnceOnHomePage(true);
+			this.isLoading = false;
 		}
 	}
 }
@@ -103,9 +170,9 @@ export default {
 			width: 100%;
 			padding: 1em;
 			height: 100%;
-			max-height: 550px;
+			max-height: 350px;
 			max-width: 500px;
-			margin: 30px auto;
+			margin: 50px auto;
 			background: white;
 			position: relative;
 			overflow: auto;
@@ -113,41 +180,42 @@ export default {
 			border-bottom-left-radius: 0;
 			border-bottom-right-radius: 0;
 
+			text-align: center;
 
-			h1{
-				padding-bottom: 5px;
-				border-bottom: solid 1px transparent;
-				transition: all .1s;
-				font-size: 1.6em;
-				cursor: pointer;
-				margin-bottom: 10px;
-				margin-top: 30px;
-				&:hover{
-					border-color: $primary-color;
+			.mood-selector{
+				display: flex;
+				flex-direction: row;
+				justify-content: space-between;
+				align-items: center;
+				margin-top: 20px;
+				.mood{
+					padding: 10px;
+					border: solid 4px lighten(grey, 40%);
+					border-radius: 10px;
+					margin-left: 10px;
+					cursor: pointer;
+					font-size: 1.2em;
+					transition: all .2s;
+					&:hover, &:focus{
+						transform: scale(1.1, 1.1);
+					}
+					&.selected{
+						background: lighten(blue, 45%);
+						transform: scale(1.1, 1.1);
+						cursor: default;
+						border-color: $primary-color;
+					}
 				}
-				span{
-					color: $primary-color;
-				}
-				&:first-child{
-					margin-top: 0;
-				}
-			}
-
-			.img{
-				width: 100%;
-				max-width: 150px;
-				display: block;
-				margin: 10px auto;
 			}
 		}
 
 		& > .bottom-bar{
-			top: 580px;
+			top: 380px;
 			left: 50%;
 			position: fixed;
 			transform: translate(-50%, 0px);
 			display: flex;
-			justify-content: space-between;
+			justify-content: center;
 			align-items: center;
 			padding: 1em;
 			background: $primary-color;

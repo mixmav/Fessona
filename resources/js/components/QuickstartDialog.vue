@@ -1,7 +1,7 @@
 <template>
 	<div class="vPage-component-quickstart-dialog-container" ref="container" :class="[{visible: visible}]" @click="checkClickClose">
 		
-		<transition name="translate-y-100px" delay="300">
+		<transition name="translate-y-minus-100px" delay="300">
 			<div class="container custom-scrollbar" v-show="visible" ref="scrollContainer">
 				<h1 class="quickstart-heading-1" v-scroll-to="generateVueScrollToConfig('quickstart-heading-1')"><span>#</span> What is Fessona?</h1>
 				<p>As part of RMIT creative, Fessona was created to be a safe space.</p>
@@ -123,7 +123,7 @@ export default {
 			width: 100%;
 			padding: 1em;
 			height: 100%;
-			max-height: 550px;
+			max-height: 520px;
 			max-width: 500px;
 			margin: 30px auto;
 			background: white;
@@ -162,7 +162,7 @@ export default {
 		}
 
 		& > .bottom-bar{
-			top: 580px;
+			top: 550px;
 			left: 50%;
 			position: fixed;
 			transform: translate(-50%, 0px);

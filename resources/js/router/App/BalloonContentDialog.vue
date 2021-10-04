@@ -5,8 +5,15 @@
 				<div class="top-bar">
 					<button class="btn red" v-ripple @click="toggleVisible(false)"><i class="fa fa-window-close"></i>Close</button>
 				</div>
+
 				<section style="text-align: left">
-					<youtube :video-id="videoID"></youtube>
+					<div class="author-bar">
+						<img src="https://avatars.dicebear.com/api/bottts/hahahah.svg">
+						<p>Written by <span>Emma</span></p>
+					</div>
+					<div style="text-align: center">
+						<youtube :player-width="300" :player-height="150" :video-id="videoID"></youtube>
+					</div>
 				</section>
 			</section>
 		</transition>
@@ -100,13 +107,28 @@ export default {
 			}
 
 			section{
-				textarea{
+				.author-bar{
 					width: 100%;
+					display: flex;
+					justify-content: space-between;
+					align-items: center;
 					margin-top: 20px;
-					padding: 10px;
-					min-height: 100px;
-					resize: vertical;
+					margin-bottom: 10px;
+					p{
+						span{
+							font-weight: bold;
+							color: $primary-color;
+						}
+					}
+					img{
+						width: 50px;
+						border: solid 1px rgba(black, 0.1);
+						border-radius: 100%;
+						padding: 5px;
+						height: 50px;
+					}
 				}
+				
 			}
 		}
 	}

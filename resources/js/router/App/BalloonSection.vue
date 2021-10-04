@@ -6,7 +6,7 @@
 
 		<button class="btn mt-10" id="tourSteps-target-2" v-ripple @click="toggleShareAnswerDialogVisible(true)"><i class="fa fa-plus"></i>Share your answer</button>
 		<div class="balloons custom-scrollbar">
-			<div class="balloon no-select" v-for="i in 8" :key="i" :style="generateBalloonStyle(i)" @mouseover="synthSound(i)">
+			<div class="balloon no-select" v-for="i in 8" :key="i" :style="generateBalloonStyle(i)" @mouseover="synthSound(i)" @click="toggleBallonContentDialogVisible(true)">
 				<i class="fab fa-youtube"></i>
 			</div>
 		</div>
@@ -52,6 +52,10 @@ export default {
 
 		...mapActions('ShareAnswerDialog', {
 			toggleShareAnswerDialogVisible: 'toggleVisible',
+		}),
+
+		...mapActions('BalloonContentDialog', {
+			toggleBallonContentDialogVisible: 'toggleVisible',
 		}),
 
 		synthSound(i){

@@ -8,7 +8,13 @@
 			</div>
 
 			<div class="page-content custom-scrollbar">
-				<balloon-section v-for="i in ballonSections" :key="i.id" id="tourSteps-target-1" :question="i.question"></balloon-section>
+				<swiper ref="mySwiper" :options="swiperOptions">
+					<swiper-slide v-for="i in ballonSections" :key="i.id">
+						<balloon-section id="tourSteps-target-1" :question="i.question"></balloon-section>
+					</swiper-slide>
+					<div class="swiper-button-prev" slot="button-prev"></div>
+					<div class="swiper-button-next" slot="button-next"></div>
+				</swiper>
 
 				<v-tour name="introductionTour" :steps="tourSteps" :options="{highlight: true}"></v-tour>
 			</div>
@@ -20,11 +26,16 @@
 import { mapActions } from 'vuex';
 import $ from 'jquery';
 import BalloonSection from './BalloonSection.vue';
+import { Swiper, SwiperSlide } from 'vue-awesome-swiper'
+
 
 export default {
 	components: {
 		BalloonSection,
+		Swiper,
+		SwiperSlide
 	},
+
 	data(){
 		return {
 			tourSteps: [
@@ -40,20 +51,42 @@ export default {
 				}
 			],
 
+			swiperOptions: {
+				navigation: {
+					nextEl: '.swiper-button-next',
+					prevEl: '.swiper-button-prev'
+				}
+				// Some Swiper option/callback...
+			},
+
 			ballonSections: [
 				{
 					id: 0,
-					question: "What's one YouTube video that never fails to cheer you up?",
-				},
-				{
-					id: 1,
 					question: "What makes you feel grounded?",
 				},
 				{
+					id: 1,
+					question: "What's one YouTube video that never fails to cheer you up?",
+				},
+				{
 					id: 2,
-					question: "Fav hype anthem", // TODO what gets your creative juices flowing
+					question: 'What gets your creative juices flowing?',
+				},
+				{
+					id: 3,
+					question: "Fav hype anthem",
+				},
+				{
+					id: 4,
+					question: "Fav hype anthem",
 				},
 			]
+		}
+	},
+
+	computed: {
+		swiper() {
+			return this.$refs.mySwiper.$swiper
 		}
 	},
 
@@ -81,6 +114,8 @@ export default {
 				this.updatePageScrolled(false);
 			}
 		});
+
+		// this.swiper.slideTo(3, 1000, false);
 	},
 }
 
@@ -115,14 +150,17 @@ export default {
 
 		.page-content{
 			padding: 1em {
-				top: 0;
+				top: 50px;
 			};
 			position: fixed;
 			top: 78px;
 			left: 0;
 			width: 100%;
 			height: calc(100% - 70px);
-			overflow: scroll;
+			overflow: auto;
+			display: flex;
+			justify-content: center;
+			align-items: flex-start;
 		}
 	}
 	.v-tour__target--highlighted {
@@ -138,7 +176,7 @@ export default {
 }
 @keyframes backgroundToWhite {
 	to{
-		background: rgba(white, 0.9);
+		background: rgba(white, 0.7);
 	}
 }
 </style>

@@ -71,7 +71,7 @@ export default {
 @import "../../../scss/variables";
 
 .vRouterPageComponent-App-balloon-section-container{
-	margin-top: 50px;
+	// margin-top: 50px;
 	h1{
 		font-size: 1.5em;
 	}

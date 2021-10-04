@@ -24,7 +24,7 @@
 		
 		<transition name="opacity-50percent" delay="100">
 			<div class="bottom-bar" v-show="visible">
-				<button class="btn light" @click="toggleVisible(false)" v-ripple><i class="fa fa-keyboard"></i>Press ESC to close</button>
+				<button class="btn light" @click="!isLoading && toggleVisible(false)" v-ripple><i class="fa fa-keyboard"></i>Press ESC to close</button>
 			</div>
 		</transition>
 
@@ -93,7 +93,9 @@ export default {
 	methods: {
 		checkClickClose(event){
 			if (event.target == this.$refs.container && this.$refs.container.contains(event.target)) {
-				this.toggleVisible(false);
+				if (!this.isLoading) {
+					this.toggleVisible(false);
+				}
 			}
 		},
 

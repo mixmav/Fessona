@@ -1,5 +1,5 @@
 <template>
-	<div class="vPage-component-balloon-content-dialog-container" ref="container" :class="[{visible: visible}]" @click="checkClickClose">
+	<div class="vPage-component-balloon-content-dialog-container generic-dialog-container" ref="container" :class="[{visible: visible}]" @click="checkClickClose">
 		<transition name="translate-y-minus-100px" delay="300">
 			<section class="container custom-scrollbar" v-show="visible">
 				<div class="top-bar">
@@ -79,28 +79,10 @@ export default {
 
 	.vPage-component-balloon-content-dialog-container{
 		z-index: $zIndex-share-answer-dialog;
-		position: fixed;
-		top: 0;
-		left: 0;
-		width: 100%;
-		height: 100%;
-		display: flex;
-		text-align: initial;
-		background: rgba(black, 0.3);
 		
 		& > .container{
-			width: 100%;
-			padding: 1em;
-			height: 100%;
 			max-height: 350px;
 			max-width: 500px;
-			margin: 50px auto;
-			background: white;
-			position: relative;
-			overflow: auto;
-			border-radius: 10px;
-			text-align: center;
-
 			& > .top-bar{
 				display: flex;
 				justify-content: flex-end;
@@ -129,23 +111,6 @@ export default {
 					}
 				}
 				
-			}
-		}
-	}
-
-	@include media-y(670px){
-		.vPage-component-balloon-content-dialog-container{
-			& > .container{
-				margin-top: 0;
-				padding-bottom: 80px; // To be able to read content, offset the bottom bar's height
-				max-height: 100%;
-				border-radius: 0;
-			}
-
-			& > .bottom-bar{
-				top: initial;
-				bottom: 0;
-				border-radius: 0;
 			}
 		}
 	}

@@ -1,23 +1,27 @@
 <template>
-	<div class="vPage-component-mood-selector-dialog-container" ref="container" :class="[{visible: visible}]" @click="checkClickClose">
+	<div class="vPage-component-mood-selector-dialog-container generic-dialog-container has-bottom-bar" ref="container" :class="[{visible: visible}]" @click="checkClickClose">
 		
 		<transition name="translate-y-minus-100px" delay="300">
 			<section class="container custom-scrollbar" v-show="visible">
-				<h1>How are you feeling right now?</h1>
+				<h1>Quick check-in</h1>
+				<p class="mt-10">How're you feeling right now?</p>
 				<div class="mood-selector">
 					<div class="mood no-select" v-for="mood in moods" :key="mood.id" :class="{selected: mood.selected}" @click="updateSelectedMood(mood.id, $event)">{{ mood.icon }}</div>
 				</div>
 
-				<span v-show="!isLoading">
-					<button class="btn red mt-30" v-ripple @click="launchApp"><i class="fa fa-play-circle"></i>Enter</button>
-					<br>
-					<a class="a mt-10" @click="toggleQuickstartDialogVisible(true)">How does it work?</a>
-				</span>
+				<div class="mt-20 current-selected-mood">
+					<p>You chose {{currentMood.icon}}</p>
+					<p class="desc" :class="currentMood.icon">{{currentMood.desc}}</p>
+				</div>
 
-				<div v-show="isLoading" class="mt-20">
-					<p>Got it. Finding balloons for you!</p>
-					<br>
-					<loading></loading>
+				<div class="mt-30" style="text-align: center" v-show="!isLoading">
+					<button class="btn" v-ripple @click="launchApp"><i class="fa fa-basketball-ball"></i>Next</button>
+					<a class="a full-width mt-10" @click="toggleQuickstartDialogVisible(true)">How does it work?</a>
+				</div>
+
+				<div style="text-align: center" v-show="isLoading" class="mt-30">
+					<p>Summoning <span class="text-color red">hand-picked</span> balloons for you</p>
+					<loading class="mt-10"></loading>
 				</div>
 			</section>
 		</transition>
@@ -59,10 +63,6 @@ export default {
 		$(window).off('keydown', this.$refs.container);
 	},
 
-	mounted(){
-		// this.synth.triggerAttackRelease("C4", Tone.now());
-	},
-
 	data(){
 		return {
 			synth: new Tone.MonoSynth().toDestination(),
@@ -74,26 +74,31 @@ export default {
 					id: 0,
 					icon: '😁',
 					selected: false,
+					desc: 'Fantastic'
 				},
 				{
 					id: 1,
 					icon: '😊',
 					selected: true,
+					desc: 'Good'
 				},
 				{
 					id: 2,
 					icon: '😐',
 					selected: false,
+					desc: 'Meh'
 				},
 				{
 					id: 3,
 					icon: '😔',
 					selected: false,
+					desc: 'Not the best'
 				},
 				{
 					id: 4,
 					icon: '😭',
 					selected: false,
+					desc: 'Bad'
 				}
 			]
 		}
@@ -122,7 +127,6 @@ export default {
 			if(this.isLoading || event.target.classList.contains('selected')){
 				return;
 			} else {
-				// console.log();
 				this.synth.triggerAttackRelease(this.AMinorScale[newMoodID], 0.1);
 				this.updateSelectedMoodInStore(newMoodID);
 				this.moods.find((mood) => {
@@ -156,6 +160,12 @@ export default {
 		...mapState('MoodSelectorDialog', [
 			'visible',
 		]),
+
+		currentMood(){
+			return _.find(this.moods, (o) => {
+				return o.selected;
+			})
+		}
 	},
 
 	watch: {
@@ -174,30 +184,9 @@ export default {
 
 	.vPage-component-mood-selector-dialog-container{
 		z-index: $zIndex-mood-selector-dialog;
-		position: fixed;
-		top: 0;
-		left: 0;
-		width: 100%;
-		height: 100%;
-		display: flex;
-		text-align: initial;
-		background: rgba(black, 0.3);
-		
 		& > .container{
-			width: 100%;
-			padding: 1em;
-			height: 100%;
-			max-height: 350px;
+			max-height: 400px;
 			max-width: 500px;
-			margin: 50px auto;
-			background: white;
-			position: relative;
-			overflow: auto;
-			border-radius: 10px;
-			border-bottom-left-radius: 0;
-			border-bottom-right-radius: 0;
-
-			text-align: center;
 
 			.mood-selector{
 				display: flex;
@@ -213,9 +202,11 @@ export default {
 					cursor: pointer;
 					font-size: 1.2em;
 					transition: all .2s;
+
 					&:hover, &:focus{
 						transform: scale(1.1, 1.1);
 					}
+
 					&.selected{
 						background: lighten(blue, 45%);
 						transform: scale(1.1, 1.1);
@@ -224,29 +215,30 @@ export default {
 					}
 				}
 			}
+			.current-selected-mood{
+				text-align: center;
+				.desc{
+					font-weight: bold;
+					font-size: .9em;
+					&.😁{
+						color: $green;
+					}
+					&.😊{
+						color: $blue;
+					}
+					&.😔{
+						color: $purple;
+					}
+					&.😭{
+						color: $red;
+					}
+				}
+			}
 		}
 
 		& > .bottom-bar{
-			top: 380px;
-			left: 50%;
-			position: fixed;
-			transform: translate(-50%, 0px);
-			display: flex;
+			top: 430px;
 			justify-content: center;
-			align-items: center;
-			padding: 1em;
-			background: $primary-color;
-			border-top: solid 2px rgba(black, 0.1);
-			width: 100%;
-			max-width: 500px;
-			border-bottom-left-radius: 10px;
-			border-bottom-right-radius: 10px;
-
-			label{
-				color: white;
-				font-size: .8em;
-				font-weight: bold;
-			}
 		}
 	}
 

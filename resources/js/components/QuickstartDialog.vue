@@ -1,5 +1,5 @@
 <template>
-	<div class="vPage-component-quickstart-dialog-container" ref="container" :class="[{visible: visible}]" @click="checkClickClose">
+	<div class="vPage-component-quickstart-dialog-container generic-dialog-container has-bottom-bar" ref="container" :class="[{visible: visible}]" @click="checkClickClose">
 		
 		<transition name="translate-y-minus-100px" delay="300">
 			<div class="container custom-scrollbar" v-show="visible" ref="scrollContainer">
@@ -117,30 +117,11 @@ export default {
 	@import "../../scss/variables";
 
 	.vPage-component-quickstart-dialog-container{
-		position: fixed;
-		top: 0;
-		left: 0;
-		width: 100%;
-		height: 100%;
-		display: flex;
-		text-align: initial;
 		z-index: $zIndex-quickstart-dialog;
-		background: rgba(black, 0.3);
-		
 		& > .container{
-			width: 100%;
-			padding: 1em;
-			height: 100%;
 			max-height: 520px;
 			max-width: 500px;
 			margin: 30px auto;
-			background: white;
-			position: relative;
-			overflow: auto;
-			border-radius: 10px;
-			border-bottom-left-radius: 0;
-			border-bottom-right-radius: 0;
-
 
 			h1{
 				padding-bottom: 5px;
@@ -171,42 +152,7 @@ export default {
 
 		& > .bottom-bar{
 			top: 550px;
-			left: 50%;
-			position: fixed;
-			transform: translate(-50%, 0px);
-			display: flex;
 			justify-content: space-between;
-			align-items: center;
-			padding: 1em;
-			background: $primary-color;
-			border-top: solid 2px rgba(black, 0.1);
-			width: 100%;
-			max-width: 500px;
-			border-bottom-left-radius: 10px;
-			border-bottom-right-radius: 10px;
-
-			label{
-				color: white;
-				font-size: .8em;
-				font-weight: bold;
-			}
-		}
-	}
-
-	@include media-y(670px){
-		.vPage-component-quickstart-dialog-container{
-			& > .container{
-				margin-top: 0;
-				padding-bottom: 80px; // To be able to read content, offset the bottom bar's height
-				max-height: 100%;
-				border-radius: 0;
-			}
-
-			& > .bottom-bar{
-				top: initial;
-				bottom: 0;
-				border-radius: 0;
-			}
 		}
 	}
 </style>

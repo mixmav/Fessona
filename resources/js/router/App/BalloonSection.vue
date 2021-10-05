@@ -6,7 +6,7 @@
 
 		<button class="btn mt-10" id="tourSteps-target-2" v-ripple @click="toggleShareAnswerDialogVisible(true)"><i class="fa fa-plus"></i>Share your answer</button>
 		<div class="balloons custom-scrollbar">
-			<div class="balloon no-select" v-for="i in 8" :key="i" :style="generateBalloonStyle(i)" @mouseover="synthSound(i)" @click="toggleBallonContentDialogVisible(true)">
+			<div class="balloon no-select" v-for="i in _.random(5, 50)" :key="i" :style="generateBalloonStyle(i)" @mouseover="synthSound(i)" @click="toggleBallonContentDialogVisible(true)">
 				<i class="fab fa-youtube"></i>
 			</div>
 		</div>
@@ -16,6 +16,7 @@
 <script>
 // import * as Tone from 'tone'
 import { mapActions, mapState } from 'vuex';
+import _ from 'lodash';
 
 export default {
 	mounted(){
@@ -91,7 +92,12 @@ export default {
 			cursor: pointer;
 			transition: all .15s;
 			&:hover{
-				transform: scale(1.2, 1.2);
+				transform: scale(1.1, 1.1) skew(5deg);
+			}
+			&:nth-child(odd){
+				&:hover{
+					transform: scale(1.1, 1.1) skew(-5deg);
+				}
 			}
 		}
 	}

@@ -6,33 +6,25 @@
 
 		<button class="btn mt-10" id="tourSteps-target-2" v-ripple @click="toggleShareAnswerDialogVisible(true)"><i class="fa fa-plus"></i>Share your answer</button>
 		<div class="balloons custom-scrollbar">
-			<div class="balloon no-select" v-for="i in _.random(5, 50)" :key="i" :style="generateBalloonStyle(i)" @mouseover="synthSound(i)" @click="toggleBallonContentDialogVisible(true)">
+			<div class="balloon no-select" v-for="i in balloonCount" :key="i" :style="generateBalloonStyle(i)" @click="toggleBallonContentDialogVisible(true)">
 				<i class="fab fa-youtube"></i>
+				{{ i }}
 			</div>
 		</div>
 	</div>
 </template>
 
 <script>
-// import * as Tone from 'tone'
 import { mapActions, mapState } from 'vuex';
 import _ from 'lodash';
 
 export default {
-	mounted(){
-		// this.synth = new Tone.PolySynth(Tone.Synth).toDestination();
-		// this.synth.triggerAttackRelease("C4", "8n");
-	},
-
-	beforeDestroy(){
-
-	},
 	props: [
 		'question'
 	],
 	data(){
 		return {
-			synth: {},
+			balloonCount: _.random(5, 50),
 		}
 	},
 	methods: {
@@ -58,10 +50,6 @@ export default {
 		...mapActions('BalloonContentDialog', {
 			toggleBallonContentDialogVisible: 'toggleVisible',
 		}),
-
-		synthSound(i){
-			// this.synth.triggerAttack(i*100, Tone.now());
-		},
 	},
 }
 </script>

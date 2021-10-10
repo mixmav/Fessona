@@ -2,8 +2,8 @@ export const MoodSelectorDialog = {
 	namespaced: true,
 	
 	state: {
-		visible: false,
-		selectedMood: 1,
+		visible: true,
+		selectedMood: {},
 	},
 
 	mutations: {

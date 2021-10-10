@@ -186,6 +186,10 @@ export default {
 			.swiper-wrapper{
 				margin-top: 20px;
 			}
+
+			h1{
+				font-size: 1.8em;
+			}
 		}
 	}
 	.v-tour__target--highlighted {

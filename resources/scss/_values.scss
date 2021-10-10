@@ -348,6 +348,25 @@ i, span{
 }
 
 
+
+
+.translate-x-minus-100px-opacity-enter-active, .translate-x-minus-100px-opacity-leave-active {
+	transition: all .3s;
+}
+.translate-x-minus-100px-opacity-enter, .translate-x-minus-100px-opacity-leave-to {
+	transform: translateX(-100px);
+	opacity: 0;
+}
+
+.translate-x-100px-opacity-enter-active, .translate-x-100px-opacity-leave-active {
+	transition: all .3s;
+}
+.translate-x-100px-opacity-enter, .translate-x-100px-opacity-leave-to {
+	transform: translateX(100px);
+	opacity: 0;
+}
+
+
 .translate-y-minus-100px-enter-active, .translate-y-minus-100px-leave-active {
 	transition: transform .3s;
 	// transition-timing-function: cubic-bezier(0.0, 0.0, 0.2, 1);
@@ -384,6 +403,9 @@ i, span{
 .transform-scale-full-enter, .transform-scale-full-leave-to {
 	transform: scale(0, 0);
 }
+
+
+
 
 @keyframes rotateFull{
 	from {

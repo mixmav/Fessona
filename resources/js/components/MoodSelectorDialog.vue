@@ -86,8 +86,8 @@ export default {
 			AMinorScale: ['C4', 'D4', 'E4', 'F4', 'G4'],
 			isLoadingPage1: false,
 			isLoadingPage2: false,
-			maximized: true,
-			page: 2,
+			maximized: false,
+			page: 1,
 			moods: [
 				{
 					id: 0,

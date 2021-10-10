@@ -32,14 +32,12 @@
 					</div>
 				</transition>
 
-				<transition name="translate-x-100px-opacity">
-					<div style="text-align: center" class="slidable-page custom-scrollbar" v-show="page == 2">
-
-						<h1>So you're feeling </h1>
-						<p>{{ currentMood.icon }}</p>
-						<p>{{ currentMood.desc }}</p>
-						<p>{{ currentMood.longDesc }}</p>
-
+				<transition name="opacity">
+					<div style="text-align: center" class="slidable-page page-2 custom-scrollbar" v-show="page == 2">
+						<h1>{{ currentMood.longDesc.heading }}</h1>
+						<p>{{ currentMood.longDesc.section1 }}</p>
+						<!-- <p>{{ currentMood.longDesc }}</p> -->
+						<img src="/images/girl_with_balloon.svg" alt="Girl holding a balloon">
 						<div style="text-align: center" v-show="isLoadingPage2" class="mt-30">
 							<p>Summoning <span class="text-decor red">hand-picked</span> balloons for you</p>
 							<loading class="mt-10"></loading>
@@ -49,6 +47,7 @@
 							<button class="btn mt-20 yellow" v-ripple @click="prevPage"><i class="fa fa-paw"></i>Back</button>
 							&nbsp;
 							<button class="btn mt-20" v-ripple @click="launchApp"><i class="fab fa-fly"></i>Launch</button>
+							<button class="btn" @click="cycleMoodsTest" v-ripple>Cycle mood</button><br><br>
 						</div>
 					</div>
 				</transition>
@@ -91,49 +90,86 @@ export default {
 			AMinorScale: ['C4', 'D4', 'E4', 'F4', 'G4'],
 			isLoadingPage1: false,
 			isLoadingPage2: false,
-			maximized: false,
-			page: 1,
+			maximized: true,
+			page: 2,
 			moods: [
 				{
 					id: 0,
 					icon: '😶',
 					selected: false,
 					desc: 'Meh, kind of numb',
-					longDesc: "Sorry to hear you're feeling bad :("
+					longDesc: {
+						heading: "Sorry to hear you're feeling kind of numb",
+						section1: "From personal experience, feeling numb is actually the least \"fun\" of the lot."
+					}
 				},
 				{
 					id: 1,
 					icon: '😔',
 					selected: false,
 					desc: 'Disconnected, sad or isolated',
-					longDesc: "Sorry to hear you're feeling bad :("
+					longDesc: {
+						heading: "Sorry to hear you're feeling disconnected",
+						section1: "It's been a rough year. A gentle reminder that you're far from alone in feeling this way."
+					}
 				},
 				{
 					id: 2,
 					icon: '😰',
 					selected: false,
 					desc: 'Anxious or uneasy',
-					longDesc: "Sorry to hear you're feeling bad :("
+					longDesc: {
+						heading: "Sorry to hear you're feeling anxious",
+						section1: "Good ol' anxiety. Did you know that your to anxiety and stress actually dictates your "
+					}
 				},
 				{
 					id: 3,
 					icon: '😊',
 					selected: true,
-					desc: 'I feel good',
-					longDesc: "Sorry to hear you're feeling bad :("
+					desc: 'Pretty good',
+					longDesc: {
+						heading: "Great to hear you're doing well",
+						section1: "Let's take a mindful breath to appreciate the calm "
+						// section1: "Let's channel some of these good emotions"
+					}
 				},
 				{
 					id: 4,
 					icon: '🥰',
 					selected: false,
 					desc: 'Excellent',
-					longDesc: "Sorry to hear you're feeling bad :("
+					longDesc: {
+						heading: "Awesome to know you're feeling excellent!",
+						section1: "It's been a rough year. A gentle reminder that you're far from alone in feeling this way."
+					}
 				},
-			]
+			],
+			newMoodID: 0,
 		}
 	},
 
 	methods: {
+		cycleMoodsTest(){
+			this.moods.find((mood) => {
+				if (mood.selected) {
+					if (mood.id === this.moods.length - 1) {
+						this.newMoodID = 0;
+					} else {
+						this.newMoodID++;
+					}
+					mood.selected = false;
+				}
+			});
+
+			this.moods.find((mood) => {
+				if (mood.id == this.newMoodID) {
+					mood.selected = true;
+					return true;
+				}
+			})
+		},
+
 		checkClickClose(event){
 			if (event.target == this.$refs.container && this.$refs.container.contains(event.target)) {
 				if (!this.isLoading) {
@@ -323,6 +359,18 @@ export default {
 								color: $green;
 							}
 						}
+					}
+				}
+				&.page-2{
+					width: 100%;
+					max-width: 500px;
+					left: 50%;
+					transform: translateX(-50%);
+					img{
+						width: 100%;
+						max-width: 250px;
+						display: block;
+						margin: 20px auto;
 					}
 				}
 			}

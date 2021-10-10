@@ -12,7 +12,7 @@
 						<p class="mt-20">Courtesy of being human, we all experience a wide spectrum of emotions.</p>
 						<p class="mt-10">Broadly speaking, how do <span class="text-decor bold primary">you</span> feel right now?</p>
 						<div class="mood-selector">
-							<div class="mood no-select" v-for="mood in moods" :key="mood.id" :class="{selected: mood.selected}" @click="updateSelectedMood(mood.id, $event)">{{ mood.icon }}</div>
+							<button class="mood no-select" v-for="mood in moods" :key="mood.id" :class="{selected: mood.selected}" @click="updateSelectedMood(mood.id, $event)">{{ mood.icon }}</button>
 						</div>
 
 						<div class="mt-20 current-selected-mood">
@@ -21,7 +21,7 @@
 						</div>
 
 						<div class="mt-30" style="text-align: center" v-show="!isLoadingPage1">
-							<button class="btn full-width" v-ripple @click="nextPage"><i class="fa fa-paw"></i>Next</button>
+							<button class="btn" v-ripple @click="nextPage"><i class="fa fa-paw"></i>Next</button>
 							<a class="a full-width mt-10" @click="toggleQuickstartDialogVisible(true)">What's going on?</a>
 						</div>
 
@@ -103,30 +103,30 @@ export default {
 				},
 				{
 					id: 1,
-					icon: '😭',
+					icon: '😔',
 					selected: false,
-					desc: 'Sad, down or hurt',
+					desc: 'Disconnected, sad or isolated',
 					longDesc: "Sorry to hear you're feeling bad :("
 				},
 				{
 					id: 2,
-					icon: '😔',
-					selected: false,
-					desc: 'Lonely, disconnected or isolated',
-					longDesc: "Sorry to hear you're feeling bad :("
-				},
-				{
-					id: 3,
 					icon: '😰',
 					selected: false,
 					desc: 'Anxious or uneasy',
 					longDesc: "Sorry to hear you're feeling bad :("
 				},
 				{
-					id: 4,
-					icon: '👌',
+					id: 3,
+					icon: '😊',
 					selected: true,
 					desc: 'I feel good',
+					longDesc: "Sorry to hear you're feeling bad :("
+				},
+				{
+					id: 4,
+					icon: '🥰',
+					selected: false,
+					desc: 'Excellent',
 					longDesc: "Sorry to hear you're feeling bad :("
 				},
 			]
@@ -249,7 +249,7 @@ export default {
 				max-height: 100%;
 				margin-top: 0;
 				border-radius: 0;
-				background: rgba(white, 0.8);
+				background: rgba(white, 0.9);
 			}
 		}
 		& > .container{
@@ -281,6 +281,7 @@ export default {
 						width: 100%;
 						max-width: 400px;
 						.mood{
+							background: transparent;
 							padding: 10px;
 							border: solid 4px lighten(grey, 40%);
 							border-radius: 10px;
@@ -292,7 +293,8 @@ export default {
 								margin-left: 0;
 							}
 							&:hover, &:focus{
-								transform: scale(1.1, 1.1);
+								outline: 0;
+								border-color: lighten($primary-color, 40%);
 							}
 
 							&.selected{

@@ -1,6 +1,6 @@
 <template>
 	<div class="vRouterPageComponent-App-balloon-section-container">
-		<p class="text-color primary">{{question}}</p>
+		<p class="text-decor primary">{{question}}</p>
 		
 		<!-- <youtube :video-id="videoID"></youtube> -->
 

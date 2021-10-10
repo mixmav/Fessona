@@ -4,12 +4,13 @@
 		<transition name="translate-y-minus-100px" delay="300">
 			<section class="container" v-show="visible">
 				<transition name="translate-x-minus-100px-opacity">
-					<div class="slidable-page custom-scrollbar" v-show="page == 1">
+					<div class="slidable-page page-1 custom-scrollbar" v-show="page == 1">
 						<div style="justify-content: space-between; align-items: center; display: flex;">
-							<h1>Quick check-in</h1>
+							<h1>Let's check-in</h1>
 							<button class="btn red" @click="!isLoading && toggleVisible(false)" v-ripple><i class="fa fa-keyboard"></i>Close</button>
 						</div>
-						<p class="mt-10">How're you feeling right now?</p>
+						<p class="mt-20">Courtesy of being human, we all experience a wide spectrum of emotions.</p>
+						<p class="mt-10">Broadly speaking, how do <span class="text-decor bold primary">you</span> feel right now?</p>
 						<div class="mood-selector">
 							<div class="mood no-select" v-for="mood in moods" :key="mood.id" :class="{selected: mood.selected}" @click="updateSelectedMood(mood.id, $event)">{{ mood.icon }}</div>
 						</div>
@@ -21,30 +22,34 @@
 
 						<div class="mt-30" style="text-align: center" v-show="!isLoadingPage1">
 							<button class="btn full-width" v-ripple @click="nextPage"><i class="fa fa-paw"></i>Next</button>
-							<a class="a full-width mt-10" @click="toggleQuickstartDialogVisible(true)">How does it work?</a>
+							<a class="a full-width mt-10" @click="toggleQuickstartDialogVisible(true)">What's going on?</a>
 						</div>
 
 						<div style="text-align: center" v-show="isLoadingPage1" class="mt-30">
-							<p>Working things out...</p>
+							<p>Brewing ⚡ vibes...</p>
 							<loading class="mt-10"></loading>
 						</div>
 					</div>
 				</transition>
 
 				<transition name="translate-x-100px-opacity">
-					<div class="slidable-page custom-scrollbar" v-show="page == 2">
+					<div style="text-align: center" class="slidable-page custom-scrollbar" v-show="page == 2">
 
-						<div v-show="!isLoadingPage2">
-							<p>{{ currentMood.icon }}</p>
-							<p>{{ currentMood.desc }}</p>
-							<p>{{ currentMood.longDesc }}</p>
-						</div>
+						<h1>So you're feeling </h1>
+						<p>{{ currentMood.icon }}</p>
+						<p>{{ currentMood.desc }}</p>
+						<p>{{ currentMood.longDesc }}</p>
+
 						<div style="text-align: center" v-show="isLoadingPage2" class="mt-30">
-							<p>Summoning <span class="text-color red">hand-picked</span> balloons for you</p>
+							<p>Summoning <span class="text-decor red">hand-picked</span> balloons for you</p>
 							<loading class="mt-10"></loading>
 						</div>
-						<button class="btn" v-ripple @click="prevPage"><i class="fa fa-paw"></i>Back</button>
-						<button class="btn mt-20" v-ripple @click="launchApp"><i class="fab fa-fly"></i>Launch</button>
+
+						<div v-show="!isLoadingPage2">
+							<button class="btn mt-20 yellow" v-ripple @click="prevPage"><i class="fa fa-paw"></i>Back</button>
+							&nbsp;
+							<button class="btn mt-20" v-ripple @click="launchApp"><i class="fab fa-fly"></i>Launch</button>
+						</div>
 					</div>
 				</transition>
 			</section>
@@ -121,7 +126,7 @@ export default {
 					id: 4,
 					icon: '👌',
 					selected: true,
-					desc: 'Nope, I feel pretty good',
+					desc: 'I feel good',
 					longDesc: "Sorry to hear you're feeling bad :("
 				},
 			]
@@ -148,10 +153,11 @@ export default {
 		}),
 
 		updateSelectedMood(newMoodID, event){
+			this.synth.triggerAttackRelease(this.AMinorScale[newMoodID], 0.1);
+			
 			if(this.isLoading || event.target.classList.contains('selected')){
 				return;
 			} else {
-				this.synth.triggerAttackRelease(this.AMinorScale[newMoodID], 0.1);
 				this.updateSelectedMoodInStore({
 					...this.currentMood
 				});
@@ -247,12 +253,12 @@ export default {
 			}
 		}
 		& > .container{
-			max-height: 400px;
+			max-height: 450px;
 			max-width: 500px;
 			position: relative;
 			padding: 0;
 			overflow: hidden;
-			transition: all .2s;
+			transition: all .25s ease;
 
 			.slidable-page{
 				position: absolute;
@@ -262,55 +268,59 @@ export default {
 				height: 100%;
 				padding: 1em;
 				overflow: auto;
-			}
-
-			.mood-selector{
-				display: flex;
-				flex-direction: row;
-				justify-content: space-between;
-				align-items: center;
-				margin: 20px auto;
-				width: 100%;
-				max-width: 400px;
-				.mood{
-					padding: 10px;
-					border: solid 4px lighten(grey, 40%);
-					border-radius: 10px;
-					margin-left: 10px;
-					cursor: pointer;
-					font-size: 1.2em;
-					transition: all .2s;
-					&:nth-child(1){
-						margin-left: 0;
-					}
-					&:hover, &:focus{
-						transform: scale(1.1, 1.1);
-					}
-
-					&.selected{
-						background: lighten(blue, 45%);
-						transform: scale(1.1, 1.1);
-						cursor: default;
-						border-color: $primary-color;
-					}
+				p{
+					font-size: 1em;
 				}
-			}
-			.current-selected-mood{
-				text-align: center;
-				.desc{
-					font-weight: bold;
-					font-size: .9em;
-					&.id-1{
-						color: $green;
+				&.page-1{
+					.mood-selector{
+						display: flex;
+						flex-direction: row;
+						justify-content: space-between;
+						align-items: center;
+						margin: 20px auto;
+						width: 100%;
+						max-width: 400px;
+						.mood{
+							padding: 10px;
+							border: solid 4px lighten(grey, 40%);
+							border-radius: 10px;
+							margin-left: 10px;
+							cursor: pointer;
+							font-size: 1.2em;
+							transition: all .2s;
+							&:nth-child(1){
+								margin-left: 0;
+							}
+							&:hover, &:focus{
+								transform: scale(1.1, 1.1);
+							}
+
+							&.selected{
+								background: lighten(blue, 45%);
+								transform: scale(1.1, 1.1);
+								cursor: default;
+								border-color: $primary-color;
+							}
+						}
 					}
-					&.id-2{
-						color: $blue;
-					}
-					&.id-3{
-						color: $purple;
-					}
-					&.id-4{
-						color: $red;
+					.current-selected-mood{
+						text-align: center;
+						.desc{
+							font-weight: bold;
+							font-size: .9em;
+							&.id-1{
+								color: $red;
+							}
+							&.id-2{
+								color: $blue;
+							}
+							&.id-3{
+								color: $purple;
+							}
+							&.id-4{
+								color: $green;
+							}
+						}
 					}
 				}
 			}
@@ -331,7 +341,7 @@ export default {
 			& > .container{
 				.mood-selector{
 					.mood{
-						font-size: 1em;
+						font-size: 1em !important;
 					}
 				}
 			}

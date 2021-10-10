@@ -3,7 +3,7 @@
 		<div class="main-page-content">
 			<h1>Fessona</h1>
 			<p style="font-size: 1em">/fə'səunə/</p>
-			<p class="mt-10">In Roman mythology, Fessona is thought to be the goddess that cures fatigue 🎈</p>
+			<h3 class="mt-10">In Roman mythology, Fessona is thought to be the goddess that cures fatigue 🎈</h3>
 			
 			<img src="/images/plant_in_hands.svg" alt="Hands holding a plant">
 			<button class="btn mt-30" v-ripple @click="toggleQuickstartDialogVisible(true)"><i class="fa fa-charging-station"></i>How it works</button>

@@ -11,8 +11,8 @@
 
 				<h1 class="quickstart-heading-2" v-scroll-to="generateVueScrollToConfig('quickstart-heading-2')"><span>#</span> How does it work?</h1>
 				<p>We crowdsource small nuggets of affirmations and media.</p>
-				<button class="btn mt-10" v-show="this.$route.name == 'Home'" v-ripple @click="getStarted"><i class="fa fa-play-circle"></i>Get started</button>
-				<p class="mt-30">Made with 💝 by <a class="a" href="https://instagram.com/mav.ew" target="_BLANK">Manav</a></p>
+				<button class="btn mt-30" v-show="this.$route.name == 'Home'" v-ripple @click="getStarted"><i class="fa fa-play-circle"></i>Get started</button>
+				<p class="mt-30">Made with ❤️ by <a class="a" href="https://instagram.com/mav.ew" target="_BLANK">Manav</a></p>
 			</div>
 		</transition>
 		
@@ -141,6 +141,10 @@ export default {
 					margin-top: 0;
 				}
 			}
+
+			// p{
+			// 	font-size: 1.1em;
+			// }
 
 			.img{
 				width: 100%;

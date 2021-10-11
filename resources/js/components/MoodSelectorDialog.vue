@@ -32,22 +32,25 @@
 					</div>
 				</transition>
 
-				<transition name="opacity">
-					<div style="text-align: center" class="slidable-page page-2 custom-scrollbar" v-show="page == 2">
-						<h1>{{ currentMood.longDesc.heading }}</h1>
-						<p>{{ currentMood.longDesc.section1 }}</p>
-						<!-- <p>{{ currentMood.longDesc }}</p> -->
-						<img src="/images/girl_with_balloon.svg" alt="Girl holding a balloon">
-						<div style="text-align: center" v-show="isLoadingPage2" class="mt-30">
-							<p>Summoning <span class="text-decor red">hand-picked</span> balloons for you</p>
-							<loading class="mt-10"></loading>
-						</div>
+				<transition name="translate-x-100px-opacity">
+					<div class="slidable-page page-2 custom-scrollbar" v-show="page == 2">
+						<div class="content">
+							<h1>{{ currentMood.longDesc.heading }}</h1>
+							<p class="mt-10" v-html="currentMood.longDesc.section1"></p>
+							<p class="mt-20">{{ currentMood.longDesc.premise }} Each response is stored as a <span class="text-decor red">Fessona Balloon</span>. Let's see what they said!</p>
+							<img src="/images/girl_with_balloon.svg" alt="Girl holding a balloon">
+							
+							<div style="text-align: center" v-show="isLoadingPage2" class="mt-30">
+								<p>Summoning <span class="text-decor red">hand-picked</span> balloons for you</p>
+								<loading class="mt-10"></loading>
+							</div>
 
-						<div v-show="!isLoadingPage2">
-							<button class="btn mt-20 yellow" v-ripple @click="prevPage"><i class="fa fa-paw"></i>Back</button>
-							&nbsp;
-							<button class="btn mt-20" v-ripple @click="launchApp"><i class="fab fa-fly"></i>Launch</button>
-							<button class="btn" @click="cycleMoodsTest" v-ripple>Cycle mood</button><br><br>
+							<div v-show="!isLoadingPage2" style="display: flex; justify-content: space-between; align-content: center;" class="mt-10">
+								<button class="btn red" v-ripple @click="prevPage"><i class="fa fa-paw"></i>Back</button>
+								&nbsp;
+								<button class="btn" v-ripple @click="launchApp"><i class="fab fa-fly"></i>Balloooonsss</button>
+								<button class="btn" @click="cycleMoodsTest" v-ripple>Cycle mood</button><br><br>
+							</div>
 						</div>
 					</div>
 				</transition>
@@ -100,7 +103,8 @@ export default {
 					desc: 'Meh, kind of numb',
 					longDesc: {
 						heading: "Sorry to hear you're feeling kind of numb",
-						section1: "From personal experience, feeling numb is actually the least \"fun\" of the lot."
+						section1: "From personal experience, feeling numb is actually the least <span class='text-decor red'>\"fun\"</span> of the lot.",
+						premise: "We asked our community how they navigate this challenging emotion.",
 					}
 				},
 				{
@@ -109,29 +113,31 @@ export default {
 					selected: false,
 					desc: 'Disconnected, sad or isolated',
 					longDesc: {
-						heading: "Sorry to hear you're feeling disconnected",
-						section1: "It's been a rough year. A gentle reminder that you're far from alone in feeling this way."
+						heading: "Sorry to hear you're feeling bad",
+						section1: "It's been a rough year. A gentle reminder that you're <span class='text-decor primary'>far from alone</span> in feeling this way.",
+						premise: "We asked our community how they cope with feelings of isolation, disconnection or grief.",
 					}
 				},
 				{
 					id: 2,
 					icon: '😰',
-					selected: false,
+					selected: true,
 					desc: 'Anxious or uneasy',
 					longDesc: {
 						heading: "Sorry to hear you're feeling anxious",
-						section1: "Good ol' anxiety. Did you know that your to anxiety and stress actually dictates your "
+						section1: "Good ol' <span class='text-decor red'>anxiety</span>. On the one hand it's your body trying to keep you safe, but clealry, the archaic threat-detection system is far from perfect.",
+						premise: "We asked our community how they navigate their anxiety.",
 					}
 				},
 				{
 					id: 3,
 					icon: '😊',
-					selected: true,
+					selected: false,
 					desc: 'Pretty good',
 					longDesc: {
 						heading: "Great to hear you're doing well",
-						section1: "Let's take a mindful breath to appreciate the calm "
-						// section1: "Let's channel some of these good emotions"
+						section1: "How about a <span class='text-decor green'>mindful breath</span> to appreciate the calm 😇",
+						premise: "We asked our community what they like investing time in when they're feeling good.",
 					}
 				},
 				{
@@ -141,7 +147,8 @@ export default {
 					desc: 'Excellent',
 					longDesc: {
 						heading: "Awesome to know you're feeling excellent!",
-						section1: "It's been a rough year. A gentle reminder that you're far from alone in feeling this way."
+						section1: "Let's channel some of these <span class='text-decor green'>good emotions</span> towards some creativity!",
+						premise: "We asked our community what they like investing time in when they're feeling amazing.",
 					}
 				},
 			],
@@ -362,15 +369,16 @@ export default {
 					}
 				}
 				&.page-2{
-					width: 100%;
-					max-width: 500px;
-					left: 50%;
-					transform: translateX(-50%);
-					img{
+					& > .content{
 						width: 100%;
-						max-width: 250px;
-						display: block;
-						margin: 20px auto;
+						max-width: 500px;
+						margin: 0 auto;
+						img{
+							width: 100%;
+							max-width: 200px;
+							display: block;
+							margin: 30px auto;
+						}
 					}
 				}
 			}

@@ -1,30 +1,72 @@
 <template>
 	<div class="vPage-component-share-answer-dialog-container" ref="container" :class="[{visible: visible}]" @click="checkClickClose">
 		<transition name="translate-y-minus-100px" delay="300">
-			<section class="container custom-scrollbar" v-show="visible">
-				<div class="top-bar">
-					<button class="btn red" v-ripple @click="toggleVisible(false)"><i class="fa fa-window-close"></i>Close</button>
+
+			<section class="container custom-scrollbar" v-show="visible" ref="scrollContainer">
+				<div class="top-bar" :class="{'z-depth-1': scrolled}">
+					
+					<button v-ripple :disabled="isLoading" class="btn jumbo" :class="{red: !previewVisible, blue: previewVisible}" @click="previewVisible ? previewVisible = false : toggleVisible(false)">
+						<i class="fa fa-window-close" v-show="!previewVisible"></i>
+						<span v-show="!previewVisible">Close dialog</span>
+
+						<i class="fa fa-arrow-left" v-show="previewVisible"></i>
+						<span v-show="previewVisible">Edit</span>
+					</button>
+
+					<button v-ripple :disabled="isLoading" class="btn jumbo" :class="{green: previewVisible, blue: !previewVisible}" @click="topBarButtonTwoClick">
+						<i class="fa fa-angle-double-right" v-show="!previewVisible"></i>
+						<span v-show="!previewVisible">Preview</span>
+
+						<i class="fa fa-paper-plane" v-show="previewVisible"></i>
+						<span v-show="previewVisible">Submit</span>
+					</button>
 				</div>
-				<section style="text-align: left">
-					<p><i class="fab fa-youtube" style="color: red"></i>Add a youtube video (optional)</p>
-					<input class="text-input full-width" type="text" placeholder="Video URL">
-					<br>
-					<textarea placeholder="Why did you pick this video?"></textarea>
-					<button class="btn mt-10 full-width" v-ripple><i class="fa fa-paper-plane"></i>Submit</button>
-				</section>
+
+				<div class="editor-content content" :class="{visible: !previewVisible}">
+					<h2>Curate your balloon 🎈</h2>
+					<div class="form mt-30">
+						<input v-model="title" type="text" class="title-input" placeholder="Title or subject" ref="titleInput">
+						
+						<div class="mt-30">
+							<quill-editor class="editor" v-model="content" :options="editorOption"></quill-editor>
+						</div>
+					</div>
+				</div>
+
+				<div class="preview-content content ql-snow" :class="{visible: previewVisible}">
+					<!-- <h3>This is what your letter looks like</h3> -->
+					<div class="title-bar">
+						<div>
+							<h1>{{ title }}</h1>
+							<!-- <p class="mt-20">Written by <span class="user-name">{{ user.name }}</span></p> -->
+						</div>
+
+						<!-- <img class="profile-picture" :src="userProfilePictureFilePath" alt="Profile picture"> -->
+					</div>
+					
+					<hr class="mt-10">
+					<div class="preview ql-editor mt-20" v-html="content"></div>
+				</div>
 			</section>
 		</transition>
 	</div>
 </template>
 
 <script>
-import { mapState, mapActions } from 'vuex';
+import { mapState, mapGetters, mapActions } from 'vuex';
 import $ from 'jquery';
 
-export default {
-	components: {
-	},
+import Quill from 'quill';
+import ImageCompress from 'quill-image-compress';
+Quill.register('modules/imageCompress', ImageCompress);
 
+import 'quill/dist/quill.core.css'
+import 'quill/dist/quill.snow.css'
+import 'quill/dist/quill.bubble.css'
+
+import { quillEditor } from 'vue-quill-editor'
+
+export default {
 	created(){
 		$(window).on({
 			keydown: (event) => {
@@ -37,10 +79,68 @@ export default {
 
 	beforeDestroy(){
 		$(window).off('keydown', this.$refs.container);
+		$(window).off('scroll', this.$refs.scrollContainer);
+	},
+
+	mounted(){
+		var $containerRef = $(this.$refs.scrollContainer);
+		$containerRef.on('scroll', (event) => {
+			if ($containerRef.scrollTop() > 0){
+				this.scrolled = true;
+			} else {
+				this.scrolled = false;
+			}
+		});
+
+		this.$refs.titleInput.focus();
+	},
+	watch: {
+		visible(newState, oldState) {
+			if (newState) {
+				setTimeout(() => {
+					this.$refs.titleInput.focus();
+				}, 300)
+			}
+		}
+	},
+	components: {
+		quillEditor
 	},
 
 	data(){
 		return {
+			scrolled: false,
+			title: '',
+			content: '',
+			isLoading: false,
+			previewVisible: false,
+			editorOption: {
+				placeholder: 'Hey hey, ho ho, not writing a letter has got to go',
+				modules: {
+					imageCompress: {
+						quality: 0.3,
+						maxWidth: 1000,
+						maxHeight: 1000,
+						debug: false,
+					},
+					toolbar: [
+						['bold', 'italic', 'underline', 'strike'],
+						['blockquote', 'code-block'],
+						[{ 'header': 1 }, { 'header': 2 }],
+						[{ 'list': 'ordered' }, { 'list': 'bullet' }],
+						[{ 'script': 'sub' }, { 'script': 'super' }],
+						[{ 'indent': '-1' }, { 'indent': '+1' }],
+						[{ 'direction': 'rtl' }],
+						[{ 'size': ['small', false, 'large', 'huge'] }],
+						[{ 'header': [1, 2, 3, 4, 5, 6, false] }],
+						[{ 'font': [] }],
+						[{ 'color': [] }, { 'background': [] }],
+						[{ 'align': [] }],
+						['clean'],
+						['link', 'image', 'video']
+						],
+				},
+			},
 		}
 	},
 
@@ -56,6 +156,51 @@ export default {
 		...mapActions('ShareAnswerDialog', {
 			toggleVisible: 'toggleVisible',
 		}),
+
+		publishLetter(){
+			var vThis = this;
+			$.ajax({
+				url: '/api/auth/model/letter/create',
+				method: 'POST',
+				data: {
+					title: vThis.title,
+					content: vThis.content,
+				},
+				
+				beforeSend(){
+					vThis.isLoading = true;
+				},
+
+				success(response){
+					vThis.title = '';
+					vThis.content = '';
+					vThis.previewVisible = false;
+					vThis.toggleVisible(false);
+					vThis.$parent.refreshLetters();
+				},
+
+				complete(){
+					vThis.isLoading = false;
+				},
+				error(){
+					alert('There was an error submitting your balloon :(');
+				}
+			});
+		},
+
+		topBarButtonTwoClick(){
+			if (this.previewVisible) {
+				this.publishLetter();
+			} else {
+				if (this.title.length <= 0) {
+					alert("The title can't be empty :(");
+				} else if(this.content.length <= 0){
+					alert("The letter contents can't be empty :(");
+				} else {
+					this.previewVisible = true;
+				}
+			} 
+		},
 	},
 
 	computed: {
@@ -82,48 +227,107 @@ export default {
 		
 		& > .container{
 			width: 100%;
-			padding: 1em;
 			height: 100%;
-			max-height: 350px;
-			max-width: 500px;
-			margin: 50px auto;
+			// max-width: 800px;
+			margin: 0 auto;
 			background: white;
+			overflow-y: auto;
+			overflow-x: hidden;
 			position: relative;
-			overflow: auto;
-			border-radius: 10px;
-			text-align: center;
+			padding-bottom: 100px;
 
-			& > .top-bar{
-				display: flex;
-				justify-content: flex-end;
+			.top-bar{
+				width: 100%;
+				max-width: 800px;
+				position: fixed;
+				z-index: $zIndex-share-answer-dialog-top-bar;
+				top: 0;
+				background: white;
+				border-bottom-left-radius: 5px;
+				border-bottom-right-radius: 5px;
+				left: 50%;
+				transform: translateX(-50%);
+				padding: 1em;
+				transition: all .2s;
+				text-align: center;
+
+				button{
+					display: inline;
+					width: 40%;
+					max-width: 200px;
+					&:nth-child(2){
+						margin-left: 10px;
+					}
+				}
+			}
+			& > .content{
+				padding: 2em {top: 0};
+				position: absolute;
+				z-index: $zIndex-share-answer-dialog-content;
+				top: 100px;
+				left: 0;
+				width: 100%;
+				border-radius: 5px;
+				transition: all .3s;
+				overflow: visible;
+				transform: translateX(-100%);
+				&.visible{
+					transform: translateX(0);
+				}
+			}
+			& > .editor-content{
+				.form{
+					.title-input{
+						padding: 1em;
+						width: 100%;
+						letter-spacing: 1px;
+					}
+					.ql-container{
+						min-height: inherit;
+					}
+
+					.editor{
+						min-height: 200px;
+					}
+				}
 			}
 
-			section{
-				textarea{
-					width: 100%;
-					margin-top: 20px;
-					padding: 10px;
-					min-height: 100px;
-					resize: vertical;
+			& > .preview-content{
+				transform: translateX(100%);
+
+				& > .title-bar{
+					display: flex;
+					justify-content: space-between;
+					align-items: center;
+					.user-name{
+						font-weight: bold;
+						color: $green;
+					}
+
+					.profile-picture{
+						width: 70px;
+						height: 70px;
+						border-radius: 100%;
+					}
 				}
 			}
 		}
 	}
 
-	@include media-y(670px){
-		.vPage-component-share-answer-dialog-container{
-			& > .container{
-				margin-top: 0;
-				padding-bottom: 80px; // To be able to read content, offset the bottom bar's height
-				max-height: 100%;
-				border-radius: 0;
-			}
+	// @include media-y(670px){
+	// 	.vPage-component-share-answer-dialog-container{
+	// 		& > .container{
+	// 			margin-top: 0;
+	// 			padding-bottom: 80px; // To be able to read content, offset the bottom bar's height
+	// 			max-height: 100%;
+	// 			border-radius: 0;
+	// 		}
 
-			& > .bottom-bar{
-				top: initial;
-				bottom: 0;
-				border-radius: 0;
-			}
-		}
-	}
+	// 		& > .bottom-bar{
+	// 			top: initial;
+	// 			bottom: 0;
+	// 			border-radius: 0;
+	// 		}
+	// 	}
+	// }
 </style>

@@ -19,13 +19,11 @@
 				<h1>Crowdsourced balloons 🎈</h1>
 				<swiper ref="mySwiper" :options="swiperOptions">
 					<swiper-slide v-for="i in ballonSections" :key="i.id">
-						<balloon-section id="tourSteps-target-1" :question="i.question"></balloon-section>
+						<balloon-section :question="i.question"></balloon-section>
 					</swiper-slide>
 					<div class="swiper-button-prev" slot="button-prev"></div>
 					<div class="swiper-button-next" slot="button-next"></div>
 				</swiper>
-
-				<v-tour name="introductionTour" :steps="tourSteps" :options="{highlight: true}"></v-tour>
 			</div>
 		</div>
 	</div>
@@ -51,18 +49,6 @@ export default {
 
 	data(){
 		return {
-			tourSteps: [
-				{
-					target: '#tourSteps-target-1',
-					header: {
-						title: 'Get Started',
-					},
-					content: `Discover <strong>Vue Tour</strong>!`,
-					// params: {
-					// 	highlight: false
-					// }
-				}
-			],
 
 			swiperOptions: {
 				navigation: {
@@ -129,8 +115,6 @@ export default {
 		]),
 	},
 	mounted(){
-		// this.$tours['introductionTour'].start();
-
 		var $window = $('.page-content');
 		$window.on('scroll', (event) => {
 			if ($window.scrollTop() > 80){
@@ -173,7 +157,7 @@ export default {
 		}
 
 		.page-content{
-			padding: 1em {
+			padding: 0em {
 				top: 50px;
 			};
 			position: fixed;
@@ -186,20 +170,17 @@ export default {
 			.swiper-wrapper{
 				margin-top: 20px;
 			}
-
+			.swiper-button-next{
+				right: 20px;
+				position: fixed;
+			}
+			.swiper-button-prev{
+				left: 20px;
+				position: fixed;
+			}
 			h1{
 				font-size: 1.8em;
 			}
-		}
-	}
-	.v-tour__target--highlighted {
-		box-shadow: 0 0 0 99999px rgba(0,0,0,.4);
-		padding: 10px;
-		.v-step__header{
-			color: white !important;
-		}
-		.v-step__content{
-			color: white !important;
 		}
 	}
 }

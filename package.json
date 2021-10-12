@@ -28,11 +28,12 @@
         "vuex": "^3.6.2"
     },
     "dependencies": {
+        "quill-image-compress": "^1.2.16",
         "swiper": "^5.4.5",
         "vue-awesome-swiper": "^4.1.1",
         "vue-cookie": "^1.1.4",
+        "vue-quill-editor": "^3.0.6",
         "vue-scrollto": "^2.20.0",
-        "vue-tour": "^2.0.0",
         "vue-youtube-embed": "^2.2.2",
         "vuex-map-fields": "^1.4.1"
     }

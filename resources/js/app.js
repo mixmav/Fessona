@@ -6,14 +6,10 @@ import VueRouter from 'vue-router';
 import VueScrollTo from 'vue-scrollto';
 import VueCookie from 'vue-cookie';
 import VueYouTubeEmbed from 'vue-youtube-embed'
-import VueTour from 'vue-tour'
-
-require('vue-tour/dist/vue-tour.css');
 
 Vue.use(VueScrollTo);
 Vue.use(VueCookie);
 Vue.use(VueYouTubeEmbed)
-Vue.use(VueTour)
 
 Ripple.color = 'rgba(255, 255, 255, 0.35)';
 Vue.directive('ripple', Ripple);

@@ -2,7 +2,7 @@ export const BalloonContentDialog = {
 	namespaced: true,
 	
 	state: {
-		visible: false,
+		visible: true,
 	},
 
 	mutations: {

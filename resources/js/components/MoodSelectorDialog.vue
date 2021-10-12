@@ -9,8 +9,8 @@
 							<h1>Let's check-in</h1>
 							<button class="btn red" @click="!isLoading && toggleVisible(false)" v-ripple><i class="fa fa-keyboard"></i>Close</button>
 						</div>
-						<p class="mt-20">Courtesy of being human, we all experience a wide spectrum of emotions.</p>
-						<p class="mt-10">Broadly speaking, how do <span class="text-decor bold primary">you</span> feel right now?</p>
+						<p class="mt-20">Courtesy of being human, we all experience a wide spectrum of emotions, both positive and afflictive.</p>
+						<p class="mt-10">What are you most in-need of right now?</p>
 						<div class="mood-selector">
 							<button class="mood no-select" v-for="mood in moods" :key="mood.id" :class="{selected: mood.selected}" @click="updateSelectedMood(mood.id, $event)">{{ mood.icon }}</button>
 						</div>
@@ -26,7 +26,7 @@
 						</div>
 
 						<div style="text-align: center" v-show="isLoadingPage1" class="mt-30">
-							<p>Brewing ⚡ vibes...</p>
+							<p>Brewing ⚡</p>
 							<loading class="mt-10"></loading>
 						</div>
 					</div>
@@ -37,7 +37,7 @@
 						<div class="content">
 							<h1>{{ currentMood.longDesc.heading }}</h1>
 							<p class="mt-10" v-html="currentMood.longDesc.section1"></p>
-							<p class="mt-20">{{ currentMood.longDesc.premise }} Each response is stored as a <span class="text-decor red">Fessona Balloon</span>. Let's see what they said!</p>
+							<p class="mt-20">{{ currentMood.longDesc.premise }} Each response is stored as a <span class="text-decor primary">Fessona Balloon</span>. Let's see what they said!</p>
 							<img src="/images/girl_with_balloon.svg" alt="Girl holding a balloon">
 							
 							<div style="text-align: center" v-show="isLoadingPage2" class="mt-30">
@@ -49,7 +49,7 @@
 								<button class="btn red" v-ripple @click="prevPage"><i class="fa fa-paw"></i>Back</button>
 								&nbsp;
 								<button class="btn" v-ripple @click="launchApp"><i class="fab fa-fly"></i>Balloooonsss</button>
-								<button class="btn" @click="cycleMoodsTest" v-ripple>Cycle mood</button><br><br>
+								<!-- <button class="btn" @click="cycleMoodsTest" v-ripple>Cycle mood</button><br><br> -->
 							</div>
 						</div>
 					</div>
@@ -93,89 +93,89 @@ export default {
 			AMinorScale: ['C4', 'D4', 'E4', 'F4', 'G4'],
 			isLoadingPage1: false,
 			isLoadingPage2: false,
-			maximized: true,
-			page: 2,
+			maximized: false,
+			page: 1,
 			moods: [
 				{
 					id: 0,
-					icon: '😶',
+					icon: '💡',
 					selected: false,
-					desc: 'Meh, kind of numb',
+					desc: 'Creative inspiration',
 					longDesc: {
-						heading: "Sorry to hear you're feeling kind of numb",
-						section1: "From personal experience, feeling numb is actually the least <span class='text-decor red'>\"fun\"</span> of the lot.",
-						premise: "We asked our community how they navigate this challenging emotion.",
+						heading: "Creativity, you say?",
+						section1: "Being in a creative flow-state is one of the most <span class='text-decor red'>fun</span> ways to spend time.",
+						premise: "We asked our community what gets their creative juices flowing. Hopefully you can draw inspiration from them.",
 					}
 				},
 				{
 					id: 1,
-					icon: '😔',
-					selected: false,
-					desc: 'Disconnected, sad or isolated',
+					icon: '🧘‍♀️',
+					selected: true,
+					desc: 'Calmness, being grounded',
 					longDesc: {
-						heading: "Sorry to hear you're feeling bad",
-						section1: "It's been a rough year. A gentle reminder that you're <span class='text-decor primary'>far from alone</span> in feeling this way.",
-						premise: "We asked our community how they cope with feelings of isolation, disconnection or grief.",
+						heading: "🧘‍♂️🧘‍♀️",
+						section1: "It's been a rough year with so much impeding on our sense of wellbeing.",
+						premise: "We asked our community to share their rituals, practices and tips on cultivating a sense of inner-peace.",
 					}
 				},
 				{
 					id: 2,
-					icon: '😰',
-					selected: true,
-					desc: 'Anxious or uneasy',
-					longDesc: {
-						heading: "Sorry to hear you're feeling anxious",
-						section1: "Good ol' <span class='text-decor red'>anxiety</span>. On the one hand it's your body trying to keep you safe, but clealry, the archaic threat-detection system is far from perfect.",
-						premise: "We asked our community how they navigate their anxiety.",
-					}
-				},
-				{
-					id: 3,
-					icon: '😊',
+					icon: '❤️',
 					selected: false,
-					desc: 'Pretty good',
+					desc: 'Lighthearted and uplifting energy',
 					longDesc: {
-						heading: "Great to hear you're doing well",
-						section1: "How about a <span class='text-decor green'>mindful breath</span> to appreciate the calm 😇",
-						premise: "We asked our community what they like investing time in when they're feeling good.",
+						heading: "Pick-me-up!",
+						section1: "Being in a cheerful and light-hearted state is one of most fundamental aspects of our wellbeing. It colors everything else we experience.",
+						premise: "We asked our community to share tit-bits of what cheers them up.",
 					}
 				},
-				{
-					id: 4,
-					icon: '🥰',
-					selected: false,
-					desc: 'Excellent',
-					longDesc: {
-						heading: "Awesome to know you're feeling excellent!",
-						section1: "Let's channel some of these <span class='text-decor green'>good emotions</span> towards some creativity!",
-						premise: "We asked our community what they like investing time in when they're feeling amazing.",
-					}
-				},
+				// {
+				// 	id: 3,
+				// 	icon: '😊',
+				// 	selected: true,
+				// 	desc: 'Pretty good',
+				// 	longDesc: {
+				// 		heading: "Great to hear you're doing well",
+				// 		section1: "How about a <span class='text-decor green'>mindful breath</span> to appreciate the calm 😇",
+				// 		premise: "We asked our community what they like investing time in when they're feeling good.",
+				// 	}
+				// },
+				// {
+				// 	id: 4,
+				// 	icon: '🥰',
+				// 	selected: false,
+				// 	desc: 'Excellent',
+				// 	longDesc: {
+				// 		heading: "Awesome to know you're feeling excellent!",
+				// 		section1: "Let's channel some of these <span class='text-decor green'>good emotions</span> towards some creativity!",
+				// 		premise: "We asked our community what they like investing time in when they're feeling amazing.",
+				// 	}
+				// },
 			],
-			newMoodID: 0,
+			// newMoodID: 0,
 		}
 	},
 
 	methods: {
-		cycleMoodsTest(){
-			this.moods.find((mood) => {
-				if (mood.selected) {
-					if (mood.id === this.moods.length - 1) {
-						this.newMoodID = 0;
-					} else {
-						this.newMoodID++;
-					}
-					mood.selected = false;
-				}
-			});
+		// cycleMoodsTest(){
+		// 	this.moods.find((mood) => {
+		// 		if (mood.selected) {
+		// 			if (mood.id === this.moods.length - 1) {
+		// 				this.newMoodID = 0;
+		// 			} else {
+		// 				this.newMoodID++;
+		// 			}
+		// 			mood.selected = false;
+		// 		}
+		// 	});
 
-			this.moods.find((mood) => {
-				if (mood.id == this.newMoodID) {
-					mood.selected = true;
-					return true;
-				}
-			})
-		},
+		// 	this.moods.find((mood) => {
+		// 		if (mood.id == this.newMoodID) {
+		// 			mood.selected = true;
+		// 			return true;
+		// 		}
+		// 	})
+		// },
 
 		checkClickClose(event){
 			if (event.target == this.$refs.container && this.$refs.container.contains(event.target)) {
@@ -275,6 +275,8 @@ export default {
 			this.updateQuickstartShownOnceOnHomePage(true);
 			if (newVal) {
 				this.isLoading = false;
+				this.maximized = false;
+				this.page = 1;
 			}
 		}
 	}
@@ -353,17 +355,14 @@ export default {
 						.desc{
 							font-weight: bold;
 							font-size: .9em;
-							&.id-1{
-								color: $red;
-							}
-							&.id-2{
+							&.id-0{
 								color: $blue;
 							}
-							&.id-3{
-								color: $purple;
-							}
-							&.id-4{
+							&.id-1{
 								color: $green;
+							}
+							&.id-2{
+								color: $red;
 							}
 						}
 					}

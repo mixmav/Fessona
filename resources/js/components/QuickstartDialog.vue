@@ -3,6 +3,7 @@
 		
 		<transition name="translate-y-minus-100px" delay="300">
 			<div class="container custom-scrollbar" v-show="visible" ref="scrollContainer">
+				<h2>Welcome to Fessona!</h2>
 				<h1 class="quickstart-heading-1" v-scroll-to="generateVueScrollToConfig('quickstart-heading-1')"><span>#</span> What is Fessona?</h1>
 				<p>Fessona was created as part of a commissioned artwork for RMIT creative.</p>
 				<!-- <br> -->
@@ -12,7 +13,7 @@
 				<h1 class="quickstart-heading-2" v-scroll-to="generateVueScrollToConfig('quickstart-heading-2')"><span>#</span> How does it work?</h1>
 				<p>We crowdsource small nuggets of affirmations and media.</p>
 				<button class="btn mt-30" v-show="this.$route.name == 'Home'" v-ripple @click="getStarted"><i class="fa fa-play-circle"></i>Get started</button>
-				<p class="mt-30">Made with ❤️ by <a class="a" href="https://instagram.com/mav.ew" target="_BLANK">Manav</a></p>
+				<!-- <p class="mt-30">Made with ❤️ by <a class="a" href="https://instagram.com/mav.ew" target="_BLANK">Manav</a></p> -->
 			</div>
 		</transition>
 		

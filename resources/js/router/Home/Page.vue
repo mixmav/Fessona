@@ -8,8 +8,8 @@
 			<img src="/images/plant_in_hands.svg" alt="Hands holding a plant">
 			<button class="btn mt-30" v-ripple @click="toggleQuickstartDialogVisible(true)"><i class="fa fa-charging-station"></i>How it works</button>
 			&nbsp;
-
 			<button class="btn yellow mt-30" v-ripple @click="toggleMoodSelectorDialogVisible(true)"><i class="fa fa-play-circle"></i>Start</button>
+			<p class="mt-20">Made with ❤️ by <a class="a" href="https://instagram.com/mav.ew" target="_BLANK">Manav</a></p>
 		</div>
 	</div>
 </template>

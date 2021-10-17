@@ -1,7 +1,10 @@
 <template>
 	<div class="vRouterPage-home-page-container">
 		<div class="main-page-content">
-			<h1>Fessona</h1>
+			<div class="top-bar">
+				<h1>Fessona</h1>
+				<a class="a">About</a>
+			</div>
 			<p style="font-size: 1em">/fə'səunə/</p>
 			<h3 class="mt-10">In Roman mythology, Fessona is thought to be the goddess that cures fatigue 🎈</h3>
 			
@@ -70,6 +73,11 @@ export default {
 	display: flex;
 	justify-content: center;
 	.main-page-content{
+		.top-bar{
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+		}
 		max-width: 500px;
 		margin-top: 100px;
 		position: relative !important;

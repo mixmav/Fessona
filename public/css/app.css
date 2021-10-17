@@ -906,10 +906,10 @@ i, span {
   display: inline-block;
   border: none;
   cursor: pointer;
+  position: relative;
+  padding-bottom: 2px;
   color: #6610f2;
-}
-.a:hover {
-  text-decoration: underline;
+  transition: all 0.2s;
 }
 .a.red {
   color: #CA2E55;
@@ -951,8 +951,24 @@ i, span {
   margin-right: 5px;
   transition: all 0.2s;
 }
-.a.full-width {
+.a::after {
+  bottom: 0;
+  content: "";
   display: block;
+  height: 2px;
+  left: 50%;
+  position: absolute;
+  background: #3A2E39;
+  transition: width 0.2s ease 0s, left 0.2s ease 0s;
+  width: 0;
+}
+.a:hover {
+  transform: scale(1.08, 1.08);
+  color: #3A2E39;
+}
+.a:hover::after {
+  width: 100%;
+  left: 0;
 }
 
 .custom-scrollbar::-webkit-scrollbar {

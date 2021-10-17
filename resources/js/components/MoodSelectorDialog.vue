@@ -22,7 +22,8 @@
 
 						<div class="mt-30" style="text-align: center" v-show="!isLoadingPage1">
 							<button class="btn" v-ripple @click="nextPage"><i class="fa fa-paw"></i>Next</button>
-							<a class="a full-width mt-10" @click="toggleQuickstartDialogVisible(true)">What's going on?</a>
+							<br>
+							<a class="a mt-10" @click="toggleQuickstartDialogVisible(true)">What's going on?</a>
 						</div>
 
 						<div style="text-align: center" v-show="isLoadingPage1" class="mt-30">

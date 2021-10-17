@@ -4,7 +4,7 @@ export const QuickstartDialog = {
 	namespaced: true,
 	
 	state: {
-		visible: true,
+		visible: false,
 		dontShowOnStartup: false,
 		shownOnceOnHomePage: false,
 	},

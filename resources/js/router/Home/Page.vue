@@ -3,7 +3,7 @@
 		<div class="main-page-content">
 			<div class="top-bar">
 				<h1>Fessona</h1>
-				<a class="a">About</a>
+				<router-link class="a" to="/about">About</router-link>
 			</div>
 			<p style="font-size: 1em">/fə'səunə/</p>
 			<h3 class="mt-10">In Roman mythology, Fessona is thought to be the goddess that cures fatigue 🎈</h3>

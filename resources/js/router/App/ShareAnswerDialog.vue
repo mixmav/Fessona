@@ -5,7 +5,7 @@
 			<section class="container custom-scrollbar" v-show="visible" ref="scrollContainer">
 				<div class="top-bar" :class="{'z-depth-1': scrolled}">
 					
-					<button v-ripple :disabled="isLoading" class="btn jumbo" :class="{red: !previewVisible, blue: previewVisible}" @click="previewVisible ? previewVisible = false : toggleVisible(false)">
+					<button v-ripple :disabled="isLoading" class="btn" :class="{red: !previewVisible, darkBlack: previewVisible}" @click="previewVisible ? previewVisible = false : toggleVisible(false)">
 						<i class="fa fa-window-close" v-show="!previewVisible"></i>
 						<span v-show="!previewVisible">Close dialog</span>
 
@@ -13,7 +13,7 @@
 						<span v-show="previewVisible">Edit</span>
 					</button>
 
-					<button v-ripple :disabled="isLoading" class="btn jumbo" :class="{green: previewVisible, blue: !previewVisible}" @click="topBarButtonTwoClick">
+					<button v-ripple :disabled="isLoading" class="btn" :class="{primary: previewVisible, darkBlack: !previewVisible}" @click="topBarButtonTwoClick">
 						<i class="fa fa-angle-double-right" v-show="!previewVisible"></i>
 						<span v-show="!previewVisible">Preview</span>
 
@@ -23,28 +23,24 @@
 				</div>
 
 				<div class="editor-content content" :class="{visible: !previewVisible}">
-					<h2>Curate your balloon 🎈</h2>
+					<h2><i class="far fa-bookmark"></i> {{ question.prompt }}</h2>
 					<div class="form mt-30">
-						<input v-model="title" type="text" class="title-input" placeholder="Title or subject" ref="titleInput">
-						
-						<div class="mt-30">
+						<div>
 							<quill-editor class="editor" v-model="content" :options="editorOption"></quill-editor>
 						</div>
 					</div>
 				</div>
 
 				<div class="preview-content content ql-snow" :class="{visible: previewVisible}">
-					<!-- <h3>This is what your letter looks like</h3> -->
-					<div class="title-bar">
-						<div>
-							<h1>{{ title }}</h1>
-							<!-- <p class="mt-20">Written by <span class="user-name">{{ user.name }}</span></p> -->
-						</div>
-
+					<div class="top-bar">
+						<h3>This is what your letter looks like</h3>
 						<!-- <img class="profile-picture" :src="userProfilePictureFilePath" alt="Profile picture"> -->
 					</div>
 					
 					<hr class="mt-10">
+					<hr>
+					<br>
+					<br>
 					<div class="preview ql-editor mt-20" v-html="content"></div>
 				</div>
 			</section>
@@ -53,7 +49,7 @@
 </template>
 
 <script>
-import { mapState, mapGetters, mapActions } from 'vuex';
+import { mapState, mapActions } from 'vuex';
 import $ from 'jquery';
 
 import Quill from 'quill';
@@ -92,17 +88,16 @@ export default {
 			}
 		});
 
-		this.$refs.titleInput.focus();
 	},
-	watch: {
-		visible(newState, oldState) {
-			if (newState) {
-				setTimeout(() => {
-					this.$refs.titleInput.focus();
-				}, 300)
-			}
-		}
-	},
+	// watch: {
+	// 	visible(newState, oldState) {
+	// 		if (newState) {
+	// 			setTimeout(() => {
+	// 				this.$refs.titleInput.focus();
+	// 			}, 300)
+	// 		}
+	// 	}
+	// },
 	components: {
 		quillEditor
 	},
@@ -110,12 +105,11 @@ export default {
 	data(){
 		return {
 			scrolled: false,
-			title: '',
 			content: '',
 			isLoading: false,
 			previewVisible: false,
 			editorOption: {
-				placeholder: 'Hey hey, ho ho, not writing a letter has got to go',
+				placeholder: 'Don\'t be shy',
 				modules: {
 					imageCompress: {
 						quality: 0.3,
@@ -124,20 +118,18 @@ export default {
 						debug: false,
 					},
 					toolbar: [
-						['bold', 'italic', 'underline', 'strike'],
-						['blockquote', 'code-block'],
-						[{ 'header': 1 }, { 'header': 2 }],
+						['bold', 'italic', 'underline'],
+						// [{ 'header': 1 }, { 'header': 2 }],
 						[{ 'list': 'ordered' }, { 'list': 'bullet' }],
-						[{ 'script': 'sub' }, { 'script': 'super' }],
-						[{ 'indent': '-1' }, { 'indent': '+1' }],
-						[{ 'direction': 'rtl' }],
+						// [{ 'script': 'sub' }, { 'script': 'super' }],
+						// [{ 'indent': '-1' }, { 'indent': '+1' }],
+						// [{ 'direction': 'rtl' }],
 						[{ 'size': ['small', false, 'large', 'huge'] }],
-						[{ 'header': [1, 2, 3, 4, 5, 6, false] }],
 						[{ 'font': [] }],
 						[{ 'color': [] }, { 'background': [] }],
 						[{ 'align': [] }],
-						['clean'],
-						['link', 'image', 'video']
+						// ['clean'],
+						['image', 'video']
 						],
 				},
 			},
@@ -157,13 +149,17 @@ export default {
 			toggleVisible: 'toggleVisible',
 		}),
 
+		...mapActions('Alert', [
+			'showAlert'
+		]),
+
 		publishLetter(){
 			var vThis = this;
 			$.ajax({
-				url: '/api/auth/model/letter/create',
+				url: '/api/auth/model/balloon/create',
 				method: 'POST',
 				data: {
-					title: vThis.title,
+					questionID: vThis.question.id,
 					content: vThis.content,
 				},
 				
@@ -172,18 +168,23 @@ export default {
 				},
 
 				success(response){
-					vThis.title = '';
 					vThis.content = '';
 					vThis.previewVisible = false;
 					vThis.toggleVisible(false);
-					vThis.$parent.refreshLetters();
+					vThis.showAlert({
+						message: 'Your balloon is out in the wild 🎈'
+					});
+
+					// vThis.$parent.refreshLetters();
 				},
 
 				complete(){
 					vThis.isLoading = false;
 				},
 				error(){
-					alert('There was an error submitting your balloon :(');
+					vThis.showAlert({
+						message: 'There was an error creating your balloon, maybe try again?'
+					});
 				}
 			});
 		},
@@ -192,10 +193,10 @@ export default {
 			if (this.previewVisible) {
 				this.publishLetter();
 			} else {
-				if (this.title.length <= 0) {
-					alert("The title can't be empty :(");
-				} else if(this.content.length <= 0){
-					alert("The letter contents can't be empty :(");
+				if(this.content.length <= 0){
+					this.showAlert({
+						message: "You can't create an empty balloon 🙄"
+					});
 				} else {
 					this.previewVisible = true;
 				}
@@ -206,6 +207,7 @@ export default {
 	computed: {
 		...mapState('ShareAnswerDialog', [
 			'visible',
+			'question'
 		]),
 	},
 }
@@ -228,7 +230,7 @@ export default {
 		& > .container{
 			width: 100%;
 			height: 100%;
-			// max-width: 800px;
+			max-width: 800px;
 			margin: 0 auto;
 			background: white;
 			overflow-y: auto;
@@ -236,7 +238,7 @@ export default {
 			position: relative;
 			padding-bottom: 100px;
 
-			.top-bar{
+			& > .top-bar{
 				width: 100%;
 				max-width: 800px;
 				position: fixed;
@@ -277,11 +279,6 @@ export default {
 			}
 			& > .editor-content{
 				.form{
-					.title-input{
-						padding: 1em;
-						width: 100%;
-						letter-spacing: 1px;
-					}
 					.ql-container{
 						min-height: inherit;
 					}
@@ -294,21 +291,20 @@ export default {
 
 			& > .preview-content{
 				transform: translateX(100%);
+				& > .top-bar{
+					// display: flex;
+					// justify-content: space-between;
+					// align-items: center;
+					// .user-name{
+						// font-weight: bold;
+						// color: $green;
+					// }
 
-				& > .title-bar{
-					display: flex;
-					justify-content: space-between;
-					align-items: center;
-					.user-name{
-						font-weight: bold;
-						color: $green;
-					}
-
-					.profile-picture{
-						width: 70px;
-						height: 70px;
-						border-radius: 100%;
-					}
+					// .profile-picture{
+						// width: 70px;
+						// height: 70px;
+						// border-radius: 100%;
+					// }
 				}
 			}
 		}

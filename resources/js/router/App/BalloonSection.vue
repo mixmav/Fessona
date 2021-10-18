@@ -1,14 +1,18 @@
 <template>
 	<div class="vRouterPageComponent-App-balloon-section-container">
-		<p class="text-decor primary">{{question}}</p>
+		<div class="prompts">
+			<h1><i class="far fa-bookmark"></i>We asked</h1>
+			<p class="text-decor primary">{{question.prompt}}</p>
+			<button class="btn mt-10" id="tourSteps-target-2" v-ripple @click="showShareAnswerDialog"><i class="fa fa-plus"></i>Share your answer</button>
+		</div>
 		
-		<!-- <youtube :video-id="videoID"></youtube> -->
-
-		<button class="btn mt-10" id="tourSteps-target-2" v-ripple @click="toggleShareAnswerDialogVisible(true)"><i class="fa fa-plus"></i>Share your answer</button>
+		<div style="text-align: center" v-show="loading" class="mt-30">
+			<p>Fetching balloons ⚡</p>
+			<loading class="mt-10"></loading>
+		</div>
 		<div class="balloons custom-scrollbar">
-			<div class="balloon no-select" v-for="i in balloonCount" :key="i" :style="generateBalloonStyle(i)" @click="toggleBallonContentDialogVisible(true)">
+			<div class="balloon no-select" v-for="i in balloons" :key="i.id" :style="generateBalloonStyle(i)" @click="showBalloonContent(i)">
 				<i class="fab fa-youtube"></i>
-				{{ i }}
 			</div>
 		</div>
 	</div>
@@ -17,15 +21,24 @@
 <script>
 import { mapActions, mapState } from 'vuex';
 import _ from 'lodash';
+import $ from 'jquery';
+import Loading from '../../components/Loading.vue';
 
 export default {
+	components: {
+		Loading,
+	},
 	props: [
 		'question'
 	],
 	data(){
 		return {
-			balloonCount: _.random(5, 50),
+			loading: false,
+			balloons: [],
 		}
+	},
+	created(){
+		this.refreshBalloons();
 	},
 	methods: {
 		generateBalloonStyle(i){
@@ -44,12 +57,50 @@ export default {
 		},
 
 		...mapActions('ShareAnswerDialog', {
+			updateShareAnswerDialogQuestion: 'updateQuestion',
 			toggleShareAnswerDialogVisible: 'toggleVisible',
 		}),
 
 		...mapActions('BalloonContentDialog', {
+			updateBallonContentDialogBalloon: 'updateBalloon',
 			toggleBallonContentDialogVisible: 'toggleVisible',
 		}),
+
+		showShareAnswerDialog(){
+			this.updateShareAnswerDialogQuestion(this.question);
+			this.toggleShareAnswerDialogVisible(true);
+		},
+		showBalloonContent(balloon){
+			this.updateBallonContentDialogBalloon(balloon)
+			this.toggleBallonContentDialogVisible(true);
+		},
+
+		refreshBalloons(){
+			var vThis = this;
+			$.ajax({
+				url: '/api/auth/model/balloon/get-all-for-question',
+				method: 'POST',
+				data: {
+					questionID: this.question.id
+				},
+				beforeSend(){
+					vThis.loading = true;
+				},
+				success(response){
+					setTimeout(() => {
+						vThis.balloons = response;
+					}, 1000);
+				},
+				complete(){
+					setTimeout(() => {
+						vThis.loading = false;
+					}, 1000);
+				},
+				error(){
+					alert('There was an error fetching data. Try refreshing the page.');
+				}
+			});
+		},
 	},
 }
 </script>
@@ -60,14 +111,22 @@ export default {
 
 .vRouterPageComponent-App-balloon-section-container{
 	width: 100%;
-	max-width: 600px;
-	margin: 0 auto;
-	p{
-		font-size: 1.4em;
+	.prompts{
+		width: 100%;
+		max-width: 400px;
+		margin: 0 auto;
+		// text-align: initial;
+		h1{
+			font-size: 1.4em;
+		}
+		p{
+			font-size: 1.2em;
+		}
 	}
 	.balloons{
 		margin-top: 20px;
 		padding: 1em;
+		text-align: center;
 		.balloon{
 			background: $green;
 			display: inline-flex;
@@ -80,12 +139,7 @@ export default {
 			cursor: pointer;
 			transition: all .15s;
 			&:hover{
-				transform: scale(1.1, 1.1) skew(5deg);
-			}
-			&:nth-child(odd){
-				&:hover{
-					transform: scale(1.1, 1.1) skew(-5deg);
-				}
+				transform: scale(1.1, 1.1);
 			}
 		}
 	}

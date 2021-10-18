@@ -1,5 +1,5 @@
 <template>
-	<div class="vRouterPage-browse-sites-page-container">
+	<div class="vRouterPage-main-app-page-container">
 		
 		<div class="main-page-content">
 			<div class="top-bar">
@@ -16,14 +16,18 @@
 			</transition>
 
 			<div class="page-content custom-scrollbar">
-				<h1>Crowdsourced balloons 🎈</h1>
+				<div class="main-heading-and-shit">
+					<h1>Crowdsourced balloons 🎈</h1>
+					<div class="swiper-pagination"></div>
+				</div>
+				
 				<swiper ref="mySwiper" :options="swiperOptions">
-					<swiper-slide v-for="i in ballonSections" :key="i.id">
-						<balloon-section :question="i.question"></balloon-section>
+					<swiper-slide v-for="i in ballonSectionQuestions" :key="i.id">
+						<balloon-section :question="i"></balloon-section>
 					</swiper-slide>
 					<div class="swiper-button-prev" slot="button-prev"></div>
 					<div class="swiper-button-next" slot="button-next"></div>
-				</swiper>
+				</swiper>					
 			</div>
 		</div>
 	</div>
@@ -54,30 +58,27 @@ export default {
 				navigation: {
 					nextEl: '.swiper-button-next',
 					prevEl: '.swiper-button-prev'
-				}
+				},
+				pagination: {
+					el: '.swiper-pagination',
+					type: 'bullets',
+					clickable: true,
+				},
 				// Some Swiper option/callback...
 			},
 
-			ballonSections: [
+			ballonSectionQuestions: [
 				{
 					id: 0,
-					question: "What makes you feel grounded?",
+					prompt: "Share something that makes you smile!",
 				},
 				{
 					id: 1,
-					question: "What's one YouTube video that never fails to cheer you up?",
+					prompt: "Share something that warms your heart 🥰",
 				},
 				{
 					id: 2,
-					question: 'What gets your creative juices flowing?',
-				},
-				{
-					id: 3,
-					question: "Fav hype anthem",
-				},
-				{
-					id: 4,
-					question: "Fav hype anthem",
+					prompt: 'Share something creative that inspires you 💡',
 				},
 			]
 		}
@@ -123,7 +124,9 @@ export default {
 				this.updatePageScrolled(false);
 			}
 		});
-
+		// this.showAlert({
+		// 	message: 'Your balloons are ready! Click around to explore 🎈'
+		// });
 		// this.swiper.slideTo(3, 1000, false);
 	},
 }
@@ -133,7 +136,7 @@ export default {
 <style lang="scss">
 @import "../../../scss/variables";
 
-.vRouterPage-browse-sites-page-container{
+.vRouterPage-main-app-page-container{
 	.main-page-content{
 		background: transparent;
 		animation: backgroundToWhite linear .3s;
@@ -158,15 +161,20 @@ export default {
 
 		.page-content{
 			padding: 0em {
-				top: 50px;
+				top: 30px;
 			};
+			text-align: center;
 			position: fixed;
-			top: 78px;
+			top: 78px; //Top bar height
 			left: 0;
 			width: 100%;
 			height: calc(100% - 70px);
 			overflow: auto;
-			text-align: center;
+			.main-heading-and-shit{
+				h1{
+					font-size: 1.6em;
+				}
+			}
 			.swiper-wrapper{
 				margin-top: 20px;
 			}
@@ -178,8 +186,20 @@ export default {
 				left: 20px;
 				position: fixed;
 			}
-			h1{
-				font-size: 1.8em;
+			.swiper-pagination{
+				position: relative;
+				margin-top: 10px;
+				// text-align: initial;
+				.swiper-pagination-bullet{
+					margin-left: 10px;
+					&:first-child{
+						margin-left: 0;
+					}
+
+					&.swiper-pagination-bullet-active{
+						background: $primary-color;
+					}
+				}
 			}
 		}
 	}

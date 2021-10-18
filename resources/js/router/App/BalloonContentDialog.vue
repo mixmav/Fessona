@@ -1,12 +1,11 @@
 <template>
 	<div class="vPage-component-balloon-content-dialog-container generic-dialog-container" ref="container" :class="[{visible: visible}]" @click="checkClickClose">
+
 		<transition name="translate-y-minus-100px" delay="300">
-			
 			<section class="container" v-show="visible" ref="scrollContainer">
 				<div class="letter-view ql-snow">
 					<div class="top-bar" :class="{'z-depth-1': scrolled}">
-						<button v-ripple class="btn green full-width jumbo" @click="toggleVisible(false)"><i class="fa fa-window-close"></i>Close dialog</button>
-						<button :disabled="isLoading" v-ripple class="btn blue full-width jumbo mt-10" @click="toggleViewLetterCommentsVisible(true)"><i class="fa fa-comments"></i>Comments</button>
+						<button v-ripple class="btn green full-width" @click="toggleVisible(false)"><i class="fa fa-window-close"></i>Close dialog</button>
 					</div>
 					
 					<div class="loading-icon-container mt-50" v-show="isLoading">
@@ -16,25 +15,24 @@
 					<div v-show="!isLoading">
 						<div class="title-bar mt-50">
 							<div>
-								<h1>{{ letter.title }}</h1>
-								<p class="mt-20">Written by <span class="user-name">{{ user.name }}</span> on {{ letter.created_at }}</p>
+								<p class="mt-20">Written by <span class="user-name">Anon</span> on {{ balloon.created_at }}</p>
 							</div>
 
-							<img class="profile-picture" :src="userProfilePictureFilePath" alt="Profile picture">
+							<!-- <img class="profile-picture" :src="userProfilePictureFilePath" alt="Profile picture"> -->
 						</div>
 						
 						<hr class="mt-10">
-						<div class="preview ql-editor mt-20" v-html="letter.content"></div>
+						<div class="preview ql-editor mt-20" v-html="balloon.content"></div>
 					</div>
 				</div>
 			</section>
-
 		</transition>
+
 	</div>
 </template>
 
 <script>
-import { mapState, mapGetters, mapActions } from 'vuex';
+import { mapState, mapActions } from 'vuex';
 
 import $ from 'jquery';
 
@@ -72,8 +70,6 @@ export default {
 		return {
 			isLoading: false,
 			scrolled: false,
-			letter: {},
-			user: {},
 		}
 	},
 
@@ -94,11 +90,8 @@ export default {
 	computed: {
 		...mapState('BalloonContentDialog', [
 			'visible',
+			'balloon'
 		]),
-
-		videoID(){
-			return this.$youtube.getIdFromURL("https://www.youtube.com/watch?v=uLhQxaFn_yE&ab_channel=GoogleAustralia");
-		}
 	},
 }
 </script>

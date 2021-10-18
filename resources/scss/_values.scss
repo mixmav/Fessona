@@ -307,7 +307,6 @@ i, span{
 		width: 0;
 	}
 	&:hover{
-		transform: scale(1.08, 1.08);
 		color: $darkBlack;
 		&::after{ 
 			width: 100%; 

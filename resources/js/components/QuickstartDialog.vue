@@ -10,11 +10,11 @@
 
 				<h2 class="quickstart-heading-2" v-scroll-to="generateVueScrollToConfig('quickstart-heading-2')"><span>#</span> Quickstart guide</h2>
 				
-				<p>We crowdsource nuggets of good vibes from our community here at RMIT using a question-answer format.</p>
+				<p>Using a simple question-answer format, we crowdsource nuggets of good vibes from our community here at RMIT.</p>
 				<br>
 				<p>Each answer is stored as a balloon 🎈</p>
 				
-				<button class="btn mt-30" v-show="this.$route.name == 'Home'" v-ripple @click="getStarted"><i class="fa fa-play-circle"></i>Get started</button>
+				<button class="btn full-width mt-30" v-show="this.$route.name == 'Home'" v-ripple @click="getStarted"><i class="fa fa-play-circle"></i>Start exploring</button>
 				<!-- <p class="mt-30">Made with ❤️ by <a class="a" href="https://instagram.com/mav.ew" target="_BLANK">Manav</a></p> -->
 			</div>
 		</transition>

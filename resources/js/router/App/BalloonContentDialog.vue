@@ -2,10 +2,10 @@
 	<div class="vPage-component-balloon-content-dialog-container generic-dialog-container" ref="container" :class="[{visible: visible}]" @click="checkClickClose">
 
 		<transition name="translate-y-minus-100px" delay="300">
-			<section class="container" v-show="visible" ref="scrollContainer">
+			<section class="container custom-scrollbar" v-show="visible" ref="scrollContainer">
 				<div class="letter-view ql-snow">
 					<div class="top-bar" :class="{'z-depth-1': scrolled}">
-						<button v-ripple class="btn green full-width" @click="toggleVisible(false)"><i class="fa fa-window-close"></i>Close dialog</button>
+						<button v-ripple class="btn primary full-width" @click="toggleVisible(false)"><i class="fa fa-window-close"></i>Close dialog</button>
 					</div>
 					
 					<div class="loading-icon-container mt-50" v-show="isLoading">
@@ -14,11 +14,8 @@
 
 					<div v-show="!isLoading">
 						<div class="title-bar mt-50">
-							<div>
-								<p class="mt-20">Written by <span class="user-name">Anon</span> on {{ balloon.created_at }}</p>
-							</div>
-
-							<!-- <img class="profile-picture" :src="userProfilePictureFilePath" alt="Profile picture"> -->
+							<p class="mt-20">Written by <span class="text-decor bold primary">Anon</span> on <span class="text-decor bold">{{ balloon.created_at }}</span></p>
+							<img class="profile-picture" :src="'https://avatars.dicebear.com/api/bottts/' + balloon.id + '.svg'" alt="Profile picture">
 						</div>
 						
 						<hr class="mt-10">
@@ -33,7 +30,6 @@
 
 <script>
 import { mapState, mapActions } from 'vuex';
-
 import $ from 'jquery';
 
 export default {
@@ -105,35 +101,23 @@ export default {
 		& > .container{
 			max-height: 350px;
 			max-width: 500px;
-			& > .top-bar{
-				display: flex;
-				justify-content: flex-end;
-			}
 
-			section{
-				.author-bar{
-					width: 100%;
-					display: flex;
-					justify-content: space-between;
-					align-items: center;
-					margin-top: 20px;
-					margin-bottom: 10px;
-					p{
-						span{
-							font-weight: bold;
-							color: $primary-color;
-						}
-					}
-					img{
-						width: 50px;
-						border: solid 1px rgba(black, 0.1);
-						border-radius: 100%;
-						padding: 5px;
-						height: 50px;
-					}
+			.title-bar{
+				width: 100%;
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+				margin-top: 20px;
+				margin-bottom: 10px;
+				img{
+					width: 50px;
+					border: solid 1px rgba(black, 0.1);
+					border-radius: 100%;
+					padding: 5px;
+					height: 50px;
 				}
-				
 			}
+				
 		}
 	}
 </style>

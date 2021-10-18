@@ -3,13 +3,22 @@
 		<div class="prompts">
 			<h1><i class="far fa-bookmark"></i>We asked</h1>
 			<p class="text-decor primary">{{question.prompt}}</p>
-			<button class="btn mt-10" id="tourSteps-target-2" v-ripple @click="showShareAnswerDialog"><i class="fa fa-plus"></i>Share your answer</button>
+
+			<div class="badges">
+				<p>Might contain</p>
+				<div class="badge" v-for="badge in question.badges" :key="badge">{{ badge }}</div>
+			</div>
+
+			<button class="btn mt-10" v-ripple @click="showShareAnswerDialog"><i class="fa fa-plus"></i>Share your answer</button>
 		</div>
 		
 		<div style="text-align: center" v-show="loading" class="mt-30">
 			<p>Fetching balloons ⚡</p>
 			<loading class="mt-10"></loading>
 		</div>
+		
+		<h3 class="mt-30" v-show="!loading && balloons.length === 0">Oh so empty 😶</h3>
+
 		<div class="balloons custom-scrollbar">
 			<div class="balloon no-select" v-for="i in balloons" :key="i.id" :style="generateBalloonStyle(i)" @click="showBalloonContent(i)">
 				<i class="fab fa-youtube"></i>
@@ -121,6 +130,32 @@ export default {
 		}
 		p{
 			font-size: 1.2em;
+		}
+
+		.badges{
+			margin: 10px;
+			// text-align: left;
+			p{
+				font-size: .8em;
+				margin-bottom: 5px;
+			}
+			.badge{
+				display: inline-block;
+				margin-left: 3px;
+				padding: 10px {
+					top: 5px;
+					bottom: 5px;
+				};
+				border-radius: 10px;
+				background: darken(white, 5%);
+				border: solid 1px darken(white, 10%);
+				transition: all .2s;
+				cursor: default;
+				&:hover{
+					background: $primary-color;
+					color: white;
+				}
+			}
 		}
 	}
 	.balloons{

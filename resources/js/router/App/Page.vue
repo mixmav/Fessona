@@ -27,7 +27,7 @@
 					</swiper-slide>
 					<div class="swiper-button-prev" slot="button-prev"></div>
 					<div class="swiper-button-next" slot="button-next"></div>
-				</swiper>					
+				</swiper>
 			</div>
 		</div>
 	</div>
@@ -71,14 +71,17 @@ export default {
 				{
 					id: 0,
 					prompt: "Share something that makes you smile!",
+					badges: ['Vines', 'Cat videos','Memes'],
 				},
 				{
 					id: 1,
 					prompt: "Share something that warms your heart 🥰",
+					badges: ['something', 'something'],
 				},
 				{
 					id: 2,
 					prompt: 'Share something creative that inspires you 💡',
+					badges: ['something', 'something'],
 				},
 			]
 		}
@@ -124,10 +127,10 @@ export default {
 				this.updatePageScrolled(false);
 			}
 		});
-		// this.showAlert({
-		// 	message: 'Your balloons are ready! Click around to explore 🎈'
-		// });
-		// this.swiper.slideTo(3, 1000, false);
+		this.showAlert({
+			message: 'Your balloons are ready! Click around to explore 🎈'
+		});
+		this.swiper.slideTo(1, 1000, false);
 	},
 }
 

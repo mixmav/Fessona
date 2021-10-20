@@ -1,6 +1,6 @@
 <template>
 	<div class="vPage-component-mood-selector-dialog-container generic-dialog-container" ref="container" :class="[{visible: visible}, {maximized: maximized}]" @click="checkClickClose">
-		
+
 		<transition name="translate-y-minus-100px" delay="300">
 			<section class="container" v-show="visible">
 				<transition name="translate-x-minus-100px-opacity">

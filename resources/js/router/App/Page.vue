@@ -20,10 +20,12 @@
 					<h1>Crowdsourced balloons 🎈</h1>
 					<div class="swiper-pagination"></div>
 				</div>
-				
+
+				<loading v-show="loading"></loading>
+
 				<swiper ref="mySwiper" :options="swiperOptions">
-					<swiper-slide v-for="i in ballonSectionQuestions" :key="i.id">
-						<balloon-section :question="i"></balloon-section>
+					<swiper-slide v-for="question in questions" :key="question.id">
+						<balloon-section :question="question"></balloon-section>
 					</swiper-slide>
 					<div class="swiper-button-prev" slot="button-prev"></div>
 					<div class="swiper-button-next" slot="button-next"></div>
@@ -40,7 +42,7 @@ import BalloonContentDialog from './BalloonContentDialog.vue';
 import ShareAnswerDialog from './ShareAnswerDialog.vue';
 import BalloonSection from './BalloonSection.vue';
 import { Swiper, SwiperSlide } from 'vue-awesome-swiper'
-
+import Loading from '../../components/Loading.vue';
 
 export default {
 	components: {
@@ -49,11 +51,48 @@ export default {
 		SwiperSlide,
 		BalloonContentDialog,
 		ShareAnswerDialog,
+		Loading,
+	},
+
+	mounted(){
+		var $window = $('.page-content');
+		$window.on('scroll', (event) => {
+			if ($window.scrollTop() > 80){
+				this.updatePageScrolled(true);
+			} else {
+				this.updatePageScrolled(false);
+			}
+		});
+
+		this.swiper.slideTo(1, 1000, false);
+
+		let vThis = this;
+		$.ajax({
+			url: '/api/model/question/get-all',
+			method: 'POST',
+			beforeSend(){
+				vThis.loading = true;
+			},
+			success(response){
+				setTimeout(() => {
+					vThis.questions = response;
+				}, 1000);
+			},
+			complete(){
+				setTimeout(() => {
+					vThis.loading = false;
+				}, 1000);
+			},
+			error(){
+				vThis.showAlert({
+					message: 'There was an error fetching data. Try refreshing the page.'
+				});
+			}
+		});
 	},
 
 	data(){
 		return {
-
 			swiperOptions: {
 				navigation: {
 					nextEl: '.swiper-button-next',
@@ -64,26 +103,10 @@ export default {
 					type: 'bullets',
 					clickable: true,
 				},
-				// Some Swiper option/callback...
 			},
 
-			ballonSectionQuestions: [
-				{
-					id: 0,
-					prompt: "Share something that makes you smile!",
-					badges: ['Vines', 'Cat videos','Memes'],
-				},
-				{
-					id: 1,
-					prompt: "Share something that warms your heart 🥰",
-					badges: ['something', 'something'],
-				},
-				{
-					id: 2,
-					prompt: 'Share something creative that inspires you 💡',
-					badges: ['something', 'something'],
-				},
-			]
+			questions: [],
+			loading: false,
 		}
 	},
 
@@ -117,20 +140,6 @@ export default {
 		...mapActions([
 			'updatePageScrolled',
 		]),
-	},
-	mounted(){
-		var $window = $('.page-content');
-		$window.on('scroll', (event) => {
-			if ($window.scrollTop() > 80){
-				this.updatePageScrolled(true);
-			} else {
-				this.updatePageScrolled(false);
-			}
-		});
-		this.showAlert({
-			message: 'Your balloons are ready! Click around to explore 🎈'
-		});
-		this.swiper.slideTo(1, 1000, false);
 	},
 }
 

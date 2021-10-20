@@ -30,11 +30,6 @@
  */
 
 /*!
- * Vue YouTube Embed version 2.2.2
- * under MIT License copyright 2019 kaorun343
- */
-
-/*!
  * Vue.js v2.6.14
  * (c) 2014-2021 Evan You
  * Released under the MIT License.

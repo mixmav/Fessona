@@ -6,7 +6,7 @@
 
 			<div class="badges">
 				<p>Might contain</p>
-				<div class="badge" v-for="badge in question.badges" :key="badge">{{ badge }}</div>
+				<div class="badge" v-for="(badge, key) in question.badges" :key="key">{{ badge }}</div>
 			</div>
 
 			<button class="btn mt-10" v-ripple @click="showShareAnswerDialog"><i class="fa fa-plus"></i>Share your answer</button>
@@ -28,7 +28,7 @@
 </template>
 
 <script>
-import { mapActions, mapState } from 'vuex';
+import { mapActions } from 'vuex';
 import _ from 'lodash';
 import $ from 'jquery';
 import Loading from '../../components/Loading.vue';
@@ -75,6 +75,10 @@ export default {
 			toggleBallonContentDialogVisible: 'toggleVisible',
 		}),
 
+		...mapActions('Alert', [
+			'showAlert'
+		]),
+
 		showShareAnswerDialog(){
 			this.updateShareAnswerDialogQuestion(this.question);
 			this.toggleShareAnswerDialogVisible(true);
@@ -87,7 +91,7 @@ export default {
 		refreshBalloons(){
 			var vThis = this;
 			$.ajax({
-				url: '/api/auth/model/balloon/get-all-for-question',
+				url: '/api/model/balloon/get-all-for-question',
 				method: 'POST',
 				data: {
 					questionID: this.question.id
@@ -98,6 +102,11 @@ export default {
 				success(response){
 					setTimeout(() => {
 						vThis.balloons = response;
+						if (process.env.NODE_ENV === 'production') {
+							vThis.showAlert({
+								message: 'Your balloons are ready! Click around to explore 🎈'
+							});
+						}
 					}, 1000);
 				},
 				complete(){
@@ -106,7 +115,9 @@ export default {
 					}, 1000);
 				},
 				error(){
-					alert('There was an error fetching data. Try refreshing the page.');
+					vThis.showAlert({
+						message: 'There was an error fetching data. Try refreshing the page.'
+					});
 				}
 			});
 		},

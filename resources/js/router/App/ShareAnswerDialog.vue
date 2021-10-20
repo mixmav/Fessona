@@ -54,7 +54,14 @@ import $ from 'jquery';
 
 import Quill from 'quill';
 import ImageCompress from 'quill-image-compress';
+import { ImageDrop } from 'quill-image-drop-module';
+import MagicUrl from 'quill-magic-url';
+import BlotFormatter from "quill-blot-formatter";
+
+Quill.register('modules/imageDrop', ImageDrop);
 Quill.register('modules/imageCompress', ImageCompress);
+Quill.register('modules/magicUrl', MagicUrl)
+Quill.register("modules/blotFormatter", BlotFormatter);
 
 import 'quill/dist/quill.core.css'
 import 'quill/dist/quill.snow.css'
@@ -89,15 +96,6 @@ export default {
 		});
 
 	},
-	// watch: {
-	// 	visible(newState, oldState) {
-	// 		if (newState) {
-	// 			setTimeout(() => {
-	// 				this.$refs.titleInput.focus();
-	// 			}, 300)
-	// 		}
-	// 	}
-	// },
 	components: {
 		quillEditor
 	},
@@ -110,6 +108,7 @@ export default {
 			previewVisible: false,
 			editorOption: {
 				placeholder: 'Don\'t be shy',
+				theme: 'snow',
 				modules: {
 					imageCompress: {
 						quality: 0.3,
@@ -117,20 +116,18 @@ export default {
 						maxHeight: 1000,
 						debug: false,
 					},
+					blotFormatter: {},
+					imageDrop: true,
+					magicUrl: true,
 					toolbar: [
 						['bold', 'italic', 'underline'],
-						// [{ 'header': 1 }, { 'header': 2 }],
 						[{ 'list': 'ordered' }, { 'list': 'bullet' }],
-						// [{ 'script': 'sub' }, { 'script': 'super' }],
-						// [{ 'indent': '-1' }, { 'indent': '+1' }],
-						// [{ 'direction': 'rtl' }],
 						[{ 'size': ['small', false, 'large', 'huge'] }],
 						[{ 'font': [] }],
 						[{ 'color': [] }, { 'background': [] }],
 						[{ 'align': [] }],
-						// ['clean'],
 						['image', 'video']
-						],
+					],
 				},
 			},
 		}
@@ -156,7 +153,7 @@ export default {
 		publishLetter(){
 			var vThis = this;
 			$.ajax({
-				url: '/api/auth/model/balloon/create',
+				url: '/api/model/balloon/create',
 				method: 'POST',
 				data: {
 					questionID: vThis.question.id,
@@ -230,7 +227,7 @@ export default {
 		& > .container{
 			width: 100%;
 			height: 100%;
-			max-width: 800px;
+			// max-width: 800px;
 			margin: 0 auto;
 			background: white;
 			overflow-y: auto;
@@ -240,7 +237,7 @@ export default {
 
 			& > .top-bar{
 				width: 100%;
-				max-width: 800px;
+				// max-width: 800px;
 				position: fixed;
 				z-index: $zIndex-share-answer-dialog-top-bar;
 				top: 0;

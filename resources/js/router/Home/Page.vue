@@ -6,12 +6,11 @@
 				<router-link class="a" to="/about">About</router-link>
 			</div>
 			<p style="font-size: 1em">/fə'səunə/</p>
+			<a class="a" @click="toggleQuickstartDialogVisible(true)">How it works</a>
 			<h3 class="mt-10">In Roman mythology, Fessona is thought to be the goddess that cures fatigue 🎈</h3>
 			
 			<img src="/images/plant_in_hands.svg" alt="Hands holding a plant">
-			<button class="btn mt-30" v-ripple @click="toggleQuickstartDialogVisible(true)"><i class="fa fa-charging-station"></i>How it works</button>
-			&nbsp;
-			<button class="btn yellow mt-30" v-ripple @click="toggleMoodSelectorDialogVisible(true)"><i class="fa fa-play-circle"></i>Start</button>
+			<button class="btn primary full-width mt-30" v-ripple @click="toggleMoodSelectorDialogVisible(true)"><i class="fa fa-feather-alt"></i>Start exploring</button>
 			<p class="mt-20">Made with ❤️ by <a class="a" href="https://instagram.com/mav.ew" target="_BLANK">Manav</a></p>
 		</div>
 	</div>

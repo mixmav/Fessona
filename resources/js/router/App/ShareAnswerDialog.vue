@@ -24,6 +24,11 @@
 
 				<div class="editor-content content" :class="{visible: !previewVisible}">
 					<h2><i class="far fa-bookmark"></i> {{ question.prompt }}</h2>
+					
+					<div class="badges">
+						<p class="text-decor primary">Confused? You can share</p>
+						<div class="badge" v-for="(badge, key) in question.badges" :key="key">{{ badge }}</div>
+					</div>
 					<div class="form mt-30">
 						<div>
 							<quill-editor class="editor" v-model="content" :options="editorOption"></quill-editor>
@@ -275,6 +280,35 @@ export default {
 				}
 			}
 			& > .editor-content{
+				.badges{
+					margin-top: 10px;
+					// text-align: left;
+					p{
+						font-size: 1em;
+						margin-bottom: 5px;
+					}
+					.badge{
+						display: inline-block;
+						margin-left: 3px;
+						padding: 10px {
+							top: 5px;
+							bottom: 5px;
+						};
+						font-size: .8em;
+						border-radius: 10px;
+						background: darken(white, 5%);
+						border: solid 1px darken(white, 10%);
+						transition: all .2s;
+						cursor: default;
+						&:nth-child(2){
+							margin-left: 0;
+						}
+						&:hover{
+							background: $primary-color;
+							color: white;
+						}
+					}
+				}
 				.form{
 					.ql-container{
 						min-height: inherit;

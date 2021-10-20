@@ -2,23 +2,19 @@
 	<div class="vPage-component-balloon-content-dialog-container generic-dialog-container" ref="container" :class="[{visible: visible}]" @click="checkClickClose">
 
 		<transition name="translate-y-minus-100px" delay="300">
-			<section class="container custom-scrollbar" v-show="visible" ref="scrollContainer">
-				<div class="letter-view ql-snow">
-					<div class="top-bar" :class="{'z-depth-1': scrolled}">
-						<button v-ripple class="btn primary full-width" @click="toggleVisible(false)"><i class="fa fa-window-close"></i>Close dialog</button>
-					</div>
-					
-					<div class="loading-icon-container mt-50" v-show="isLoading">
-						<i class="fa fa-smoking-ban fa-spin"></i>
-					</div>
+			<section class="container custom-scrollbar" v-show="visible">
+				<div class="title-bar">
+					<p class="mt-20">Written by <span class="text-decor bold primary">Anon</span> on <span class="text-decor bold">{{ balloon.created_at }}</span></p>
+					<img class="profile-picture" :src="'https://avatars.dicebear.com/api/bottts/' + balloon.id + '.svg'" alt="Profile picture">
+				</div>
 
+				<div class="buttons">
+					<button v-ripple class="icon-btn primary" @click="toggleVisible(false)"><i class="fa fa-window-close"></i></button>			
+					<button class="icon-btn red" v-ripple><i class="fa fa-share-alt"></i></button>
+				</div>
+				<hr class="mt-10">
+				<div class="letter-view ql-snow">
 					<div v-show="!isLoading">
-						<div class="title-bar mt-50">
-							<p class="mt-20">Written by <span class="text-decor bold primary">Anon</span> on <span class="text-decor bold">{{ balloon.created_at }}</span></p>
-							<img class="profile-picture" :src="'https://avatars.dicebear.com/api/bottts/' + balloon.id + '.svg'" alt="Profile picture">
-						</div>
-						
-						<hr class="mt-10">
 						<div class="preview ql-editor mt-20" v-html="balloon.content"></div>
 					</div>
 				</div>
@@ -50,22 +46,9 @@ export default {
 		$(window).off('keydown', this.$refs.container);
 	},
 
-	mounted(){
-		var $containerRef = $(this.$refs.scrollContainer);
-		$containerRef.on('scroll', (event) => {
-			if ($containerRef.scrollTop() > 0){
-				this.scrolled = true;
-			} else {
-				this.scrolled = false;
-			}
-		});
-
-	},
-
 	data(){
 		return {
 			isLoading: false,
-			scrolled: false,
 		}
 	},
 
@@ -97,17 +80,16 @@ export default {
 
 	.vPage-component-balloon-content-dialog-container{
 		z-index: $zIndex-share-answer-dialog;
-		
-		& > .container{
-			max-height: 350px;
-			max-width: 500px;
 
+		& > .container{
+			// max-height: 350px;
+			// max-width: 500px;
+			margin: 0;
 			.title-bar{
 				width: 100%;
 				display: flex;
 				justify-content: space-between;
 				align-items: center;
-				margin-top: 20px;
 				margin-bottom: 10px;
 				img{
 					width: 50px;
@@ -115,6 +97,17 @@ export default {
 					border-radius: 100%;
 					padding: 5px;
 					height: 50px;
+				}
+			}
+
+			.buttons{
+				display: flex;
+
+				.icon-btn{
+					margin-left: 10px;
+					&:nth-child(1){
+						margin-left: 0;
+					}
 				}
 			}
 				

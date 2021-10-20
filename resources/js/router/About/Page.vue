@@ -18,7 +18,7 @@
 				<li>Beyond Blue: 1300 22 4636</li>
 			</ul>
 
-			<h2 class="mt-30">SSAF logo also goes here, can't find it lol</h2>
+			<img src="/images/ssaf-logo.jpg" alt="SSAF Logo" class="ssaf-logo">
 		</div>
 	</div>
 </template>
@@ -41,6 +41,13 @@ export default {
 	.main-page-content{
 		max-width: 500px;
 		position: relative !important;
+
+		.ssaf-logo{
+			width: 100%;
+			height: auto;
+			display: block;
+			max-width: 150px;
+		}
 	}
 
 }

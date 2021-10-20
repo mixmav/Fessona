@@ -73,14 +73,15 @@ export default {
 	display: flex;
 	justify-content: center;
 	.main-page-content{
+		max-width: 500px;
+		margin-top: 100px;
+		position: relative !important;
+
 		.top-bar{
 			display: flex;
 			justify-content: space-between;
 			align-items: center;
 		}
-		max-width: 500px;
-		margin-top: 100px;
-		position: relative !important;
 
 		img{
 			display: block;

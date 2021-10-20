@@ -15,6 +15,7 @@
 			<transition name="router-view" mode="out-in">
 				<router-view></router-view>
 			</transition>
+
 			<go-to-top></go-to-top>
 		</div>
     </div>

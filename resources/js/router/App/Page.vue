@@ -155,6 +155,7 @@ export default {
 		animation-delay: .3s;
 		animation-fill-mode: forwards;
 		padding: 0 !important;
+		
 		& > .top-bar{
 			width: 100%;
 			display: flex;

@@ -20,7 +20,7 @@
 		<h3 class="mt-30" v-show="!loading && balloons.length === 0">Oh so empty 😶</h3>
 
 		<div class="balloons custom-scrollbar">
-			<div class="balloon no-select" v-for="i in balloons" :key="i.id" :style="generateBalloonStyle(i)" @click="showBalloonContent(i)">
+			<div class="balloon no-select" v-for="i in shuffledBalloons" :key="i.id" :style="generateBalloonStyle(i)" @click="showBalloonContent(i)">
 				<i class="fab fa-youtube"></i>
 			</div>
 		</div>
@@ -48,6 +48,11 @@ export default {
 	},
 	created(){
 		this.refreshBalloons();
+	},
+	computed: {
+		shuffledBalloons(){
+			return _.shuffle(this.balloons);
+		}
 	},
 	methods: {
 		generateBalloonStyle(i){

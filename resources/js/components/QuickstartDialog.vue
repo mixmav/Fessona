@@ -3,12 +3,9 @@
 		
 		<transition name="translate-y-minus-100px" delay="300">
 			<div class="container custom-scrollbar" v-show="visible">
-				<h1>You made it!</h1>
-				<!-- <br> -->
-				<!-- <p>This year has been tough on everybody. One thing has become apparent</p> -->
-				<!-- <img src="/images/spread_love.svg" class="img" alt="Strangers connecting"> -->
+				<h1>You made it 😇</h1>
 
-				<h2 class="quickstart-heading-2" v-scroll-to="generateVueScrollToConfig('quickstart-heading-2')"><span>#</span> Quickstart</h2>
+				<h2 class="quickstart-heading-2" v-scroll-to="generateVueScrollToConfig('quickstart-heading-2')"><span>#</span> What we do</h2>
 				
 				<p>Using a simple question-answer format, we crowdsource nuggets of good vibes from our community here at RMIT.</p>
 				<br>
@@ -17,9 +14,9 @@
 				<button class="btn full-width mt-30" v-show="this.$route.name == 'Home'" v-ripple @click="getStarted"><i class="fa fa-fighter-jet"></i>Start exploring</button>
 				
 				<div style="text-align: center" class="mt-10">
-					<router-link to="/about" class="a">More info</router-link>
+					<button class="a" @click="goToAboutPage">More info</button>
 				</div>
-				<!-- <p class="mt-30">Made with ❤️ by <a class="a" href="https://instagram.com/mav.ew" target="_BLANK">Manav</a></p> -->
+
 			</div>
 		</transition>
 		
@@ -105,6 +102,10 @@ export default {
 			setTimeout(() => {
 				this.toggleMoodSelectorDialogVisible(true);
 			}, 300);
+		},
+		goToAboutPage(){
+			this.toggleMoodSelectorDialogVisible(false);
+			this.$router.push('/about');
 		}
 	},
 
@@ -149,10 +150,6 @@ export default {
 					margin-top: 0;
 				}
 			}
-
-			// p{
-			// 	font-size: 1.1em;
-			// }
 
 			.img{
 				width: 100%;

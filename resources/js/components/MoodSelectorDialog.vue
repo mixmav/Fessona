@@ -2,14 +2,16 @@
 	<div class="vPage-component-mood-selector-dialog-container generic-dialog-container" ref="container" :class="[{visible: visible}, {maximized: maximized}]" @click="checkClickClose">
 
 		<transition name="translate-y-minus-100px" delay="300">
-			<section class="container" v-show="visible">
+			<div class="container" v-show="visible">
 				<transition name="translate-x-minus-100px-opacity">
 					<div class="slidable-page page-1 custom-scrollbar" v-show="page == 1">
 						<div style="justify-content: space-between; align-items: center; display: flex;">
-							<h1>Let's check-in</h1>
+							<h1>How u doin'</h1>
 							<button class="btn red" @click="!isLoading && toggleVisible(false)" v-ripple><i class="fa fa-keyboard"></i>Close</button>
 						</div>
-						<p class="mt-20">Courtesy of being human, we all experience a wide spectrum of emotions, both positive and afflictive.</p>
+						<h2 class="mt-20">Birth, death, and the silly bit in-between.</h2>
+						
+						<p class="mt-10">Courtesy of being human, we experience a whole spectrum of emotions.</p>
 						<p class="mt-10">What are you most in-need of right now?</p>
 						<div class="mood-selector">
 							<button class="mood no-select" v-for="mood in moods" :key="mood.id" :class="{selected: mood.selected}" @click="updateSelectedMood(mood.id, $event)">{{ mood.icon }}</button>
@@ -55,7 +57,7 @@
 						</div>
 					</div>
 				</transition>
-			</section>
+			</div>
 		</transition>
 	</div>
 </template>
@@ -299,7 +301,7 @@ export default {
 			}
 		}
 		& > .container{
-			max-height: 450px;
+			max-height: 520px;
 			max-width: 500px;
 			position: relative;
 			padding: 0;

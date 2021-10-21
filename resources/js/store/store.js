@@ -3,7 +3,6 @@ import Vuex from 'vuex';
 
 Vue.use(Vuex);
 
-import { Alert } from './modules/Alert';
 import { QuickstartDialog } from './modules/QuickstartDialog';
 import { MoodSelectorDialog } from './modules/MoodSelectorDialog';
 import { ShareAnswerDialog } from './modules/ShareAnswerDialog';
@@ -13,7 +12,6 @@ export const store = new Vuex.Store({
 	strict: process.env.NODE_ENV !== 'production',
 
 	modules: {
-		Alert: Alert,
 		QuickstartDialog: QuickstartDialog,
 		MoodSelectorDialog: MoodSelectorDialog,
 		ShareAnswerDialog: ShareAnswerDialog,

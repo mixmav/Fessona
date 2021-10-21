@@ -37,6 +37,7 @@
         "vue-cookie": "^1.1.4",
         "vue-quill-editor": "^3.0.6",
         "vue-scrollto": "^2.20.0",
+        "vue-toastification": "^1.7.14",
         "vuex-map-fields": "^1.4.1"
     }
 }

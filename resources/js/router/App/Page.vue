@@ -84,9 +84,7 @@ export default {
 				}, 1000);
 			},
 			error(){
-				vThis.showAlert({
-					message: 'There was an error fetching data. Try refreshing the page.'
-				});
+				vThis.$toast.error('There was an error fetching data. Try refreshing the page.');
 			}
 		});
 	},
@@ -125,10 +123,6 @@ export default {
 	},
 
 	methods: {
-		...mapActions('Alert', [
-			'showAlert'
-		]),
-
 		...mapActions('QuickstartDialog', {
 			toggleQuickstartDialogVisible: 'toggleVisible',
 		}),

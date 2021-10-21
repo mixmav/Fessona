@@ -32,10 +32,6 @@ export default {
 	},
 	
 	methods: {
-		...mapActions('Alert', [
-			'showAlert',
-		]),
-		
 		...mapActions('QuickstartDialog', {
 			toggleQuickstartDialogVisible: 'toggleVisible',
 		}),

@@ -80,10 +80,6 @@ export default {
 			toggleBallonContentDialogVisible: 'toggleVisible',
 		}),
 
-		...mapActions('Alert', [
-			'showAlert'
-		]),
-
 		showShareAnswerDialog(){
 			this.updateShareAnswerDialogQuestion(this.question);
 			this.toggleShareAnswerDialogVisible(true);
@@ -108,9 +104,8 @@ export default {
 					setTimeout(() => {
 						vThis.balloons = response;
 						// TODO CHANGE TO NOTIFICATION
-						// vThis.showAlert({
-						// 	message: 'Your balloons are ready! Click around to explore 🎈'
-						// });
+						//lol just once plz.
+						vThis.$toast.info("Your balloons are ready 🎈");
 					}, 1000);
 				},
 				complete(){
@@ -119,9 +114,7 @@ export default {
 					}, 1000);
 				},
 				error(){
-					vThis.showAlert({
-						message: 'There was an error fetching data. Try refreshing the page.'
-					});
+					vThis.$toast.error('There was an error fetching data. Try refreshing the page.');
 				}
 			});
 		},

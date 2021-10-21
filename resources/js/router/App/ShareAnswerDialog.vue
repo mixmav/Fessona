@@ -151,10 +151,6 @@ export default {
 			toggleVisible: 'toggleVisible',
 		}),
 
-		...mapActions('Alert', [
-			'showAlert'
-		]),
-
 		publishLetter(){
 			var vThis = this;
 			$.ajax({
@@ -173,20 +169,16 @@ export default {
 					vThis.content = '';
 					vThis.previewVisible = false;
 					vThis.toggleVisible(false);
-					vThis.showAlert({
-						message: 'Your balloon is out in the wild 🎈'
-					});
+					vThis.$toast.success('Your balloon is out in the wild 🎈');
 
-					// vThis.$parent.refreshLetters();
+					// TODO vThis.$parent.refreshLetters();
 				},
 
 				complete(){
 					vThis.isLoading = false;
 				},
 				error(){
-					vThis.showAlert({
-						message: 'There was an error creating your balloon, maybe try again?'
-					});
+					vThis.$toast.error('There was an error creating your balloon, maybe try again?');
 				}
 			});
 		},
@@ -196,9 +188,7 @@ export default {
 				this.publishLetter();
 			} else {
 				if(this.content.length <= 0){
-					this.showAlert({
-						message: "You can't create an empty balloon 🙄"
-					});
+					this.$toast.error("You can't create an empty balloon 🙄");
 				} else {
 					this.previewVisible = true;
 				}

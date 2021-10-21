@@ -5,7 +5,13 @@ import Ripple from 'vue-ripple-directive';
 import VueRouter from 'vue-router';
 import VueScrollTo from 'vue-scrollto';
 import VueCookie from 'vue-cookie';
+import Toast from "vue-toastification";
+const options = {
+	
+};
 
+
+Vue.use(Toast, options);
 Vue.use(VueScrollTo);
 Vue.use(VueCookie);
 

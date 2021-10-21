@@ -1,7 +1,5 @@
 <template>
-    <div id="app-container">
-		<alert></alert>
-        
+	<div id="app-container">
 		<div class="main-content">
 			<div id="particles-js"></div>
 			<transition name="opacity">
@@ -18,13 +16,12 @@
 
 			<go-to-top></go-to-top>
 		</div>
-    </div>
+	</div>
 </template>
 
 <script>
 import 'particles.js/particles';
 
-import Alert from './components/Alert.vue';
 import GoToTop from './components/GoToTop.vue';
 
 import QuickstartDialog from './components/QuickstartDialog.vue';
@@ -34,13 +31,13 @@ import { mapState, mapActions } from 'vuex';
 
 export default {
 	components: {
-		Alert,
 		GoToTop,
 		QuickstartDialog,
 		MoodSelectorDialog
 	},
 
 	mounted(){
+		// this.$toast.success("I'm a toast!");
 		this.particlesJS.load('particles-js', '/assets/particles.json');
 		this.addParticlesJSEventListener();
 

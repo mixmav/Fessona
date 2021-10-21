@@ -2,7 +2,7 @@ export const MoodSelectorDialog = {
 	namespaced: true,
 	
 	state: {
-		visible: true,
+		visible: false,
 		selectedMood: {},
 	},
 

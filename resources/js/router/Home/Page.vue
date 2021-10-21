@@ -6,12 +6,14 @@
 				<router-link class="a" to="/about">About</router-link>
 			</div>
 			<p style="font-size: 1em">/fə'səunə/</p>
-			<a class="a" @click="toggleQuickstartDialogVisible(true)">How it works</a>
-			<h3 class="mt-10">In Roman mythology, Fessona is thought to be the goddess that cures fatigue 🎈</h3>
+			<a class="a mt-10" @click="toggleQuickstartDialogVisible(true)">How it works</a>
+			<p class="mt-10">In Roman mythology, Fessona is thought to be the goddess that cures fatigue 🎈</p>
+
+			<img src="/images/undraw_true_love_cy8x.svg" alt="Hands holding a plant">
 			
-			<img src="/images/plant_in_hands.svg" alt="Hands holding a plant">
-			<button class="btn primary full-width mt-30" v-ripple @click="toggleMoodSelectorDialogVisible(true)"><i class="fa fa-feather-alt"></i>Start exploring</button>
-			<p class="mt-20">Made with ❤️ by <a class="a" href="https://instagram.com/mav.ew" target="_BLANK">Manav</a></p>
+			<button class="btn primary full-width" v-ripple @click="toggleMoodSelectorDialogVisible(true)"><i class="fa fa-fighter-jet"></i>Start exploring</button>
+			
+			<p class="mt-20">Made with ❤️ by <a class="a" href="https://mixmav.me" target="_BLANK">Manav</a></p>
 		</div>
 	</div>
 </template>
@@ -26,7 +28,7 @@ export default {
 			if (!this.quickstartDontShowOnStartup && !this.quickstartShownOnceOnHomePage) {
 				this.toggleQuickstartDialogVisible(true);
 			}
-		}, 5000);
+		}, 4000);
 	},
 	
 	methods: {
@@ -85,7 +87,7 @@ export default {
 		img{
 			display: block;
 			width: 50%;
-			margin-top: 30px;
+			margin: 30px auto;
 			height: auto;
 		}
 	}

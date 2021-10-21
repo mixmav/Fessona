@@ -1,36 +1,18 @@
-$primary-color: #C2185B;
-$primary-dark-color: darken($primary-color, 3%);
-$primary-alt-color: white;
-
-$secondary-color: darken(#8375DD, 5%);
-
 $black: rgba(black, 0.8);
-$red: #CA2E55;
-$orange: #FC8C24;
+$red: #E75A7C;
+$blue: #7F7EFF;
 $yellow: #EEC643;
-$green: #61E294;
-$blue: #0BC9CD;
-$indigo: #8A4FFF;
-$purple: #A44EBC;
-$teal: teal;
-$pink: #EC407A;
-$burgandy: #AF1B3F;
+$green: #37FF8B;
 $darkBlack: #3A2E39;
 
 $primary-color: #6610f2;
 
 $colors: (
 	'red': $red,
-	'orange': $orange,
+	'blue': $blue,
 	'yellow': $yellow,
 	'green': $green,
-	'blue': $blue,
-	'indigo': $indigo,
-	'purple': $purple,
-	'teal': $teal,
-	'pink': $pink,
 	'primary': $primary-color,
-	'burgandy': $burgandy,
 	'darkBlack': $darkBlack,
 );
 
@@ -46,7 +28,6 @@ $colors: (
 	}
 }
 
-$zIndex-tooltip: 1004;
 $zIndex-window-alert: 1003;
 $zIndex-share-answer-dialog-top-bar: 1002;
 $zIndex-share-answer-dialog-content: 1001;

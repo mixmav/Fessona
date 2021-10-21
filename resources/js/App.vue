@@ -70,9 +70,14 @@ export default {
 			// Then pass all mousemove events to the particles div
 			setTimeout(() => {
 				document.querySelector('.main-page-content').addEventListener('mousemove', e => { 
-					let e1 = document.createEvent('MouseEvents');
-					e1.initMouseEvent('mousemove',true,true,document.defaultView, 0, event.screenX, event.screenY, event.clientX, event.clientY,false,false,false,false,null,null);
-					document.getElementById("particles-js").childNodes[0].dispatchEvent(e1);
+					let customEvent = new MouseEvent('mousemove', {
+						'screenX': e.screenX,
+						'screenY': e.screenY,
+						'clientX': e.clientX,
+						'clientY': e.clientY
+					});
+
+					document.getElementById("particles-js").childNodes[0].dispatchEvent(customEvent);
 				});
 			}, 600);
 		},

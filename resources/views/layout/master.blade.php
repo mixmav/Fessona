@@ -13,11 +13,6 @@ U|' \/ '|uU  /"\  u | \ |"|  U  /"\  u\ \   /"/u      __        __ U  /"\  u / _
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
-	@if(config('app.env') == 'production')
-		{{-- Analytics --}}
-	@endif
-
 	<title>
 		@hasSection('title')
 			{{ ucfirst(config('app.name')) }} - @yield('title')
@@ -34,8 +29,20 @@ U|' \/ '|uU  /"\  u | \ |"|  U  /"\  u\ \   /"/u      __        __ U  /"\  u / _
 	<meta name="description" content="A virtual space to reclaim emotional and spiritual equanimity">
 	<script src="https://kit.fontawesome.com/0db8c7f53e.js" crossorigin="anonymous"></script>
 
-	<link rel="shortcut icon" href="/images/logos/xhdpi.png?v=ljaahIyaGhYt">
+	<link rel="shortcut icon" href="/images/logos/xxhdpi.png?v=ljaahIyaGhYt">
 	
+	@if(config('app.env') == 'production')
+		<!-- Global site tag (gtag.js) - Google Analytics -->
+		<script async src="https://www.googletagmanager.com/gtag/js?id=G-CLL0ND8JTF"></script>
+		<script>
+			window.dataLayer = window.dataLayer || [];
+			function gtag(){dataLayer.push(arguments);}
+			gtag('js', new Date());
+
+			gtag('config', 'G-CLL0ND8JTF');
+		</script>
+	@endif
+
 	@yield('custom-head')
 </head>
 <body>

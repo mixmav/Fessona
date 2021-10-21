@@ -67,33 +67,6 @@ i, span{
 		overflow: auto;
 		border-radius: 10px;
 	}
-
-	&.has-bottom-bar{
-		& > .container{
-			border-bottom-left-radius: 0;
-			border-bottom-right-radius: 0;
-		}
-		& > .bottom-bar{
-			left: 50%;
-			position: fixed;
-			transform: translate(-50%, 0px);
-			display: flex;
-			align-items: center;
-			padding: 1em;
-			background: $primary-color;
-			border-top: solid 2px rgba(black, 0.1);
-			width: 100%;
-			max-width: 500px;
-			border-bottom-left-radius: 10px;
-			border-bottom-right-radius: 10px;
-
-			label{
-				color: white;
-				font-size: .8em;
-				font-weight: bold;
-			}
-		}
-	}
 }
 
 @include media-y(670px){
@@ -102,17 +75,6 @@ i, span{
 			margin-top: 0 !important;
 			max-height: 100% !important;
 			border-radius: 0 !important;
-		}
-		
-		&.has-bottom-bar{
-			& > .container{
-				padding-bottom: 80px !important; // To be able to read content, offset the bottom bar's height
-			}
-			& > .bottom-bar{
-				top: initial !important;
-				bottom: 0 !important;
-				border-radius: 0 !important;
-			}
 		}
 	}
 }
@@ -125,7 +87,7 @@ i, span{
 	}
 
 	&.bold{
-		font-weight: bold;
+		font-weight: 600;
 	}
 	&.italic{
 		font-style: italic;
@@ -173,7 +135,7 @@ i, span{
 	cursor: pointer;
 	display: inline-block;
 	background: $primary-color;
-	color: $primary-alt-color;
+	color: white;
 	border-radius: 4px;
 	text-decoration: none;
 	transition: all .25s;
@@ -286,12 +248,9 @@ i, span{
 	border: none;
 	cursor: pointer;
 	position: relative;
-	color: $primary-color;
+	color: $blue;
 	transition: all .2s;
-
-	// &:hover{
-	// 	text-decoration: underline;
-	// }
+	font-weight: 600;
 
 	@each $color, $hex in $colors {
 		&.#{$color} {
@@ -308,15 +267,15 @@ i, span{
 		bottom: 0;
 		content: "";
 		display: block;
-		height: 2px;
+		height: 1px;
 		left: 50%;
 		position: absolute;
 		background: $darkBlack;
-		transition: width 0.2s ease 0s, left 0.2s ease 0s;
+		transition: all .2s ease;
 		width: 0;
 	}
 	&:hover{
-		color: $darkBlack;
+		color: $primary-color;
 		&::after{ 
 			width: 100%; 
 			left: 0;

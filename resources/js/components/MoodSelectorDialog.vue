@@ -354,7 +354,7 @@ export default {
 					.current-selected-mood{
 						text-align: center;
 						.desc{
-							font-weight: bold;
+							font-weight: 600;
 							font-size: .9em;
 							&.id-0{
 								color: $blue;

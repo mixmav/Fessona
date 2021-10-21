@@ -1,13 +1,13 @@
 <template>
 	<div class="vRouterPageComponent-App-balloon-section-container">
 		<div class="prompts">
-			<h1><i class="far fa-bookmark"></i>We asked</h1>
-			<p class="text-decor primary">{{question.prompt}}</p>
+			<h2><i class="far fa-bookmark"></i>{{question.prompt}}</h2>
+			<!-- <p class="text-decor primary"></p> -->
 
-			<div class="badges">
+			<!-- <div class="badges">
 				<p>Might contain</p>
 				<div class="badge" v-for="(badge, key) in question.badges" :key="key">{{ badge }}</div>
-			</div>
+			</div> -->
 
 			<button class="btn mt-10" v-ripple @click="showShareAnswerDialog"><i class="fa fa-plus"></i>Share your answer</button>
 		</div>
@@ -102,11 +102,10 @@ export default {
 				success(response){
 					setTimeout(() => {
 						vThis.balloons = response;
-						if (process.env.NODE_ENV === 'production') {
-							vThis.showAlert({
-								message: 'Your balloons are ready! Click around to explore 🎈'
-							});
-						}
+						// TODO CHANGE TO NOTIFICATION
+						// vThis.showAlert({
+						// 	message: 'Your balloons are ready! Click around to explore 🎈'
+						// });
 					}, 1000);
 				},
 				complete(){
@@ -135,39 +134,32 @@ export default {
 		width: 100%;
 		max-width: 400px;
 		margin: 0 auto;
-		// text-align: initial;
-		h1{
-			font-size: 1.4em;
-		}
-		p{
-			font-size: 1.2em;
-		}
 
-		.badges{
-			margin: 10px;
-			// text-align: left;
-			p{
-				font-size: .8em;
-				margin-bottom: 5px;
-			}
-			.badge{
-				display: inline-block;
-				margin-left: 3px;
-				padding: 10px {
-					top: 5px;
-					bottom: 5px;
-				};
-				border-radius: 10px;
-				background: darken(white, 5%);
-				border: solid 1px darken(white, 10%);
-				transition: all .2s;
-				cursor: default;
-				&:hover{
-					background: $primary-color;
-					color: white;
-				}
-			}
-		}
+		// .badges{
+		// 	margin: 10px;
+		// 	// text-align: left;
+		// 	p{
+		// 		font-size: .8em;
+		// 		margin-bottom: 5px;
+		// 	}
+		// 	.badge{
+		// 		display: inline-block;
+		// 		margin-left: 3px;
+		// 		padding: 10px {
+		// 			top: 5px;
+		// 			bottom: 5px;
+		// 		};
+		// 		border-radius: 10px;
+		// 		background: darken(white, 5%);
+		// 		border: solid 1px darken(white, 10%);
+		// 		transition: all .2s;
+		// 		cursor: default;
+		// 		&:hover{
+		// 			background: $primary-color;
+		// 			color: white;
+		// 		}
+		// 	}
+		// }
 	}
 	.balloons{
 		margin-top: 20px;

@@ -20,6 +20,9 @@ Route::view('/admin/login', 'admin.login')->name('login');
 
 Route::post('/api/model/balloon/create', 'BalloonController@Create');
 Route::post('/api/model/balloon/get-all-for-question', 'BalloonController@GetAllForQuestion');
+Route::post('/api/model/balloon/get-balloon-data', 'BalloonController@GetBalloonData');
+Route::post('/api/model/balloon/update-like', 'BalloonController@UpdateLike');
+
 Route::post('/api/model/question/get-all', 'QuestionController@GetAll');
 
 Route::get('/test/seed-questions', 'QuestionController@seedQuestions');

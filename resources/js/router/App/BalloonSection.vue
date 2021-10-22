@@ -1,7 +1,7 @@
 <template>
 	<div class="vRouterPageComponent-App-balloon-section-container">
 		<div class="prompts">
-			<h2><i class="far fa-bookmark"></i>{{question.prompt}}</h2>
+			<h2 style="text-align: left"><i class="fa fa-flask"></i>{{question.prompt}}</h2>
 			<!-- <p class="text-decor primary"></p> -->
 
 			<!-- <div class="badges">
@@ -9,21 +9,25 @@
 				<div class="badge" v-for="(badge, key) in question.badges" :key="key">{{ badge }}</div>
 			</div> -->
 
-			<button class="btn mt-10" v-ripple @click="showShareAnswerDialog"><i class="fa fa-plus"></i>Share your answer</button>
+			<button class="btn mt-10 full-width" v-ripple @click="showShareAnswerDialog"><i class="fa fa-plus"></i>Share your answer</button>
 		</div>
 		
 		<div style="text-align: center" v-show="loading" class="mt-30">
 			<p>Fetching balloons ⚡</p>
 			<loading class="mt-10"></loading>
 		</div>
-		
-		<h3 class="mt-30" v-show="!loading && balloons.length === 0">Oh so empty 😶</h3>
 
+		<h3 class="mt-20">Crowdsourced balloons 🎈</h3>
+		
+		<button class="btn yellow mt-10" @click="randomizeBalloons = !randomizeBalloons" v-ripple><i class="fa fa-dice"></i>Randomize</button>
+		
 		<div class="balloons custom-scrollbar">
-			<div class="balloon no-select" v-for="i in shuffledBalloons" :key="i.id" :style="generateBalloonStyle(i)" @click="showBalloonContent(i)">
-				<i class="fab fa-youtube"></i>
+			<div class="balloon no-select" v-for="i in sortedBalloons" :key="i.id" :style="generateBalloonStyle(i)" @click="showBalloonContent(i.id)">
+				<i class="fa fa-heart"></i>&nbsp;{{ i.likes }}
 			</div>
 		</div>
+
+		<h3 class="mt-30" v-show="!loading && balloons.length === 0">Oh so empty 😶</h3>
 	</div>
 </template>
 
@@ -44,14 +48,27 @@ export default {
 		return {
 			loading: false,
 			balloons: [],
+			randomizeBalloons: false,
 		}
 	},
 	created(){
 		this.refreshBalloons();
 	},
+	mounted(){
+		this.$root.$on('updateBalloonSectionBalloonLikeCount', data => {
+			let index = _.findIndex(this.balloons, ['id', data.balloonID]);
+			if (index >= 0) {
+				this.balloons[index].likes = data.likeCount;
+			}
+		});
+	},
 	computed: {
-		shuffledBalloons(){
-			return _.shuffle(this.balloons);
+		sortedBalloons(){
+			if (this.randomizeBalloons) {
+				return _.shuffle(this.balloons);
+			} else {
+				return this.balloons;
+			}
 		}
 	},
 	methods: {
@@ -76,7 +93,7 @@ export default {
 		}),
 
 		...mapActions('BalloonContentDialog', {
-			updateBallonContentDialogBalloon: 'updateBalloon',
+			updateBallonContentDialogBalloonID: 'updateBalloonID',
 			toggleBallonContentDialogVisible: 'toggleVisible',
 		}),
 
@@ -84,8 +101,9 @@ export default {
 			this.updateShareAnswerDialogQuestion(this.question);
 			this.toggleShareAnswerDialogVisible(true);
 		},
-		showBalloonContent(balloon){
-			this.updateBallonContentDialogBalloon(balloon)
+
+		showBalloonContent(id){
+			this.updateBallonContentDialogBalloonID(id)
 			this.toggleBallonContentDialogVisible(true);
 		},
 
@@ -101,17 +119,13 @@ export default {
 					vThis.loading = true;
 				},
 				success(response){
-					// setTimeout(() => {
-						vThis.balloons = response;
-						if (vThis.question.id == 1) { // only trigger toastification on balloonready on the first one
-							vThis.$toast.info("Your balloons are ready 🎈");
-						}
-					// }, 1000);
+					vThis.balloons = response;
+					if (vThis.question.id == 1) { // only trigger toastification on balloonready on the first one
+						vThis.$toast.info("Your balloons are ready 🎈");
+					}
 				},
 				complete(){
-					// setTimeout(() => {
-						vThis.loading = false;
-					// }, 1000);
+					vThis.loading = false;
 				},
 				error(){
 					vThis.$toast.error('There was an error fetching data. Try refreshing the page.');
@@ -128,6 +142,8 @@ export default {
 
 .vRouterPageComponent-App-balloon-section-container{
 	width: 100%;
+	padding: 1em;
+
 	.prompts{
 		width: 100%;
 		max-width: 400px;
@@ -160,8 +176,7 @@ export default {
 		// }
 	}
 	.balloons{
-		margin-top: 20px;
-		padding: 1em;
+		margin-top: 10px;
 		text-align: center;
 		.balloon{
 			background: $green;
@@ -176,6 +191,10 @@ export default {
 			transition: all .15s;
 			&:hover{
 				transform: scale(1.1, 1.1);
+			}
+
+			&:active{	
+				transform: scale(0.95, 0.95);
 			}
 		}
 	}

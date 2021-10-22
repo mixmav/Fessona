@@ -5,6 +5,7 @@ Vue.use(VueRouter);
 import Home from './router/Home/Page.vue';
 import About from './router/About/Page.vue';
 import App from './router/App/Page.vue';
+import NotFound from './router/Errors/NotFound.vue';
 
 const routes = [
 	{
@@ -22,6 +23,10 @@ const routes = [
 		component: App,
 		name: 'App'
 	},
+	{
+		path: "*",
+		component: NotFound
+	}
 ]
 
 export default routes;

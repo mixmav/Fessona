@@ -14,11 +14,36 @@ class BalloonController extends Controller
 		$balloon->question_id = $request->questionID;
 		$balloon->save();
 
-		echo true;
+		return true;
 	}
 
 	public function GetAllForQuestion(Request $request){
-		$balloons = Balloon::where('question_id', $request->questionID)->latest()->get();
+		$balloons = Balloon::where('question_id', $request->questionID)->latest()->get(['id', 'likes']);
 		return $balloons;
+	}
+
+	public function GetBalloonData(Request $request){
+		$balloon = Balloon::where('id', $request->balloonID)->with('question')->first();
+		return $balloon;
+	}
+
+	public function UpdateLike(Request $request){
+		$balloon = Balloon::where('id', $request->balloonID)->first();
+		
+
+		if($request->val == "true"){
+			$newLikes = $balloon->likes + 1;
+		} else if($request->val == "false"){
+			$newLikes = $balloon->likes - 1;
+		}
+
+		if ($newLikes < 0) {
+			$newLikes = 0;
+		}
+
+		$balloon->likes = $newLikes;
+		$balloon->save();
+		
+		return $newLikes;
 	}
 }

@@ -42,8 +42,8 @@
 						<!-- <img class="profile-picture" :src="userProfilePictureFilePath" alt="Profile picture"> -->
 					</div>
 					
-					<hr class="mt-10">
-					<hr>
+					<!-- <hr class="mt-10">
+					<hr> -->
 					<br>
 					<br>
 					<div class="preview ql-editor mt-20" v-html="content"></div>
@@ -188,7 +188,7 @@ export default {
 				this.publishLetter();
 			} else {
 				if(this.content.length <= 0){
-					this.$toast.error("You can't create an empty balloon 🙄");
+					this.$toast.info("You can't create an empty balloon 🙄");
 				} else {
 					this.previewVisible = true;
 				}

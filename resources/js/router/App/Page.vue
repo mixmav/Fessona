@@ -16,10 +16,7 @@
 			</transition>
 
 			<div class="page-content custom-scrollbar">
-				<div class="main-heading-and-shit">
-					<h1>Crowdsourced balloons 🎈</h1>
-					<div class="swiper-pagination"></div>
-				</div>
+				<div class="swiper-pagination"></div>
 
 				<loading v-show="loading"></loading>
 
@@ -27,6 +24,7 @@
 					<swiper-slide v-for="question in questions" :key="question.id">
 						<balloon-section :question="question"></balloon-section>
 					</swiper-slide>
+
 					<div class="swiper-button-prev" slot="button-prev"></div>
 					<div class="swiper-button-next" slot="button-next"></div>
 				</swiper>
@@ -38,6 +36,7 @@
 <script>
 import { mapState, mapActions } from 'vuex';
 import $ from 'jquery';
+import _ from 'lodash';
 import BalloonContentDialog from './BalloonContentDialog.vue';
 import ShareAnswerDialog from './ShareAnswerDialog.vue';
 import BalloonSection from './BalloonSection.vue';
@@ -64,7 +63,14 @@ export default {
 			}
 		});
 
-		this.swiper.slideTo(1, 1000, false);
+		//TODO
+		// setTimeout(() => {
+		// 	this.swiper.slideTo(1, 1000, false);
+		// }, 1500);
+
+		setTimeout(() => {
+			this.$toast.info("Pro tip - bookmark this page for easy access");
+		}, _.random(7000, 10000))
 
 		let vThis = this;
 		$.ajax({
@@ -92,6 +98,7 @@ export default {
 	data(){
 		return {
 			swiperOptions: {
+				threshold: 10,
 				navigation: {
 					nextEl: '.swiper-button-next',
 					prevEl: '.swiper-button-prev'
@@ -154,6 +161,7 @@ export default {
 			width: 100%;
 			display: flex;
 			justify-content: space-between;
+			align-items: center;
 			position: fixed;
 			top: 0;
 			left: 0;
@@ -177,11 +185,6 @@ export default {
 			width: 100%;
 			height: calc(100% - 70px);
 			overflow: auto;
-			.main-heading-and-shit{
-				h1{
-					font-size: 1.6em;
-				}
-			}
 			.swiper-wrapper{
 				margin-top: 20px;
 			}

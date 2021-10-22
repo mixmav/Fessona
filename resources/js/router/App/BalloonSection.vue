@@ -38,7 +38,7 @@ export default {
 		Loading,
 	},
 	props: [
-		'question'
+		'question',
 	],
 	data(){
 		return {
@@ -101,17 +101,17 @@ export default {
 					vThis.loading = true;
 				},
 				success(response){
-					setTimeout(() => {
+					// setTimeout(() => {
 						vThis.balloons = response;
-						// TODO CHANGE TO NOTIFICATION
-						//lol just once plz.
-						vThis.$toast.info("Your balloons are ready 🎈");
-					}, 1000);
+						if (vThis.question.id == 1) { // only trigger toastification on balloonready on the first one
+							vThis.$toast.info("Your balloons are ready 🎈");
+						}
+					// }, 1000);
 				},
 				complete(){
-					setTimeout(() => {
+					// setTimeout(() => {
 						vThis.loading = false;
-					}, 1000);
+					// }, 1000);
 				},
 				error(){
 					vThis.$toast.error('There was an error fetching data. Try refreshing the page.');

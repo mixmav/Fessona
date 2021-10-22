@@ -2,9 +2,9 @@ export const BalloonContentDialog = {
 	namespaced: true,
 	
 	state: {
-		visible: false,
+		visible: true,
 		balloon: {
-			// "id":2,"content":"<p><span class=\"ql-size-huge\">Test test</span></p>","approved":1,"question_id":1,"created_at":"Wed, Oct 20, 2021 1:58 PM","updated_at":"2021-10-20T02:58:22.000000Z"
+			"id":2,"content":"<p><span class=\"ql-size-huge\">Test test</span></p>","approved":1,"question_id":1,"created_at":"Wed, Oct 20, 2021 1:58 PM","updated_at":"2021-10-20T02:58:22.000000Z"
 		}
 	},
 

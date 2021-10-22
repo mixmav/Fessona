@@ -83,8 +83,8 @@ export default {
 
 		& > .container{
 			// max-height: 350px;
-			// max-width: 500px;
-			margin: 0;
+			max-width: 500px;
+			margin: 0 auto;
 			.title-bar{
 				width: 100%;
 				display: flex;

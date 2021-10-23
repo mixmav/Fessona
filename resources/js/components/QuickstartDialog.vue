@@ -5,12 +5,13 @@
 			<div class="container custom-scrollbar" v-show="visible">
 				<h1>You made it 😇</h1>
 
-				<h2 class="quickstart-heading-2" v-scroll-to="generateVueScrollToConfig('quickstart-heading-2')"><span>#</span> What we do</h2>
+				<h2 class="quickstart-heading-1" v-scroll-to="generateVueScrollToConfig('quickstart-heading-1')"><span>#</span> Wot m8</h2>
 				
-				<p>Using a simple question-answer format, we crowdsource nuggets of good vibes from our community here at RMIT.</p>
+				<p>Using a simple question-answer format, we collect nuggets of good vibes from our community here at RMIT.</p>
 				<br>
-				<p>Each answer is stored as a balloon that you can interact with 🎈</p>
-				
+				<p>Each answer is stored as a balloon that is guaranteed<sup>1</sup> to bring a smile on your face 🎈</p>
+				<p class="mt-10"><sup>1</sup>Anecdotal</p>
+
 				<button class="btn full-width mt-30" v-show="this.$route.name == 'Home'" v-ripple @click="getStarted"><i class="fa fa-fighter-jet"></i>Start exploring</button>
 				
 				<div style="text-align: center" class="mt-10">

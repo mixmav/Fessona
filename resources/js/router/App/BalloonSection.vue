@@ -2,13 +2,6 @@
 	<div class="vRouterPageComponent-App-balloon-section-container">
 		<div class="prompts">
 			<h2 style="text-align: left"><i class="fa fa-flask"></i>{{question.prompt}}</h2>
-			<!-- <p class="text-decor primary"></p> -->
-
-			<!-- <div class="badges">
-				<p>Might contain</p>
-				<div class="badge" v-for="(badge, key) in question.badges" :key="key">{{ badge }}</div>
-			</div> -->
-
 			<button class="btn mt-10 full-width" v-ripple @click="showShareAnswerDialog"><i class="fa fa-plus"></i>Share your answer</button>
 		</div>
 		
@@ -121,7 +114,7 @@ export default {
 				success(response){
 					vThis.balloons = response;
 					if (vThis.question.id == 1) { // only trigger toastification on balloonready on the first one
-						vThis.$toast.info("Your balloons are ready 🎈");
+						vThis.$toast.success("Your balloons are ready 🎈");
 					}
 				},
 				complete(){
@@ -148,33 +141,8 @@ export default {
 		width: 100%;
 		max-width: 400px;
 		margin: 0 auto;
-
-		// .badges{
-		// 	margin: 10px;
-		// 	// text-align: left;
-		// 	p{
-		// 		font-size: .8em;
-		// 		margin-bottom: 5px;
-		// 	}
-		// 	.badge{
-		// 		display: inline-block;
-		// 		margin-left: 3px;
-		// 		padding: 10px {
-		// 			top: 5px;
-		// 			bottom: 5px;
-		// 		};
-		// 		border-radius: 10px;
-		// 		background: darken(white, 5%);
-		// 		border: solid 1px darken(white, 10%);
-		// 		transition: all .2s;
-		// 		cursor: default;
-		// 		&:hover{
-		// 			background: $primary-color;
-		// 			color: white;
-		// 		}
-		// 	}
-		// }
 	}
+
 	.balloons{
 		margin-top: 10px;
 		text-align: center;

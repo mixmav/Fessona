@@ -2,61 +2,35 @@
 	<div class="vPage-component-mood-selector-dialog-container generic-dialog-container" ref="container" :class="[{visible: visible}, {maximized: maximized}]" @click="checkClickClose">
 
 		<transition name="translate-y-minus-100px" delay="300">
-			<div class="container" v-show="visible">
-				<transition name="translate-x-minus-100px-opacity">
-					<div class="slidable-page page-1 custom-scrollbar" v-show="page == 1">
-						<div style="justify-content: space-between; align-items: center; display: flex;">
-							<h1>How u doin'</h1>
-							<button class="btn red" @click="!isLoading && toggleVisible(false)" v-ripple><i class="fa fa-keyboard"></i>Close</button>
-						</div>
-						<h2 class="mt-20">Birth, death, and the silly bit in-between.</h2>
-						
-						<p class="mt-10">Courtesy of being human, we experience a whole spectrum of emotions.</p>
-						<p class="mt-10">What are you most in-need of right now?</p>
-						<div class="mood-selector">
-							<button class="mood no-select" v-for="mood in moods" :key="mood.id" :class="{selected: mood.selected}" @click="updateSelectedMood(mood.id, $event)">{{ mood.icon }}</button>
-						</div>
+			<div class="container custom-scrollbar" v-show="visible">
+				
+				<div class="top-bar">
+					<h1>Hola</h1>
+					<a class="a" @click="!loading && toggleVisible(false)" v-ripple>Close</a>
+				</div>
+				<h2 class="mt-20">Birth, death, and the silly bit in-between</h2>
+				
+				<p class="mt-10">In light of how you're feeling right now, what are you most in-need of? If you're not sure, just click next.</p>
+			
+				<div class="mood-selector">
+					<button class="mood no-select" v-for="mood in moods" :key="mood.id" :class="{selected: mood.selected}" @click="updateSelectedMood(mood.id, $event)">{{ mood.icon }}</button>
+				</div>
 
-						<div class="mt-20 current-selected-mood">
-							<p>You chose {{currentMood.icon}}</p>
-							<p class="desc" :class="'id-' + currentMood.id">{{currentMood.desc}}</p>
-						</div>
+				<div class="mt-20 current-selected-mood">
+					<p>You chose {{currentMood.icon}}</p>
+					<p class="desc" :class="'id-' + currentMood.id">{{currentMood.desc}}</p>
+				</div>
 
-						<div class="mt-30" style="text-align: center" v-show="!isLoadingPage1">
-							<button class="btn" v-ripple @click="nextPage"><i class="fa fa-paw"></i>Next</button>
-							<br>
-							<a class="a mt-10" @click="toggleQuickstartDialogVisible(true)">What's going on?</a>
-						</div>
+				<div class="mt-30" style="text-align: center" v-show="!loading">
+					<button class="btn full-width" v-ripple @click="launchApp"><i class="fa fa-cheese"></i>Next</button>
+					<a class="a mt-10" @click="toggleQuickstartDialogVisible(true)">What's going on?</a>
+				</div>
 
-						<div style="text-align: center" v-show="isLoadingPage1" class="mt-30">
-							<p>Brewing ⚡</p>
-							<loading class="mt-10"></loading>
-						</div>
-					</div>
-				</transition>
+				<div style="text-align: center" v-show="loading" class="mt-30">
+					<p>Brewing ⚡</p>
+					<loading class="mt-10"></loading>
+				</div>
 
-				<transition name="translate-x-100px-opacity">
-					<div class="slidable-page page-2 custom-scrollbar" v-show="page == 2">
-						<div class="content">
-							<h1>{{ currentMood.longDesc.heading }}</h1>
-							<p class="mt-10" v-html="currentMood.longDesc.section1"></p>
-							<p class="mt-20">{{ currentMood.longDesc.premise }} Each response is stored as a <span class="text-decor primary">Fessona Balloon</span>. Let's see what they said!</p>
-							<img src="/images/girl_with_balloon.svg" alt="Girl holding a balloon">
-							
-							<div style="text-align: center" v-show="isLoadingPage2" class="mt-30">
-								<p>Summoning <span class="text-decor red">hand-picked</span> balloons for you</p>
-								<loading class="mt-10"></loading>
-							</div>
-
-							<div v-show="!isLoadingPage2" style="display: flex; justify-content: space-between; align-content: center;" class="mt-10">
-								<button class="btn red" v-ripple @click="prevPage"><i class="fa fa-paw"></i>Back</button>
-								&nbsp;
-								<button class="btn" v-ripple @click="launchApp"><i class="fab fa-fly"></i>Balloooonsss</button>
-								<!-- <button class="btn" @click="cycleMoodsTest" v-ripple>Cycle mood</button><br><br> -->
-							</div>
-						</div>
-					</div>
-				</transition>
 			</div>
 		</transition>
 	</div>
@@ -78,7 +52,7 @@ export default {
 		$(window).on({
 			keydown: (event) => {
 				if (this.visible && event.keyCode == 27) {
-					if (!this.isLoading) {
+					if (!this.loading) {
 						this.toggleVisible(false);
 					}
 				}
@@ -94,8 +68,7 @@ export default {
 		return {
 			synth: new Tone.MonoSynth().toDestination(),
 			AMinorScale: ['C4', 'D4', 'E4', 'F4', 'G4'],
-			isLoadingPage1: false,
-			isLoadingPage2: false,
+			loading: false,
 			maximized: false,
 			page: 1,
 			moods: [
@@ -182,7 +155,7 @@ export default {
 
 		checkClickClose(event){
 			if (event.target == this.$refs.container && this.$refs.container.contains(event.target)) {
-				if (!this.isLoading) {
+				if (!this.loading) {
 					this.toggleVisible(false);
 				}
 			}
@@ -201,7 +174,7 @@ export default {
 		updateSelectedMood(newMoodID, event){
 			this.synth.triggerAttackRelease(this.AMinorScale[newMoodID], 0.1);
 			
-			if(this.isLoading || event.target.classList.contains('selected')){
+			if(this.loading || event.target.classList.contains('selected')){
 				return;
 			} else {
 				this.updateSelectedMoodInStore({
@@ -221,33 +194,32 @@ export default {
 				})
 			}
 		},
-		nextPage(){
-			this.isLoadingPage1 = true;
-			setTimeout(() => {
-				this.page = 2;
-				setTimeout(() => {
-					this.isLoadingPage1 = false;
-					this.maximized = true;
-				}, 800);
-			}, 4000);
-		},
+		// nextPage(){
+		// 	this.isLoadingPage1 = true;
+		// 	setTimeout(() => {
+		// 		this.page = 2;
+		// 		setTimeout(() => {
+		// 			this.isLoadingPage1 = false;
+		// 			this.maximized = true;
+		// 		}, 800);
+		// 	}, 4000);
+		// },
 
-		prevPage(){
-			this.page = 1;
-			setTimeout(() => {
-				this.maximized = false;
-			}, 400);
-		},
+		// prevPage(){
+		// 	this.page = 1;
+		// 	setTimeout(() => {
+		// 		this.maximized = false;
+		// 	}, 400);
+		// },
 
 		launchApp(){
-			this.isLoadingPage2 = true;
-
+			this.loading = true;
+			this.maximized = true;
 			setTimeout(() => {
 				this.toggleVisible(false);
 				setTimeout(() => {
 					this.$router.push('/app');
 				}, 300);
-
 			}, 5000)
 		}
 	},
@@ -262,24 +234,14 @@ export default {
 				return o.selected;
 			})
 		},
-		isLoading: {
-			get(){
-				return this.isLoadingPage1 || this.isLoadingPage2;
-			},
-			set(newVal){
-				this.isLoadingPage1 = newVal;
-				this.isLoadingPage2 = newVal;
-			}
-		}
 	},
 
 	watch: {
 		visible(newVal){
 			this.updateQuickstartShownOnceOnHomePage(true);
 			if (newVal) {
-				this.isLoading = false;
+				this.loading = false;
 				this.maximized = false;
-				this.page = 1;
 			}
 		}
 	}
@@ -303,84 +265,61 @@ export default {
 		& > .container{
 			max-height: 520px;
 			max-width: 500px;
-			position: relative;
-			padding: 0;
-			overflow: hidden;
 			transition: all .25s ease;
-
-			.slidable-page{
-				position: absolute;
-				top: 0;
-				left: 0;
+			& > .top-bar{
+				justify-content: space-between;
+				align-items: center;
+				display: flex;
+			}
+			// p{
+			// 	font-size: 1em;
+			// }
+			.mood-selector{
+				display: flex;
+				flex-direction: row;
+				justify-content: space-between;
+				align-items: center;
+				margin: 30px auto;
 				width: 100%;
-				height: 100%;
-				padding: 1em;
-				overflow: auto;
-				p{
-					font-size: 1em;
-				}
-				&.page-1{
-					.mood-selector{
-						display: flex;
-						flex-direction: row;
-						justify-content: space-between;
-						align-items: center;
-						margin: 20px auto;
-						width: 100%;
-						max-width: 400px;
-						.mood{
-							background: transparent;
-							padding: 10px;
-							border: solid 4px lighten(grey, 40%);
-							border-radius: 10px;
-							margin-left: 10px;
-							cursor: pointer;
-							font-size: 1.2em;
-							transition: all .2s;
-							&:nth-child(1){
-								margin-left: 0;
-							}
-							&:hover, &:focus{
-								outline: 0;
-								border-color: lighten($primary-color, 40%);
-							}
+				max-width: 400px;
+				.mood{
+					background: transparent;
+					padding: 10px;
+					border: solid 4px lighten(grey, 40%);
+					border-radius: 10px;
+					margin-left: 10px;
+					cursor: pointer;
+					font-size: 1.2em;
+					transition: all .2s;
+					&:nth-child(1){
+						margin-left: 0;
+					}
+					&:hover, &:focus{
+						outline: 0;
+						border-color: lighten($primary-color, 40%);
+					}
 
-							&.selected{
-								background: lighten(blue, 45%);
-								transform: scale(1.1, 1.1);
-								cursor: default;
-								border-color: $primary-color;
-							}
-						}
-					}
-					.current-selected-mood{
-						text-align: center;
-						.desc{
-							font-weight: 600;
-							font-size: .9em;
-							&.id-0{
-								color: $blue;
-							}
-							&.id-1{
-								color: $green;
-							}
-							&.id-2{
-								color: $red;
-							}
-						}
+					&.selected{
+						background: lighten(blue, 45%);
+						transform: scale(1.1, 1.1);
+						cursor: default;
+						border-color: $primary-color;
 					}
 				}
-				&.page-2{
-					& > .content{
-						width: 100%;
-						max-width: 500px;
-						margin: 0 auto;
-						img{
-							width: 100%;
-							max-width: 200px;
-							display: block;
-							margin: 30px auto;
-						}
+			}
+			.current-selected-mood{
+				text-align: center;
+				.desc{
+					font-weight: 600;
+					font-size: .9em;
+					&.id-0{
+						color: $blue;
+					}
+					&.id-1{
+						color: $green;
+					}
+					&.id-2{
+						color: $red;
 					}
 				}
 			}

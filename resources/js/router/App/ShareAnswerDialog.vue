@@ -2,18 +2,17 @@
 	<div class="vPage-component-share-answer-dialog-container" ref="container" :class="[{visible: visible}]" @click="checkClickClose">
 		<transition name="translate-y-minus-100px" delay="300">
 
-			<section class="container custom-scrollbar" v-show="visible" ref="scrollContainer">
-				<div class="top-bar" :class="{'z-depth-1': scrolled}">
-					
-					<button v-ripple :disabled="isLoading" class="btn" :class="{red: !previewVisible, darkBlack: previewVisible}" @click="previewVisible ? previewVisible = false : toggleVisible(false)">
+			<section class="container" v-show="visible">
+				<div class="top-bar">
+					<button v-ripple :disabled="isLoading" class="btn" :class="{darkBlack: !previewVisible, yellow: previewVisible}" @click="previewVisible ? previewVisible = false : toggleVisible(false)">
 						<i class="fa fa-window-close" v-show="!previewVisible"></i>
-						<span v-show="!previewVisible">Close dialog</span>
+						<span v-show="!previewVisible">Close</span>
 
 						<i class="fa fa-arrow-left" v-show="previewVisible"></i>
 						<span v-show="previewVisible">Edit</span>
 					</button>
 
-					<button v-ripple :disabled="isLoading" class="btn" :class="{primary: previewVisible, darkBlack: !previewVisible}" @click="topBarButtonTwoClick">
+					<button v-ripple :disabled="isLoading" class="btn" :class="{darkBlack: previewVisible, primary: !previewVisible}" @click="topBarButtonTwoClick">
 						<i class="fa fa-angle-double-right" v-show="!previewVisible"></i>
 						<span v-show="!previewVisible">Preview</span>
 
@@ -22,30 +21,20 @@
 					</button>
 				</div>
 
-				<div class="editor-content content" :class="{visible: !previewVisible}">
-					<h2><i class="far fa-bookmark"></i> {{ question.prompt }}</h2>
-					
+				<div class="editor-content content custom-scrollbar" :class="{visible: !previewVisible}">
+					<h1><i class="fa fa-flask"></i>{{ question.prompt }}</h1>
+
+					<quill-editor class="editor mt-30" v-model="content" :options="editorOption"></quill-editor>
+
 					<div class="badges">
-						<p class="text-decor primary">Confused? You can share</p>
+						<p>Confused? There really are no "right answers". How about</p>
 						<div class="badge" v-for="(badge, key) in question.badges" :key="key">{{ badge }}</div>
-					</div>
-					<div class="form mt-30">
-						<div>
-							<quill-editor class="editor" v-model="content" :options="editorOption"></quill-editor>
-						</div>
 					</div>
 				</div>
 
-				<div class="preview-content content ql-snow" :class="{visible: previewVisible}">
-					<div class="top-bar">
-						<h3>This is what your letter looks like</h3>
-						<!-- <img class="profile-picture" :src="userProfilePictureFilePath" alt="Profile picture"> -->
-					</div>
-					
-					<!-- <hr class="mt-10">
-					<hr> -->
-					<br>
-					<br>
+				<div class="preview-content content ql-snow custom-scrollbar" :class="{visible: previewVisible}">
+					<h1>This is what your balloon looks like</h1>
+
 					<div class="preview ql-editor mt-20" v-html="content"></div>
 				</div>
 			</section>
@@ -87,32 +76,19 @@ export default {
 
 	beforeDestroy(){
 		$(window).off('keydown', this.$refs.container);
-		$(window).off('scroll', this.$refs.scrollContainer);
 	},
 
-	mounted(){
-		var $containerRef = $(this.$refs.scrollContainer);
-		$containerRef.on('scroll', (event) => {
-			if ($containerRef.scrollTop() > 0){
-				this.scrolled = true;
-			} else {
-				this.scrolled = false;
-			}
-		});
-
-	},
 	components: {
 		quillEditor
 	},
 
 	data(){
 		return {
-			scrolled: false,
 			content: '',
 			isLoading: false,
 			previewVisible: false,
 			editorOption: {
-				placeholder: 'Don\'t be shy',
+				placeholder: 'Anything at all',
 				theme: 'snow',
 				modules: {
 					imageCompress: {
@@ -126,10 +102,10 @@ export default {
 					magicUrl: true,
 					toolbar: [
 						['bold', 'italic', 'underline'],
-						[{ 'list': 'ordered' }, { 'list': 'bullet' }],
+						[{ 'list': 'bullet' }],
 						[{ 'size': ['small', false, 'large', 'huge'] }],
 						[{ 'font': [] }],
-						[{ 'color': [] }, { 'background': [] }],
+						[{ 'color': [] },],
 						[{ 'align': [] }],
 						['image', 'video']
 					],
@@ -222,48 +198,47 @@ export default {
 		& > .container{
 			width: 100%;
 			height: 100%;
-			// max-width: 800px;
+			max-width: 600px;
 			margin: 0 auto;
 			background: white;
-			overflow-y: auto;
+			overflow-y: visible;
 			overflow-x: hidden;
 			position: relative;
+			border-radius: 5px;
 			padding-bottom: 100px;
 
 			& > .top-bar{
 				width: 100%;
-				// max-width: 800px;
+				height: 70px;
+				max-width: 600px;
 				position: fixed;
-				z-index: $zIndex-share-answer-dialog-top-bar;
 				top: 0;
-				background: white;
-				border-bottom-left-radius: 5px;
-				border-bottom-right-radius: 5px;
 				left: 50%;
 				transform: translateX(-50%);
 				padding: 1em;
 				transition: all .2s;
-				text-align: center;
+				display: flex;
+				justify-content: space-around;
+				align-items: center;
+				border-bottom: solid 1px rgba(black, 0.3);
+				z-index: $zIndex-share-answer-dialog-top-bar;
 
 				button{
 					display: inline;
 					width: 40%;
 					max-width: 200px;
-					&:nth-child(2){
-						margin-left: 10px;
-					}
 				}
 			}
 			& > .content{
-				padding: 2em {top: 0};
+				padding: 2em;
 				position: absolute;
 				z-index: $zIndex-share-answer-dialog-content;
-				top: 100px;
+				top: 70px;
 				left: 0;
 				width: 100%;
-				border-radius: 5px;
 				transition: all .3s;
-				overflow: visible;
+				overflow: auto;
+				height: calc(100% - 70px);
 				transform: translateX(-100%);
 				&.visible{
 					transform: translateX(0);
@@ -288,63 +263,26 @@ export default {
 						border-radius: 10px;
 						background: darken(white, 5%);
 						border: solid 1px darken(white, 10%);
-						transition: all .2s;
-						cursor: default;
 						&:nth-child(2){
 							margin-left: 0;
 						}
-						&:hover{
-							background: $primary-color;
-							color: white;
-						}
 					}
 				}
-				.form{
-					.ql-container{
-						min-height: inherit;
-					}
+				.ql-container{
+					min-height: inherit;
+				}
 
-					.editor{
-						min-height: 200px;
-					}
+				.editor{
+					min-height: 200px;
 				}
 			}
 
 			& > .preview-content{
 				transform: translateX(100%);
-				& > .top-bar{
-					// display: flex;
-					// justify-content: space-between;
-					// align-items: center;
-					// .user-name{
-						// font-weight: bold;
-						// color: $green;
-					// }
-
-					// .profile-picture{
-						// width: 70px;
-						// height: 70px;
-						// border-radius: 100%;
-					// }
+				.ql-editor{
+					height: auto;
 				}
 			}
 		}
 	}
-
-	// @include media-y(670px){
-	// 	.vPage-component-share-answer-dialog-container{
-	// 		& > .container{
-	// 			margin-top: 0;
-	// 			padding-bottom: 80px; // To be able to read content, offset the bottom bar's height
-	// 			max-height: 100%;
-	// 			border-radius: 0;
-	// 		}
-
-	// 		& > .bottom-bar{
-	// 			top: initial;
-	// 			bottom: 0;
-	// 			border-radius: 0;
-	// 		}
-	// 	}
-	// }
 </style>

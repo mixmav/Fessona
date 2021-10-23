@@ -5,11 +5,12 @@
 				<h1>Fessona</h1>
 				<router-link class="a" to="/about">About</router-link>
 			</div>
-			<p style="font-size: 1em">/fə'səunə/</p>
+			<p>/fə'səunə/</p>
+			<p class="mt-10">(Roman mythology) Fessona is thought to be the goddess that cures fatigue.</p>
+			<p class="mt-10">A soul-soothing collection of crowdsourced balloons 🎈</p>
 			<a class="a mt-10" @click="toggleQuickstartDialogVisible(true)">How it works</a>
-			<p class="mt-10">In Roman mythology, Fessona is thought to be the goddess that cures fatigue 🎈</p>
 
-			<img src="/images/undraw_true_love_cy8x.svg" alt="Hands holding a plant">
+			<img src="/images/undraw_true_love_cy8x.svg" alt="Balls holding hands">
 			
 			<button class="btn primary full-width" v-ripple @click="toggleMoodSelectorDialogVisible(true)"><i class="fa fa-fighter-jet"></i>Start exploring</button>
 			

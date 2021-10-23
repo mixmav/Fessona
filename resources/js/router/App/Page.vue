@@ -36,7 +36,6 @@
 <script>
 import { mapState, mapActions } from 'vuex';
 import $ from 'jquery';
-import _ from 'lodash';
 import BalloonContentDialog from './BalloonContentDialog.vue';
 import ShareAnswerDialog from './ShareAnswerDialog.vue';
 import BalloonSection from './BalloonSection.vue';
@@ -69,8 +68,8 @@ export default {
 		// }, 1500);
 
 		setTimeout(() => {
-			this.$toast.info("Pro tip - bookmark this page for easy access");
-		}, _.random(7000, 10000))
+			this.$toast.info("Bookmark this page for easy access 🔖");
+		}, 10000)
 
 		let vThis = this;
 		$.ajax({

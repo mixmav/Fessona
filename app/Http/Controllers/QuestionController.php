@@ -13,11 +13,11 @@ class QuestionController extends Controller
 		$question3 = new Question;
 
 
-		$question1->prompt = "Share something that makes you smile!";
+		$question1->prompt = "Share something that makes you smile 😊";
 		$question1->badges = "Vines,Cat videos,Memes";
 		$question1->save();
 
-		$question2->prompt = "Share something that warms your heart 🥰";
+		$question2->prompt = "Share something that warms your heart 🥺";
 		$question2->badges = "something,something";
 		$question2->save();
 

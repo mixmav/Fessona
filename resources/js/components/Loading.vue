@@ -1,11 +1,11 @@
 <template>
 	<div class="vLoading-component-container no-select">
 		<div class="content-loader-ball-conatiner">
+			<label>&nbsp;👽</label>
 			<label>&nbsp;🌻</label>
 			<label>&nbsp;🍄</label>
-			<label>&nbsp;🌼</label>
-			<label>&nbsp;🎈</label>
-			<label>&nbsp;💎</label>
+			<label>&nbsp;🍸</label>
+			<label>&nbsp;🍺</label>
 			<label>&nbsp;💮</label>
 		</div>
 	</div>

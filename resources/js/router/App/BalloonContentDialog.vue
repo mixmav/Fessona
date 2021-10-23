@@ -62,9 +62,9 @@ export default {
 		}, this.$refs.container);
 
 		//TEST
-		setTimeout(() => {
-			this.getBalloonData();
-		}, 1000);
+		// setTimeout(() => {
+		// 	this.getBalloonData();
+		// }, 1000);
 
 		if (this.$cookie.get('likedBalloonIDs') !== null) {
 			this.likedBalloonIDs = JSON.parse(this.$cookie.get('likedBalloonIDs'));
@@ -200,7 +200,6 @@ export default {
 		z-index: $zIndex-share-answer-dialog;
 
 		& > .container{
-			// max-height: 350px;
 			max-width: 600px;
 			margin: 0 auto;
 			.title-bar{
@@ -218,7 +217,6 @@ export default {
 				img{
 					width: 75px;
 					height: 75px;
-					// border: solid 1px rgba(black, 0.7);
 					border-radius: 100%;
 				}
 			}

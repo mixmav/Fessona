@@ -197,7 +197,7 @@ export default {
 			}
 		}
 		& > .container{
-			max-height: 520px;
+			max-height: 550px;
 			max-width: 500px;
 			transition: all .35s ease;
 			& > .main-dialog-content{

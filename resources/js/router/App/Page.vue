@@ -4,7 +4,7 @@
 		<div class="main-page-content">
 			<div class="top-bar">
 				<div class="spacer">
-					<router-link to="/">
+					<router-link to="/" class="no-select">
 						<img src="/images/logos/xxhdpi.png" alt="Logo">
 						<span>Fessona</span>
 					</router-link>
@@ -182,7 +182,7 @@ export default {
 					justify-content: space-between;
 					align-items: center;
 					color: $primary-color;
-					&:hover{
+					&:hover, &:focus{
 						img{
 							transform: rotate(180deg) scale(1.1, 1.1);
 						}

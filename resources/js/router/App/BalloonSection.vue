@@ -20,7 +20,7 @@
 			</div>
 		</div>
 
-		<h3 class="mt-30" v-show="!loading && balloons.length === 0">Oh so empty 😶</h3>
+		<p class="mt-30" v-show="!loading && balloons.length === 0">Oh so empty 😶</p>
 	</div>
 </template>
 
@@ -139,8 +139,12 @@ export default {
 
 	.prompts{
 		width: 100%;
-		max-width: 400px;
+		max-width: 500px;
 		margin: 0 auto;
+
+		h2{
+			font-size: 1.4em;
+		}
 	}
 
 	.balloons{

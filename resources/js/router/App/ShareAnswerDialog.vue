@@ -22,7 +22,7 @@
 				</div>
 
 				<div class="editor-content content custom-scrollbar" :class="{visible: !previewVisible}">
-					<h1><i class="fa fa-flask"></i>{{ question.prompt }}</h1>
+					<h2><i class="fa fa-flask"></i>{{ question.prompt }}</h2>
 
 					<quill-editor class="editor mt-30" v-model="content" :options="editorOption"></quill-editor>
 

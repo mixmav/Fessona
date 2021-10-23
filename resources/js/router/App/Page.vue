@@ -3,8 +3,13 @@
 		
 		<div class="main-page-content">
 			<div class="top-bar">
-				<router-link to="/">Fessona</router-link>
-				<button class="btn" v-ripple @click="toggleQuickstartDialogVisible(true)"><i class="fa fa-info-circle"></i>How it works</button>
+				<div class="spacer">
+					<router-link to="/">
+						<img src="/images/logos/xxhdpi.png" alt="Logo">
+						<span>Fessona</span>
+					</router-link>
+					<button class="a" v-ripple @click="toggleQuickstartDialogVisible(true)">How it works</button>
+				</div>
 			</div>
 
 			<transition name="opacity">
@@ -158,18 +163,41 @@ export default {
 		
 		& > .top-bar{
 			width: 100%;
-			display: flex;
-			justify-content: space-between;
-			align-items: center;
 			position: fixed;
 			top: 0;
 			left: 0;
 			padding: 1em;
 			border-bottom: solid 1px rgba(black, 0.4);
+			.spacer{
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+				width: 100%;
+				max-width: 750px;
+				margin: 0 auto;
 
-			a{
-				text-decoration: none;
-				font-size: 2em;
+				a{
+					text-decoration: none;
+					display: flex;
+					justify-content: space-between;
+					align-items: center;
+					color: $primary-color;
+					&:hover{
+						img{
+							transform: rotate(180deg) scale(1.1, 1.1);
+						}
+					}
+					img{
+						width: 30px;
+						height: 30px;
+						border-radius: 100%;
+						margin-right: 10px;
+						transition: all .35s;
+					}
+					span{
+						font-size: 2em;	
+					}
+				}
 			}
 		}
 

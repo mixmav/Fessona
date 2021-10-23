@@ -5,7 +5,7 @@
 			<div class="container custom-scrollbar" v-show="visible">
 				<div class="main-dialog-content">
 					<div class="top-bar">
-						<h1>Hola</h1>
+						<h1>Check-in</h1>
 						<a class="a" @click="!loading && toggleVisible(false)" v-ripple>Close</a>
 					</div>
 					<h2 class="mt-20">Birth, death, and the silly bit in-between</h2>
@@ -95,7 +95,7 @@ export default {
 					id: 4,
 					icon: '🎵',
 					selected: false,
-					desc: 'usic',
+					desc: 'Good music',
 				},
 			],
 		}

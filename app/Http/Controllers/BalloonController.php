@@ -46,4 +46,17 @@ class BalloonController extends Controller
 		
 		return $newLikes;
 	}
+
+	public function seedBalloons(){
+		
+		for ($i=1; $i <=4 ; $i++) { 
+			for ($j=1; $j <= 100 ; $j++) { 
+				$balloon = new Balloon;
+				$balloon->content = "This is a test";
+				$balloon->question_id = $i;
+				$balloon->save();
+			}
+		}
+		return true;
+	}
 }

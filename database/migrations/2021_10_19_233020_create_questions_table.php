@@ -17,8 +17,8 @@ class CreateQuestionsTable extends Migration
             $table->id();
 
 			$table->text('prompt');
-			$table->text('prompt2')->default('');
-			$table->text('badges')->default('');
+			$table->text('prompt2')->nullable();
+			$table->text('badges')->nullable();
 
             $table->timestamps();
         });

@@ -18,6 +18,7 @@ class CreateBalloonsTable extends Migration
 
 			$table->longText('content');
 			$table->boolean('approved')->default(true);
+			$table->boolean('rejected')->default(false);
 			$table->integer('likes')->default(0);
 			$table->unsignedBigInteger('question_id');
 

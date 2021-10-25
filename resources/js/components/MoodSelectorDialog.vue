@@ -197,7 +197,7 @@ export default {
 		}
 		& > .container{
 			max-height: 510px;
-			max-width: 500px;
+			max-width: 525px;
 			transition: all .35s ease;
 			& > .main-dialog-content{
 				width: 100%;

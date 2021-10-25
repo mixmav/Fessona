@@ -13,7 +13,7 @@
 			<h2 class="quickstart-heading-3" v-scroll-to="generateVueScrollToConfig('quickstart-heading-3')">Background</h2>
 
 			<p class="mt-10">As someone who journals regularly, I often write things addressed to 'future me'. I know there will be a day when I feel like shit. And there will also be a day when I feel like a fucking demigod.</p>
-			<p class="mt-10">So I find that reading letters I wrote from a different headspace is an invaluable tool to cultivate some equanimity. Perhaps Fessona can help you do the same.</p>
+			<p class="mt-10">So, I find that reading letters I wrote from a different headspace is an invaluable tool to cultivate some equanimity. Perhaps Fessona can help you do the same.</p>
 
 
 			<h2 class="quickstart-heading-4" v-scroll-to="generateVueScrollToConfig('quickstart-heading-4')">Contact</h2>

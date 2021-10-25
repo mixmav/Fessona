@@ -8,7 +8,7 @@
 						<img src="/images/logos/xxhdpi.png" alt="Logo">
 						<span>Fessona</span>
 					</router-link>
-					<button class="a" v-ripple @click="toggleQuickstartDialogVisible(true)">How it works</button>
+					<button class="a" @click="toggleQuickstartDialogVisible(true)">How it works</button>
 				</div>
 			</div>
 

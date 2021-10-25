@@ -10,21 +10,20 @@
 					</div>
 					<h2 class="mt-20">Birth, death, and the silly bit in-between</h2>
 					
-					<p class="mt-10">In light of how you're feeling right now, what are you most in-need of? We'll use this to show you the most relevant balloons first.</p>
+					<p class="mt-10">Being the balloon connoisseurs we are, we have something for everyone. Is there anything in particular you'd like to explore first?</p>
 				
 					<div class="mood-selector">
 						<button class="mood no-select" v-for="mood in moods" :key="mood.id" :class="{selected: mood.selected}" @click="updateSelectedMood(mood.id, $event)">{{ mood.icon }}</button>
 					</div>
 
 					<div class="mt-20 current-selected-mood">
-						<p>You chose {{currentMood.icon}}</p>
+						<!-- <p>You chose {{currentMood.icon}}</p> -->
 						<p class="desc">{{currentMood.desc}}</p>
 					</div>
 
-					<p class="hint mt-10">Unsure? just click next.</p>
-
 					<div class="mt-10" style="text-align: center" v-show="!loading">
 						<button class="btn full-width" v-ripple @click="launchApp"><i class="fa fa-cheese"></i>Next</button>
+						<p class="hint mt-10">Unsure? just click next.</p>
 						<a class="a mt-10" @click="toggleQuickstartDialogVisible(true)">What's going on?</a>
 					</div>
 
@@ -69,7 +68,7 @@ export default {
 	data(){
 		return {
 			synth: new Tone.MonoSynth().toDestination(),
-			AMinorScale: ['C4', 'D4', 'E4', 'F4', 'G4'],
+			AMinorScale: ["F4", "G4", "A4", "Bb4"],
 			loading: false,
 			maximized: false,
 			moods: [
@@ -77,7 +76,7 @@ export default {
 					id: 1,
 					icon: '💡',
 					selected: false,
-					desc: 'Creative inspiration',
+					desc: 'Creative inspiration 🎨',
 				},
 				{
 					id: 2,
@@ -121,7 +120,7 @@ export default {
 		}),
 
 		updateSelectedMood(newMoodID, event){
-			this.synth.triggerAttackRelease(this.AMinorScale[newMoodID], 0.1);
+			this.synth.triggerAttackRelease(this.AMinorScale[newMoodID - 1], 0.1);
 			
 			if(this.loading || event.target.classList.contains('selected')){
 				return;
@@ -197,7 +196,7 @@ export default {
 			}
 		}
 		& > .container{
-			max-height: 550px;
+			max-height: 510px;
 			max-width: 500px;
 			transition: all .35s ease;
 			& > .main-dialog-content{
@@ -209,7 +208,7 @@ export default {
 					align-items: center;
 					display: flex;
 				}
-				& > .hint{
+				p.hint{
 					font-size: .8em;
 					text-align: center;
 					color: darken(white, 35%);
@@ -242,7 +241,10 @@ export default {
 						&.selected{
 							background: lighten(blue, 45%);
 							transform: scale(1.1, 1.1);
+							border-radius: 100%;
 							cursor: default;
+							padding-left: 12px;
+							padding-right: 12px;
 							border-color: $primary-color;
 						}
 					}

@@ -5,7 +5,7 @@
 			<div class="container custom-scrollbar" v-show="visible">
 				<h1>You made it 😇</h1>
 
-				<h2 class="quickstart-heading-1" v-scroll-to="generateVueScrollToConfig('quickstart-heading-1')"><span>#</span> Wot m8</h2>
+				<h2 class="quickstart-heading-1" v-scroll-to="generateVueScrollToConfig('quickstart-heading-1')"><span>#</span> What is this</h2>
 				
 				<p>Using a simple question-answer format, we collect nuggets of good vibes from our community here at RMIT.</p>
 				<br>

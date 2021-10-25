@@ -44,7 +44,8 @@ import $ from 'jquery';
 import BalloonContentDialog from './BalloonContentDialog.vue';
 import ShareAnswerDialog from './ShareAnswerDialog.vue';
 import BalloonSection from './BalloonSection.vue';
-import { Swiper, SwiperSlide } from 'vue-awesome-swiper'
+
+import { Swiper, SwiperSlide } from 'vue-awesome-swiper';
 import Loading from '../../components/Loading.vue';
 
 export default {

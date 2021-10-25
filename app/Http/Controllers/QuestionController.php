@@ -25,6 +25,8 @@ class QuestionController extends Controller
 		// $question3->badges = "something,something";
 		$question3->save();
 
+
+		//TODO 3 fields
 		$question4->prompt = "Share your favorite music 🎶";
 		$question4->prompt2 = "When did you first hear this song? What does it mean to you?";
 		$question4->save();

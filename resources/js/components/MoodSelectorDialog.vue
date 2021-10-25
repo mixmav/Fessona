@@ -89,13 +89,13 @@ export default {
 					id: 3,
 					icon: '❤️',
 					selected: false,
-					desc: 'Lighthearted and uplifting energy',
+					desc: 'LOLs and uplifting vibes',
 				},
 				{
 					id: 4,
 					icon: '🎵',
 					selected: false,
-					desc: 'Good music',
+					desc: 'Good tunes',
 				},
 			],
 		}

@@ -1,8 +1,8 @@
 <template>
 	<div class="vGo-to-top-container no-select">
 		<transition name="transform-scale-full">
-			<div class="icon z-depth-1" v-ripple @click="scrollToTop" v-show="pageScrolled">
-				<i class="fa fa-chevron-up"></i>
+			<div class="icon" v-ripple @click="scrollToTop" v-show="pageScrolled">
+				<i class="fa fa-caret-up"></i>
 			</div>
 		</transition>
 	</div>
@@ -39,12 +39,13 @@ export default {
 		z-index: $zIndex-go-to-top;
 		cursor: pointer;
 		.icon{
-			padding: .8em{
-				left: 1.1em;
-				right: 1.1em;
-			}
-			border-radius: 100%;
-			background: $darkBlack;
+			width: 45px;
+			height: 45px;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			border-radius: 20px;
+			background: lighten($darkBlack, 20%);
 			i{
 				color: white;
 			}

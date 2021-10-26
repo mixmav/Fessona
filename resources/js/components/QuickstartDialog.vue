@@ -128,9 +128,9 @@ export default {
 	.vPage-component-quickstart-dialog-container{
 		z-index: $zIndex-quickstart-dialog;
 		& > .container{
-			max-height: 520px;
+			max-height: 500px;
 			max-width: 500px;
-			margin: 30px auto;
+			margin: 50px auto;
 			border-bottom-left-radius: 0;
 			border-bottom-right-radius: 0;
 			h2{

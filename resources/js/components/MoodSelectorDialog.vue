@@ -6,9 +6,9 @@
 				<div class="main-dialog-content">
 					<div class="top-bar">
 						<h1>Check-in</h1>
-						<a class="a" @click="!loading && toggleVisible(false)" v-ripple>Close</a>
+						<a class="a" @click="!loading && toggleVisible(false)">Close</a>
 					</div>
-					<h2 class="mt-20">Birth, death, and the silly bit in-between</h2>
+					<h2 class="mt-10">Birth, death, and the silly bit in-between</h2>
 					
 					<p class="mt-10">Being the balloon connoisseurs we are, we have something for everyone. Is there anything in particular you'd like to explore first?</p>
 				
@@ -145,6 +145,7 @@ export default {
 
 		launchApp(){
 			this.loading = true;
+
 			setTimeout(() => {
 				this.maximized = true;
 				setTimeout(() => {
@@ -152,7 +153,7 @@ export default {
 					setTimeout(() => {
 						this.$router.push('/app');
 					}, 300);
-				}, 5000)
+				}, 3000)
 			}, 500)
 		}
 	},
@@ -223,12 +224,13 @@ export default {
 					max-width: 400px;
 					.mood{
 						background: transparent;
-						padding: 10px;
 						border: solid 4px lighten(grey, 40%);
 						border-radius: 10px;
 						margin-left: 10px;
 						cursor: pointer;
 						font-size: 1.2em;
+						height: 60px;
+						width: 60px;
 						transition: all .2s;
 						&:nth-child(1){
 							margin-left: 0;
@@ -243,8 +245,6 @@ export default {
 							transform: scale(1.1, 1.1);
 							border-radius: 100%;
 							cursor: default;
-							padding-left: 12px;
-							padding-right: 12px;
 							border-color: $primary-color;
 						}
 					}
@@ -270,11 +270,25 @@ export default {
 			}
 		}
 	}
-	@include media(370px){
+	@include media(480px){
+		.vPage-component-mood-selector-dialog-container{
+			& > .container{
+				.main-dialog-content{
+					h2{
+						font-size: 1.2em;
+					}
+				}
+			}
+		}
+	}
+
+	@include media(380px){
 		.vPage-component-mood-selector-dialog-container{
 			& > .container{
 				.mood-selector{
 					.mood{
+						height: 50px !important;
+						width: 50px !important;
 						font-size: 1em !important;
 					}
 				}

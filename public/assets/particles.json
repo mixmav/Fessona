@@ -46,10 +46,10 @@
 			}
 		},
 		"line_linked": {
-			"enable": false,
-			"distance": 150,
-			"color": "#da4336",
-			"opacity": 0.3,
+			"enable": true,
+			"distance": 100,
+			"color": "#F05365",
+			"opacity": 0.2,
 			"width": 1
 		},
 		"move": {

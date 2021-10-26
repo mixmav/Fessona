@@ -372,6 +372,14 @@ i, span{
 	transform: translateY(-100px);
 }
 
+.translate-y-100px-opacity-enter-active, .translate-y-100px-opacity-leave-active {
+	transition: all .25s;
+	// transition-timing-function: cubic-bezier(0.0, 0.0, 0.2, 1);
+}
+.translate-y-100px-opacity-enter, .translate-y-100px-opacity-leave-to {
+	transform: translateY(100px);
+	opacity: 0;
+}
 
 .router-view-enter-active, .router-view-leave-active {
     transition: all .3s;

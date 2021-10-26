@@ -10,15 +10,20 @@
 			<loading class="mt-10"></loading>
 		</div>
 
-		<h3 class="mt-20">Crowdsourced balloons 🎈</h3>
-		
-		<button class="btn yellow mt-10" @click="randomizeBalloons = !randomizeBalloons" v-ripple><i class="fa fa-dice"></i>Randomize</button>
-		
-		<div class="balloons custom-scrollbar">
-			<div class="balloon no-select" v-for="i in sortedBalloons" :key="i.id" :style="generateBalloonStyle(i)" @click="showBalloonContent(i.id)">
-				<i class="fa fa-heart"></i>&nbsp;{{ i.likes }}
+		<transition name="opacity">
+			<div v-show="!loading && balloons.length > 0">
+				<h3 class="mt-20">Crowdsourced balloons 🎈</h3>
+				<button class="btn yellow mt-10" @click="randomizeBalloons = !randomizeBalloons" v-ripple><i class="fa fa-dice"></i>Randomize</button>
 			</div>
-		</div>
+		</transition>
+		
+		<transition name="translate-y-100px-opacity">
+			<div class="balloons custom-scrollbar" v-show="!loading && balloons.length > 0">
+				<div class="balloon no-select" v-for="i in sortedBalloons" :key="i.id" :style="generateBalloonStyle(i)" @click="showBalloonContent(i.id)">
+					<i class="fa fa-heart"></i>&nbsp;{{ i.likes }}
+				</div>
+			</div>
+		</transition>
 
 		<p class="mt-30" v-show="!loading && balloons.length === 0">Oh so empty 😶</p>
 	</div>
@@ -113,12 +118,14 @@ export default {
 				},
 				success(response){
 					vThis.balloons = response;
-					if (vThis.question.id == 1) { // only trigger toastification on balloonready on the first one
-						vThis.$toast.success("Your balloons are ready 🎈");
-					}
 				},
 				complete(){
-					vThis.loading = false;
+					setTimeout(() => {
+						vThis.loading = false;
+						if (vThis.question.id == 1) { // only trigger toastification on balloonready on the first one
+							vThis.$toast.success("Balloons ready 🥳");
+						}
+					}, 800);
 				},
 				error(){
 					vThis.$toast.error('There was an error fetching data. Try refreshing the page.');
@@ -141,6 +148,9 @@ export default {
 		width: 100%;
 		max-width: 500px;
 		margin: 0 auto;
+		opacity: 0;
+		animation: opacityFull .2s linear;
+		animation-fill-mode: forwards;
 
 		h2{
 			font-size: 1.4em;
@@ -169,6 +179,12 @@ export default {
 				transform: scale(0.95, 0.95);
 			}
 		}
+	}
+}
+
+@keyframes opacityFull {
+	to {
+		opacity: 1;
 	}
 }
 </style>

@@ -74,8 +74,8 @@ export default {
 		// }, 1500);
 
 		setTimeout(() => {
-			this.$toast.info("Bookmark this page for easy access 🔖");
-		}, 10000)
+			this.$toast.info("Bookmark for easy access 🔖");
+		}, 11000)
 
 		let vThis = this;
 		$.ajax({

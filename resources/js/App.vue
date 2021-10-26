@@ -120,6 +120,7 @@ export default {
 			width: 100%;
 			text-align: left;
         	padding: 1em;
+			overflow: auto;
 			z-index: $zIndex-router-content;
 		}
     }

@@ -8,7 +8,9 @@ import VueCookie from 'vue-cookie';
 import Toast from "vue-toastification";
 
 
-Vue.use(Toast);
+Vue.use(Toast, {
+	position: "bottom-right",
+});
 Vue.use(VueScrollTo);
 Vue.use(VueCookie);
 

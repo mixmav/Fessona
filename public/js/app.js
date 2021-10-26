@@ -1299,14 +1299,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
 /* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js");
 /* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
 /* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _components_Loading_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../components/Loading.vue */ "./resources/js/components/Loading.vue");
-/* harmony import */ var randomcolor__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! randomcolor */ "./node_modules/randomcolor/randomColor.js");
-/* harmony import */ var randomcolor__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(randomcolor__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var tone__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! tone */ "./node_modules/tone/build/esm/index.js");
+/* harmony import */ var _components_Loading_vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../components/Loading.vue */ "./resources/js/components/Loading.vue");
+/* harmony import */ var randomcolor__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! randomcolor */ "./node_modules/randomcolor/randomColor.js");
+/* harmony import */ var randomcolor__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(randomcolor__WEBPACK_IMPORTED_MODULE_4__);
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
@@ -1346,6 +1347,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+
 
 
 
@@ -1353,14 +1359,16 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {
-    Loading: _components_Loading_vue__WEBPACK_IMPORTED_MODULE_2__.default
+    Loading: _components_Loading_vue__WEBPACK_IMPORTED_MODULE_3__.default
   },
   props: ['question'],
   data: function data() {
     return {
       loading: false,
       balloons: [],
-      randomizeBalloons: false
+      randomizeBalloons: false,
+      synth: new tone__WEBPACK_IMPORTED_MODULE_2__.MonoSynth().toDestination(),
+      AMinorScale: ["F4", "G4", "A4", "Bb4"]
     };
   },
   created: function created() {
@@ -1388,10 +1396,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   },
   methods: _objectSpread(_objectSpread(_objectSpread({
     generateBalloonStyle: function generateBalloonStyle(i) {
-      // let red = _.random(0, 255);
-      // let green = _.random(0, 255);
-      // let blue = _.random(0, 255);
-      var bg = randomcolor__WEBPACK_IMPORTED_MODULE_3___default()({
+      var bg = randomcolor__WEBPACK_IMPORTED_MODULE_4___default()({
         seed: i.id
       });
       var border = bg;
@@ -1400,10 +1405,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
       return "\n\t\t\t\tbackground: ".concat(bg, ";\n\t\t\t\tborder: solid 2px ").concat(border, ";\n\t\t\t\twidth: ").concat(width, "px;\n\t\t\t\theight: ").concat(width, "px;\n\t\t\t");
     }
-  }, (0,vuex__WEBPACK_IMPORTED_MODULE_4__.mapActions)('ShareAnswerDialog', {
+  }, (0,vuex__WEBPACK_IMPORTED_MODULE_5__.mapActions)('ShareAnswerDialog', {
     updateShareAnswerDialogQuestion: 'updateQuestion',
     toggleShareAnswerDialogVisible: 'toggleVisible'
-  })), (0,vuex__WEBPACK_IMPORTED_MODULE_4__.mapActions)('BalloonContentDialog', {
+  })), (0,vuex__WEBPACK_IMPORTED_MODULE_5__.mapActions)('BalloonContentDialog', {
     updateBallonContentDialogBalloonID: 'updateBalloonID',
     toggleBallonContentDialogVisible: 'toggleVisible'
   })), {}, {
@@ -1412,6 +1417,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       this.toggleShareAnswerDialogVisible(true);
     },
     showBalloonContent: function showBalloonContent(id) {
+      this.synth.triggerAttackRelease(this.AMinorScale[lodash__WEBPACK_IMPORTED_MODULE_0___default().random(0, this.AMinorScale.length - 1)], 0.1);
       this.updateBallonContentDialogBalloonID(id);
       this.toggleBallonContentDialogVisible(true);
     },
@@ -1906,7 +1912,7 @@ __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
 
 vue__WEBPACK_IMPORTED_MODULE_4__.default.use(vue_toastification__WEBPACK_IMPORTED_MODULE_3__.default, {
-  position: "top-center"
+  position: "bottom-right"
 });
 vue__WEBPACK_IMPORTED_MODULE_4__.default.use((vue_scrollto__WEBPACK_IMPORTED_MODULE_1___default()));
 vue__WEBPACK_IMPORTED_MODULE_4__.default.use((vue_cookie__WEBPACK_IMPORTED_MODULE_2___default()));
@@ -4356,7 +4362,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".vRouterPageComponent-App-balloon-section-container {\n  width: 100%;\n  padding: 1em;\n  padding-top: 0;\n}\n.vRouterPageComponent-App-balloon-section-container .prompts {\n  width: 100%;\n  max-width: 500px;\n  margin: 0 auto;\n  opacity: 0;\n  -webkit-animation: opacityFull 0.2s linear;\n          animation: opacityFull 0.2s linear;\n  -webkit-animation-fill-mode: forwards;\n          animation-fill-mode: forwards;\n}\n.vRouterPageComponent-App-balloon-section-container .prompts h2 {\n  font-size: 1.4em;\n}\n.vRouterPageComponent-App-balloon-section-container .balloons {\n  margin-top: 10px;\n  text-align: center;\n}\n.vRouterPageComponent-App-balloon-section-container .balloons .balloon {\n  background: #3A7D44;\n  display: inline-flex;\n  justify-content: center;\n  flex-direction: column;\n  align-items: center;\n  color: white;\n  border-radius: 100%;\n  margin-left: 10px;\n  margin-top: 10px;\n  cursor: pointer;\n  transition: all 0.15s;\n}\n.vRouterPageComponent-App-balloon-section-container .balloons .balloon i {\n  font-size: 1.4em;\n  color: #F05365;\n}\n.vRouterPageComponent-App-balloon-section-container .balloons .balloon span {\n  font-weight: 400;\n  font-size: 0.8em;\n}\n.vRouterPageComponent-App-balloon-section-container .balloons .balloon:hover {\n  transform: scale(1.1, 1.1);\n}\n.vRouterPageComponent-App-balloon-section-container .balloons .balloon:active {\n  transform: scale(0.95, 0.95);\n}\n@-webkit-keyframes opacityFull {\nto {\n    opacity: 1;\n}\n}\n@keyframes opacityFull {\nto {\n    opacity: 1;\n}\n}", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, ".vRouterPageComponent-App-balloon-section-container {\n  width: 100%;\n  padding: 1em;\n  padding-top: 0;\n}\n.vRouterPageComponent-App-balloon-section-container .prompts {\n  width: 100%;\n  margin: 0 auto;\n  opacity: 0;\n  -webkit-animation: opacityFull 0.2s linear;\n          animation: opacityFull 0.2s linear;\n  -webkit-animation-fill-mode: forwards;\n          animation-fill-mode: forwards;\n}\n.vRouterPageComponent-App-balloon-section-container .prompts h2 {\n  font-size: 1.4em;\n}\n.vRouterPageComponent-App-balloon-section-container .randomize {\n  font-size: 0.9em;\n}\n.vRouterPageComponent-App-balloon-section-container .randomize:hover:after {\n  display: none;\n}\n.vRouterPageComponent-App-balloon-section-container .balloons {\n  margin-top: 10px;\n  text-align: center;\n}\n.vRouterPageComponent-App-balloon-section-container .balloons .balloon {\n  background: #3A7D44;\n  display: inline-flex;\n  justify-content: center;\n  flex-direction: column;\n  align-items: center;\n  color: white;\n  border-radius: 100%;\n  margin-left: 10px;\n  margin-top: 10px;\n  cursor: pointer;\n  transition: all 0.15s;\n}\n.vRouterPageComponent-App-balloon-section-container .balloons .balloon i {\n  font-size: 1.4em;\n  transition: all 0.3s;\n}\n.vRouterPageComponent-App-balloon-section-container .balloons .balloon span {\n  font-weight: 400;\n  font-size: 0.8em;\n}\n.vRouterPageComponent-App-balloon-section-container .balloons .balloon:hover {\n  transform: scale(1.1, 1.1);\n}\n.vRouterPageComponent-App-balloon-section-container .balloons .balloon:hover i {\n  transform: scale(0.8, 0.8);\n}\n.vRouterPageComponent-App-balloon-section-container .balloons .balloon:active {\n  transform: scale(0.95, 0.95);\n}\n@-webkit-keyframes opacityFull {\nto {\n    opacity: 1;\n}\n}\n@keyframes opacityFull {\nto {\n    opacity: 1;\n}\n}", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -4380,7 +4386,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".vRouterPage-main-app-page-container .main-page-content {\n  background: transparent;\n  -webkit-animation: backgroundToWhite linear 0.3s;\n          animation: backgroundToWhite linear 0.3s;\n  -webkit-animation-delay: 0.3s;\n          animation-delay: 0.3s;\n  -webkit-animation-fill-mode: forwards;\n          animation-fill-mode: forwards;\n  padding: 0 !important;\n}\n.vRouterPage-main-app-page-container .main-page-content > .top-bar {\n  width: 100%;\n  position: fixed;\n  top: 0;\n  left: 0;\n  height: 80px;\n  border-bottom: solid 1px rgba(0, 0, 0, 0.4);\n}\n.vRouterPage-main-app-page-container .main-page-content > .top-bar > .spacer {\n  display: flex;\n  padding: 1em;\n  justify-content: space-between;\n  align-items: center;\n  height: 100%;\n  width: 100%;\n  max-width: 1000px;\n  margin: 0 auto;\n}\n.vRouterPage-main-app-page-container .main-page-content > .top-bar > .spacer a {\n  text-decoration: none;\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n  color: #6610f2;\n}\n.vRouterPage-main-app-page-container .main-page-content > .top-bar > .spacer a:hover img, .vRouterPage-main-app-page-container .main-page-content > .top-bar > .spacer a:focus img {\n  transform: rotate(180deg) scale(1.1, 1.1);\n}\n.vRouterPage-main-app-page-container .main-page-content > .top-bar > .spacer a img {\n  width: 30px;\n  height: 30px;\n  border-radius: 100%;\n  margin-right: 10px;\n  transition: all 0.35s;\n}\n.vRouterPage-main-app-page-container .main-page-content > .top-bar > .spacer a span {\n  font-size: 2em;\n}\n.vRouterPage-main-app-page-container .main-page-content .page-content {\n  padding-top: 20px;\n  text-align: center;\n  position: fixed;\n  width: 100%;\n  height: calc(100% - 80px);\n  top: 80px;\n  left: 0;\n  overflow: auto;\n}\n.vRouterPage-main-app-page-container .main-page-content .page-content .swiper-wrapper {\n  margin-top: 10px;\n}\n.vRouterPage-main-app-page-container .main-page-content .page-content .swiper-button-next {\n  right: 20px;\n  position: fixed;\n}\n.vRouterPage-main-app-page-container .main-page-content .page-content .swiper-button-prev {\n  left: 20px;\n  position: fixed;\n}\n.vRouterPage-main-app-page-container .main-page-content .page-content .swiper-pagination {\n  position: relative;\n  margin-top: 10px;\n}\n.vRouterPage-main-app-page-container .main-page-content .page-content .swiper-pagination .swiper-pagination-bullet {\n  margin-left: 10px;\n}\n.vRouterPage-main-app-page-container .main-page-content .page-content .swiper-pagination .swiper-pagination-bullet:first-child {\n  margin-left: 0;\n}\n.vRouterPage-main-app-page-container .main-page-content .page-content .swiper-pagination .swiper-pagination-bullet.swiper-pagination-bullet-active {\n  background: #6610f2;\n}\n@-webkit-keyframes backgroundToWhite {\nto {\n    background: rgba(255, 255, 255, 0.7);\n}\n}\n@keyframes backgroundToWhite {\nto {\n    background: rgba(255, 255, 255, 0.7);\n}\n}\n@media only screen and (max-width: 630px) {\n.vRouterPage-main-app-page-container .main-page-content > .top-bar > .spacer a img {\n    display: none;\n}\n.vRouterPage-main-app-page-container .main-page-content > .top-bar > .spacer button i {\n    display: none;\n}\n}", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, ".vRouterPage-main-app-page-container .main-page-content {\n  background: transparent;\n  -webkit-animation: backgroundToWhite linear 0.3s;\n          animation: backgroundToWhite linear 0.3s;\n  -webkit-animation-delay: 0.3s;\n          animation-delay: 0.3s;\n  -webkit-animation-fill-mode: forwards;\n          animation-fill-mode: forwards;\n  padding: 0 !important;\n}\n.vRouterPage-main-app-page-container .main-page-content > .top-bar {\n  width: 100%;\n  position: fixed;\n  top: 0;\n  left: 0;\n  height: 60px;\n  border-bottom: solid 1px rgba(0, 0, 0, 0.1);\n}\n.vRouterPage-main-app-page-container .main-page-content > .top-bar > .spacer {\n  display: flex;\n  padding: 1em;\n  justify-content: space-between;\n  align-items: center;\n  height: 100%;\n  width: 100%;\n  max-width: 1000px;\n  margin: 0 auto;\n}\n.vRouterPage-main-app-page-container .main-page-content > .top-bar > .spacer a {\n  text-decoration: none;\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n  color: #6610f2;\n}\n.vRouterPage-main-app-page-container .main-page-content > .top-bar > .spacer a:hover img, .vRouterPage-main-app-page-container .main-page-content > .top-bar > .spacer a:focus img {\n  transform: rotate(180deg) scale(1.1, 1.1);\n}\n.vRouterPage-main-app-page-container .main-page-content > .top-bar > .spacer a img {\n  width: 30px;\n  height: 30px;\n  border-radius: 100%;\n  margin-right: 10px;\n  transition: all 0.35s;\n}\n.vRouterPage-main-app-page-container .main-page-content > .top-bar > .spacer a span {\n  font-size: 1.4em;\n}\n.vRouterPage-main-app-page-container .main-page-content .page-content {\n  padding-top: 20px;\n  text-align: center;\n  position: fixed;\n  width: 100%;\n  height: calc(100% - 60px);\n  top: 60px;\n  left: 0;\n  overflow: auto;\n}\n.vRouterPage-main-app-page-container .main-page-content .page-content .swiper-wrapper {\n  margin-top: 10px;\n}\n.vRouterPage-main-app-page-container .main-page-content .page-content .swiper-button-next {\n  right: 20px;\n  position: fixed;\n}\n.vRouterPage-main-app-page-container .main-page-content .page-content .swiper-button-prev {\n  left: 20px;\n  position: fixed;\n}\n.vRouterPage-main-app-page-container .main-page-content .page-content .swiper-pagination {\n  position: relative;\n  margin-top: 10px;\n}\n.vRouterPage-main-app-page-container .main-page-content .page-content .swiper-pagination .swiper-pagination-bullet {\n  margin-left: 10px;\n}\n.vRouterPage-main-app-page-container .main-page-content .page-content .swiper-pagination .swiper-pagination-bullet:first-child {\n  margin-left: 0;\n}\n.vRouterPage-main-app-page-container .main-page-content .page-content .swiper-pagination .swiper-pagination-bullet.swiper-pagination-bullet-active {\n  background: #6610f2;\n}\n@-webkit-keyframes backgroundToWhite {\nto {\n    background: rgba(255, 255, 255, 0.7);\n}\n}\n@keyframes backgroundToWhite {\nto {\n    background: rgba(255, 255, 255, 0.7);\n}\n}\n@media only screen and (max-width: 630px) {\n.vRouterPage-main-app-page-container .main-page-content > .top-bar > .spacer a img {\n    display: none;\n}\n.vRouterPage-main-app-page-container .main-page-content > .top-bar > .spacer button i {\n    display: none;\n}\n}", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -43130,19 +43136,63 @@ var render = function() {
     { staticClass: "vRouterPageComponent-App-balloon-section-container" },
     [
       _c("div", { staticClass: "prompts" }, [
-        _c("h2", { staticStyle: { "text-align": "left" } }, [
-          _c("i", { staticClass: "fa fa-flask" }),
-          _vm._v(_vm._s(_vm.question.prompt))
-        ]),
+        _c("h2", [_vm._v("# " + _vm._s(_vm.question.prompt))]),
         _vm._v(" "),
         _c(
           "button",
           {
             directives: [{ name: "ripple", rawName: "v-ripple" }],
-            staticClass: "btn mt-10 full-width",
+            staticClass: "btn mt-10",
             on: { click: _vm.showShareAnswerDialog }
           },
           [_c("i", { staticClass: "fa fa-plus" }), _vm._v("Share your answer")]
+        ),
+        _vm._v(" "),
+        _c("br"),
+        _vm._v(" "),
+        _c(
+          "button",
+          {
+            staticClass: "a mt-10 randomize",
+            on: {
+              click: function($event) {
+                _vm.randomizeBalloons = !_vm.randomizeBalloons
+              }
+            }
+          },
+          [
+            _c("i", { staticClass: "fa fa-random" }),
+            _vm._v(" "),
+            _c(
+              "span",
+              {
+                directives: [
+                  {
+                    name: "show",
+                    rawName: "v-show",
+                    value: !_vm.randomizeBalloons,
+                    expression: "!randomizeBalloons"
+                  }
+                ]
+              },
+              [_vm._v("Randomize")]
+            ),
+            _vm._v(" "),
+            _c(
+              "span",
+              {
+                directives: [
+                  {
+                    name: "show",
+                    rawName: "v-show",
+                    value: _vm.randomizeBalloons,
+                    expression: "randomizeBalloons"
+                  }
+                ]
+              },
+              [_vm._v("Un-randomize")]
+            )
+          ]
         )
       ]),
       _vm._v(" "),
@@ -43169,38 +43219,16 @@ var render = function() {
       ),
       _vm._v(" "),
       _c("transition", { attrs: { name: "opacity" } }, [
-        _c(
-          "div",
-          {
-            directives: [
-              {
-                name: "show",
-                rawName: "v-show",
-                value: !_vm.loading && _vm.balloons.length > 0,
-                expression: "!loading && balloons.length > 0"
-              }
-            ]
-          },
-          [
-            _c("h3", { staticClass: "mt-20" }, [
-              _vm._v("Crowdsourced balloons 🎈")
-            ]),
-            _vm._v(" "),
-            _c(
-              "button",
-              {
-                directives: [{ name: "ripple", rawName: "v-ripple" }],
-                staticClass: "btn yellow mt-10",
-                on: {
-                  click: function($event) {
-                    _vm.randomizeBalloons = !_vm.randomizeBalloons
-                  }
-                }
-              },
-              [_c("i", { staticClass: "fa fa-dice" }), _vm._v("Randomize")]
-            )
+        _c("div", {
+          directives: [
+            {
+              name: "show",
+              rawName: "v-show",
+              value: !_vm.loading && _vm.balloons.length > 0,
+              expression: "!loading && balloons.length > 0"
+            }
           ]
-        )
+        })
       ]),
       _vm._v(" "),
       _c("transition", { attrs: { name: "translate-y-100px-opacity" } }, [

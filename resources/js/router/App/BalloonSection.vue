@@ -1,8 +1,13 @@
 <template>
 	<div class="vRouterPageComponent-App-balloon-section-container">
 		<div class="prompts">
-			<h2 style="text-align: left"><i class="fa fa-flask"></i>{{question.prompt}}</h2>
-			<button class="btn mt-10 full-width" v-ripple @click="showShareAnswerDialog"><i class="fa fa-plus"></i>Share your answer</button>
+			<h2># {{question.prompt}}</h2>
+			<button class="btn mt-10" v-ripple @click="showShareAnswerDialog"><i class="fa fa-plus"></i>Share your answer</button>
+			<br>
+			<button class="a mt-10 randomize" @click="randomizeBalloons = !randomizeBalloons"><i class="fa fa-random"></i>
+				<span v-show="!randomizeBalloons">Randomize</span>
+				<span v-show="randomizeBalloons">Un-randomize</span>
+			</button>
 		</div>
 		
 		<div style="text-align: center" v-show="loading" class="mt-30">
@@ -12,8 +17,7 @@
 
 		<transition name="opacity">
 			<div v-show="!loading && balloons.length > 0">
-				<h3 class="mt-20">Crowdsourced balloons 🎈</h3>
-				<button class="btn yellow mt-10" @click="randomizeBalloons = !randomizeBalloons" v-ripple><i class="fa fa-dice"></i>Randomize</button>
+				<!-- <p class="mt-20">Crowdsourced balloons 🎈</p> -->
 			</div>
 		</transition>
 		
@@ -35,6 +39,7 @@
 import { mapActions } from 'vuex';
 import _ from 'lodash';
 import $ from 'jquery';
+import * as Tone from 'tone'
 import Loading from '../../components/Loading.vue';
 import randomColor from 'randomcolor';
 
@@ -50,6 +55,8 @@ export default {
 			loading: false,
 			balloons: [],
 			randomizeBalloons: false,
+			synth: new Tone.MonoSynth().toDestination(),
+			AMinorScale: ["F4", "G4", "A4", "Bb4"],
 		}
 	},
 	created(){
@@ -75,12 +82,10 @@ export default {
 	},
 	methods: {
 		generateBalloonStyle(i){
-			// let red = _.random(0, 255);
-			// let green = _.random(0, 255);
-			// let blue = _.random(0, 255);
 			let bg = randomColor({
 				seed: i.id,
 			});
+
 			let border = bg;
 			let width = _.random(70, 140);
 
@@ -108,6 +113,8 @@ export default {
 		},
 
 		showBalloonContent(id){
+			this.synth.triggerAttackRelease(this.AMinorScale[_.random(0, this.AMinorScale.length - 1)], 0.1);
+
 			this.updateBallonContentDialogBalloonID(id)
 			this.toggleBallonContentDialogVisible(true);
 		},
@@ -155,7 +162,6 @@ export default {
 
 	.prompts{
 		width: 100%;
-		max-width: 500px;
 		margin: 0 auto;
 		opacity: 0;
 		animation: opacityFull .2s linear;
@@ -163,6 +169,15 @@ export default {
 
 		h2{
 			font-size: 1.4em;
+		}
+	}
+
+	.randomize{
+		font-size: .9em;
+		&:hover{
+			&:after{
+				display: none;
+			}
 		}
 	}
 
@@ -183,7 +198,7 @@ export default {
 			transition: all .15s;
 			i{
 				font-size: 1.4em;
-				color: $red;
+				transition: all .3s;
 			}
 			span{
 				font-weight: 400;
@@ -192,6 +207,9 @@ export default {
 
 			&:hover{
 				transform: scale(1.1, 1.1);
+				i{
+					transform: scale(0.8, 0.8);
+				}
 			}
 
 			&:active{

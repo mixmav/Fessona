@@ -9,7 +9,7 @@ import Toast from "vue-toastification";
 
 
 Vue.use(Toast, {
-	position: "top-center",
+	position: "bottom-right",
 });
 Vue.use(VueScrollTo);
 Vue.use(VueCookie);

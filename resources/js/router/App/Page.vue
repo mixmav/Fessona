@@ -169,8 +169,8 @@ export default {
 			position: fixed;
 			top: 0;
 			left: 0;
-			height: 80px;
-			border-bottom: solid 1px rgba(black, 0.4);
+			height: 60px;
+			border-bottom: solid 1px rgba(black, 0.1);
 
 			& > .spacer{
 				display: flex;
@@ -201,7 +201,7 @@ export default {
 						transition: all .35s;
 					}
 					span{
-						font-size: 2em;	
+						font-size: 1.4em;	
 					}
 				}
 			}
@@ -212,8 +212,8 @@ export default {
 			text-align: center;
 			position: fixed;
 			width: 100%;
-			height: calc(100% - 80px); //Top bar height
-			top: 80px;
+			height: calc(100% - 60px); //Top bar height
+			top: 60px;
 			left: 0;
 
 			overflow: auto;

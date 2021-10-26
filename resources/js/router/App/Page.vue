@@ -74,9 +74,10 @@ export default {
 		// 	this.swiper.slideTo(1, 1000, false);
 		// }, 1500);
 
-		setTimeout(() => {
-			this.$toast.info("Bookmark for easy access 🔖");
-		}, 17000)
+		//Felt annoying
+		// setTimeout(() => {
+		// 	this.$toast.info("Bookmark for easy access 🔖");
+		// }, 17000)
 
 		let vThis = this;
 		$.ajax({

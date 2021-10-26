@@ -12,15 +12,22 @@ const mix = require('laravel-mix');
  */
 
 mix.js('resources/js/app.js', 'public/js').vue()
-//  .extract([
-// 	 'jquery',
-// 	 'lodash',
-// 	 'vue',
-// 	 'vue-quill-editor',
-// 	 'vue-ripple-directive',
-// 	 'vue-router',
-// 	 'vuex'
-//  ])
+ .extract([
+	 'jquery',
+	 'lodash',
+	 'vue',
+	 'vue-quill-editor',
+	 'vue-ripple-directive',
+	 'vue-router',
+	 'vuex',
+	 'particles.js',
+	 'tone',
+	 'swiper',
+	 'vue-awesome-swiper',
+	 'vue-cookie',
+	 'vue-toastification',
+	 'vue-scrollto'
+ ])
 .sass('resources/scss/app.scss', 'public/css')
 
 .disableNotifications()

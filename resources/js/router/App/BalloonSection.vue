@@ -20,7 +20,9 @@
 		<transition name="translate-y-100px-opacity">
 			<div class="balloons custom-scrollbar" v-show="!loading && balloons.length > 0">
 				<div class="balloon no-select" v-for="i in sortedBalloons" :key="i.id" :style="generateBalloonStyle(i)" @click="showBalloonContent(i.id)">
-					<i class="fa fa-heart"></i>&nbsp;{{ i.likes }}
+					<i class="fa fa-heart"></i>
+					<!-- <span>{{ 999 }}</span> -->
+					<span>{{ i.likes }}</span>
 				</div>
 			</div>
 		</transition>
@@ -34,6 +36,7 @@ import { mapActions } from 'vuex';
 import _ from 'lodash';
 import $ from 'jquery';
 import Loading from '../../components/Loading.vue';
+import randomColor from 'randomcolor';
 
 export default {
 	components: {
@@ -60,6 +63,7 @@ export default {
 			}
 		});
 	},
+
 	computed: {
 		sortedBalloons(){
 			if (this.randomizeBalloons) {
@@ -71,15 +75,18 @@ export default {
 	},
 	methods: {
 		generateBalloonStyle(i){
-			let red = _.random(0, 255);
-			let green = _.random(0, 255);
-			let blue = _.random(0, 255);
-
+			// let red = _.random(0, 255);
+			// let green = _.random(0, 255);
+			// let blue = _.random(0, 255);
+			let bg = randomColor({
+				seed: i.id,
+			});
+			let border = bg;
 			let width = _.random(70, 140);
 
 			return `
-				background: rgba(${red}, ${green}, ${blue}, 1);
-				border: solid 2px rgb(${red}, ${green}, ${blue});
+				background: ${bg};
+				border: solid 2px ${border};
 				width: ${width}px;
 				height: ${width}px;
 			`;
@@ -166,6 +173,7 @@ export default {
 			background: $green;
 			display: inline-flex;
 			justify-content: center;
+			flex-direction: column;
 			align-items: center;
 			color: white;
 			border-radius: 100%;
@@ -173,11 +181,20 @@ export default {
 			margin-top: 10px;
 			cursor: pointer;
 			transition: all .15s;
+			i{
+				font-size: 1.4em;
+				color: $red;
+			}
+			span{
+				font-weight: 400;
+				font-size: .8em;
+			}
+
 			&:hover{
 				transform: scale(1.1, 1.1);
 			}
 
-			&:active{	
+			&:active{
 				transform: scale(0.95, 0.95);
 			}
 		}

@@ -123,12 +123,12 @@ export default {
 					setTimeout(() => {
 						vThis.loading = false;
 						if (vThis.question.id == 1) { // only trigger toastification on balloonready on the first one
-							vThis.$toast.success("Balloons ready 🥳");
+							vThis.$toast.info("Balloons ready 🥳");
 						}
 					}, 800);
 				},
 				error(){
-					vThis.$toast.error('There was an error fetching data. Try refreshing the page.');
+					vThis.$toast.error('There was an error fetching data 🤐 Refresh?');
 				}
 			});
 		},
@@ -142,7 +142,9 @@ export default {
 
 .vRouterPageComponent-App-balloon-section-container{
 	width: 100%;
-	padding: 1em;
+	padding: 1em {
+		top: 0;
+	};
 
 	.prompts{
 		width: 100%;

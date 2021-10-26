@@ -154,7 +154,7 @@ export default {
 					vThis.isLoading = false;
 				},
 				error(){
-					vThis.$toast.error('There was an error creating your balloon, maybe try again?');
+					vThis.$toast.error('Error creating your balloon 🤐 Try again?');
 				}
 			});
 		},

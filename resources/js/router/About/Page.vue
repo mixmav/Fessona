@@ -63,7 +63,7 @@ export default {
 		width: 100%;
 		max-width: 100%;
 		background: rgba(white, 0.8);
-		div.spacer{
+		& > .spacer{
 			margin: 0 auto;
 			max-width: 600px;
 			

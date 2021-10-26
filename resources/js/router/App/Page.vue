@@ -8,7 +8,8 @@
 						<img src="/images/logos/xxhdpi.png" alt="Logo">
 						<span>Fessona</span>
 					</router-link>
-					<button class="a" @click="toggleQuickstartDialogVisible(true)">How it works</button>
+
+					<button class="a" @click="toggleQuickstartDialogVisible(true)"><i class="fa fa-cookie-bite"></i>How it works</button>
 				</div>
 			</div>
 
@@ -23,7 +24,7 @@
 			<div class="page-content custom-scrollbar">
 				<div class="swiper-pagination"></div>
 
-				<loading v-show="loading"></loading>
+				<loading v-show="loading" class="mt-40"></loading>
 
 				<swiper ref="mySwiper" :options="swiperOptions">
 					<swiper-slide v-for="question in questions" :key="question.id">
@@ -75,7 +76,7 @@ export default {
 
 		setTimeout(() => {
 			this.$toast.info("Bookmark for easy access 🔖");
-		}, 11000)
+		}, 17000)
 
 		let vThis = this;
 		$.ajax({
@@ -95,7 +96,7 @@ export default {
 				}, 1000);
 			},
 			error(){
-				vThis.$toast.error('There was an error fetching data. Try refreshing the page.');
+				vThis.$toast.error('There was an error fetching data 🤐 Refresh?');
 			}
 		});
 	},
@@ -167,14 +168,17 @@ export default {
 			position: fixed;
 			top: 0;
 			left: 0;
-			padding: 1em;
+			height: 80px;
 			border-bottom: solid 1px rgba(black, 0.4);
-			.spacer{
+
+			& > .spacer{
 				display: flex;
+				padding: 1em;
 				justify-content: space-between;
 				align-items: center;
+				height: 100%;
 				width: 100%;
-				max-width: 750px;
+				max-width: 1000px;
 				margin: 0 auto;
 
 				a{
@@ -203,18 +207,18 @@ export default {
 		}
 
 		.page-content{
-			padding: 0em {
-				top: 30px;
-			};
+			padding-top: 20px;
 			text-align: center;
 			position: fixed;
-			top: 78px; //Top bar height
-			left: 0;
 			width: 100%;
-			height: calc(100% - 70px);
+			height: calc(100% - 80px); //Top bar height
+			top: 80px;
+			left: 0;
+
 			overflow: auto;
+			
 			.swiper-wrapper{
-				margin-top: 20px;
+				margin-top: 10px;
 			}
 			.swiper-button-next{
 				right: 20px;
@@ -245,6 +249,21 @@ export default {
 @keyframes backgroundToWhite {
 	to{
 		background: rgba(white, 0.7);
+	}
+}
+
+@include media(630px){
+	.vRouterPage-main-app-page-container .main-page-content > .top-bar {
+		& > .spacer{
+			a img{
+				display: none;
+			}
+			button{
+				i{
+					display: none;
+				}
+			}
+		} 
 	}
 }
 </style>

@@ -120,7 +120,7 @@ export default {
 				},
 
 				error(){
-					vThis.$toast.error('There was an error fetching this balloon 😢');
+					vThis.$toast.error('There was an error fetching this balloon 🤐');
 				}
 			});
 		},

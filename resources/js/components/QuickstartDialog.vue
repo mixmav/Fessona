@@ -14,7 +14,8 @@
 
 				<button class="btn full-width mt-30" v-show="this.$route.name == 'Home'" v-ripple @click="getStarted"><i class="fa fa-fighter-jet"></i>Start exploring</button>
 				
-				<div style="text-align: center" class="mt-10">
+				<!-- Center the div only if it's the home page 😏😏 -->
+				<div :style="(this.$route.name == 'Home') ? 'text-align: center':''" class="mt-10">
 					<button class="a" @click="goToAboutPage">More info</button>
 				</div>
 

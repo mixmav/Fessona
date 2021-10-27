@@ -12,7 +12,7 @@
 						<span v-show="previewVisible">Edit</span>
 					</button>
 
-					<button v-ripple :disabled="isLoading" class="btn" :class="{darkBlack: previewVisible, primary: !previewVisible}" @click="topBarButtonTwoClick">
+					<button v-ripple :disabled="isLoading" class="btn" :class="{darkBlack: previewVisible, yellow: !previewVisible}" @click="topBarButtonTwoClick">
 						<i class="fa fa-angle-double-right" v-show="!previewVisible"></i>
 						<span v-show="!previewVisible">Preview</span>
 

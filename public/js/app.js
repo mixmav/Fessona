@@ -43007,7 +43007,7 @@ var render = function() {
                     staticClass: "btn",
                     class: {
                       darkBlack: _vm.previewVisible,
-                      primary: !_vm.previewVisible
+                      yellow: !_vm.previewVisible
                     },
                     attrs: { disabled: _vm.isLoading },
                     on: { click: _vm.topBarButtonTwoClick }

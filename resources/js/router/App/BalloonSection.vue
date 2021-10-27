@@ -22,7 +22,8 @@
 		</transition>
 		
 		<transition name="translate-y-100px-opacity">
-			<div class="balloons custom-scrollbar" v-show="!loading && balloons.length > 0">
+			<div class="balloons c
+			ustom-scrollbar" v-show="!loading && balloons.length > 0">
 				<div class="balloon no-select" v-for="i in sortedBalloons" :key="i.id" :style="generateBalloonStyle(i)" @click="showBalloonContent(i.id)">
 					<i class="fa fa-heart"></i>
 					<!-- <span>{{ 999 }}</span> -->

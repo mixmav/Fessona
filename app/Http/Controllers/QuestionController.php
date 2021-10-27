@@ -8,16 +8,19 @@ use App\Models\Question;
 class QuestionController extends Controller
 {
 	public function seedQuestions(Request $request){
+
+		\DB::table('questions')->truncate();
+
 		$question1 = new Question;
 		$question2 = new Question;
 		$question3 = new Question;
 		$question4 = new Question;
 
-		$question1->prompt = "What never fails to put a smile on your face?";
-		$question1->badges = "Vines,Cat videos,Memes";
+		$question1->prompt = "Share something that makes you smile";
+		$question1->badges = "Memes,Dog videos,";
 		$question1->save();
 
-		$question2->prompt = "Share something that warms your heart 🥺";
+		$question2->prompt = "";
 		// $question2->badges = "something,something";
 		$question2->save();
 

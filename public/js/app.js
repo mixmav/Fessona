@@ -1351,6 +1351,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
 
 
 
@@ -2141,7 +2142,7 @@ __webpack_require__.r(__webpack_exports__);
 var ShareAnswerDialog = {
   namespaced: true,
   state: {
-    visible: false,
+    visible: true,
     question: {
       prompt: 'Share something that makes you smile',
       badges: ['something', 'something']
@@ -4410,7 +4411,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".vPage-component-share-answer-dialog-container {\n  z-index: 1000;\n  position: fixed;\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 100%;\n  display: flex;\n  text-align: initial;\n  background: rgba(0, 0, 0, 0.3);\n}\n.vPage-component-share-answer-dialog-container > .container {\n  width: 100%;\n  height: 100%;\n  max-width: 600px;\n  margin: 0 auto;\n  background: white;\n  overflow-y: visible;\n  overflow-x: hidden;\n  position: relative;\n  border-radius: 5px;\n  padding-bottom: 100px;\n}\n.vPage-component-share-answer-dialog-container > .container > .top-bar {\n  width: 100%;\n  height: 70px;\n  max-width: 600px;\n  position: fixed;\n  top: 0;\n  left: 50%;\n  transform: translateX(-50%);\n  padding: 1em;\n  transition: all 0.2s;\n  display: flex;\n  justify-content: space-around;\n  align-items: center;\n  border-bottom: solid 1px rgba(0, 0, 0, 0.3);\n  z-index: 1002;\n}\n.vPage-component-share-answer-dialog-container > .container > .top-bar button {\n  display: inline;\n  width: 40%;\n  max-width: 200px;\n}\n.vPage-component-share-answer-dialog-container > .container > .content {\n  padding: 2em;\n  position: absolute;\n  z-index: 1001;\n  top: 70px;\n  left: 0;\n  width: 100%;\n  transition: all 0.3s;\n  overflow: auto;\n  height: calc(100% - 70px);\n  transform: translateX(-100%);\n}\n.vPage-component-share-answer-dialog-container > .container > .content.visible {\n  transform: translateX(0);\n}\n.vPage-component-share-answer-dialog-container > .container > .editor-content .badges {\n  margin-top: 10px;\n}\n.vPage-component-share-answer-dialog-container > .container > .editor-content .badges p {\n  font-size: 1em;\n  margin-bottom: 5px;\n}\n.vPage-component-share-answer-dialog-container > .container > .editor-content .badges .badge {\n  display: inline-block;\n  margin-left: 3px;\n  padding: 10px;\n  padding-top: 5px;\n  padding-bottom: 5px;\n  font-size: 0.8em;\n  border-radius: 10px;\n  background: #f2f2f2;\n  border: solid 1px #e6e6e6;\n}\n.vPage-component-share-answer-dialog-container > .container > .editor-content .badges .badge:nth-child(2) {\n  margin-left: 0;\n}\n.vPage-component-share-answer-dialog-container > .container > .editor-content .ql-container {\n  min-height: inherit;\n}\n.vPage-component-share-answer-dialog-container > .container > .editor-content .editor {\n  min-height: 200px;\n}\n.vPage-component-share-answer-dialog-container > .container > .preview-content {\n  transform: translateX(100%);\n}\n.vPage-component-share-answer-dialog-container > .container > .preview-content .ql-editor {\n  height: auto;\n}", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, ".vPage-component-share-answer-dialog-container {\n  z-index: 1000;\n  position: fixed;\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 100%;\n  display: flex;\n  text-align: initial;\n  background: rgba(0, 0, 0, 0.3);\n}\n.vPage-component-share-answer-dialog-container > .container {\n  width: 100%;\n  height: 100%;\n  max-width: 600px;\n  margin: 0 auto;\n  background: white;\n  overflow-y: visible;\n  overflow-x: hidden;\n  position: relative;\n  border-radius: 5px;\n  padding-bottom: 100px;\n}\n.vPage-component-share-answer-dialog-container > .container > .top-bar {\n  width: 100%;\n  height: 70px;\n  max-width: 600px;\n  position: fixed;\n  top: 0;\n  left: 50%;\n  transform: translateX(-50%);\n  padding: 1em;\n  transition: all 0.2s;\n  display: flex;\n  justify-content: space-around;\n  align-items: center;\n  border-bottom: solid 1px rgba(0, 0, 0, 0.3);\n  z-index: 1002;\n}\n.vPage-component-share-answer-dialog-container > .container > .top-bar button {\n  display: inline;\n  width: 40%;\n  max-width: 200px;\n}\n.vPage-component-share-answer-dialog-container > .container > .content {\n  padding: 2em;\n  position: absolute;\n  z-index: 1001;\n  top: 70px;\n  left: 0;\n  width: 100%;\n  transition: all 0.3s;\n  overflow: auto;\n  height: calc(100% - 70px);\n  transform: translateX(-100%);\n}\n.vPage-component-share-answer-dialog-container > .container > .content.visible {\n  transform: translateX(0);\n}\n.vPage-component-share-answer-dialog-container > .container > .editor-content .question-prompt {\n  font-size: 1.4em;\n}\n.vPage-component-share-answer-dialog-container > .container > .editor-content .badges {\n  margin-top: 10px;\n}\n.vPage-component-share-answer-dialog-container > .container > .editor-content .badges p {\n  font-size: 1em;\n  margin-bottom: 5px;\n}\n.vPage-component-share-answer-dialog-container > .container > .editor-content .badges .badge {\n  display: inline-block;\n  margin-left: 3px;\n  padding: 10px;\n  padding-top: 5px;\n  padding-bottom: 5px;\n  font-size: 0.8em;\n  border-radius: 10px;\n  background: #f2f2f2;\n  border: solid 1px #e6e6e6;\n}\n.vPage-component-share-answer-dialog-container > .container > .editor-content .badges .badge:nth-child(2) {\n  margin-left: 0;\n}\n.vPage-component-share-answer-dialog-container > .container > .editor-content .ql-container {\n  min-height: inherit;\n}\n.vPage-component-share-answer-dialog-container > .container > .editor-content .editor {\n  min-height: 200px;\n}\n.vPage-component-share-answer-dialog-container > .container > .preview-content {\n  transform: translateX(100%);\n}\n.vPage-component-share-answer-dialog-container > .container > .preview-content .ql-editor {\n  height: auto;\n}", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -43243,7 +43244,7 @@ var render = function() {
                 expression: "!loading && balloons.length > 0"
               }
             ],
-            staticClass: "balloons custom-scrollbar"
+            staticClass: "balloons c\n\t\tustom-scrollbar"
           },
           _vm._l(_vm.sortedBalloons, function(i) {
             return _c(
@@ -43645,9 +43646,8 @@ var render = function() {
                   class: { visible: !_vm.previewVisible }
                 },
                 [
-                  _c("h2", [
-                    _c("i", { staticClass: "fa fa-flask" }),
-                    _vm._v(_vm._s(_vm.question.prompt))
+                  _c("h2", { staticClass: "question-prompt" }, [
+                    _vm._v("# " + _vm._s(_vm.question.prompt))
                   ]),
                   _vm._v(" "),
                   _c("quill-editor", {

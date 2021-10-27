@@ -22,7 +22,7 @@
 				</div>
 
 				<div class="editor-content content custom-scrollbar" :class="{visible: !previewVisible}">
-					<h2><i class="fa fa-flask"></i>{{ question.prompt }}</h2>
+					<h2 class="question-prompt"># {{ question.prompt }}</h2>
 
 					<quill-editor class="editor mt-30" v-model="content" :options="editorOption"></quill-editor>
 
@@ -245,6 +245,9 @@ export default {
 				}
 			}
 			& > .editor-content{
+				.question-prompt{
+					font-size: 1.4em;
+				}
 				.badges{
 					margin-top: 10px;
 					// text-align: left;

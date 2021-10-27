@@ -42,7 +42,7 @@
 
 <script>
 import { mapState, mapActions } from 'vuex';
-import Loading from '../../components/Loading.vue';
+import Loading from './Loading.vue';
 import $ from 'jquery';
 
 import _ from 'lodash';
@@ -194,7 +194,7 @@ export default {
 </script>
 
 <style lang="scss">
-	@import "../../../scss/variables";
+	@import "../../scss/variables";
 
 	.vPage-component-balloon-content-dialog-container{
 		z-index: $zIndex-share-answer-dialog;

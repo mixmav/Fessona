@@ -13,14 +13,6 @@
 				</div>
 			</div>
 
-			<transition name="opacity">
-				<share-answer-dialog v-show="shareAnswerDialogVisible"></share-answer-dialog>
-			</transition>
-
-			<transition name="opacity">
-				<balloon-content-dialog v-show="balloonContentDialogVisible"></balloon-content-dialog>
-			</transition>
-
 			<div class="page-content custom-scrollbar">
 				<div class="swiper-pagination"></div>
 
@@ -40,10 +32,8 @@
 </template>
 
 <script>
-import { mapState, mapActions } from 'vuex';
+import { mapActions } from 'vuex';
 import $ from 'jquery';
-import BalloonContentDialog from './BalloonContentDialog.vue';
-import ShareAnswerDialog from './ShareAnswerDialog.vue';
 import BalloonSection from './BalloonSection.vue';
 
 import { Swiper, SwiperSlide } from 'vue-awesome-swiper';
@@ -54,8 +44,6 @@ export default {
 		BalloonSection,
 		Swiper,
 		SwiperSlide,
-		BalloonContentDialog,
-		ShareAnswerDialog,
 		Loading,
 	},
 
@@ -126,23 +114,11 @@ export default {
 		swiper() {
 			return this.$refs.mySwiper.$swiper
 		},
-		
-		...mapState('ShareAnswerDialog', {
-			shareAnswerDialogVisible: 'visible',
-		}),
-
-		...mapState('BalloonContentDialog', {
-			balloonContentDialogVisible: 'visible'
-		}),
 	},
 
 	methods: {
 		...mapActions('QuickstartDialog', {
 			toggleQuickstartDialogVisible: 'toggleVisible',
-		}),
-
-		...mapActions('BalloonContentDialog', {
-			toggleBalloonContentVisible: 'toggleVisible'
 		}),
 
 		...mapActions([
@@ -217,6 +193,7 @@ export default {
 			left: 0;
 
 			overflow: auto;
+			// overflow: hidden;
 			
 			.swiper-wrapper{
 				margin-top: 10px;

@@ -182,7 +182,7 @@ export default {
 </script>
 
 <style lang="scss">
-	@import "../../../scss/variables";
+	@import "../../scss/variables";
 
 	.vPage-component-share-answer-dialog-container{
 		z-index: $zIndex-share-answer-dialog;

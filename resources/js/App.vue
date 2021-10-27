@@ -14,6 +14,15 @@
 				<router-view></router-view>
 			</transition>
 
+			
+			<transition name="opacity">
+				<share-answer-dialog v-show="shareAnswerDialogVisible"></share-answer-dialog>
+			</transition>
+
+			<transition name="opacity">
+				<balloon-content-dialog v-show="balloonContentDialogVisible"></balloon-content-dialog>
+			</transition>
+
 			<go-to-top></go-to-top>
 		</div>
 	</div>
@@ -27,13 +36,20 @@ import GoToTop from './components/GoToTop.vue';
 import QuickstartDialog from './components/QuickstartDialog.vue';
 import MoodSelectorDialog from './components/MoodSelectorDialog.vue';
 
+import BalloonContentDialog from './components/BalloonContentDialog.vue';
+import ShareAnswerDialog from './components/ShareAnswerDialog.vue';
+
+
+
 import { mapState, mapActions } from 'vuex';
 
 export default {
 	components: {
 		GoToTop,
 		QuickstartDialog,
-		MoodSelectorDialog
+		MoodSelectorDialog,
+		BalloonContentDialog,
+		ShareAnswerDialog,
 	},
 
 	mounted(){
@@ -81,7 +97,7 @@ export default {
 
 		...mapActions('QuickstartDialog', {
 			updateQuickstartDialogVisible: 'toggleVisible',
-		})
+		}),
 	},
 
 	computed: {
@@ -93,6 +109,13 @@ export default {
 			moodSelectorDialogVisible: 'visible',
 		}),
 
+		...mapState('ShareAnswerDialog', {
+			shareAnswerDialogVisible: 'visible',
+		}),
+
+		...mapState('BalloonContentDialog', {
+			balloonContentDialogVisible: 'visible'
+		}),
 	}
 };
 </script>

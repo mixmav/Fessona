@@ -22,8 +22,7 @@
 		</transition>
 		
 		<transition name="translate-y-100px-opacity">
-			<div class="balloons c
-			ustom-scrollbar" v-show="!loading && balloons.length > 0">
+			<div class="balloons" v-show="!loading && balloons.length > 0">
 				<div class="balloon no-select" v-for="i in sortedBalloons" :key="i.id" :style="generateBalloonStyle(i)" @click="showBalloonContent(i.id)">
 					<i class="fa fa-heart"></i>
 					<!-- <span>{{ 999 }}</span> -->
@@ -89,6 +88,7 @@ export default {
 
 			let border = bg;
 			let width = _.random(70, 140);
+			let animationDelay = _.random(0, 3, true);
 
 			return `
 				background: ${bg};
@@ -160,7 +160,6 @@ export default {
 	padding: 1em {
 		top: 0;
 	};
-
 	.prompts{
 		width: 100%;
 		margin: 0 auto;
@@ -186,7 +185,6 @@ export default {
 		margin-top: 10px;
 		text-align: center;
 		.balloon{
-			background: $green;
 			display: inline-flex;
 			justify-content: center;
 			flex-direction: column;
@@ -196,6 +194,7 @@ export default {
 			margin-left: 10px;
 			margin-top: 10px;
 			cursor: pointer;
+			padding: relative;
 			transition: all .15s;
 			i{
 				font-size: 1.4em;
@@ -207,14 +206,15 @@ export default {
 			}
 
 			&:hover{
-				transform: scale(1.1, 1.1);
+				animation: pulse 1s linear infinite;
 				i{
 					transform: scale(0.8, 0.8);
 				}
 			}
 
 			&:active{
-				transform: scale(0.95, 0.95);
+				animation: none;
+				transform: scale(0.95, 0.95) !important;
 			}
 		}
 	}
@@ -223,6 +223,16 @@ export default {
 @keyframes opacityFull {
 	to {
 		opacity: 1;
+	}
+}
+
+@keyframes pulse{
+	from {
+		transform: scale(1,1);
+	} 50% {
+		transform: scale(1.08,1.08);
+	} to {
+		transform: scale(1,1);
 	}
 }
 </style>

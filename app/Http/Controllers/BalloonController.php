@@ -48,6 +48,7 @@ class BalloonController extends Controller
 	}
 
 	public function seedBalloons(){
+		\DB::table('balloons')->truncate();
 		
 		for ($i=1; $i <=4 ; $i++) { 
 			for ($j=1; $j <= 100 ; $j++) { 

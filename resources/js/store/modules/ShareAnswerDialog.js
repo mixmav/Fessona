@@ -2,7 +2,7 @@ export const ShareAnswerDialog = {
 	namespaced: true,
 	
 	state: {
-		visible: false,
+		visible: true,
 		question: {
 			prompt: 'Share something that makes you smile',
 			badges: ['something', 'something']

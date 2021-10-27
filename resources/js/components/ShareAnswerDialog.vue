@@ -198,9 +198,10 @@ export default {
 		& > .container{
 			width: 100%;
 			height: 100%;
-			max-width: 600px;
+			// max-width: 600px;
 			margin: 0 auto;
 			background: white;
+			background: rgba(white, 0.8);
 			overflow-y: visible;
 			overflow-x: hidden;
 			position: relative;
@@ -210,7 +211,7 @@ export default {
 			& > .top-bar{
 				width: 100%;
 				height: 70px;
-				max-width: 600px;
+				// max-width: 600px;
 				position: fixed;
 				top: 0;
 				left: 50%;

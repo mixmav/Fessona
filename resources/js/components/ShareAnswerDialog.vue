@@ -2,7 +2,7 @@
 	<div class="vPage-component-share-answer-dialog-container" ref="container" :class="[{visible: visible}]" @click="checkClickClose">
 		<transition name="translate-y-minus-100px" delay="300">
 
-			<section class="container" v-show="visible">
+			<section class="container particles-js-container-share-answer-dialog" v-show="visible">				
 				<div class="top-bar">
 					<button v-ripple :disabled="isLoading" class="btn" :class="{darkBlack: !previewVisible, yellow: previewVisible}" @click="previewVisible ? previewVisible = false : toggleVisible(false)">
 						<i class="fa fa-window-close" v-show="!previewVisible"></i>
@@ -79,7 +79,7 @@ export default {
 	},
 
 	components: {
-		quillEditor
+		quillEditor,
 	},
 
 	data(){

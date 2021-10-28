@@ -1,7 +1,8 @@
 <template>
 	<div id="app-container">
 		<div class="main-content">
-			<div id="particles-js"></div>
+			<!-- <div id="particles-js"></div> -->
+			<particles id="particles-js-main" container=".main-page-content"></particles>
 			<transition name="opacity">
 				<quickstart-dialog v-show="quickstartDialogVisible"></quickstart-dialog>
 			</transition>
@@ -29,9 +30,8 @@
 </template>
 
 <script>
-import 'particles.js/particles';
-
 import GoToTop from './components/GoToTop.vue';
+import Particles from './components/ParticlesJS.vue';
 
 import QuickstartDialog from './components/QuickstartDialog.vue';
 import MoodSelectorDialog from './components/MoodSelectorDialog.vue';
@@ -50,13 +50,10 @@ export default {
 		MoodSelectorDialog,
 		BalloonContentDialog,
 		ShareAnswerDialog,
+		Particles
 	},
 
 	mounted(){
-		// this.$toast.success("I'm a toast!");
-		this.particlesJS.load('particles-js', '/assets/particles.json');
-		this.addParticlesJSEventListener();
-
 		// For mobile browsers, if the user navigates while the dialog is open, close it.
 		this.$router.beforeEach((from, to, next) => {
 			if (this.quickstartDialogVisible) {
@@ -66,35 +63,10 @@ export default {
 		});
 	},
 
-	updated(){
-		this.addParticlesJSEventListener();
-	},
-    data() {
-        return {
-			particlesJS: window.particlesJS,
-		};
-    },
 	beforeDestroy() {
 		document.querySelector('.main-page-content').removeEventListener('mousemove')
 	},
 	methods: {
-		addParticlesJSEventListener(){
-			// Wait for the child node to be rendered by giving it a timeout of 600ms
-			// Then pass all mousemove events to the particles div
-			setTimeout(() => {
-				document.querySelector('.main-page-content').addEventListener('mousemove', e => { 
-					let customEvent = new MouseEvent('mousemove', {
-						'screenX': e.screenX,
-						'screenY': e.screenY,
-						'clientX': e.clientX,
-						'clientY': e.clientY
-					});
-
-					document.getElementById("particles-js").childNodes[0].dispatchEvent(customEvent);
-				});
-			}, 600);
-		},
-
 		...mapActions('QuickstartDialog', {
 			updateQuickstartDialogVisible: 'toggleVisible',
 		}),
@@ -126,14 +98,6 @@ export default {
 
 #app-container {
     & > .main-content {
-		#particles-js{
-			position: fixed;
-			top: 0;
-			left: 0;
-			width: 100%;
-			height: 100%;
-			z-index: 0;
-		}
 		.main-page-content{
 			position: fixed;
 			top: 0;
@@ -145,6 +109,15 @@ export default {
         	padding: 1em;
 			overflow: auto;
 			z-index: $zIndex-router-content;
+		}
+
+		.particles-js{
+			position: fixed;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			z-index: 0;
 		}
     }
 }

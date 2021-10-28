@@ -201,7 +201,6 @@ export default {
 			// max-width: 600px;
 			margin: 0 auto;
 			background: white;
-			background: rgba(white, 0.8);
 			overflow-y: visible;
 			overflow-x: hidden;
 			position: relative;

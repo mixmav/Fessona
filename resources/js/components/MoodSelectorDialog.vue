@@ -86,15 +86,15 @@ export default {
 				},
 				{
 					id: 3,
-					icon: '❤️',
+					icon: '😂',
 					selected: false,
-					desc: 'LOLs and uplifting vibes',
+					desc: 'Lighthearted LOLs',
 				},
 				{
 					id: 4,
 					icon: '🎵',
 					selected: false,
-					desc: 'Good tunes',
+					desc: 'Vibey tunes',
 				},
 			],
 		}

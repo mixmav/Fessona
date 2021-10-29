@@ -16,16 +16,16 @@ class QuestionController extends Controller
 		$question3 = new Question;
 		$question4 = new Question;
 
-		$question1->prompt = "Share something that makes you smile";
-		$question1->badges = "Memes,Dog videos,";
+		$question1->prompt = "Share something that makes you smile 😊";
+		$question1->badges = "Dog videos,Memes";
 		$question1->save();
 
-		$question2->prompt = "";
-		// $question2->badges = "something,something";
+		$question2->prompt = "What grounds you?";
+		$question2->badges = "Baking,Meditation,A super niche hobby";
 		$question2->save();
 
 		$question3->prompt = "What's something that gets you feeling creative?";
-		// $question3->badges = "something,something";
+		$question3->badges = "An art project,A ted talk,A quote";
 		$question3->save();
 
 

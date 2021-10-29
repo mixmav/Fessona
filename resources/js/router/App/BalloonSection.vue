@@ -88,7 +88,6 @@ export default {
 
 			let border = bg;
 			let width = _.random(70, 140);
-			let animationDelay = _.random(0, 3, true);
 
 			return `
 				background: ${bg};

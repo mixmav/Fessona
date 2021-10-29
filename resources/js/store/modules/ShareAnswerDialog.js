@@ -4,7 +4,7 @@ export const ShareAnswerDialog = {
 	state: {
 		visible: false,
 		question: {
-			prompt: 'Share something that makes you smile',
+			prompt: 'Share your favorite music',
 			badges: ['something', 'something']
 		},
 	},

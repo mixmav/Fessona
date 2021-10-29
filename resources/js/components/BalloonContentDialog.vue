@@ -8,7 +8,7 @@
 					<loading></loading>
 				</div>
 
-				<div v-show="!loading">
+				<div class="spacer" v-show="!loading">
 					<div class="title-bar">
 						<div class="text">
 							<h1 v-if="balloon.question !== undefined"><i class="fa fa-box-open"></i>{{ balloon.question.prompt }}</h1>
@@ -28,12 +28,13 @@
 						<p>{{ balloon.likes }} like<span v-show="balloon.likes != 1">s</span></p>
 					</div>
 
-					<div class="letter-view ql-snow">
-						<div>
-							<div class="preview ql-editor mt-20" v-html="balloon.content"></div>
-						</div>
+					<div class="preview ql-editor mt-20" v-html="balloon.content"></div>
+
+					<div class="encourage-to-share-prompt">
+						<p>Liked this? Why not <button class="a" @click="showShareAnswerDialog">share your own</button>?</p>
 					</div>
 				</div>
+
 			</section>
 		</transition>
 
@@ -61,15 +62,15 @@ export default {
 			},
 		}, this.$refs.container);
 
-		//TEST
+		// TEST
 		// setTimeout(() => {
-		// 	this.getBalloonData();
+			this.getBalloonData();
 		// }, 1000);
 
 		if (this.$cookie.get('likedBalloonIDs') !== null) {
 			this.likedBalloonIDs = JSON.parse(this.$cookie.get('likedBalloonIDs'));
 		} else {
-			this.$cookie.set('likedBalloonIDs', JSON.stringify(this.likedBalloonIDs), Infinity);
+			this.$cookie.set('likedBalloonIDs', JSON.stringify(this.likedBalloonIDs), 365);
 		}
 	},
 
@@ -97,6 +98,11 @@ export default {
 
 		...mapActions('BalloonContentDialog', {
 			toggleVisible: 'toggleVisible',
+		}),
+
+		...mapActions('ShareAnswerDialog', {
+			updateShareAnswerDialogQuestion: 'updateQuestion',
+			toggleShareAnswerDialogVisible: 'toggleVisible',
 		}),
 
 		getBalloonData(){
@@ -128,11 +134,11 @@ export default {
 		likeToggle(val){
 			if (val) {
 				this.likedBalloonIDs = [...this.likedBalloonIDs, this.balloon.id];
-				this.$cookie.set('likedBalloonIDs', JSON.stringify(this.likedBalloonIDs), Infinity);
+				this.$cookie.set('likedBalloonIDs', JSON.stringify(this.likedBalloonIDs), 365);
 			} else {
 				// Remove from likedBalloonIDS
 				this.likedBalloonIDs =  _.without(this.likedBalloonIDs, this.balloon.id);
-				this.$cookie.set('likedBalloonIDs', JSON.stringify(this.likedBalloonIDs), Infinity);
+				this.$cookie.set('likedBalloonIDs', JSON.stringify(this.likedBalloonIDs), 365);
 			}
 			this.updateLikeOnServer(val);
 		},
@@ -167,6 +173,14 @@ export default {
 					vThis.$toast.error('There was an error updating your like 🤐');
 				}
 			});
+		},
+
+		showShareAnswerDialog(){
+			this.toggleVisible(false);
+			setTimeout(() => {
+				this.updateShareAnswerDialogQuestion(this.balloon.question);
+				this.toggleShareAnswerDialogVisible(true);
+			}, 350)
 		}
 	},
 
@@ -200,8 +214,16 @@ export default {
 		z-index: $zIndex-share-answer-dialog;
 
 		& > .container{
-			max-width: 600px;
+			// max-width: 600px;
 			margin: 0 auto;
+			// background: radial-gradient(rgba($primary-color, 0.2) 1%,transparent 15%) 0 0,radial-gradient(rgba($red, 0.2) 1%,transparent 15%) 16px 16px,radial-gradient(hsla(0,0%,100%,.1) 15%,transparent 20%) 0 1px,radial-gradient(hsla(0,0%,100%,.1) 15%,transparent 20%) 16px 17px;
+			// background-size: 32px 32px;
+			background-color: white;
+			& > .spacer{
+				width: 100%;
+				max-width: 600px;
+				margin: 0 auto;
+			}
 			.title-bar{
 				display: flex;
 				justify-content: space-between;
@@ -250,6 +272,16 @@ export default {
 				}
 				p{
 					font-size: 1.2em;
+				}
+			}
+
+			.encourage-to-share-prompt{
+				margin-top: 30px;
+				width: 100%;
+				padding-top: 10px;
+				border-top: dotted 1px rgba(black, 0.3);
+				p{
+					font-size: .8em;
 				}
 			}
 				

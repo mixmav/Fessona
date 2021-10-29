@@ -4,38 +4,43 @@
 
 			<section class="container particles-js-container-share-answer-dialog" v-show="visible">				
 				<div class="top-bar">
-					<button v-ripple :disabled="isLoading" class="btn" :class="{darkBlack: !previewVisible, yellow: previewVisible}" @click="previewVisible ? previewVisible = false : toggleVisible(false)">
-						<i class="fa fa-window-close" v-show="!previewVisible"></i>
-						<span v-show="!previewVisible">Close</span>
+					<div class="spacer">
+						<button v-ripple :disabled="isLoading" class="btn" :class="{darkBlack: !previewVisible, yellow: previewVisible}" @click="previewVisible ? previewVisible = false : toggleVisible(false)">
+							<i class="fa fa-window-close" v-show="!previewVisible"></i>
+							<span v-show="!previewVisible">Close</span>
 
-						<i class="fa fa-arrow-left" v-show="previewVisible"></i>
-						<span v-show="previewVisible">Edit</span>
-					</button>
+							<i class="fa fa-arrow-left" v-show="previewVisible"></i>
+							<span v-show="previewVisible">Edit</span>
+						</button>
 
-					<button v-ripple :disabled="isLoading" class="btn" :class="{darkBlack: previewVisible, yellow: !previewVisible}" @click="topBarButtonTwoClick">
-						<i class="fa fa-angle-double-right" v-show="!previewVisible"></i>
-						<span v-show="!previewVisible">Preview</span>
+						<button v-ripple :disabled="isLoading" class="btn" :class="{darkBlack: previewVisible, yellow: !previewVisible}" @click="topBarButtonTwoClick">
+							<i class="fa fa-angle-double-right" v-show="!previewVisible"></i>
+							<span v-show="!previewVisible">Preview</span>
 
-						<i class="fa fa-paper-plane" v-show="previewVisible"></i>
-						<span v-show="previewVisible">Submit</span>
-					</button>
+							<i class="fa fa-paper-plane" v-show="previewVisible"></i>
+							<span v-show="previewVisible">Submit</span>
+						</button>
+					</div>
 				</div>
 
 				<div class="editor-content content custom-scrollbar" :class="{visible: !previewVisible}">
-					<h2 class="question-prompt"># {{ question.prompt }}</h2>
+					<div class="spacer">
+						<h2 class="question-prompt"># {{ question.prompt }}</h2>
+						<p class="consider-prompt">(Consider for a second the magnitude of the impact reading this could have on a human in the future... no pressure 😁)</p>
+						<quill-editor class="editor mt-20" v-model="content" :options="editorOption"></quill-editor>
 
-					<quill-editor class="editor mt-30" v-model="content" :options="editorOption"></quill-editor>
-
-					<div class="badges">
-						<p>Confused? There really are no "right answers". How about</p>
-						<div class="badge" v-for="(badge, key) in question.badges" :key="key">{{ badge }}</div>
+						<div class="badges">
+							<p>Confused? There really are no <span class="text-decor bold">"right answers"</span>. How about</p>
+							<div class="badge" v-for="(badge, key) in question.badges" :key="key">{{ badge }}</div>
+						</div>
 					</div>
 				</div>
 
 				<div class="preview-content content ql-snow custom-scrollbar" :class="{visible: previewVisible}">
-					<h1>This is what your balloon looks like</h1>
-
-					<div class="preview ql-editor mt-20" v-html="content"></div>
+					<div class="spacer">
+						<h1>This is what your balloon looks like</h1>
+						<div class="preview ql-editor mt-20" v-html="content"></div>
+					</div>
 				</div>
 			</section>
 		</transition>
@@ -72,6 +77,8 @@ export default {
 				}
 			},
 		}, this.$refs.container);
+
+		// this.updateToolbar();
 	},
 
 	beforeDestroy(){
@@ -170,6 +177,20 @@ export default {
 				}
 			} 
 		},
+
+		// updateToolbar(){
+		// 	if (this.question.prompt.startsWith("Share your favorite music")) {
+		// 		this.editorOption.toolbar = [
+		// 				['bold', 'italic', 'underline'],
+		// 				// [{ 'list': 'bullet' }],
+		// 				// [{ 'size': ['small', false, 'large', 'huge'] }],
+		// 				// [{ 'font': [] }],
+		// 				// [{ 'color': [] },],
+		// 				// [{ 'align': [] }],
+		// 				// ['image', 'video']
+		// 			]
+		// 	}
+		// }
 	},
 
 	computed: {
@@ -178,6 +199,12 @@ export default {
 			'question'
 		]),
 	},
+
+	// watch: {
+	// 	visible(){
+	// 		this.updateToolbar();
+	// 	}
+	// }
 }
 </script>
 
@@ -199,8 +226,11 @@ export default {
 			width: 100%;
 			height: 100%;
 			// max-width: 600px;
-			margin: 0 auto;
-			background: white;
+			margin: 0 auto;			
+			// background: radial-gradient(rgba($primary-color, 0.2) 1%,transparent 15%) 0 0,radial-gradient(rgba($red, 0.2) 1%,transparent 15%) 16px 16px,radial-gradient(hsla(0,0%,100%,.1) 15%,transparent 20%) 0 1px,radial-gradient(hsla(0,0%,100%,.1) 15%,transparent 20%) 16px 17px;
+			// background-size: 32px 32px;
+			background-color: white;
+
 			overflow-y: visible;
 			overflow-x: hidden;
 			position: relative;
@@ -210,19 +240,20 @@ export default {
 			& > .top-bar{
 				width: 100%;
 				height: 70px;
-				// max-width: 600px;
 				position: fixed;
 				top: 0;
-				left: 50%;
-				transform: translateX(-50%);
 				padding: 1em;
 				transition: all .2s;
 				display: flex;
-				justify-content: space-around;
-				align-items: center;
+				justify-content: center;
 				border-bottom: solid 1px rgba(black, 0.3);
 				z-index: $zIndex-share-answer-dialog-top-bar;
-
+				& > .spacer{
+					width: 100%;
+					max-width: 600px;
+					display: flex;
+					justify-content: space-between;
+				}
 				button{
 					display: inline;
 					width: 40%;
@@ -243,21 +274,31 @@ export default {
 				&.visible{
 					transform: translateX(0);
 				}
+
+				& > .spacer{
+					width: 100%;
+					max-width: 600px;
+					margin: 0 auto;
+				}
 			}
 			& > .editor-content{
 				.question-prompt{
 					font-size: 1.4em;
 				}
+				.consider-prompt{
+					font-size: .8em;
+				}
 				.badges{
-					margin-top: 10px;
+					margin-top: 20px;
 					// text-align: left;
 					p{
-						font-size: 1em;
-						margin-bottom: 5px;
+						font-size: .8em;
+						letter-spacing: 2px;
+						margin-bottom: 10px;
 					}
 					.badge{
 						display: inline-block;
-						margin-left: 3px;
+						margin-left: 10px;
 						padding: 10px {
 							top: 5px;
 							bottom: 5px;

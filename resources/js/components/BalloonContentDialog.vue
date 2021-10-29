@@ -12,7 +12,7 @@
 					<div class="title-bar">
 						<div class="text">
 							<h1 v-if="balloon.question !== undefined"><i class="fa fa-box-open"></i>{{ balloon.question.prompt }}</h1>
-							<a @click="toggleVisible(false)" class="mt-10 a">Close</a>
+							<a @click="toggleVisible(false)" class="mt-10 btn" v-ripple><i class="fa fa-times"></i>Close</a>
 							<p class="timestamp">Answered on <span class="text-decor bold">{{ balloon.created_at }}</span></p>
 						</div>
 						<img class="profile-picture" :src="'https://avatars.dicebear.com/api/personas/' + balloon.id + '.svg'" alt="Profile picture">

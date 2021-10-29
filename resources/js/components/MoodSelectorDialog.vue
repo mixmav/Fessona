@@ -59,6 +59,10 @@ export default {
 				}
 			},
 		}, this.$refs.container);
+
+		this.updateSelectedMoodInStore({
+			...this.currentMood
+		});
 	},
 
 	beforeDestroy(){
@@ -73,22 +77,22 @@ export default {
 			maximized: false,
 			moods: [
 				{
-					id: 1,
-					icon: '💡',
-					selected: false,
-					desc: 'Creative inspiration 🎨',
-				},
-				{
 					id: 2,
 					icon: '🧘‍♀️',
-					selected: true,
+					selected: false,
 					desc: 'Calmness, being grounded',
 				},
 				{
+					id: 1,
+					icon: '❤️',
+					selected: true,
+					desc: 'Warm vibes',
+				},
+				{
 					id: 3,
-					icon: '😂',
+					icon: '💡',
 					selected: false,
-					desc: 'Lighthearted LOLs',
+					desc: 'Creative inspiration 🎨',
 				},
 				{
 					id: 4,
@@ -125,9 +129,6 @@ export default {
 			if(this.loading || event.target.classList.contains('selected')){
 				return;
 			} else {
-				this.updateSelectedMoodInStore({
-					...this.currentMood
-				});
 				this.moods.find((mood) => {
 					if (mood.selected) {
 						mood.selected = false;
@@ -139,7 +140,10 @@ export default {
 						mood.selected = true;
 						return true;
 					}
-				})
+				});
+				this.updateSelectedMoodInStore({
+					...this.currentMood
+				});
 			}
 		},
 

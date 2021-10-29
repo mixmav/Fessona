@@ -10,8 +10,8 @@ export const MoodSelectorDialog = {
 		toggleVisible(state, visibility){
 			state.visible = visibility;
 		},
-		updateSelectedMood(state, moodID){
-			state.selectedMood = moodID;
+		updateSelectedMood(state, newMood){
+			state.selectedMood = newMood;
 		}
 	},
 
@@ -19,8 +19,8 @@ export const MoodSelectorDialog = {
 		toggleVisible(context, visibility){
 			context.commit('toggleVisible', visibility);
 		},
-		updateSelectedMood(context, moodID){
-			context.commit('updateSelectedMood', moodID);
+		updateSelectedMood(context, newMood){
+			context.commit('updateSelectedMood', newMood);
 		}
 	}
 }

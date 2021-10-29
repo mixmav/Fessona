@@ -26,10 +26,11 @@
 				<div class="editor-content content custom-scrollbar" :class="{visible: !previewVisible}">
 					<div class="spacer">
 						<h2 class="question-prompt"># {{ question.prompt }}</h2>
-						<p class="consider-prompt">(Consider for a second the magnitude of the impact reading this could have on a human in the future... no pressure 😁)</p>
-						<quill-editor class="editor mt-20" v-model="content" :options="editorOption"></quill-editor>
+						<p class="prompt-2">{{ question.prompt2 }}</p>
+						<p class="consider-prompt" :class="{ 'mt-10': question.prompt2 !== null }">*Take a second to consider the impact reading this could have on a future-human... no pressure</p>
+						<quill-editor class="editor mt-10" v-model="content" :options="editorOption"></quill-editor>
 
-						<div class="badges">
+						<div class="badges" v-show="question.badges !== undefined && question.badges[0] !== ''">
 							<p>Confused? There really are no <span class="text-decor bold">"right answers"</span>. How about</p>
 							<div class="badge" v-for="(badge, key) in question.badges" :key="key">{{ badge }}</div>
 						</div>
@@ -77,8 +78,6 @@ export default {
 				}
 			},
 		}, this.$refs.container);
-
-		// this.updateToolbar();
 	},
 
 	beforeDestroy(){
@@ -177,20 +176,6 @@ export default {
 				}
 			} 
 		},
-
-		// updateToolbar(){
-		// 	if (this.question.prompt.startsWith("Share your favorite music")) {
-		// 		this.editorOption.toolbar = [
-		// 				['bold', 'italic', 'underline'],
-		// 				// [{ 'list': 'bullet' }],
-		// 				// [{ 'size': ['small', false, 'large', 'huge'] }],
-		// 				// [{ 'font': [] }],
-		// 				// [{ 'color': [] },],
-		// 				// [{ 'align': [] }],
-		// 				// ['image', 'video']
-		// 			]
-		// 	}
-		// }
 	},
 
 	computed: {
@@ -199,12 +184,6 @@ export default {
 			'question'
 		]),
 	},
-
-	// watch: {
-	// 	visible(){
-	// 		this.updateToolbar();
-	// 	}
-	// }
 }
 </script>
 
@@ -286,6 +265,10 @@ export default {
 					font-size: 1.4em;
 				}
 				.consider-prompt{
+					font-size: .8em;
+				}
+				.prompt-2{
+					color: $primary-color;
 					font-size: .8em;
 				}
 				.badges{

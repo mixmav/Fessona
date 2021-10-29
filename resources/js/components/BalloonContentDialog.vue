@@ -64,7 +64,7 @@ export default {
 
 		// TEST
 		// setTimeout(() => {
-			this.getBalloonData();
+			// this.getBalloonData();
 		// }, 1000);
 
 		if (this.$cookie.get('likedBalloonIDs') !== null) {

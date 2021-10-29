@@ -57,7 +57,7 @@ export default {
 		this.addParticlesJSEventListener();
 
 		// For mobile browsers, if the user navigates while the dialog is open, close it.
-		this.$router.beforeEach((from, to, next) => {
+		this.$router.beforeEach((to, from, next) => {
 			if (this.quickstartDialogVisible) {
 				this.updateQuickstartDialogVisible(false);
 			}

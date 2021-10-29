@@ -32,7 +32,7 @@
 </template>
 
 <script>
-import { mapActions } from 'vuex';
+import { mapState, mapActions } from 'vuex';
 import $ from 'jquery';
 import BalloonSection from './BalloonSection.vue';
 
@@ -57,11 +57,14 @@ export default {
 			}
 		});
 
-		//TODO
-		// setTimeout(() => {
-		// 	this.swiper.slideTo(1, 1000, false);
-		// }, 1500);
-
+		this.$router.afterEach((to, from) => {
+			if (to.name === "App") {
+				
+			}
+		});
+					// setTimeout(() => {
+					// 	this.swiper.slideTo(2, 1000, false);
+					// }, 5000);
 		//Felt annoying
 		// setTimeout(() => {
 		// 	this.$toast.info("Bookmark for easy access 🔖");
@@ -114,6 +117,10 @@ export default {
 		swiper() {
 			return this.$refs.mySwiper.$swiper
 		},
+
+		...mapState('MoodSelectorDialog', {
+			moodSelectorDialogSelectedMood: 'selectedMood',
+		})
 	},
 
 	methods: {
@@ -125,6 +132,17 @@ export default {
 			'updatePageScrolled',
 		]),
 	},
+
+	watch: {
+		loading(newVal){
+			if (!newVal) {
+				// Not loading no mo'
+				if (this.moodSelectorDialogSelectedMood !== undefined) {
+					this.swiper.slideTo(this.moodSelectorDialogSelectedMood.id - 1, 1000, false);
+				}	
+			}
+		}
+	}
 }
 
 </script>

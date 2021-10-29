@@ -21,7 +21,7 @@ class QuestionController extends Controller
 		$question1->save();
 
 		$question2->prompt = "What grounds you?";
-		$question2->badges = "Baking,Meditation,A super niche hobby";
+		$question2->badges = "Baking,Meditation,Your niche hobby";
 		$question2->save();
 
 		$question3->prompt = "What's something that gets you feeling creative?";
@@ -31,7 +31,7 @@ class QuestionController extends Controller
 
 		//TODO 3 fields
 		$question4->prompt = "Share your favorite music 🎶";
-		$question4->prompt2 = "When did you first hear this song? What does it mean to you?";
+		$question4->prompt2 = "Attach a YouTube video! Also, why not share what this song means to you?";
 		$question4->save();
 
 		return true;

@@ -4,8 +4,8 @@ export const ShareAnswerDialog = {
 	state: {
 		visible: false,
 		question: {
-			prompt: 'Share your favorite music',
-			badges: ['something', 'something']
+			prompt: 'Share your favorite music 🎶',
+			prompt2: 'Why not share attach a YouTube video?'
 		},
 	},
 

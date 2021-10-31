@@ -23,26 +23,42 @@
 					</div>
 				</div>
 
-				<div class="editor-content content custom-scrollbar" :class="{visible: !previewVisible}">
-					<div class="spacer">
-						<h2 class="question-prompt"># {{ question.prompt }}</h2>
-						<p class="prompt-2">{{ question.prompt2 }}</p>
-						<p class="consider-prompt" :class="{ 'mt-10': question.prompt2 !== null }">*Take a second to consider the impact reading this could have on a future-human... no pressure</p>
-						<quill-editor class="editor mt-10" v-model="content" :options="editorOption"></quill-editor>
-
-						<div class="badges" v-show="question.badges !== undefined && question.badges[0] !== ''">
-							<p>Confused? There really are no <span class="text-decor bold">"right answers"</span>. How about</p>
-							<div class="badge" v-for="(badge, key) in question.badges" :key="key">{{ badge }}</div>
+				<!-- <span v-if="question.prompt.startsWith('Share your favorite music')">
+					<div class="editor-content content is-music custom-scrollbar" :class="{visible: !previewVisible}">
+						<div class="spacer">
+							<h1>This is input</h1>
 						</div>
 					</div>
-				</div>
 
-				<div class="preview-content content ql-snow custom-scrollbar" :class="{visible: previewVisible}">
-					<div class="spacer">
-						<h1>This is what your balloon looks like</h1>
-						<div class="preview ql-editor mt-20" v-html="content"></div>
+					<div class="preview-content content is-music custom-scrollbar" :class="{visible: previewVisible}">
+						<div class="spacer">
+							<h1>This is preview</h1>
+						</div>
 					</div>
-				</div>
+				</span> -->
+
+				<!-- <span v-else> -->
+					<div class="editor-content content not-music custom-scrollbar" :class="{visible: !previewVisible}">
+						<div class="spacer">
+							<h2 class="question-prompt"># {{ question.prompt }}</h2>
+							<p class="prompt-2">{{ question.prompt2 }}</p>
+							<p class="consider-prompt" :class="{ 'mt-10': question.prompt2 !== null }">*Take a second to consider the impact reading this could have on a future-human... no pressure</p>
+							<quill-editor class="editor mt-10" v-model="content" :options="editorOption"></quill-editor>
+
+							<div class="badges" v-show="question.badges !== undefined && question.badges[0] !== ''">
+								<p>Confused? There really are no <span class="text-decor bold">"right answers"</span>. How about</p>
+								<div class="badge" v-for="(badge, key) in question.badges" :key="key">{{ badge }}</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="preview-content content ql-snow not-music custom-scrollbar" :class="{visible: previewVisible}">
+						<div class="spacer">
+							<h1>This is what your balloon looks like</h1>
+							<div class="preview ql-editor mt-20" v-html="content"></div>
+						</div>
+					</div>
+				<!-- </span> -->
 			</section>
 		</transition>
 	</div>
@@ -239,7 +255,7 @@ export default {
 					max-width: 200px;
 				}
 			}
-			& > .content{
+			.content{
 				padding: 2em;
 				position: absolute;
 				z-index: $zIndex-share-answer-dialog-content;
@@ -260,54 +276,58 @@ export default {
 					margin: 0 auto;
 				}
 			}
-			& > .editor-content{
-				.question-prompt{
-					font-size: 1.4em;
-				}
-				.consider-prompt{
-					font-size: .8em;
-				}
-				.prompt-2{
-					color: $primary-color;
-					font-size: .8em;
-				}
-				.badges{
-					margin-top: 20px;
-					// text-align: left;
-					p{
-						font-size: .8em;
-						letter-spacing: 2px;
-						margin-bottom: 10px;
+			.editor-content{
+				&.not-music{
+					.question-prompt{
+						font-size: 1.4em;
 					}
-					.badge{
-						display: inline-block;
-						margin-left: 10px;
-						padding: 10px {
-							top: 5px;
-							bottom: 5px;
-						};
+					.consider-prompt{
 						font-size: .8em;
-						border-radius: 10px;
-						background: darken(white, 5%);
-						border: solid 1px darken(white, 10%);
-						&:nth-child(2){
-							margin-left: 0;
+					}
+					.prompt-2{
+						color: $primary-color;
+						font-size: .8em;
+					}
+					.badges{
+						margin-top: 20px;
+						// text-align: left;
+						p{
+							font-size: .8em;
+							letter-spacing: 2px;
+							margin-bottom: 10px;
+						}
+						.badge{
+							display: inline-block;
+							margin-left: 10px;
+							padding: 10px {
+								top: 5px;
+								bottom: 5px;
+							};
+							font-size: .8em;
+							border-radius: 10px;
+							background: darken(white, 5%);
+							border: solid 1px darken(white, 10%);
+							&:nth-child(2){
+								margin-left: 0;
+							}
 						}
 					}
-				}
-				.ql-container{
-					min-height: inherit;
-				}
+					.ql-container{
+						min-height: inherit;
+					}
 
-				.editor{
-					min-height: 200px;
+					.editor{
+						min-height: 200px;
+					}
 				}
 			}
 
-			& > .preview-content{
+			.preview-content{
 				transform: translateX(100%);
-				.ql-editor{
-					height: auto;
+				&.not-music{
+					.ql-editor{
+						height: auto;
+					}
 				}
 			}
 		}

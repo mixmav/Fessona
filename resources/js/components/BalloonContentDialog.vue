@@ -28,6 +28,8 @@
 						<p>{{ balloon.likes }} like<span v-show="balloon.likes != 1">s</span></p>
 					</div>
 
+					<p class="prompt-2">{{ balloon.question.prompt2 }}</p>
+
 					<div class="preview ql-editor mt-20" v-html="balloon.content"></div>
 
 					<div class="encourage-to-share-prompt">
@@ -63,9 +65,9 @@ export default {
 		}, this.$refs.container);
 
 		// TEST
-		// setTimeout(() => {
-			// this.getBalloonData();
-		// }, 1000);
+		setTimeout(() => {
+			this.getBalloonData();
+		}, 1000);
 
 		if (this.$cookie.get('likedBalloonIDs') !== null) {
 			this.likedBalloonIDs = JSON.parse(this.$cookie.get('likedBalloonIDs'));
@@ -273,6 +275,12 @@ export default {
 				p{
 					font-size: 1.2em;
 				}
+			}
+
+			.prompt-2{
+				margin-top: 10px;
+				color: $primary-color;
+				font-size: .8em;
 			}
 
 			.encourage-to-share-prompt{

@@ -2,7 +2,7 @@ export const ShareAnswerDialog = {
 	namespaced: true,
 	
 	state: {
-		visible: true,
+		visible: false,
 		question: {
 			prompt: 'Share your favorite music 🎶',
 			prompt2: 'Why not share attach a YouTube video?'

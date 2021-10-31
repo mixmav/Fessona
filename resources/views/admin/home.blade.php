@@ -16,7 +16,8 @@
 		<div id="balloons">
 			@foreach ($unapproved_balloons as $unapproved_balloon)
 				<div class="balloon">
-					<p>Date created: <span class="text-decor bold primary">{{ $unapproved_balloon->created_at }}</span></p>
+					<h2>{{ $unapproved_balloon->question->prompt }}</h2>
+					<p class="mt-10">Date created: <span class="text-decor bold primary">{{ $unapproved_balloon->created_at }}</span></p>
 					<p class="ql-editor">{!! $unapproved_balloon->content !!}</p>
 
 					<div class="buttons">

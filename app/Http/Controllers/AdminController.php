@@ -14,7 +14,7 @@ class AdminController extends Controller
 	}
 
 	public function Home(){
-		$unapproved_balloons = Balloon::where('approved', false)->where('rejected', false)->oldest()->get();
+		$unapproved_balloons = Balloon::where('approved', false)->where('rejected', false)->with('question')->oldest()->get();
 		return view('admin.home', ['unapproved_balloons' => $unapproved_balloons]);
 	}
 

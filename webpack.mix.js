@@ -29,6 +29,7 @@ mix.js('resources/js/app.js', 'public/js').vue()
 	 'vue-scrollto'
  ])
 .sass('resources/scss/app.scss', 'public/css')
+.sass('resources/scss/admin/app.scss', 'public/css/admin')
 
 .disableNotifications()
 

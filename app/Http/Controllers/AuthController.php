@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+
+use App\Models\User;
 
 class AuthController extends Controller
 {
@@ -10,14 +13,15 @@ class AuthController extends Controller
 		$this->middleware('guest', ['except' => ['Logout']]);
 	}
 
-	public function Login(Request $request){
-		$password = $request->password;
+	public function LoginPage(){
+		return view('admin.login');
+	}
 
-		foreach (User::all() as $user) {
-			if(\Hash::check($password, $user->password)){
-				Auth::login($user);
-				return redirect('/');
-			}
+	public function Login(Request $request){
+		$credentials = $request->only('email', 'password');
+
+		if (Auth::attempt($credentials)) {
+			return redirect()->intended('/admin');
 		}
 
 		return redirect()->back();
@@ -25,6 +29,6 @@ class AuthController extends Controller
 
 	public function Logout(){
 		Auth::logout();
-		return redirect('/');
+		return redirect('/admin');
 	}
 }

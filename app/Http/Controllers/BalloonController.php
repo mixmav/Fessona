@@ -12,13 +12,21 @@ class BalloonController extends Controller
 		
 		$balloon->content = $request->content;
 		$balloon->question_id = $request->questionID;
+
+		if(config('app.use_mod')){
+			$balloon->approved = false;
+		}
+
 		$balloon->save();
 
 		return true;
 	}
 
 	public function GetAllForQuestion(Request $request){
-		$balloons = Balloon::where('question_id', $request->questionID)->latest()->get(['id', 'likes']);
+		$balloons = Balloon::where('question_id', $request->questionID)
+			->where('approved', true)
+			->latest()->get(['id', 'likes']);
+
 		return $balloons;
 	}
 

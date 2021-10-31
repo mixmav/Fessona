@@ -14,7 +14,7 @@ return [
     */
 
     'name' => env('APP_NAME', 'Laravel'),
-
+	'use_mod' => env('APP_USE_MOD', true),
     /*
     |--------------------------------------------------------------------------
     | Application Environment

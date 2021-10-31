@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Balloon;
 
 class AdminController extends Controller
 {
@@ -13,6 +14,19 @@ class AdminController extends Controller
 	}
 
 	public function Home(){
-		// return view('admin.login');
+		$unapproved_balloons = Balloon::where('approved', false)->where('rejected', false)->oldest()->get();
+		return view('admin.home', ['unapproved_balloons' => $unapproved_balloons]);
+	}
+
+	public function ApproveBalloon(Balloon $balloon){
+		$balloon->approved = true;
+		$balloon->save();
+		return redirect()->route('AdminHome');
+	}
+
+	public function RejectBalloon(Balloon $balloon){
+		$balloon->rejected = true;
+		$balloon->save();
+		return redirect()->route('AdminHome');
 	}
 }

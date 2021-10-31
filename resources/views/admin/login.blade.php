@@ -36,10 +36,11 @@
 @section('content')
 		<canvas id="bg-canvas"></canvas>
 
-		<form action="login" method="POST">
-			<input type="password" class="text-input full-width" placeholder="Super secret key" name="password" autofocus="" required>
+		<form action="/admin/login" method="POST">
+			<input type="text" class="text-input full-width" name="email" placeholder="Username" required autofocus>
+			<input type="password" class="text-input full-width mt-10" placeholder="Super secret key" name="password" required>
 			{{ csrf_field() }}
-			<button type="submit" class="btn full-width mt-20"><i class="fa fa-seedling"></i>Let's go</button>
+			<button type="submit" class="btn full-width mt-30"><i class="fa fa-seedling"></i>Let's go</button>
 		</form>
 		
 

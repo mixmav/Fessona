@@ -151,7 +151,7 @@ export default {
 					vThis.content = '';
 					vThis.previewVisible = false;
 					vThis.toggleVisible(false);
-					vThis.$toast.success('Your balloon is out in the wild 🎈');
+					vThis.$toast.success('Your balloon is pending approval from a moderator and will join the collection soon! 🎈');
 
 					// TODO vThis.$parent.refreshLetters();
 				},

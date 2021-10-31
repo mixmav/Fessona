@@ -30,7 +30,7 @@ Route::post('/api/model/balloon/update-like', 'BalloonController@UpdateLike');
 
 Route::post('/api/model/question/get-all', 'QuestionController@GetAll');
 
-Route::get('/test/seed-questions', 'QuestionController@seedQuestions');
+// Route::get('/test/seed-questions', 'QuestionController@seedQuestions');
 // Route::get('/test/seed-balloons', 'BalloonController@seedBalloons');
 
 Route::get('/{all}', 'HomeController@Home')->where(['all' => '.*?']);

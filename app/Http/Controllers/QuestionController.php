@@ -20,9 +20,9 @@ class QuestionController extends Controller
 		$question1->badges = "Dog videos,Memes";
 		$question1->save();
 
-		$question2->prompt = "Grounding zone 🧘‍♀️";
-		$question2->prompt2 = "What might you tell a friend you loved to help them feel grounded?";
-		$question2->badges = "An affirmation, Encouragement";
+		$question2->prompt = "Grounding rituals 🧘‍♀️";
+		$question2->prompt2 = "What grounds you? Or what might you tell a friend in need of some calm?";
+		$question2->badges = "An affirmation, Your grounding ritual";
 		$question2->save();
 
 		$question3->prompt = "What's something that gets you feeling creative?";

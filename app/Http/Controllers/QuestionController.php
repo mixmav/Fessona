@@ -22,7 +22,7 @@ class QuestionController extends Controller
 
 		$question2->prompt = "Grounding rituals 🧘‍♀️";
 		$question2->prompt2 = "What grounds you? Or what might you tell a friend in need of some calm?";
-		$question2->badges = "An affirmation, Your grounding ritual";
+		$question2->badges = "An affirmation, Your grounding ritual, A time when you felt very at-peace";
 		$question2->save();
 
 		$question3->prompt = "What's something that gets you feeling creative?";

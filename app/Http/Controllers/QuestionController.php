@@ -12,8 +12,8 @@ class QuestionController extends Controller
 		\DB::table('questions')->truncate();
 
 		$question1 = new Question;
-		$question2 = new Question;
 		$question3 = new Question;
+		$question2 = new Question;
 		$question4 = new Question;
 
 		$question1->prompt = "Share something that makes you smile 😊";

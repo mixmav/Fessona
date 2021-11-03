@@ -10,7 +10,7 @@
 					</div>
 					<h2 class="mt-10">Birth, death, and the silly bit in-between</h2>
 					
-					<p class="mt-10">Being the balloon connoisseurs we are, we have something for everyone. Is there anything in particular you'd like to explore first?</p>
+					<p class="mt-10">As certified balloon connoisseurs, we have something for everyone. Anything in particular you'd like to explore first?</p>
 				
 					<div class="mood-selector">
 						<button class="mood no-select" v-for="mood in moods" :key="mood.id" :class="{selected: mood.selected}" @click="updateSelectedMood(mood.id, $event)">{{ mood.icon }}</button>

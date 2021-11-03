@@ -32,7 +32,7 @@ class QuestionController extends Controller
 
 		//TODO 3 fields
 		$question4->prompt = "Share your favorite music 🎶";
-		$question4->prompt2 = "Attach a YouTube video! Also, why not share what this song means to you?";
+		$question4->prompt2 = "Add a YouTube video so everyone can listen! What does this song mean to you?";
 		$question4->save();
 
 		return true;

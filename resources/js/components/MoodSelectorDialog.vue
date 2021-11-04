@@ -22,7 +22,7 @@
 					</div>
 
 					<div class="mt-10" style="text-align: center" v-show="!loading">
-						<button class="btn full-width" v-ripple @click="launchApp"><i class="fa fa-cheese"></i>Next</button>
+						<button class="btn full-width" v-ripple @click="launchApp"><i class="fa fa-cheese"></i>Let's go</button>
 						<p class="hint mt-10">Unsure? just click next.</p>
 						<a class="a mt-10" @click="toggleQuickstartDialogVisible(true)">What's going on?</a>
 					</div>

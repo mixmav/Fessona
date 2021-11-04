@@ -77,16 +77,16 @@ export default {
 			maximized: false,
 			moods: [
 				{
-					id: 2,
-					icon: '🧘‍♀️',
-					selected: false,
-					desc: 'Calmness, being grounded',
-				},
-				{
 					id: 1,
 					icon: '❤️',
-					selected: true,
+					selected: false,
 					desc: 'Warm vibes',
+				},
+				{
+					id: 2,
+					icon: '🧘‍♀️',
+					selected: true,
+					desc: 'Calmness, being grounded',
 				},
 				{
 					id: 3,

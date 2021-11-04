@@ -7,7 +7,7 @@
 
 				<h2 class="quickstart-heading-1" v-scroll-to="generateVueScrollToConfig('quickstart-heading-1')"><span>#</span> What is this</h2>
 				
-				<p>Using a simple question-answer format, we collect nuggets of good vibes from our community here at RMIT.</p>
+				<p>Using a simple question-answer format, we collect nuggets of good vibes from our community.</p>
 				<br>
 				<p>Each answer is stored as a balloon that is guaranteed<sup>1</sup> to bring a smile on your face 🎈</p>
 				<p class="mt-10"><sup>1</sup>Anecdotal</p>
